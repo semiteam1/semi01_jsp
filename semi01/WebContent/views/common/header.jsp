@@ -8,9 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <title>티켓딱대</title>
+<link href="../../resources/image/logo2.png" rel="shortcut icon" type="image/x-icon">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<link href="../../resources/image/logo2.png" rel="shortcut icon" type="image/x-icon">
 <style>
     /* 기본 세팅 존 */
 
@@ -266,8 +266,9 @@
             <div class="util"> <!-- 유틸 부분 (로긴..)-->
                 <div class="util_inner">
                     <div class="left"></div>
-                    <!-- 로그인 전 화면 -->
-                    <!-- <div class="right" >
+                    
+                    <!-- 로그인 전 화면 
+                     <div class="right" >
                         <div class="login">
                             <a href="#" class="header_util_link" >로그인</a>
                         </div>
@@ -291,7 +292,8 @@
                         <div class="contact">
                             <a href="#" class="header_util_link">고객센터</a>
                         </div>
-                    </div> -->
+                    </div> 
+                    -->
 
                     <!-- 로그인 후 화면 -->
                     <div class="right" >

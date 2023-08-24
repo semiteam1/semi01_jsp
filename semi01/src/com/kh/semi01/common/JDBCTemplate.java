@@ -11,6 +11,7 @@ import java.util.Properties;
 
 public class JDBCTemplate {
 	
+	// Connection 객체 생성 메소드
 	public static Connection getConnection() {
 		
 		Connection conn = null;
@@ -39,6 +40,7 @@ public class JDBCTemplate {
 		
 	}
 	
+	// commit 메소드
 	public static void commit(Connection conn) {
 		
 		try {
@@ -51,6 +53,7 @@ public class JDBCTemplate {
 		
 	}
 	
+	// rollback 메소드
 	public static void rollback(Connection conn) {
 		
 		try {
@@ -63,6 +66,7 @@ public class JDBCTemplate {
 		
 	}
 	
+	// Connection close 메소드
 	public static void close(Connection conn) {
 		
 		try {
@@ -75,6 +79,7 @@ public class JDBCTemplate {
 		
 	}
 	
+	// Statement close 메소드
 	public static void close(Statement stmt) {
 		
 		try {
@@ -87,6 +92,7 @@ public class JDBCTemplate {
 		
 	}
 	
+	// ResultSet close 메소드
 	public static void close(ResultSet rset) {
 		
 		try {
