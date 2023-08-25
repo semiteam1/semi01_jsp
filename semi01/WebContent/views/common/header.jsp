@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>티켓딱대</title>
-<link href="../../resources/image/logo2.png" rel="shortcut icon" type="image/x-icon">
+<link href="resources/image/logo2.png" rel="shortcut icon" type="image/x-icon">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style>
@@ -75,10 +75,10 @@
         float: left;
     }
     .left{
-        width: 60%;
+        width: 50%;
     }
     .right{
-        width: 40%;
+        width: 50%;
     }
     /* 오른쪽 내용물 */
     .right>div{
@@ -86,13 +86,16 @@
         height: 100%;
         float: left;
         box-sizing: border-box;
+        width: 20%;
     }
-    .login,.sin,.contact{
-        width: 23.5%;
+    .login,.sin,.contact,.user_info{
+        width: 20%;
+        box-sizing: border-box;
     }
     .check{
         width: 29.5%;
     }
+    
     /* 유틸란 링크 사이즈 */
     .header_util_link {
     display: flex;
@@ -103,6 +106,7 @@
     line-height: 18px;
     color: #878d95;
     }
+    
     /* 유틸 끝 */
 
     /* 메인 시작 */
@@ -267,10 +271,13 @@
                 <div class="util_inner">
                     <div class="left"></div>
                     
-                    <!-- 로그인 전 화면 
+                    <!-- 로그인 전 화면  -->
                      <div class="right" >
+                         <div class="user_info">
+                            <a href="#" class="header_util_link" ></a>
+                        </div>
                         <div class="login">
-                            <a href="#" class="header_util_link" >로그인</a>
+                            <a href="<%=contextPath %>/login.ur" class="header_util_link" >로그인</a>
                         </div>
                         <div class="check">
                             <a href="#" class="header_util_link" onclick="book();">예매확인/취소</a>
@@ -287,16 +294,19 @@
                         </script>
 
                         <div class="sin">
-                            <a href="#" class="header_util_link">회원가입</a>
+                            <a href="<%=contextPath %>/newUser.ur" class="header_util_link">회원가입</a>
                         </div>
                         <div class="contact">
                             <a href="#" class="header_util_link">고객센터</a>
                         </div>
                     </div> 
-                    -->
+                   
 
                     <!-- 로그인 후 화면 -->
-                    <div class="right" >
+                    <!-- <div class="right" >
+                        <div class="user_info">
+                            <div  class="header_util_link" style="font-weight: 900; color: #242428;" >김딱대님</div>
+                        </div>
                         <div class="login">
                             <a href="#" class="header_util_link" >로그아웃</a>
                         </div>
@@ -312,14 +322,14 @@
                         <div class="contact">
                             <a href="#" class="header_util_link">고객센터</a>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
             </div>
 
             <div class="header_main"> <!-- 헤더 메인 (로고, 대카테고리)-->
                 <div class="header_main_left"> <!-- 로고-->
-                    <a href="#" class="logo"><img src="resources/image/logo.png" id="logo_main"></a>
+                    <a href="#" class="logo"><img src="resource/logo/logo.png" id="logo_main"></a>
                 </div>
                 <div class="header_main_mid"> <!-- 대카테고리-->
                     <a href="#" class="category"  >
@@ -387,7 +397,7 @@
                     </ul>
                     <div class="header_search_box" > <!-- 검색 -->
                         <input type="search" name="search" id="search" class="header_search_input" placeholder="검색어를 입력해 주세요" value="">
-                        <button id="btnImg"><img src="resources/image/search.png" id="btn_Img" alt=""></button>
+                        <button id="btnImg"><img src="resource/search.png" id="btn_Img" alt=""></button>
                     </div>           
                 </div>
 
