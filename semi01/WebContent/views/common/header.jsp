@@ -397,7 +397,7 @@
                     </ul>
                     <div class="header_search_box" > <!-- 검색 -->
                         <input type="search" name="search" id="search" class="header_search_input" placeholder="검색어를 입력해 주세요" value="">
-                        <button id="btnImg"><img src="resource/search.png" id="btn_Img" alt=""></button>
+                        <button type="button" id="btnImg" href="<%= contextPath %>/search.pr"><img src="resource/search.png" id="btn_Img" ></button>
                     </div>           
                 </div>
 
