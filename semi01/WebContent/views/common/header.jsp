@@ -334,7 +334,7 @@
 
             <div class="header_main"> <!-- 헤더 메인 (로고, 대카테고리)-->
                 <div class="header_main_left"> <!-- 로고-->
-                    <a href="#" class="logo"><img src="resource/logo/logo.png" id="logo_main"></a>
+                    <a href="<%= contextPath %>" class="logo"><img src="resource/logo/logo.png" id="logo_main"></a>
                 </div>
                 <div class="header_main_mid"> <!-- 대카테고리-->
                     <a href="#" class="category"  >
@@ -401,9 +401,9 @@
 
                     </ul>
                     <div class="header_search_box" > <!-- 검색 -->
-                    	<form>
-                        <input type="search" name="search" id="search" class="header_search_input" placeholder="검색어를 입력해 주세요" value="">
-                        <button type="submit" id="btnImg" href="<%= contextPath %>/search.pr"><img src="resource/search.png" id="btn_Img" ></button>
+                    	<form action="<%= contextPath %>/search.pr">
+                        <input type="search" name="searchKeyword" id="search" class="header_search_input" placeholder="검색어를 입력해 주세요" value="">
+                        <button type="submit" id="btnImg"><img src="resource/search.png" id="btn_Img" ></button>
                    		</form>
                     </div>           
                 </div>
