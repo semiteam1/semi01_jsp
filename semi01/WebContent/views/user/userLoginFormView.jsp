@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+%>
+<!--  로그인 화면 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,7 +72,7 @@
 <body>
     <head>
         <div class="head_logo">
-            <div class="logo"><a href="#"><img src="resource/logo/logo.png" alt=""></a></div>
+            <div class="logo"><a href="<%=contextPath %>"><img src="resource/logo/logo.png" alt=""></a></div>
         </div>
     </head>
     <body>
@@ -90,11 +94,11 @@
                 </div>
                 <button id="login">로그인</button>
                 <div class="find_id_pwd">
-                    <div class="find"><a href="">비밀번호 찾기</a></div>
+                    <div class="find"><a href="<%=contextPath %>/findPwd.ur">비밀번호 찾기</a></div>
                     <div class="blank"></div>
-                    <div class="find"><a href="">아이디 찾기</a></div>
+                    <div class="find"><a href="<%=contextPath %>/findId.ur">아이디 찾기</a></div>
                     <div class="blank"></div> 
-                    <div class="find"><a href="">회원가입</a></div>
+                    <div class="find"><a href="<%=contextPath %>/newUser.ur">회원가입</a></div>
                 </div>
             </div>
         </form>
