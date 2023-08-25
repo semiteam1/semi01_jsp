@@ -8,9 +8,10 @@
 <style>
 	.outer{
 		width: 1180px;
-            margin: auto;
-            /* background-color: skyblue; */
-            padding-bottom: 10px;
+        margin: auto;
+        /* background-color: skyblue; */
+        padding-bottom: 10px;
+		margin-top: 20px;
 	}
 
 	.product_img_info{
@@ -249,10 +250,16 @@
 
         .tab-content {
             display: none;
-            padding: 20px;
             /* background-color: gray; */
             margin-top: 20px;
+			margin: auto;
         }
+
+		.tab-content>img{
+			width: 1180px;
+			margin: auto;
+			padding-top: 40px;
+		}
 
         .active {
             display: block;
@@ -305,7 +312,7 @@
         }
 
         .product_detail>img{
-            width: 80%;
+            width: 1180px;
             display: block;
             margin: auto;
         }
@@ -401,7 +408,7 @@
 				</div>
 				<div class="booked_part3">
 					<br><br>
-					<b>예매 가능 티켓 수</b>
+					<b>예매 가능 좌석</b>
 					<br><br><br><br>
 					<b class="booked_part3_b">20매</b>
 					
