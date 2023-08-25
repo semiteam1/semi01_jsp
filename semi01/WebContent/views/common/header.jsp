@@ -255,9 +255,14 @@
         width: 100%;
         height: 100%;
     }
+    .minCategory{
+        z-index: 1 !important;
+    }
     
     /* 검색 끝 */
     /* 헤더 끝 */
+    /* 작은카테고리 앞으로 나오게*/
+    
 
     
 </style>
@@ -356,39 +361,39 @@
                         </li>
                         <li><a href="<%= contextPath %>/movie.pr" style="color: red;">영화</a>
                             <ul>
-                                <li><a href="#">로맨스</a></li>
-                                <li><a href="#">공포/스릴러</a></li>
-                                <li><a href="#">코미디</a></li>
-                                <li><a href="#">액션</a></li>
+                                <li><a href="#" class="minCategory">로맨스</a></li>
+                                <li><a href="#" class="minCategory">공포/스릴러</a></li>
+                                <li><a href="#" class="minCategory">코미디</a></li>
+                                <li><a href="#" class="minCategory">액션</a></li>
                             </ul>
                         
                         </li>
                         <li><a href="#">전시</a>
                             <ul>
-                                <li><a href="#">그림전시</a></li>
-                                <li><a href="#">작품전시</a></li>
-                                <li><a href="#">사진전시</a></li>
-                                <li><a href="#">체험전시</a></li>
+                                <li><a href="#" class="minCategory">그림전시</a></li>
+                                <li><a href="#" class="minCategory">작품전시</a></li>
+                                <li><a href="#" class="minCategory">사진전시</a></li>
+                                <li><a href="#" class="minCategory">체험전시</a></li>
                             </ul>
                         </li>
                         <li><a href="#">공연</a>
                             <ul>
-                                <li><a href="#">뮤지컬</a></li>
-                                <li><a href="#">연극</a></li>
-                                <li><a href="#">클래식</a></li>
-                                <li><a href="#">콘서트</a></li>
+                                <li><a href="#" class="minCategory">뮤지컬</a></li>
+                                <li><a href="#" class="minCategory">연극</a></li>
+                                <li><a href="#" class="minCategory">클래식</a></li>
+                                <li><a href="#" class="minCategory">콘서트</a></li>
                             </ul>
                             <li  style="width: 2px; height: 20px; margin-top: 8px; background-color: #515155;"></li>
                         <li><a href="#">랭킹</a></li>
                         <li><a href="#">지역</a>
                             <ul class="local">
-                                <li><a href="#">서울</a></li>
-                                <li><a href="#">경기/이천</a></li>
-                                <li><a href="#">충청/강원</a></li>
-                                <li><a href="#">대구/경북</a></li>
-                                <li><a href="#">부산/경남</a></li>
-                                <li><a href="#">광주/전라</a></li>
-                                <li><a href="#">제주</a></li>
+                                <li><a href="#" class="minCategory">서울</a></li>
+                                <li><a href="#" class="minCategory">경기/이천</a></li>
+                                <li><a href="#" class="minCategory">충청/강원</a></li>
+                                <li><a href="#" class="minCategory">대구/경북</a></li>
+                                <li><a href="#" class="minCategory">부산/경남</a></li>
+                                <li><a href="#" class="minCategory">광주/전라</a></li>
+                                <li><a href="#" class="minCategory">제주</a></li>
                             </ul>
                         </li>
                         
