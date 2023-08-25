@@ -26,6 +26,7 @@
             margin-left: 370px;
             margin-right: 50px;
             float: left;
+            z-index: 0;
         }
 
         .custom-carousel-buttons {
