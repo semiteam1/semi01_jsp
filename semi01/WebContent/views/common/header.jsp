@@ -95,7 +95,7 @@
     .check{
         width: 29.5%;
     }
-    
+
     /* 유틸란 링크 사이즈 */
     .header_util_link {
     display: flex;
@@ -106,7 +106,7 @@
     line-height: 18px;
     color: #878d95;
     }
-    
+
     /* 유틸 끝 */
 
     /* 메인 시작 */
@@ -271,9 +271,9 @@
                 <div class="util_inner">
                     <div class="left"></div>
                     
-                    <!-- 로그인 전 화면  -->
+                    <!-- 로그인 전 화면  --> 
                      <div class="right" >
-                         <div class="user_info">
+<div class="user_info">
                             <a href="#" class="header_util_link" ></a>
                         </div>
                         <div class="login">
@@ -300,11 +300,11 @@
                             <a href="#" class="header_util_link">고객센터</a>
                         </div>
                     </div> 
-                   
+                    
 
                     <!-- 로그인 후 화면 -->
                     <!-- <div class="right" >
-                        <div class="user_info">
+<div class="user_info">
                             <div  class="header_util_link" style="font-weight: 900; color: #242428;" >김딱대님</div>
                         </div>
                         <div class="login">
