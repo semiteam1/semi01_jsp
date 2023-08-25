@@ -21,7 +21,11 @@ public class JDBCTemplate {
 		String filePath = JDBCTemplate.class.getResource("/db/driver/driver.properties").getPath();
 		
 		try {
+<<<<<<< Updated upstream
 			prop.load(new FileInputStream(filePath));
+=======
+			prop.load(new FileInputStream(JDBCTemplate.class.getResource("/db/driver/driver.properties").getPath()));
+>>>>>>> Stashed changes
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
