@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+%>
+<!--  회원가입 화면 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -151,7 +155,7 @@
 </head>
 <body>
     <div class="logo_div">
-        <a href="#"><img src="resource/logo/logo.png" id="logo" alt=""></a>
+        <a href="<%=contextPath %>"><img src="resource/logo/logo.png" id="logo" alt=""></a>
     </div>
     <form action="#" method="post">
         <div class="outer">
@@ -182,7 +186,7 @@
                         <input type="text" id="new_user_pwd" name="new_userBday" placeholder="생년월일 8자리 [ex)230824]" required>
                 </div>
                 <div class="phone_input">
-                    <img src="resource/이미지자료/폰.PNG" id="newMember_img">
+                    <img src="resource/이미지자료/폰.png" id="newMember_img">
                         <input type="text" id="new_user" class="new_user_phone" name="new_userPhone" placeholder="휴대폰 번호 [010-1234-5678]" required>
                 </div>
                 <div class="interest_box" style="height: 30px;">

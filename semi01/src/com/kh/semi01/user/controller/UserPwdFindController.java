@@ -8,17 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class UserNewUserController
+ * Servlet implementation class UserPwdFindController
  */
-// 회원가입 컨트롤러
-@WebServlet("/newUser.ur")
-public class UserNewUserController extends HttpServlet {
+// 비번찾는 컨트롤러
+@WebServlet("/findPwd.ur")
+public class UserPwdFindController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserNewUserController() {
+    public UserPwdFindController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +28,7 @@ public class UserNewUserController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("views/user/userNewUserFormView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/user/userFindUserPwdForm.jsp").forward(request, response);
 	}
 
 	/**
