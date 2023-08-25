@@ -1,13 +1,22 @@
+<%@page import="com.kh.semi01.product.model.vo.Product"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	String sKeyWord = (String)request.getAttribute("sKeyWord");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <style>
 	.outer {
+        width: 1180px;
 		height: 100%;
+        margin: auto;
 	}
 	
 	        /* 검색창 폼 전체 */
@@ -42,7 +51,7 @@
             border: 1px solid lightgray;
             font-weight: bold;
             font-size: 20px;
-            width: 393px;
+            width: 33%;
             height: 48px;
             float: left;
             text-align: center;
@@ -53,6 +62,8 @@
         .search_result{
             width: 1070px;
             float: left;
+            font-size: 30px;
+            font-weight: bold;
         }
 
         .search_filter{
@@ -86,7 +97,7 @@
         }
 
         .search_product_box2{
-            width: 800px;
+            width: 1000px;
             float: left;
         }
 
@@ -102,7 +113,7 @@
 	<div class="outer">
 	 
 	  <div class="search">
-            <p class="search_num"><em class="search_num_em">xx</em>에 대한 검색결과는 총 <em class="search_num_em">00</em>건 입니다.</p>
+            <p class="search_num"><em class="search_num_em"><%= sKeyWord %></em>에 대한 검색결과는 총 <em class="search_num_em"><%= list.size() %></em>건 입니다.</p>
 
             <!-- 검색 분류 탭-->
             <ul class="search_tap">
@@ -137,8 +148,8 @@
             <div class="search_product">
                 <div class="search_product_box">
 
-                        <a href="" class="search_product_box2">
-                            <span><img src="../../resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
+                        <a href="<%= contextPath %>/detail.pr" class="search_product_box2">
+                            <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
                             <strong>2023 오페라 갈라 콘서트</strong>
                             <dl>
                                 <dt>장소 : &nbsp;</dt>
@@ -156,8 +167,8 @@
 
                 <div class="search_product_box">
 
-                    <a href="" class="search_product_box2">
-                        <span><img src="../resorces/01_공연/클래식/오페라검색결과(샘플).jpg.crdownload" alt=""></span>
+                    <a href="<%= contextPath %>/detail.pr" class="search_product_box2">
+                        <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
                         <strong>2023 오페라 갈라 콘서트</strong>
                         <dl>
                             <dt>장소 : &nbsp;</dt>
@@ -176,7 +187,7 @@
                 <div class="search_product_box">
 
                     <a href="" class="search_product_box2">
-                        <span><img src="../resorces/01_공연/클래식/오페라검색결과(샘플).jpg.crdownload" alt=""></span>
+                        <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
                         <strong>2023 오페라 갈라 콘서트</strong>
                         <dl>
                             <dt>장소 : &nbsp;</dt>
@@ -195,7 +206,7 @@
                 <div class="search_product_box">
 
                     <a href="" class="search_product_box2">
-                        <span><img src="../resorces/01_공연/클래식/오페라검색결과(샘플).jpg.crdownload" alt=""></span>
+                        <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
                         <strong>2023 오페라 갈라 콘서트</strong>
                         <dl>
                             <dt>장소 : &nbsp;</dt>
@@ -214,7 +225,7 @@
                 <div class="search_product_box">
 
                     <a href="" class="search_product_box2">
-                        <span><img src="../resorces/01_공연/클래식/오페라검색결과(샘플).jpg.crdownload" alt=""></span>
+                        <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
                         <strong>2023 오페라 갈라 콘서트</strong>
                         <dl>
                             <dt>장소 : &nbsp;</dt>
@@ -233,7 +244,7 @@
                 <div class="search_product_box">
 
                     <a href="" class="search_product_box2">
-                        <span><img src="../resorces/01_공연/클래식/오페라검색결과(샘플).jpg.crdownload" alt=""></span>
+                        <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
                         <strong>2023 오페라 갈라 콘서트</strong>
                         <dl>
                             <dt>장소 : &nbsp;</dt>
@@ -247,15 +258,12 @@
 
                     <button type="button" class="btn btn-danger">예매하기</button>
                 </div>
+
+                <!-- 
                 <hr>
-
-                
-
-
-
                 <br>
 
-                <!-- 페이지 컨트롤러 -->
+                페이지 컨트롤러
                 <ul class="pagination justify-content-center" style="border: 0px;">
                     <li class="page-item"><a class="page-link" href="#">이전</a></li>
                     <li class="page-item"><a class="page-link" href="#">1</a></li>
@@ -263,7 +271,7 @@
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
                     <li class="page-item"><a class="page-link" href="#">다음</a></li>
                   </ul>
-                <br><br>
+                <br><br> -->
             </div>
 
 

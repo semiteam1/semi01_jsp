@@ -10,27 +10,16 @@
 <link rel="shortcut icon" href="resource/logo/bichon-frise.png">
 <style>
 	.outer {
-		height: 100%;
+        height: 2000px;
+        width: 100%;
         position: relative;
         z-index: 1;
 	}
 
         /* 바디 시작 */
-        .body{
-            /* background-color: skyblue; */
-            height: 2000px;
-        }
 
         /* 상단 메인 배너 */
         /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
-
-        .recommend_img{
-            width: 1180px;
-            margin-left: 370px;
-            margin-right: 50px;
-            float: left;
-            z-index: 0;
-        }
 
         .custom-carousel-buttons {
             position: absolute;
@@ -62,9 +51,18 @@
             width: 1920px;
             overflow: hidden;
         }
-        
+
+
+
           /* 잘보여라@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
         /* 추천상품 */
+
+        .recommend_img{
+            width: 1180px;
+            float: left;
+            margin-left: 370px;
+            margin-right: 50px;
+        }
 
         .div_img{
             width: 20%;
@@ -75,7 +73,7 @@
         }
 
         .div_img img {
-            border-radius: 20px;
+            border-radius: 10px;
         }
 
         /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
@@ -90,6 +88,8 @@
         .sidebar {
         width: 80%;
         height: 450px;
+        border-radius: 10px;
+        margin-top: -50px;
         }
 
         .sidebar {
@@ -99,20 +99,15 @@
         }
        
 
-
-
-
 </style>
 </head>
 <body>
 	<%@ include file = "/views/common/header.jsp" %>
 	
-	<div class="outer">
-
-<div class="body">
+	<div class="outer" >
 
     <div class="container">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
             <!-- Slides -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -173,7 +168,7 @@
         
         
         <div class="div_img">
-            <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+            <a href="<%= contextPath %>/detail.pr" target="_blank">
                 <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
                 <div class="caption">
                     <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
@@ -276,27 +271,6 @@
                 
         </div>
 
-		<script>
-			// When the page is fully loaded
-			window.onload = function () {
-				var backToTopBtn = document.getElementById("backToTopBtn");
-				var topAnchor = document.getElementById("topAnchor");
-		
-				// Show/hide the back-to-top button based on scroll position
-				window.onscroll = function () {
-					if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-						backToTopBtn.style.display = "block";
-					} else {
-						backToTopBtn.style.display = "none";
-					}
-				};
-		
-				// Scroll to the top when the button is clicked
-				backToTopBtn.onclick = function () {
-					document.documentElement.scrollTop = 0;
-				};
-			};
-		</script>
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- 사이드바 -->
         <div class="sticky_outer">
@@ -310,7 +284,7 @@
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	</div>
+
 	
 	<%@ include file = "/views/common/footer.jsp" %>
 </body>
