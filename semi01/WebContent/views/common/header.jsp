@@ -1,7 +1,10 @@
+<%@page import="com.kh.semi01.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+
+	User loginMember = (User)session.getAttribute("loginMember");    
 %>
 <!DOCTYPE html>
 <html>
@@ -279,8 +282,9 @@
                     <div class="left"></div>
                     
                     <!-- 로그인 전 화면  --> 
+                    <% if(loginMember == null){ %>
                      <div class="right" >
-<div class="user_info">
+						<div class="user_info">
                             <a href="#" class="header_util_link" ></a>
                         </div>
                         <div class="login">
@@ -307,15 +311,15 @@
                             <a href="#" class="header_util_link">고객센터</a>
                         </div>
                     </div> 
-                    
-
+                    <%}else { %>
+	
                     <!-- 로그인 후 화면 -->
-                    <!-- <div class="right" >
-<div class="user_info">
-                            <div  class="header_util_link" style="font-weight: 900; color: #242428;" >김딱대님</div>
+                     <div class="right" >
+						<div class="user_info">
+                            <div  class="header_util_link" style="font-weight: 900; color: #242428;" ><%=loginMember.getUserName() %>님</div>
                         </div>
                         <div class="login">
-                            <a href="#" class="header_util_link" >로그아웃</a>
+                            <a href="<%=contextPath %>/logout.me" class="header_util_link" >로그아웃</a>
                         </div>
 
                         <div class="check">
@@ -329,7 +333,8 @@
                         <div class="contact">
                             <a href="#" class="header_util_link">고객센터</a>
                         </div>
-                    </div> -->
+                    </div> 
+                    <%} %>
 
                 </div>
             </div>

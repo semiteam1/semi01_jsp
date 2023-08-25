@@ -3,7 +3,32 @@
 <properties>
 
 <entry key="loginMember">
-		SELECT
+SELECT
+       USER_NO
+     , USER_ID
+     , USER_PWD
+     , USER_NAME
+     , USER_BIRTH
+     , C.CATEGORY_NAME "INTEREST_MOVIE"
+     , D.CATEGORY_NAME "INTEREST_DISPLAY"
+     , E.CATEGORY_NAME "INTEREST_SHOW"
+     , EMAIL
+     , PHONE
+     , GRADE_NAME
+     , STATUS
+  FROM USER_INFO
+  JOIN CATEGORY_INFO C ON (INTEREST_MOVIE = C.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO D ON (INTEREST_DISPLAY = D.CATEGORY_TYPE)
+  JOIN CATEGORY_INFO E ON (INTEREST_SHOW = E.CATEGORY_TYPE)
+  JOIN GRADE G USING(GRADE_NO)
+ WHERE USER_ID = ?
+   AND USER_PWD = ?
+   AND STATUS = 'Y'
+</entry>
+<entry key="insertUser">
+	INSERT 
+	  INTO USER_INFO 
+	     (
 	       USER_NO
 	     , USER_ID
 	     , USER_PWD
@@ -16,10 +41,21 @@
 	     , PHONE
 	     , GRADE_NO
 	     , STATUS
-	  FROM USER_INFO
-	 WHERE USER_ID = ?
-	   AND USER_PWD =?
-	   AND STATUS = 'Y'
+	     )
+	VALUES 
+	     (
+	       SEQ_UNO.NEXTVAL
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , ?
+	     , 1
+	     ,'Y')
 </entry>
 
 </properties>

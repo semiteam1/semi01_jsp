@@ -1,5 +1,6 @@
 package com.kh.semi01.user.model.dao;
 
+import java.io.Closeable;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -10,6 +11,7 @@ import java.util.Properties;
 
 import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
+import static com.kh.semi01.common.JDBCTemplate.*;
 import com.kh.semi01.user.model.vo.User;
 
 public class UserDao {
@@ -44,17 +46,60 @@ private Properties prop = new Properties();
 			
 			if(rset.next()) {
 				u = new User(rset.getInt("USER_NO"),
-							 rset.getString("USER_ID"). 
-							)
+							 rset.getString("USER_ID"), 
+							 rset.getString("USER_PWD"), 
+							 rset.getString("USER_NAME"), 
+							 rset.getString("USER_BIRTH"),
+							 rset.getString("INTEREST_MOVIE"),
+							 rset.getString("INTEREST_DISPLAY"),
+							 rset.getString("INTEREST_SHOW"),
+							 rset.getString("EMAIL"),
+							 rset.getString("PHONE"),
+							 rset.getString("GRADE_NAME"),
+							 rset.getString("STATUS")
+							);
 						
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		
 		return u;
+	}
+
+	public int insertUser(Connection conn, User u) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("insertUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, u.getUserId());
+			pstmt.setString(2, u.getUserPwd());
+			pstmt.setString(3, u.getUserName());
+			pstmt.setString(4, u.getUserBirth());
+			pstmt.setInt(5, Integer.parseInt(u.getInterestMovie()));
+			pstmt.setInt(6, Integer.parseInt(u.getInterestDisplay()));
+			pstmt.setInt(7, Integer.parseInt(u.getInterestShow()));
+			pstmt.setString(8, u.getEmail());
+			pstmt.setString(9, u.getPhone());
+			
+			result = pstmt.executeUpdate();	
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }

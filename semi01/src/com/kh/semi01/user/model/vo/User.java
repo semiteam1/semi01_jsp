@@ -13,14 +13,14 @@ public class User {
 	private String email; 			// 이메일
 	private String phone; 			// 전화번호
 	private String grade; 			// 회원등급 => 조회시 등급명 | 입력시 등급번호
-	private char status; 			// 탈퇴여부(Y,N)
+	private String status; 			// 탈퇴여부(Y,N)
 	
 	// 기본 생성자
 	public User() {}
 
 	// 전체 매개변수 생성자
 	public User(int userNo, String userId, String userPwd, String userName, String userBirth, String interestMovie,
-			String interestDisplay, String interestShow, String email, String phone, String grade, char status) {
+			String interestDisplay, String interestShow, String email, String phone, String grade, String status) {
 		super();
 		this.userNo = userNo;
 		this.userId = userId;
@@ -34,6 +34,21 @@ public class User {
 		this.phone = phone;
 		this.grade = grade;
 		this.status = status;
+	}
+
+	
+	public User(String userId, String userPwd, String userName, String userBirth, String interestMovie,
+			String interestDisplay, String interestShow, String email, String phone) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.userBirth = userBirth;
+		this.interestMovie = interestMovie;
+		this.interestDisplay = interestDisplay;
+		this.interestShow = interestShow;
+		this.email = email;
+		this.phone = phone;
 	}
 
 	// getter-setter 메소드
@@ -125,11 +140,11 @@ public class User {
 		this.grade = gradeNo;
 	}
 
-	public char getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(char status) {
+	public void setStatus(String status) {
 		this.status = status;
 	}
 

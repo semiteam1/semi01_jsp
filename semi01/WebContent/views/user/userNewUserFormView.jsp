@@ -157,7 +157,7 @@
     <div class="logo_div">
         <a href="<%=contextPath %>"><img src="resource/logo/logo.png" id="logo" alt=""></a>
     </div>
-    <form action="#" method="post">
+    <form action="<%=contextPath %>/insert.ur" method="post">
         <div class="outer">
             <div class="id_pwd_input">
                 <div class="id_input">
@@ -197,24 +197,24 @@
                 <div class="int_box" >
                     <div class="int_movie" id="int">
                         <div class="tag">영화</div>
-                        <div class="choice_box" id="fst"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('romance');">로멘스</button></div>
-                        <div class="choice_box"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('thriller');">공포/스릴러</button></div>
-                        <div class="choice_box"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('comedy');">코미디</button></div>
-                        <div class="choice_box" id="last"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('action');">액션</button></div>
+                        <div class="choice_box" id="fst"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('1');">로멘스</button></div>
+                        <div class="choice_box"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('2');">공포/스릴러</button></div>
+                        <div class="choice_box"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('3');">코미디</button></div>
+                        <div class="choice_box" id="last"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('4');">액션</button></div>
                     </div>
                     <div class="line" id="int">
                         <div class="tag">전시</div>
-                        <div class="choice_box" id="fst"><button type="button" class="int_btn_display" id="paint" onclick="selectDisplay('paint');">그림전시</button></div>
-                        <div class="choice_box"><button type="button" class="int_btn_display" id="composition" onclick="selectDisplay('composition');">작품전시</button></div>
-                        <div class="choice_box"><button type="button" class="int_btn_display" id="photo" onclick="selectDisplay('photo');">사진전시</button></div>
-                        <div class="choice_box" id="last"><button type="button" class="int_btn_display" id="experience" onclick="selectDisplay('experience');">체험전시</button></div>
+                        <div class="choice_box" id="fst"><button type="button" class="int_btn_display" id="paint" onclick="selectDisplay('5');">그림전시</button></div>
+                        <div class="choice_box"><button type="button" class="int_btn_display" id="composition" onclick="selectDisplay('6');">작품전시</button></div>
+                        <div class="choice_box"><button type="button" class="int_btn_display" id="photo" onclick="selectDisplay('7');">사진전시</button></div>
+                        <div class="choice_box" id="last"><button type="button" class="int_btn_display" id="experience" onclick="selectDisplay('8');">체험전시</button></div>
                     </div>
                     <div class="int_movie" id="int">
                         <div class="tag">공연</div>
-                        <div class="choice_box" id="fst"><button type="button" class="int_btn_show" id="musical" onclick="selectShow('musical');" >뮤직컬</button></div>
-                        <div class="choice_box"><button type="button" class="int_btn_show" id="act" onclick="selectShow('act');" >연극</button></div>
-                        <div class="choice_box"><button type="button" class="int_btn_show" id="classical" onclick="selectShow('classical');" >클래식</button></div>
-                        <div class="choice_box" id="last"><button type="button" class="int_btn_show" id="concert" onclick="selectShow('concert');" >콘서트</button></div>
+                        <div class="choice_box" id="fst"><button type="button" class="int_btn_show" id="musical" onclick="selectShow('9');" >뮤직컬</button></div>
+                        <div class="choice_box"><button type="button" class="int_btn_show" id="act" onclick="selectShow('10');" >연극</button></div>
+                        <div class="choice_box"><button type="button" class="int_btn_show" id="classical" onclick="selectShow('11');" >클래식</button></div>
+                        <div class="choice_box" id="last"><button type="button" class="int_btn_show" id="concert" onclick="selectShow('12');" >콘서트</button></div>
                     </div> 
                     <input type="hidden" name="select_movie_hidden" id="select_movie_hidden">
                     <input type="hidden" name="select_display_hidden" id="select_display_hidden">
