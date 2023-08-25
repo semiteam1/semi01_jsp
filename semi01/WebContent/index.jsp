@@ -7,6 +7,7 @@
 <title>티켓딱대</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link href="resource/image/logo2.png" rel="shortcut icon" type="image/x-icon">
+<link rel="shortcut icon" href="resource/logo/bichon-frise.png">
 <style>
 	.outer {
 		height: 100%;
