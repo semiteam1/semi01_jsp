@@ -76,7 +76,7 @@
         </div>
     </head>
     <body>
-        <form action="">
+        <form action="<%=contextPath%>/loginMember.ur">
             <div class="body">
                 <div class="body_input">
                     <div class="id">

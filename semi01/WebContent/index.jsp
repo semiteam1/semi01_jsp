@@ -96,6 +96,7 @@
         position: sticky;
         top: 0;
         }
+       
 
 
 
@@ -114,7 +115,7 @@
             <!-- Slides -->
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                  <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 1" class="carousel-img">
+                  <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 1" class="carousel-img" style="z-index: 1;">
                 </div>
                 <div class="carousel-item">
                     <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 2" class="carousel-img">
