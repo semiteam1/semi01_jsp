@@ -7,9 +7,9 @@ public class User {
 	private String userPwd; 		// 회원비밀번호
 	private String userName; 		// 회원명
 	private String userBirth; 		// 생년월일 => 입출력을 자유롭게 하기 위해서 String으로
-	private String interestMovie; 	// 관심_영화(1~4)
-	private String interestDisplay; // 관심_전시(5~8)
-	private String interestShow; 	// 관심_공연(9~12)
+	private String interestMovie; 	// 관심_영화(1~4) => 조회시 카테고리명 | 입력시 카테고리번호
+	private String interestDisplay; // 관심_전시(5~8) => 조회시 카테고리명 | 입력시 카테고리번호
+	private String interestShow; 	// 관심_공연(9~12) => 조회시 카테고리명 | 입력시 카테고리번호
 	private String email; 			// 이메일
 	private String phone; 			// 전화번호
 	private String grade; 			// 회원등급 => 조회시 등급명 | 입력시 등급번호

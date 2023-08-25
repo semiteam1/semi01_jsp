@@ -16,6 +16,7 @@ import com.kh.semi01.user.model.vo.User;
 
 public class UserDao {
 	
+<<<<<<< Updated upstream
 private Properties prop = new Properties();
 	
 	public UserDao() { // 메소드 아니라 memberdao의 기본 생성자 생성자는 반환형 x 괄호안에 변수 없으니까 기본 생성자다 ~ 실행할 내용이 있어서 쓴거임
@@ -101,5 +102,8 @@ private Properties prop = new Properties();
 		
 		return result;
 	}
+=======
+	
+>>>>>>> Stashed changes
 
 }
