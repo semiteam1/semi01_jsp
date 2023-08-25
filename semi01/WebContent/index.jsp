@@ -10,6 +10,8 @@
 <style>
 	.outer {
 		height: 100%;
+        position: relative;
+        z-index: 1;
 	}
 
         /* 바디 시작 */

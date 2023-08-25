@@ -255,6 +255,11 @@
         width: 100%;
         height: 100%;
     }
+
+    .header_gnb{
+        position: relative;
+        z-index: 2;
+    }
     
     /* 검색 끝 */
     /* 헤더 끝 */
