@@ -1,6 +1,9 @@
 package com.kh.semi01.product.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -32,13 +35,23 @@ public class ProductSearchController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String sKeyWord = request.getParameter("searchKeyWord");
 		
-		Product searchProduct = new ProductService().searchProduct(sKeyWord);
+		ArrayList<Product> list = new ProductService().searchProduct(sKeyWord);
+		
+		if(list.isEmpty()) {
+			request.setAttribute("errorMsg", "해당 키워드에 대한 결과가 없습니다. 다시 검색해주세요.");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
+		}else {
+			request.setAttribute("list", list);
+			request.setAttribute("sKeyWord", sKeyWord);
+			request.getRequestDispatcher("views/product/productSearch.jsp").forward(request, response);
+		}
 		
 		
 		
 		
 		
-		request.getRequestDispatcher("views/product/productSearch.jsp").forward(request, response);
+		
 		
 	}
 

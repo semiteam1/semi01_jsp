@@ -19,7 +19,7 @@ public class JDBCTemplate {
 		Properties prop = new Properties();
 		
 		try {
-			prop.load(new FileInputStream(JDBCTemplate.class.getResource("db/driver/driver.properties").getPath()));
+			prop.load(new FileInputStream(JDBCTemplate.class.getResource("/db/driver/driver.properties").getPath()));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

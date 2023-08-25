@@ -6,8 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
+import static com.kh.semi01.common.JDBCTemplate.*;
 import com.kh.semi01.product.model.vo.Product;
 
 public class ProductDao {
@@ -24,8 +26,8 @@ public class ProductDao {
 		}
 	}
 	
-	public Product searchProduct(Connection conn, String sKeyWord) {
-		Product p = null;
+	public ArrayList<Product> searchProduct(Connection conn, String sKeyWord) {
+		ArrayList<Product> list = new ArrayList<Product>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -35,14 +37,28 @@ public class ProductDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, p.getProductTitle());
+			pstmt.setString(1, sKeyWord);
 			
+			rset = pstmt.executeQuery();
 			
+			while(rset.next()) {
+				list.add(new Product(rset.getInt("product_no"),
+								   rset.getString("product_title"),
+								   rset.getString("address"),
+								   rset.getString("start_period"),
+								   rset.getString("end_period"),
+								   rset.getInt("price"),
+								   rset.getString("poster_path")
+								   ));
+			
+			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
 		}
-		
-	}
+		return list;
+		}
 
 }

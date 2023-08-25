@@ -1,5 +1,11 @@
+<%@page import="com.kh.semi01.product.model.vo.Product"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	String sKeyWord = (String)request.getAttribute("sKeyWord");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +113,7 @@
 	<div class="outer">
 	 
 	  <div class="search">
-            <p class="search_num"><em class="search_num_em">xx</em>에 대한 검색결과는 총 <em class="search_num_em">00</em>건 입니다.</p>
+            <p class="search_num"><em class="search_num_em"><%= sKeyWord %></em>에 대한 검색결과는 총 <em class="search_num_em"><%= list.size() %></em>건 입니다.</p>
 
             <!-- 검색 분류 탭-->
             <ul class="search_tap">
