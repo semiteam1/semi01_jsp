@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi01.product.model.service.ProductService;
+import com.kh.semi01.product.model.vo.Product;
+
 /**
  * Servlet implementation class ProductSearch
  */
@@ -27,6 +30,13 @@ public class ProductSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		String sKeyWord = request.getParameter("searchKeyWord");
+		
+		Product searchProduct = new ProductService().searchProduct(sKeyWord);
+		
+		
+		
+		
 		
 		request.getRequestDispatcher("views/product/productSearch.jsp").forward(request, response);
 		
