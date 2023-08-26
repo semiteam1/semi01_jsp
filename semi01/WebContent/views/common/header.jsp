@@ -11,7 +11,7 @@
 <head>
 <meta charset="UTF-8">
 <title>티켓딱대</title>
-<link href="resources/image/logo2.png" rel="shortcut icon" type="image/x-icon">
+<link href="resource/image/logo2.png" rel="shortcut icon" type="image/x-icon">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
 <style>

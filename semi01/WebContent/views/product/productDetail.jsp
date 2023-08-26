@@ -382,7 +382,7 @@
 
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 		<!-- 예매 파트 -->
-		<form action="">
+		<!-- <form action="<%= contextPath %>/payment.pa" method="post"> -->
 			<div class="booked">
 				<div class="booked_part1">
 					<div class="booked_part1_calender1">
@@ -415,9 +415,18 @@
 				</div>
 			</div>
 			<div class="booked_btn_form">
-				<button type="submit" class="booked_btn">예매하기</button>
+				<button type="submit" class="booked_btn" onclick="book();">예매하기</button>
 			</div>
-		</form>
+		<!-- </form> -->
+
+		<script>
+
+			function book() {
+				window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");
+			}
+
+		</script>
+		
 		<br><br><br><br>
 		
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
