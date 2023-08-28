@@ -409,7 +409,7 @@
                     </ul>
                     <div class="header_search_box" > <!-- 검색 -->
                     	<form action="<%= contextPath %>/search.pr">
-                        <input type="search" name="searchKeyWord" id="search" class="header_search_input" placeholder="검색어를 입력해 주세요" value="">
+                        <input type="search" name="sKeyWord" id="search" class="header_search_input" placeholder="검색어를 입력해 주세요">
                         <button type="submit" id="btnImg"><img src="resource/search.png" id="btn_Img" ></button>
                    		</form>
                     </div>           
