@@ -168,7 +168,7 @@
         
         
         <div class="div_img">
-            <a href="<%= contextPath %>/detail.pr" target="_blank">
+            <a href="<%= contextPath %>/detail.pr">
                 <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
                 <div class="caption">
                     <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
