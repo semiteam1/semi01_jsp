@@ -3,6 +3,7 @@
 <properties>
 
 <entry key="loginMember">
+<!-- 로그인 -->
 SELECT
        USER_NO
      , USER_ID
@@ -26,6 +27,7 @@ SELECT
    AND STATUS = 'Y'
 </entry>
 <entry key="insertUser">
+<!-- 회원가입 -->
 	INSERT 
 	  INTO USER_INFO 
 	     (
@@ -58,6 +60,7 @@ SELECT
 	     ,'Y')
 </entry>
 <entry key="findIdWithEmail">
+<!-- 이멜로 아디찾기 -->
 SELECT
        USER_NO
      , USER_ID
@@ -81,6 +84,7 @@ SELECT
    AND EMAIL = ?
 </entry>
 <entry key="findIdWithPhone">
+<!-- 폰으로 아디찾기 -->
 SELECT
        USER_NO
      , USER_ID
@@ -104,6 +108,7 @@ SELECT
    AND PHONE = ?
 </entry>
 <entry key="findPwdWithEmail">
+<!-- 이멜로 비번찾기 -->
 SELECT
        USER_NO
      , USER_ID
@@ -127,6 +132,7 @@ SELECT
    AND EMAIL = ?
 </entry>
 <entry key="findPwdWithPhone">
+<!-- 폰으로 비번찾기 -->
 SELECT
        USER_NO
      , USER_ID
@@ -150,11 +156,18 @@ SELECT
    AND PHONE = ?
 </entry>
 <entry key="changePwd">
+<!-- 비번 변경 -->
 UPDATE USER_INFO
    SET USER_PWD = ?
  WHERE USER_NO = ?
    AND USER_ID = ?
    AND USER_PWD = ?
 </entry>
-
+<entry key="idCheck">
+<!--  아이디 체크용 -->
+	SELECT 
+	       COUNT(*) COUNT
+	  FROM USER_INFO
+	 WHERE USER_ID = ?
+</entry>
 </properties>
