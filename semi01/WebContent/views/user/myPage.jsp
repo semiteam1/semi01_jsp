@@ -146,6 +146,7 @@
     .form-title {
         color: #707070;
         font-size: 15px;
+        width: 100px;
     }
     .form-content>input {
         color: #202020;
@@ -231,7 +232,8 @@
                     
                     <div id="right-bottom">
                         <div id="myPage-content">
-                            <form action="#" method="post">
+                            <form action="<%= contextPath %>/myPageUpdate.us" method="post">
+                            	<input type="hidden" name="userNo" value="<%= loginMember.getUserNo() %>">
                                 <table id="myPageForm">
                                     <tr>
                                         <td class="form-title">*아이디</td>
@@ -261,14 +263,11 @@
                                         <td rowspan="3" class="form-title">관심있는 태그</td>
                                         <td>
                                             <td>
-                                                [영화]
-                                            </td>
-                                            <td>
-                                                <select name="interest_movie">
-                                                    <option value="1">로맨스</option>
-                                                    <option value="2">공포/스릴러</option>
-                                                    <option value="3">코미디</option>
-                                                    <option value="4">액션</option>
+                                                <select name="interestMovie">
+                                                    <option value="1">로맨스(영화)</option>
+                                                    <option value="2">공포/스릴러(영화)</option>
+                                                    <option value="3">코미디(영화)</option>
+                                                    <option value="4">액션(영화)</option>
                                                 </select>
                                             </td>
                                         </td>
@@ -276,14 +275,11 @@
                                     <tr>
                                         <td>
                                             <td>
-                                                [전시]
-                                            </td>
-                                            <td>
-                                                <select name="interest_display">
-                                                    <option value="5">그림전시</option>
-                                                    <option value="6">작품전시</option>
-                                                    <option value="7">사진전시</option>
-                                                    <option value="8">체험전시</option>
+                                                <select name="interestDisplay">
+                                                    <option value="5">그림(전시)</option>
+                                                    <option value="6">작품(전시)</option>
+                                                    <option value="7">사진(전시)</option>
+                                                    <option value="8">체험(전시)</option>
                                                 </select>
                                             </td>
                                         </td>
@@ -291,14 +287,11 @@
                                     <tr>
                                         <td>
                                             <td>
-                                                [공연]
-                                            </td>
-                                            <td>
-                                                <select name="interest_show">
-                                                    <option value="9">뮤지컬</option>
-                                                    <option value="10">연극</option>
-                                                    <option value="11">클래식</option>
-                                                    <option value="12">콘서트</option>
+                                                <select name="interestShow">
+                                                    <option value="9">뮤지컬(공연)</option>
+                                                    <option value="10">연극(공연)</option>
+                                                    <option value="11">클래식(공연)</option>
+                                                    <option value="12">콘서트(공연)</option>
                                                 </select>
                                             </td>
                                         </td>
@@ -308,25 +301,37 @@
                                 <script>
                                 
                              		$(function() {
-                             			
-                             			const movie = <%= loginMember.getInterestMovie() %>;
-                             			
-                             			console.log(movie);
-                             			
-                             			// $("select[name=interest_movie]").children().each(function() {
+
+                             			$("select[name=interestMovie]>option").each(function() {
                              				
-                             			// 	if(movie.indexOf($(this).text()) == 0) {
-                             			// 		$(this).attr("selected", true);
-                             			// 	}
+                             				if($(this).text() == "<%= loginMember.getInterestMovie() %>") {
+                             					$(this).attr("selected", true);
+                             				}
                              				
-                             			// });
+                             			});
+                             			
+										$("select[name=interestDisplay]>option").each(function() {
+                             				
+                             				if($(this).text() == "<%= loginMember.getInterestDisplay() %>") {
+                             					$(this).attr("selected", true);
+                             				}
+                             				
+                             			});
+										
+										$("select[name=interestShow]>option").each(function() {
+                             				
+                             				if($(this).text() == "<%= loginMember.getInterestShow() %>") {
+                             					$(this).attr("selected", true);
+                             				}
+                             				
+                             			});
                              			
                              		});
                                 
                                 </script>
                                 
                                 <div align="center">
-                                    <button type="submit" onclick="change();">정보변경</button>
+                                    <button type="submit" onclick="return change();">정보변경</button>
                                     <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">비밀번호변경</button>
                                     <button type="button" onclick="deleteUser();">회원탈퇴</button>
                                     <!-- <button id="deleteUser" type="button" data-toggle="modal" data-target="#deleteModal" style="display: none;">회원탈퇴</button> -->
@@ -391,7 +396,7 @@
 
         function change() {
 
-            confirm("변경한 정보를 저장하시겠습니까?");
+            return confirm("변경한 정보를 저장하시겠습니까?");
 
         }
 

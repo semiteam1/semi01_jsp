@@ -105,5 +105,80 @@ private Properties prop = new Properties();
 //=======
 	
 //>>>>>>> Stashed changes
+	
+	public int updateUser(Connection conn, User u) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateUser");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, u.getUserName());
+			pstmt.setInt(2, Integer.parseInt(u.getInterestMovie()));
+			pstmt.setInt(3, Integer.parseInt(u.getInterestDisplay()));
+			pstmt.setInt(4, Integer.parseInt(u.getInterestShow()));
+			pstmt.setString(5, u.getEmail());
+			pstmt.setString(6, u.getPhone());
+			pstmt.setInt(7, u.getUserNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public User selectUser(Connection conn, int userNo) {
+		
+		User u = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectUser");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				u = new User(rset.getInt("user_no"), 
+							 rset.getString("user_id"), 
+							 rset.getString("user_pwd"), 
+							 rset.getString("user_name"), 
+							 rset.getString("user_birth"), 
+							 rset.getString("interest_movie"), 
+							 rset.getString("interest_display"), 
+							 rset.getString("interest_show"), 
+							 rset.getString("email"), 
+							 rset.getString("phone"), 
+							 rset.getString("grade_name"), 
+							 rset.getString("status"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return u;
+		
+	}
 
 }

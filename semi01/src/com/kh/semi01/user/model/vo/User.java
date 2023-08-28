@@ -51,6 +51,19 @@ public class User {
 		this.phone = phone;
 	}
 
+	// 회원정보 변경용 매개변수 생성자
+	public User(int userNo, String userName, String interestMovie, String interestDisplay, String interestShow,
+			String email, String phone) {
+		super();
+		this.userNo = userNo;
+		this.userName = userName;
+		this.interestMovie = interestMovie;
+		this.interestDisplay = interestDisplay;
+		this.interestShow = interestShow;
+		this.email = email;
+		this.phone = phone;
+	}
+
 	// getter-setter 메소드
 	public int getUserNo() {
 		return userNo;

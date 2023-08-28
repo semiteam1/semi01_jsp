@@ -58,4 +58,37 @@ SELECT
 	     ,'Y')
 </entry>
 
+<entry key="updateUser">
+	UPDATE USER_INFO
+	   SET USER_NAME = ?
+	     , INTEREST_MOVIE = ?
+	     , INTEREST_DISPLAY = ?
+	     , INTEREST_SHOW = ?
+	     , EMAIL = ?
+	     , PHONE = ?
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="selectUser">
+	SELECT
+	       USER_NO
+	     , USER_ID
+	     , USER_PWD
+	     , USER_NAME
+	     , TO_CHAR(USER_BIRTH, 'YYYY-MM-DD') "USER_BIRTH"
+	     , M.CATEGORY_NAME "INTEREST_MOVIE"
+	     , D.CATEGORY_NAME "INTEREST_DISPLAY"
+	     , S.CATEGORY_NAME "INTEREST_SHOW"
+	     , EMAIL
+	     , PHONE
+	     , GRADE_NAME
+	     ,STATUS
+	  FROM USER_INFO
+	  JOIN CATEGORY_INFO M ON (INTEREST_MOVIE = M.CATEGORY_TYPE)
+	  JOIN CATEGORY_INFO D ON (INTEREST_DISPLAY = D.CATEGORY_TYPE)
+	  JOIN CATEGORY_INFO S ON (INTEREST_SHOW = S.CATEGORY_TYPE)
+	  JOIN GRADE USING (GRADE_NO)
+	 WHERE USER_NO = ?
+</entry>
+
 </properties>

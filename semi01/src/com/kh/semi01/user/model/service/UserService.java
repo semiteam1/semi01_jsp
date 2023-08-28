@@ -36,5 +36,28 @@ public class UserService {
 		
 		return result;
 	}
+	
+	public User updateUser(User u) {
+		
+		Connection conn = getConnection();
+		
+		int result = new UserDao().updateUser(conn, u);
+		
+		User updateUser = null;
+		
+		if(result > 0) {
+			commit(conn);
+			
+			updateUser = new UserDao().selectUser(conn, u.getUserNo());
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return updateUser;
+		
+	}
 
 }
