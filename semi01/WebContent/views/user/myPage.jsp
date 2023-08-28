@@ -313,13 +313,13 @@
                              			
                              			console.log(movie);
                              			
-                             			$("select[name=interest_movie]").children().each(function() {
+                             			// $("select[name=interest_movie]").children().each(function() {
                              				
-                             				if(movie.indexOf($(this).val()) == 0) {
-                             					$(this).attr("selected", true);
-                             				}
+                             			// 	if(movie.indexOf($(this).text()) == 0) {
+                             			// 		$(this).attr("selected", true);
+                             			// 	}
                              				
-                             			});
+                             			// });
                              			
                              		});
                                 
