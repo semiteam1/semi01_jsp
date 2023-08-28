@@ -13,10 +13,13 @@
 <link rel="shortcut icon" href="resource/logo/bichon-frise.png">
 <style>
 	.outer {
-        height: 2000px;
-        width: 100%;
+        height: 1000px;
+        width: 1180px;
         position: relative;
-        z-index: 1;
+        z-index: 0;
+        margin-left: 370px;
+        margin-right: 0px;
+        float: left;
 	}
 
         /* 바디 시작 */
@@ -27,7 +30,7 @@
         .custom-carousel-buttons {
             position: absolute;
             bottom: 15px;
-            left: 30%;
+            left: 20%;
             display: flex;
             margin-bottom: 60px;
         }
@@ -55,6 +58,11 @@
             overflow: hidden;
         }
 
+        #myCarousel.carousel.slide{
+            width: 1920px;
+            margin-left: -370px;
+        }
+
 
 
           /* 잘보여라@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
@@ -62,9 +70,6 @@
 
         .recommend_img{
             width: 1180px;
-            float: left;
-            margin-left: 370px;
-            margin-right: 50px;
         }
 
         .div_img{
@@ -82,14 +87,14 @@
         /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
         /* 사이드바 */
         .sticky_outer {
-            width: 200px;
-            height: 1400px;
+            width: 160px;
+            height: 1000px;
             float: left;
         }
 
         /* 배너 이미지 사이즈조정 */
         .sidebar {
-        width: 80%;
+        width: 100%;
         height: 450px;
         border-radius: 10px;
         margin-top: -50px;
@@ -115,7 +120,7 @@
 	<% } %>
 	<%@ include file = "/views/common/header.jsp" %>
 	
-	<div class="outer" >
+	<div class="outer">
 
     <div class="container">
         <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
@@ -171,9 +176,13 @@
         </script>
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- 랭킹 추천 -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- 관심사 랭킹 추천 -->
     <div class="recommend_img">
-        <span style="font-weight: bold; font-size: 25px;">전체랭킹 딱대</span>
+
+        <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
         <br>
         <hr>
         
@@ -228,68 +237,25 @@
             <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
             <br><br><br>
 
-            <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
-            <br>
-            <hr>
-            
-            
-            <div class="div_img">
-                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                    <div class="caption">
-                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                </a>
-            </div>
-            
-            
-            <div class="div_img">
-                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                    <div class="caption">
-                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                </a>
-            </div>
-            
-            
-            <div class="div_img">
-                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                    <div class="caption">
-                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                    </a>
-                </div>
-            
-                <div class="div_img">
-                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                    <div class="caption">
-                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                    </a>
-                </div>
-            
-                <div class="div_img">
-                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                    <div class="caption">
-                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                    </a>
-                </div>
-                
         </div>
+        
+        
+    </div>
+    
 
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 <!-- 사이드바 -->
-        <div class="sticky_outer">
-            <img src="resource/이미지자료/류지완 샘플이미지/새로배너.PNG" class="sidebar">
+<!-- <div class="sticky_outer">
+    <img src="resource/이미지자료/류지완 샘플이미지/새로배너.PNG" class="sidebar">
+</div>
+<br><br>  -->
+
+
         </div>
-        <br><br>
+        
 
 </div>
+<br><br>
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
