@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.semi01.user.model.service.UserService;
-import com.kh.semi01.user.model.vo.User;
 
 /**
- * Servlet implementation class UserEnrollController
+ * Servlet implementation class ChangePwdController
  */
-@WebServlet("/insert.ur")
-public class UserEnrollController extends HttpServlet {
+@WebServlet("/Changepwd.ur")
+public class ChangePwdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserEnrollController() {
+    public ChangePwdController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,27 +30,26 @@ public class UserEnrollController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.setCharacterEncoding("UTF-8");
+		String fine_pwd = request.getParameter("fine_pwd");
+		String userNo = request.getParameter("userNo");
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
 		
-		String userId = request.getParameter("new_userId");
-		String userPwd = request.getParameter("new_userPwd");
-		String userEmail = request.getParameter("new_userEmail");
-		String userName = request.getParameter("new_userName");
-		String userBDay = request.getParameter("new_userBday");
-		String userPhone = request.getParameter("new_userPhone");
-		String interestMovie = request.getParameter("select_movie_hidden");
-		String interestDisplay = request.getParameter("select_display_hidden");
-		String interestShow = request.getParameter("select_show_hidden");
-		
-		User u = new User(userId, userPwd, userName, userBDay, interestMovie, interestDisplay, interestShow, userEmail, userPhone);
-		System.out.println(u);
-		int result = new UserService().insertUser(u);
+		int result = new UserService().changePwd(fine_pwd,userNo,userId,userPwd);
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("enrollUser", result);
+
+		if(result > 0 ) { // 변경성공
+			session.setAttribute("alertMsg", "성공적으로 비밀번호가 변경되었습니다.");
+			response.sendRedirect(request.getContextPath()+"/login.me");
+			
+		}else { // 변경실패
+			session.setAttribute("alertMsg", "비밀번호 변경에 실패하였습니다.");
+			response.sendRedirect(request.getContextPath() + "/findPwd.ur");
+		}
 		
-		response.sendRedirect(request.getContextPath()+"/login.ur");
-		
+	
+	
 	}
 
 	/**
