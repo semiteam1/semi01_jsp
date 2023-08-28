@@ -103,6 +103,199 @@ private Properties prop = new Properties();
 		return result;
 	}
 //=======
+
+	public User findIdWithEmail(Connection conn, String chPwd, String chBday, String chEmail) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		User u = null;
+		
+		String sql = prop.getProperty("findIdWithEmail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, chPwd);
+			pstmt.setString(2, chBday);
+			pstmt.setString(3, chEmail);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				u = new User(rset.getInt("USER_NO"),
+							 rset.getString("USER_ID"), 
+							 rset.getString("USER_PWD"), 
+							 rset.getString("USER_NAME"), 
+							 rset.getString("USER_BIRTH"),
+							 rset.getString("INTEREST_MOVIE"),
+							 rset.getString("INTEREST_DISPLAY"),
+							 rset.getString("INTEREST_SHOW"),
+							 rset.getString("EMAIL"),
+							 rset.getString("PHONE"),
+							 rset.getString("GRADE_NAME"),
+							 rset.getString("STATUS")
+							);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return u;
+	}
+
+	public User findIdWithPhone(Connection conn, String chPwd, String chBday, String chPhone) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		User u = null;
+		
+		String sql = prop.getProperty("findIdWithPhone");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, chPwd);
+			pstmt.setString(2, chBday);
+			pstmt.setString(3, chPhone);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				u = new User(rset.getInt("USER_NO"),
+							 rset.getString("USER_ID"), 
+							 rset.getString("USER_PWD"), 
+							 rset.getString("USER_NAME"), 
+							 rset.getString("USER_BIRTH"),
+							 rset.getString("INTEREST_MOVIE"),
+							 rset.getString("INTEREST_DISPLAY"),
+							 rset.getString("INTEREST_SHOW"),
+							 rset.getString("EMAIL"),
+							 rset.getString("PHONE"),
+							 rset.getString("GRADE_NAME"),
+							 rset.getString("STATUS")
+							);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return u;
+	}
+
+	public User findPwdWithEmail(Connection conn, String chId, String chBday, String chEmail) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		User u = null;
+		
+		String sql = prop.getProperty("findPwdWithEmail");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, chId);
+			pstmt.setString(2, chBday);
+			pstmt.setString(3, chEmail);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				u = new User(rset.getInt("USER_NO"),
+							 rset.getString("USER_ID"), 
+							 rset.getString("USER_PWD"), 
+							 rset.getString("USER_NAME"), 
+							 rset.getString("USER_BIRTH"),
+							 rset.getString("INTEREST_MOVIE"),
+							 rset.getString("INTEREST_DISPLAY"),
+							 rset.getString("INTEREST_SHOW"),
+							 rset.getString("EMAIL"),
+							 rset.getString("PHONE"),
+							 rset.getString("GRADE_NAME"),
+							 rset.getString("STATUS")
+							);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return u;
+	}
+
+	public User findPwdWithPhone(Connection conn, String chId, String chBday, String chPhone) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		User u = null;
+		
+		String sql = prop.getProperty("findPwdWithPhone");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, chId);
+			pstmt.setString(2, chBday);
+			pstmt.setString(3, chPhone);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				u = new User(rset.getInt("USER_NO"),
+							 rset.getString("USER_ID"), 
+							 rset.getString("USER_PWD"), 
+							 rset.getString("USER_NAME"), 
+							 rset.getString("USER_BIRTH"),
+							 rset.getString("INTEREST_MOVIE"),
+							 rset.getString("INTEREST_DISPLAY"),
+							 rset.getString("INTEREST_SHOW"),
+							 rset.getString("EMAIL"),
+							 rset.getString("PHONE"),
+							 rset.getString("GRADE_NAME"),
+							 rset.getString("STATUS")
+							);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return u;
+	}
+
+	public int changePwd(Connection conn, String fine_pwd, String userNo, String userId, String userPwd) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = prop.getProperty("changePwd");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, fine_pwd);
+			pstmt.setInt(2, Integer.parseInt(userNo));
+			pstmt.setString(3, userId);
+			pstmt.setString(4, userPwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
 	
 //>>>>>>> Stashed changes
 	

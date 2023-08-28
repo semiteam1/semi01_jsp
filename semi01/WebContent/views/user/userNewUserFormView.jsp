@@ -284,7 +284,7 @@
 
             var idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
 
-            let reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/
+            let PwdReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/
             
             var nameReg = /^[a-zA-Z가-힣]{2,15}$/
 
@@ -297,7 +297,7 @@
             }else{ // 아이디 맞다 
                 $(".message_output").text(" ");
 
-                if(!reg.test( $(".new_userPwd").val() )){ // 비번 틀리다
+                if(!PwdReg.test( $(".new_userPwd").val() )){ // 비번 틀리다
                     $(".submit_btn").attr("type","button"); 
                     alert("비밀번호는 영문 숫자 특수기호 조합 8자리 이상이어야 합니다.")
                     $(".message_output").text("* 입력하신 비밀번호가 잘못되었습니다.");

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+    String alertMsg =(String)session.getAttribute("alertMsg");
 %>
 <!--  비번 찾는 화면 -->
 <!DOCTYPE html>
@@ -9,7 +10,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>티켓딱대 아이디찾기</title>
+    <title>티켓딱대 비밀번호 찾기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <style>
         .logo_div{
             /* border: 1px solid; */
@@ -210,6 +212,14 @@
     </style>
 </head>
 <body>
+    <% if(alertMsg != null) { %> 
+		
+		<script>
+			alert("<%= alertMsg %>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+		
+	<% } %>
     <div class="logo_div">
         <a href="<%=contextPath %>"><img src="resource/logo/logo.png" id="logo" alt=""></a>
     </div>
@@ -226,17 +236,17 @@
                 <div class="id_pwd_input" >
                     <div class="line">
                         <img src="resource/이미지자료/로그인.png" id="newMember_img">
-                            <input type="password" id="new_user" name="fine_id" placeholder="아이디" required>
+                            <input type="text" id="new_user" class="fine_id" name="fine_id" placeholder="아이디" required>
                     </div>
                     <div class="line">
                         <img src="resource/이미지자료/달력2.PNG" id="newMember_img">
-                            <input type="password" id="new_user" name="fine_pwd" placeholder="생년월일" required>
+                            <input type="number" id="new_user" name="fine_bday" placeholder="생년월일" required>
                     </div>
                     <div class="email_input">
                         <img src="resource/이미지자료/이메일2.png" id="newMember_img">
                         <input type="email" id="new_user" name="fine_email" placeholder="이메일" required>
                     </div>
-                    <button type="submit" id="btn_email">비밀번호 찾기</button>
+                    <button type="submit" id="btn_email" class="submit_btn" onclick="check1();">비밀번호 찾기</button>
                 </div>
               </div>
 	</form>
@@ -245,18 +255,18 @@
                 <div class="id_pwd_input">
                     <div class="line">
                         <img src="resource/이미지자료/로그인.png" id="newMember_img">
-                            <input type="password" id="new_user" name="fine_id" placeholder="아이디" required>
+                            <input type="text" id="new_user" class="fine_id2" name="fine_id" placeholder="아이디" required>
                     </div>
                     <div class="line">
                         <img src="resource/이미지자료/달력2.PNG" id="newMember_img">
-                            <input type="password" id="new_user" name="fine_pwd" placeholder="생년월일" required>
+                            <input type="number" id="new_user" name="fine_bday" placeholder="생년월일" required>
                     </div>
                     <div class="email_input">
                         <img src="resource/이미지자료/폰.png" id="newMember_img">
-                        <input type="email" id="new_user" name="fine_phone" placeholder="휴대폰번호" required>
+                        <input type="text" id="new_user" class="fine_phone" name="fine_phone" placeholder="휴대폰번호" required>
                     </div>
                     
-                    <button type="submit" id="btn_email">비밀번호 찾기</button>
+                    <button type="submit" id="btn_email" class="submit_btn" onclick="check2();">비밀번호 찾기</button>
                     
                 </div>
 
@@ -270,6 +280,47 @@
                 <div class="bener">
                     <img src="resource/이미지자료/배너2.png">
                 </div>
+
+
+                <script>
+                    function check1() {
+                        var idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
+    
+                        if(!idReg.test( $(".fine_id").val() )){ // 아이디 틀리다
+                            $(".submit_btn").attr("type","button"); 
+                            alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+                            $(".fine_id").select();
+                            
+                        }else { // 아디맞다
+                            $(".submit_btn").attr("type","submit"); 
+    
+                        }
+                    }
+                    function check2() {
+                        var idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
+    
+                        var regPhone= /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+    
+                        if(!idReg.test( $(".fine_id2").val() )){ // 아이디 틀리다
+                            $(".submit_btn").attr("type","button"); 
+                            alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+                            $(".fine_id").select();
+                            
+                        }else { // 비번맞다
+                           
+    
+                            if (!regPhone.test( $(".fine_phone").val() )) { // 전번 틀리다
+                                $(".submit_btn").attr("type","button"); 
+                                alert("휴대폰 번호를 확인해주세요.");
+                                $(".fine_phone").select();
+                                
+                            }else{// 전번 맞다
+                                $(".submit_btn").attr("type","submit"); 
+                                
+                            }
+                        }
+                    }
+                  </script>
               <script>
               function openTab(event, tabName) {
                 const tabContents = document.getElementsByClassName("tab-content");
