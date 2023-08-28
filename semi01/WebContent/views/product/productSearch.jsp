@@ -146,118 +146,30 @@
             <!-- 정보가 보이는 검색된 상품 -->
 
             <div class="search_product">
+            
+            <% for(int i=0; i>list.size(); i++) { %>
                 <div class="search_product_box">
 
                         <a href="<%= contextPath %>/detail.pr" class="search_product_box2">
-                            <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
-                            <strong>2023 오페라 갈라 콘서트</strong>
+                            <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg"></span>
+                            <strong><%= list.get(i).getProductTitle() %></strong>
                             <dl>
                                 <dt>장소 : &nbsp;</dt>
-                                <dd>세종문화회관 대극장</dd>
+                                <dd><%= list.get(i).getAddress() %></dd>
                                 <dt>기간 : &nbsp;</dt>
-                                <dd>2023.12.09 ~ 2023.12.09</dd>
+                                <dd><%= list.get(i).getStartPeriod() %> ~ <%= list.get(i).getEndPeriod() %></dd>
                                 <dt>관람가 : &nbsp;</dt>
-                                <dd>20,000원</dd>
+                                <dd><%= list.get(i).getPrice() %>원</dd>
                             </dl>
                         </a>
 
                     <button type="button" class="btn btn-danger">예매하기</button>
                 </div>
                 <hr>
+                
+            <% } %>
 
-                <div class="search_product_box">
 
-                    <a href="<%= contextPath %>/detail.pr" class="search_product_box2">
-                        <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
-                        <strong>2023 오페라 갈라 콘서트</strong>
-                        <dl>
-                            <dt>장소 : &nbsp;</dt>
-                            <dd>세종문화회관 대극장</dd>
-                            <dt>기간 : &nbsp;</dt>
-                            <dd>2023.12.09 ~ 2023.12.09</dd>
-                            <dt>관람가 : &nbsp;</dt>
-                            <dd>20,000원</dd>
-                        </dl>
-                    </a>
-
-                    <button type="button" class="btn btn-danger">예매하기</button>
-                </div>
-                <hr>
-
-                <div class="search_product_box">
-
-                    <a href="" class="search_product_box2">
-                        <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
-                        <strong>2023 오페라 갈라 콘서트</strong>
-                        <dl>
-                            <dt>장소 : &nbsp;</dt>
-                            <dd>세종문화회관 대극장</dd>
-                            <dt>기간 : &nbsp;</dt>
-                            <dd>2023.12.09 ~ 2023.12.09</dd>
-                            <dt>관람가 : &nbsp;</dt>
-                            <dd>20,000원</dd>
-                        </dl>
-                    </a>
-
-                    <button type="button" class="btn btn-danger">예매하기</button>
-                </div>
-                <hr>
-
-                <div class="search_product_box">
-
-                    <a href="" class="search_product_box2">
-                        <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
-                        <strong>2023 오페라 갈라 콘서트</strong>
-                        <dl>
-                            <dt>장소 : &nbsp;</dt>
-                            <dd>세종문화회관 대극장</dd>
-                            <dt>기간 : &nbsp;</dt>
-                            <dd>2023.12.09 ~ 2023.12.09</dd>
-                            <dt>관람가 : &nbsp;</dt>
-                            <dd>20,000원</dd>
-                        </dl>
-                    </a>
-
-                    <button type="button" class="btn btn-danger">예매하기</button>
-                </div>
-                <hr>
-
-                <div class="search_product_box">
-
-                    <a href="" class="search_product_box2">
-                        <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
-                        <strong>2023 오페라 갈라 콘서트</strong>
-                        <dl>
-                            <dt>장소 : &nbsp;</dt>
-                            <dd>세종문화회관 대극장</dd>
-                            <dt>기간 : &nbsp;</dt>
-                            <dd>2023.12.09 ~ 2023.12.09</dd>
-                            <dt>관람가 : &nbsp;</dt>
-                            <dd>20,000원</dd>
-                        </dl>
-                    </a>
-
-                    <button type="button" class="btn btn-danger">예매하기</button>
-                </div>
-                <hr>
-
-                <div class="search_product_box">
-
-                    <a href="" class="search_product_box2">
-                        <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg" alt=""></span>
-                        <strong>2023 오페라 갈라 콘서트</strong>
-                        <dl>
-                            <dt>장소 : &nbsp;</dt>
-                            <dd>세종문화회관 대극장</dd>
-                            <dt>기간 : &nbsp;</dt>
-                            <dd>2023.12.09 ~ 2023.12.09</dd>
-                            <dt>관람가 : &nbsp;</dt>
-                            <dd>20,000원</dd>
-                        </dl>
-                    </a>
-
-                    <button type="button" class="btn btn-danger">예매하기</button>
-                </div>
 
                 <!-- 
                 <hr>

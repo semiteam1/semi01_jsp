@@ -16,8 +16,5 @@
 	 WHERE PRODUCT_TITLE LIKE '%?%'
 </entry>
 
-<entry key="">
-	
-</entry>
 
 </properties>
