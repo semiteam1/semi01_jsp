@@ -308,7 +308,7 @@
                             <a href="<%=contextPath %>/newUser.ur" class="header_util_link">회원가입</a>
                         </div>
                         <div class="contact">
-                            <a href="<%=contextPath %>/views/service/customerservice/" class="header_util_link">고객센터</a>
+                            <a href="<%=contextPath %>/customer.cu" class="header_util_link">고객센터</a>
                         </div>
                     </div> 
                     <%}else { %>
