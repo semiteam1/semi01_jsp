@@ -70,6 +70,9 @@
 	#credit {
 		display: none;
 	}
+	th, td {
+		border: 1px  solid #cecece;
+	}
 </style>
 </head>
 <body>

@@ -35,7 +35,7 @@
     #pageClose {
         width: 100%;
     }
-	#pageClose>button {
+	#pageClose>a {
 		margin: 10px;
         display: block;
         height: 35px;
@@ -49,10 +49,14 @@
         text-align: center;
         font-size: 13px;
         color: #202020;
+		width: 60px;
 	}
-	#pageClose>button:hover {
+	#pageClose>a:hover {
 		cursor: pointer;
 		opacity: 0.7;
+	}
+	th, td {
+		border: 1px solid #cecece;
 	}
 </style>
 </head>
@@ -79,13 +83,13 @@
 						<td>신한, 110-456-789043 / (주)티켓딱대</td>
 					</tr>
                 </table>
-                <p align="center">※미결제 상태로 24시간을 초과하면 예매가 자동 취소 되오니 유의해 주시길 바랍니다.※</p>
+                <p align="center">※미결제 상태로 24시간을 초과하면 예매가 자동 취소 되오니 유의해 주시기 바랍니다.※</p>
             </div>
 
 		</form>
 
         <div id="pageClose" align="center">
-            <button type="button" class="close">확인</button>
+            <a href="#" onclick="javascript:window.close()">확인</a>
         </div>
 
 		<script>
