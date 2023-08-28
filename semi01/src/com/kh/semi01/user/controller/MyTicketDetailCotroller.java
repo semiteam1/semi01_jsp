@@ -8,17 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class UserNewUserController
+ * Servlet implementation class MyTicketDetailCotroller
  */
-// 회원가입 컨트롤러
-@WebServlet("/newUser.ur")
-public class UserNewUserController extends HttpServlet {
+@WebServlet("/ticketDetail.us")
+public class MyTicketDetailCotroller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserNewUserController() {
+    public MyTicketDetailCotroller() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,8 +26,9 @@ public class UserNewUserController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		request.getRequestDispatcher("views/user/userNewUserFormView.jsp").forward(request, response);
+		
+		request.getRequestDispatcher("views/user/myTicketDetail.jsp").forward(request, response);
+		
 	}
 
 	/**

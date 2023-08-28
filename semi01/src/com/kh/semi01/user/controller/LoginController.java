@@ -6,19 +6,22 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.kh.semi01.user.model.service.UserService;
+import com.kh.semi01.user.model.vo.User;
 
 /**
- * Servlet implementation class UserNewUserController
+ * Servlet implementation class LoginController
  */
-// 회원가입 컨트롤러
-@WebServlet("/newUser.ur")
-public class UserNewUserController extends HttpServlet {
+@WebServlet("/login.me")
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UserNewUserController() {
+    public LoginController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,7 +31,16 @@ public class UserNewUserController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("views/user/userNewUserFormView.jsp").forward(request, response);
+		String userId = request.getParameter("userId");
+		String userPwd = request.getParameter("userPwd");
+		
+		User loginMember = new UserService().loginMember(userId, userPwd);
+		System.out.println(loginMember);
+	
+		HttpSession session = request.getSession();
+		session.setAttribute("loginMember", loginMember);
+		
+		response.sendRedirect(request.getContextPath());
 	}
 
 	/**

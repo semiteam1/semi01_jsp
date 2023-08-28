@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class UserLoginController
  */
+// 로그인 하는 컨트롤러
 @WebServlet("/login.ur")
 public class UserLoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;

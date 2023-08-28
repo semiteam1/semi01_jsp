@@ -12,13 +12,14 @@ public class Product {
 	private String productLevel; 	// 관람등급 => 조회시 관람등급명 | 입력시 관람등급번호
 	private int runTime; 			// 상영시간
 	private int price; 				// 가격
+	private String posterPath;
 	
 	// 기본 생성자
 	public Product() {}
 
 	// 전체 매개변수 생성자
 	public Product(int productNo, String category, String productTitle, String local, String address,
-			String startPeriod, String endPeriod, String productLevel, int runTime, int price) {
+			String startPeriod, String endPeriod, String productLevel, int runTime, int price, String posterPath) {
 		super();
 		this.productNo = productNo;
 		this.category = category;
@@ -30,12 +31,28 @@ public class Product {
 		this.productLevel = productLevel;
 		this.runTime = runTime;
 		this.price = price;
+		
 	}
+	
+	// searchProduct 생성자
+	public Product(int productNo, String productTitle, String address, String startPeriod, String endPeriod,
+			int price, String posterPath) {
+		super();
+		this.productNo = productNo;
+		this.productTitle = productTitle;
+		this.address = address;
+		this.startPeriod = startPeriod;
+		this.endPeriod = endPeriod;
+		this.price = price;
+		this.posterPath = posterPath;
+	}
+	
 
 	// getter-setter 메소드
 	public int getProductNo() {
 		return productNo;
 	}
+
 
 	public void setProductNo(int productNo) {
 		this.productNo = productNo;
@@ -113,12 +130,24 @@ public class Product {
 		this.price = price;
 	}
 
-	// toString() 메소드
+	public String getPosterPath() {
+		return posterPath;
+	}
+
+	public void setPosterPath(String posterPath) {
+		this.posterPath = posterPath;
+	}
+
 	@Override
 	public String toString() {
 		return "Product [productNo=" + productNo + ", category=" + category + ", productTitle=" + productTitle
 				+ ", local=" + local + ", address=" + address + ", startPeriod=" + startPeriod + ", endPeriod="
-				+ endPeriod + ", productLevel=" + productLevel + ", runTime=" + runTime + ", price=" + price + "]";
+				+ endPeriod + ", productLevel=" + productLevel + ", runTime=" + runTime + ", price=" + price
+				+ ", posterPath=" + posterPath + "]";
 	}
+
+	// toString() 메소드
+	
+	
 	
 }

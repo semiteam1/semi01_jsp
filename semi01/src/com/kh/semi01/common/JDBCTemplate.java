@@ -18,8 +18,14 @@ public class JDBCTemplate {
 		
 		Properties prop = new Properties();
 		
+		String filePath = JDBCTemplate.class.getResource("/db/driver/driver.properties").getPath();
+		
 		try {
-			prop.load(new FileInputStream(JDBCTemplate.class.getResource("db/driver/driver.properties").getPath()));
+
+			prop.load(new FileInputStream(filePath));
+
+			prop.load(new FileInputStream(JDBCTemplate.class.getResource("/db/driver/driver.properties").getPath()));
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -83,7 +89,7 @@ public class JDBCTemplate {
 	public static void close(Statement stmt) {
 		
 		try {
-			if(stmt != null && !stmt.isClosed()) {
+			if(stmt != null && stmt.isClosed()) {
 				stmt.close();
 			}
 		} catch (SQLException e) {
