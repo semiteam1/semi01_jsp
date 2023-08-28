@@ -1,8 +1,10 @@
+<%@page import="com.kh.semi01.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
-%>
+	String alertMsg =(String)session.getAttribute("alertMsg");
+%> 
 <!--  아이디 찾는 화면 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>티켓딱대 아이디찾기</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <style>
         .logo_div{
             /* border: 1px solid; */
@@ -209,6 +212,14 @@
     </style>
 </head>
 <body>
+	<% if(alertMsg != null) { %> 
+		
+		<script>
+			alert("<%= alertMsg %>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+		
+	<% } %>
     <div class="logo_div">
         <a href="<%=contextPath%>"><img src="resource/logo/logo.png" id="logo" alt=""></a>
     </div>
@@ -225,37 +236,37 @@
                 <div class="id_pwd_input" >
                     <div class="line">
                         <img src="resource/이미지자료/비밀번호.png" id="newMember_img">
-                            <input type="password" id="new_user" name="fine_pwd" placeholder="비밀번호" required>
+                            <input type="password" id="new_user" class="fine_pwd" name="fine_pwd" placeholder="비밀번호" required>
                     </div>
                     <div class="line">
                         <img src="resource/이미지자료/달력2.PNG" id="newMember_img">
-                            <input type="password" id="new_user" name="fine_pwd" placeholder="생년월일" required>
+                            <input type="number" id="new_user" name="fine_bday" placeholder="생년월일" required>
                     </div>
                     <div class="email_input">
                         <img src="resource/이미지자료/이메일2.png" id="newMember_img">
                         <input type="email" id="new_user" name="fine_email" placeholder="이메일">
                     </div>
-                    <button type="submit" id="btn_email">아이디찾기</button>
+                    <button type="submit" id="btn_email" class="submit_btn" onclick="check1();">아이디찾기</button>
                 </div>
               </div>
         </form>
-		<form action="<%=contextPath%>/userCheck.ur?type=4"  method="post">
+		<form action="<%=contextPath%>/userCheck.ur?type=2"  method="post">
               <div id="tab2" class="tab-content">
                 <div class="id_pwd_input">
                     <div class="line">
                         <img src="resource/이미지자료/비밀번호.png" id="newMember_img">
-                            <input type="password" id="new_user" name="fine_pwd" placeholder="비밀번호" required>
+                            <input type="password" id="new_user" class="fine_pwd2" name="fine_pwd" placeholder="비밀번호" required>
                     </div>
                     <div class="line">
                         <img src="resource/이미지자료/달력2.PNG" id="newMember_img">
-                            <input type="password" id="new_user" name="fine_pwd" placeholder="생년월일" required>
+                            <input type="number" id="new_user" name="fine_bday" placeholder="생년월일" required>
                     </div>
                     <div class="email_input">
                         <img src="resource/이미지자료/폰.png" id="newMember_img">
-                        <input type="email" id="new_user" name="fine_phone" placeholder="휴대폰번호">
+                        <input type="text" id="new_user" class="fine_phone" name="fine_phone" placeholder="휴대폰번호">
                     </div>
                     
-                    <button type="submit" id="btn_email">아이디찾기</button>
+                    <button type="submit" id="btn_email" class="submit_btn"  onclick="check2();">아이디찾기</button>
                 </div>
 
               </div>
@@ -268,7 +279,9 @@
                 <div class="bener">
                     <img src="resource/이미지자료/배너2.png">
                 </div>
+                
               <script>
+                
               function openTab(event, tabName) {
                 const tabContents = document.getElementsByClassName("tab-content");
                 for (const content of tabContents) {
@@ -286,6 +299,45 @@
               
               document.getElementById("tab1").style.display = "block";
               document.getElementsByClassName("tab-button")[0].classList.add("active");
+             
+              </script>
+              <script>
+                function check1() {
+                    let PwdReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/
+
+                    if(!PwdReg.test( $(".fine_pwd").val() )){ // 비번 틀리다
+                        $(".submit_btn").attr("type","button"); 
+                        alert("비밀번호는 영문 숫자 특수기호 조합 8자리 이상이어야 합니다.");
+                        $(".fine_pwd").select();
+                        
+                    }else { // 비번맞다
+                        $(".submit_btn").attr("type","submit"); 
+
+                    }
+                }
+                function check2() {
+                    let PwdReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/
+
+                    var regPhone= /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/;
+
+                    if(!PwdReg.test( $(".fine_pwd2").val() )){ // 비번 틀리다
+                        $(".submit_btn").attr("type","button"); 
+                        alert("비밀번호는 영문 숫자 특수기호 조합 8자리 이상이어야 합니다.");
+                        $(".fine_pwd2").select();
+                        
+                    }else { // 비번맞다
+
+                        if (!regPhone.test( $(".fine_phone").val() )) { // 전번 틀리다
+                            $(".submit_btn").attr("type","button"); 
+                            alert("휴대폰 번호를 확인해주세요.");
+                            $(".fine_phone").select();
+
+                        }else{// 전번 맞다
+                            $(".submit_btn").attr("type","submit"); 
+                           
+                        }
+                    }
+                }
               </script>
         </div>
     </form>
