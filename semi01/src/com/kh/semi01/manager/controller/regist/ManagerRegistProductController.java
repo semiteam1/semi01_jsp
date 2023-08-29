@@ -31,13 +31,11 @@ public class ManagerRegistProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.setCharacterEncoding("utf-8");
 
-        String savePath = request.getSession().getServletContext().getRealPath("/product_upfiles/");
-        System.out.println(savePath);
-        int maxSize = 10 * 1024 * 1024; // 최대 파일 크기 설정 (10MB)
+        String savePath = request.getSession().getServletContext().getRealPath("/resource/product_upfiles/");
+        int maxSize = 10 * 1024 * 1024; 
 
         MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8");
 
-        // 각각의 파일 업로드 처리
         String[] inputNames = {"customFile1", "customFile2", "customFile3", "customFile4", "customFile5", "customFile6"};
         for (String inputName : inputNames) {
             if (multiRequest.getFile(inputName) != null) {
