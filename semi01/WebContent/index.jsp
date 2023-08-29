@@ -13,24 +13,39 @@
 <link rel="shortcut icon" href="resource/logo/bichon-frise.png">
 <style>
 	.outer {
-        height: 1000px;
+        height: 2000px;
         width: 1180px;
         position: relative;
         z-index: 0;
-        margin-left: 370px;
         margin-right: 0px;
-        float: left;
 	}
 
+         /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
         /* 바디 시작 */
+        .body{
+            /* background-color: skyblue; */
+            height: 2000px;
+
+        }
 
         /* 상단 메인 배너 */
         /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
 
+
+        .recommend_img{
+            width: 1180px;
+            height: 2000px;
+            margin-left: 370px;
+        }
+
         .custom-carousel-buttons {
             position: absolute;
             bottom: 15px;
-            left: 20%;
+            left: 30%;
             display: flex;
             margin-bottom: 60px;
         }
@@ -57,20 +72,9 @@
             width: 1920px;
             overflow: hidden;
         }
-
-        #myCarousel.carousel.slide{
-            width: 1920px;
-            margin-left: -370px;
-        }
-
-
-
+        
           /* 잘보여라@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
         /* 추천상품 */
-
-        .recommend_img{
-            width: 1180px;
-        }
 
         .div_img{
             width: 20%;
@@ -81,23 +85,23 @@
         }
 
         .div_img img {
-            border-radius: 10px;
+            border-radius: 20px;
         }
 
         /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
         /* 사이드바 */
         .sticky_outer {
-            width: 160px;
-            height: 1000px;
-            float: left;
+            display: flex;
+            justify-content: space-between;
+            width: 170px;
+            height: 800px;
+            margin: 0px;
         }
 
         /* 배너 이미지 사이즈조정 */
-        .sidebar {
-        width: 100%;
+        .sidebar {  
+        width: 80%;
         height: 450px;
-        border-radius: 10px;
-        margin-top: -50px;
         }
 
         .sidebar {
@@ -105,6 +109,15 @@
         position: sticky;
         top: 0;
         }
+
+
+
+        /* 바디 끝 */
+        /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
+        /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
        
 
 </style>
@@ -122,145 +135,176 @@
 	
 	<div class="outer">
 
-    <div class="container">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel"> 
-            <!-- Slides -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 1" class="carousel-img" style="z-index: 1;">
+        <div class="container">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <!-- Slides -->
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 1" class="carousel-img">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 2" class="carousel-img">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 3" class="carousel-img">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 4" class="carousel-img">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 5" class="carousel-img">
+                    </div>
+                  </div>
+                  
+                  <!-- Custom Carousel Buttons -->
+                  <div class="custom-carousel-buttons">
+                    <div class="button-image" onclick="moveToSlide(0)">
+                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 1" style="border-radius: 10px;">
+                    </div>
+                    <div class="button-image" onclick="moveToSlide(1)">
+                      <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 2" style="border-radius: 10px;">
+                    </div>
+                    <div class="button-image" onclick="moveToSlide(2)">
+                      <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 3" style="border-radius: 10px;">
+                    </div>
+                    <div class="button-image" onclick="moveToSlide(3)">
+                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 4" style="border-radius: 10px;">
+                    </div>
+                    <div class="button-image" onclick="moveToSlide(4)">
+                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 5" style="border-radius: 10px;">
+                    </div>
+                  </div>
+                  <br>
+                  
                 </div>
-                <div class="carousel-item">
-                    <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 2" class="carousel-img">
-                </div>
-                <div class="carousel-item">
-                  <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 3" class="carousel-img">
-                </div>
-                <div class="carousel-item">
-                    <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 4" class="carousel-img">
-                </div>
-                <div class="carousel-item">
-                    <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 5" class="carousel-img">
-                </div>
-              </div>
-              
-              <!-- Custom Carousel Buttons -->
-              <div class="custom-carousel-buttons">
-                <div class="button-image" onclick="moveToSlide(0)">
-                    <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 1" style="border-radius: 10px;">
-                </div>
-                <div class="button-image" onclick="moveToSlide(1)">
-                  <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 2" style="border-radius: 10px;">
-                </div>
-                <div class="button-image" onclick="moveToSlide(2)">
-                  <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 3" style="border-radius: 10px;">
-                </div>
-                <div class="button-image" onclick="moveToSlide(3)">
-                    <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 4" style="border-radius: 10px;">
-                </div>
-                <div class="button-image" onclick="moveToSlide(4)">
-                    <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 5" style="border-radius: 10px;">
-                </div>
-              </div>
-              <br>
-              
             </div>
-        </div>
-          
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script>
-            function moveToSlide(slideIndex) {
-                $('#myCarousel').carousel(slideIndex);
-            }
-        </script>
+              
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <script>
+                function moveToSlide(slideIndex) {
+                    $('#myCarousel').carousel(slideIndex);
+                }
+            </script>
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- 관심사 랭킹 추천 -->
-    <div class="recommend_img">
+<!-- 랭킹 추천 -->
+        <div class="recommend_img">
+            <span style="font-weight: bold; font-size: 25px;">전체랭킹 딱대</span>
+            <br>
+            <hr>
+            <br><br><br>
+            
+            <div class="div_img">
+                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                </a>
+            </div>
+            
+            
+            <div class="div_img">
+                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                </a>
+            </div>
+            
+            
+            <div class="div_img">
+                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                    </a>
+                </div>
+            
+                <div class="div_img">
+                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                    </a>
+                </div>
+            
+                <div class="div_img">
+                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                    <div class="caption">
+                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    </div>
+                    </a>
+                </div>
+                <br><br>
+                <img src="resource/이미지자료/페이딱.png" style="width: 100%;">
+                <br><br><br>
 
-        <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
-        <br>
-        <hr>
-        
-        
-        <div class="div_img">
-            <a href="<%= contextPath %>/detail.pr">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
+                <br>
+                <hr>
+                
+                
+                <div class="div_img">
+                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                        <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                        <div class="caption">
+                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-        
-        
-        <div class="div_img">
-            <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                
+                
+                <div class="div_img">
+                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                        <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                        <div class="caption">
+                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                        </div>
+                    </a>
                 </div>
-            </a>
-        </div>
-        
-        
-        <div class="div_img">
-            <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                </div>
-                </a>
-            </div>
-        
-            <div class="div_img">
-                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                </div>
-                </a>
-            </div>
-        
-            <div class="div_img">
-                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                </div>
-                </a>
+                
+                
+                <div class="div_img">
+                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                        <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                        <div class="caption">
+                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                        </div>
+                        </a>
+                    </div>
+                
+                    <div class="div_img">
+                        <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                        <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                        <div class="caption">
+                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                        </div>
+                        </a>
+                    </div>
+                
+                    <div class="div_img">
+                        <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                        <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                        <div class="caption">
+                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                        </div>
+                        </a>
+                    </div>
+                    
+                    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+                    <!-- 사이드바 -->
+                    <!-- <div class="sticky_outer">
+                        <img src="resource/이미지자료/류지완 샘플이미지/새로배너.PNG" class="sidebar">
+                    </div> -->
             </div>
             <br><br>
-            <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
-            <br><br><br>
-
-        </div>
-        
-        
-    </div>
-    
-
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-<!-- 사이드바 -->
-<!-- <div class="sticky_outer">
-    <img src="resource/이미지자료/류지완 샘플이미지/새로배너.PNG" class="sidebar">
-</div>
-<br><br>  -->
-
-
-        </div>
-        
-
-</div>
-<br><br>
-
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 
 	
 	<%@ include file = "/views/common/footer.jsp" %>
