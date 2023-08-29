@@ -31,7 +31,8 @@ public class ManagerRegistProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.setCharacterEncoding("utf-8");
 
-        String savePath = request.getSession().getServletContext().getRealPath("/resource/product_upfiles/");
+        String savePath = request.getSession().getServletContext().getRealPath("/product_upfiles/");
+        System.out.println(savePath);
         int maxSize = 10 * 1024 * 1024; // 최대 파일 크기 설정 (10MB)
 
         MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8");
