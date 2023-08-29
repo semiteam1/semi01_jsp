@@ -5,12 +5,13 @@ import static com.kh.semi01.common.JDBCTemplate.close;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import com.kh.semi01.manager.model.vo.Select;
@@ -115,16 +116,29 @@ public class RegistDao {
 	public int insertScreenInfo(Connection conn, String[] dateArray) {
 		int result = 0;
 		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectLastPno");
 		
 		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			int currval = rset.getInt("val");
 			for(int i=0; i<dateArray.length; i++) {
 				sql = prop.getProperty("insertScreenInfo");
-				pstmt = conn.prepareStatement(sql);
+				SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+		        Date date;
+		        try {
+					date = inputFormat.parse(dateArray[i]);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				} 
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            pstmt = conn.prepareStatement(sql);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return result;
 	}
 }

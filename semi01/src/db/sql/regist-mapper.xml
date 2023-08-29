@@ -28,7 +28,7 @@ VALUES
 (SEQ_PNO.CURRVAL, ?, ?, ?, ?, ?, ?, ?)
 </entry>
 <entry key="selectLastPno">
-select SEQ_PNO.CURRVAL from dual;
+select SEQ_PNO.CURRVAL "val" from dual;
 </entry>
 <entry key="insertScreenInfo">
 INSERT INTO SCREENING_INFO
