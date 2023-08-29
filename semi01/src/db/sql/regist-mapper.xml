@@ -28,7 +28,7 @@ VALUES
 (SEQ_PNO.CURRVAL, ?, ?, ?, ?, ?, ?, ?)
 </entry>
 <entry key="selectLastPno">
-select SEQ_PNO.CURRVAL "val" from dual;
+select MAX(PRODUCT_NO) "NUM" FROM PRODUCT
 </entry>
 <entry key="insertScreenInfo">
 INSERT INTO SCREENING_INFO

@@ -44,10 +44,10 @@ public class RegistService {
 		return sel;
 	}
 	
-	public int insertProduct(Product p, ProductIMG img, int dayOrNight, int seatsNum) {
+	public int insertProduct(Product p, ProductIMG img, String dayOrNight, int seatsNum) {
 		Connection conn = getConnection();
 		
-		int result1 = new RegistDao().insertProduct(conn, p, img, dayOrNight, seatsNum);
+		int result1 = new RegistDao().insertProduct(conn, p, img);
 		
 		LocalDate startDate = LocalDate.parse(p.getStartPeriod());
         LocalDate endDate = LocalDate.parse(p.getEndPeriod());
@@ -60,7 +60,7 @@ public class RegistService {
 
         String[] dateArray = dateList.toArray(new String[0]);
         
-        int result2 = new RegistDao().insertScreenInfo(conn, dateArray);
+        int result2 = new RegistDao().insertScreenInfo(conn, dateArray, dayOrNight, seatsNum);
 		
 		if(result1 > 0 && result2 > 0) {
 			commit(conn);

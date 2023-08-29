@@ -188,9 +188,9 @@
                 <td>시간</td>
                 <td>
                     <select id="select1" name="salsa4" class="sel101" style="font-family: 'Jua', sans-serif;">
-                        <option value="1">오전</option>
-                        <option value="2">오후</option>
-                        <option value="3">전체</option>
+                        <option value="오전">오전</option>
+                        <option value="오후">오후</option>
+                        <option value="전체">전체</option>
                     </select>
                 </td>
             </tr>

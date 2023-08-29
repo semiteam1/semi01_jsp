@@ -75,7 +75,7 @@ public class ManagerRegistProductController extends HttpServlet {
         String startDate = multiRequest.getParameter("date1");
         String endDate = multiRequest.getParameter("date2");
         
-	    int dayOrNight = Integer.parseInt(multiRequest.getParameter("salsa4"));
+	    String dayOrNight = multiRequest.getParameter("salsa4");
 	    String possibleAge = multiRequest.getParameter("salsa5");
 	    int price = Integer.parseInt(multiRequest.getParameter("price"));
 	    int seatsNum = Integer.parseInt(multiRequest.getParameter("seatsNum"));
@@ -92,6 +92,12 @@ public class ManagerRegistProductController extends HttpServlet {
 	    p.setImage(savePath);
 	    
 	    int result = new RegistService().insertProduct(p, img, dayOrNight, seatsNum);
+	    
+	    if(result > 0) {
+	    	System.out.println("성공 SUCCESS");
+	    }else {
+	    	System.out.println("실패 FAILED");
+	    }
     }
 
 	/**                                   
