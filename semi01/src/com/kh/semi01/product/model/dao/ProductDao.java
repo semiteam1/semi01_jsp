@@ -37,7 +37,7 @@ public class ProductDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, sKeyWord);
+			pstmt.setString(1, "%" +  sKeyWord + "%");
 			
 			rset = pstmt.executeQuery();
 			

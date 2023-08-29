@@ -3,6 +3,7 @@
 <properties>
 
 <entry key="loginMember">
+<!-- 로그인 -->
 SELECT
        USER_NO
      , USER_ID
@@ -26,6 +27,7 @@ SELECT
    AND STATUS = 'Y'
 </entry>
 <entry key="insertUser">
+<!-- 회원가입 -->
 	INSERT 
 	  INTO USER_INFO 
 	     (
@@ -58,6 +60,7 @@ SELECT
 	     ,'Y')
 </entry>
 <entry key="findIdWithEmail">
+<!-- 이멜로 아디찾기 -->
 SELECT
        USER_NO
      , USER_ID
@@ -81,6 +84,7 @@ SELECT
    AND EMAIL = ?
 </entry>
 <entry key="findIdWithPhone">
+<!-- 폰으로 아디찾기 -->
 SELECT
        USER_NO
      , USER_ID
@@ -104,6 +108,7 @@ SELECT
    AND PHONE = ?
 </entry>
 <entry key="findPwdWithEmail">
+<!-- 이멜로 비번찾기 -->
 SELECT
        USER_NO
      , USER_ID
@@ -127,6 +132,7 @@ SELECT
    AND EMAIL = ?
 </entry>
 <entry key="findPwdWithPhone">
+<!-- 폰으로 비번찾기 -->
 SELECT
        USER_NO
      , USER_ID
@@ -150,6 +156,7 @@ SELECT
    AND PHONE = ?
 </entry>
 <entry key="changePwd">
+<!-- 비번 변경 -->
 UPDATE USER_INFO
    SET USER_PWD = ?
  WHERE USER_NO = ?
@@ -174,7 +181,7 @@ UPDATE USER_INFO
 	     , USER_ID
 	     , USER_PWD
 	     , USER_NAME
-	     , TO_CHAR(USER_BIRTH, 'YYYY-MM-DD') "USER_BIRTH"
+	     , TO_CHAR(TO_DATE(USER_BIRTH, 'RR/MM/DD'), 'RRRR-MM-DD') "USER_BIRTH"
 	     , M.CATEGORY_NAME "INTEREST_MOVIE"
 	     , D.CATEGORY_NAME "INTEREST_DISPLAY"
 	     , S.CATEGORY_NAME "INTEREST_SHOW"
@@ -188,6 +195,26 @@ UPDATE USER_INFO
 	  JOIN CATEGORY_INFO S ON (INTEREST_SHOW = S.CATEGORY_TYPE)
 	  JOIN GRADE USING (GRADE_NO)
 	 WHERE USER_NO = ?
+	   AND STATUS = 'Y'
 </entry>
 
+<entry key="deleteUser">
+	UPDATE USER_INFO
+	    SET STATUS = 'N'
+	  WHERE USER_NO = ?
+</entry>
+
+<entry key="updatePwd">
+	UPDATE USER_INFO
+	    SET USER_PWD = ?
+	  WHERE USER_NO = ?
+</entry>
+
+<entry key="idCheck">
+<!--  아이디 체크용 -->
+	SELECT 
+	       COUNT(*) COUNT
+	  FROM USER_INFO
+	 WHERE USER_ID = ?
+</entry>
 </properties>

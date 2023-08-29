@@ -8,6 +8,9 @@
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
 <!-- Popper JS -->
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 
@@ -232,11 +235,12 @@
                     
                     <div id="right-bottom">
                         <div id="myPage-content">
-                            <form action="#" method="post">
+                            <form action="<%= contextPath %>/deleteUserWithPwd.us" method="post">
+                            	<input type="hidden" name="userNo" value="<%= loginMember.getUserNo() %>">
                                 
                                 <input type="password" name="userPwd" size="50" placeholder="비밀번호를 입력해주세요.">
                                 
-                                <button type="submit" onclick="alertMsg();">회원탈퇴</button>
+                                <button type="submit" onclick="return checkPwd();">회원탈퇴</button>
                                 <button type="button" onclick="history.back();">돌아가기</button>
 
                             </form>
@@ -255,9 +259,26 @@
 
     <script>
 
-        function alertMsg() {
+        function checkPwd() {
 
-            alert("그동안 이용해주셔서 감사합니다. 안녕히 가십시오.");
+            if("<%= loginMember.getUserPwd() %>" == $("input[name=userPwd]").val()) {
+            	
+            	alert("그동안 이용해주셔서 감사합니다. 안녕히 가십시오.");
+            	
+            	return true;
+            	
+            }
+            else {
+            	
+            	alert("틀린 비밀번호입니다. 다시 입력해 주십시오.");
+            	
+            	$("input[name=userPwd]").val("");
+            	
+            	$("input[name=userPwd]").focus();
+            	
+            	return false;
+            	
+            }
 
         }
 
