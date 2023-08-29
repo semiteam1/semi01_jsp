@@ -39,9 +39,7 @@ public class ManagerRegistProductController extends HttpServlet {
         if (ServletFileUpload.isMultipartContent(request)) {
             int maxSize = 10 * 1024 * 1024; // 최대 파일 크기 설정 (10MB)
             String savePath = request.getSession().getServletContext().getRealPath("/resource/product_upfiles/"); // 파일 저장 경로 설정
-            System.out.println(savePath);
             MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8");
-            System.out.println(multiRequest);
             // 각각의 파일 업로드 처리
             Enumeration<String> fileNames = multiRequest.getFileNames();
             while (fileNames.hasMoreElements()) {

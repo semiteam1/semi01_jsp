@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,7 +52,7 @@
         display: flex;
     }
     .custom-file-input {
-    visibility: hidden; /* ±âº» ÆÄÀÏ ¼±ÅÃ ¹öÆ° ¼û±è */
+    visibility: hidden; /* ê¸°ë³¸ íŒŒì¼ ì„ íƒ ë²„íŠ¼ ìˆ¨ê¹€ */
     display: none;
     width: 0;
     height: 0;
@@ -130,54 +130,54 @@
     <div id="container" style="margin-top: 13px;">
         <table id="tb9">
             <tr>
-                <td>Ä«Å×°í¸®</td>
+                <td>ì¹´í…Œê³ ë¦¬</td>
                 <td style="display: flex; margin-top: 10px;">
                     <select id="selects1" class="sel101" style="margin-right: 13px; font-family: 'Jua', sans-serif;">
-                        <option value="movie">¿µÈ­</option>
-                        <option value="display">Àü½Ã</option>
-                        <option value="show">°ø¿¬</option>
+                        <option value="movie">ì˜í™”</option>
+                        <option value="display">ì „ì‹œ</option>
+                        <option value="show">ê³µì—°</option>
                     </select>
                     <select id="selects2" class="sel101" style="font-family: 'Jua', sans-serif;">
-                        <option value="1">·Î¸Ç½º</option>
-                        <option value="2">°øÆ÷/½º¸±·¯</option>
-                        <option value="3">ÄÚ¹Ìµğ</option>
-                        <option value="4">¾×¼Ç</option>
+                        <option value="1">ë¡œë§¨ìŠ¤</option>
+                        <option value="2">ê³µí¬/ìŠ¤ë¦´ëŸ¬</option>
+                        <option value="3">ì½”ë¯¸ë””</option>
+                        <option value="4">ì•¡ì…˜</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td style="width: 23%;">Á¦¸ñ</td>
+                <td style="width: 23%;">ì œëª©</td>
                 <td>
-                    <input type="text" name="title" id="title" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇÏ½Ã¿À" style="font-family: 'Jua', sans-serif;">
+                    <input type="text" name="title" id="title" placeholder="ì œëª©ì„ ì…ë ¥í•˜ì‹œì˜¤" style="font-family: 'Jua', sans-serif;">
                 </td>
             </tr>
             <tr>
-                <td>Áö¿ª</td>
+                <td>ì§€ì—­</td>
                 <td>
                     <select id="selects3" class="sel101" style="font-family: 'Jua', sans-serif;">
-                        <option value="1">¼­¿ï</option>
-                        <option value="2">°æ±â/ÀÎÃµ</option>
-                        <option value="3">ÃæÃ»/°­¿ø</option>
-                        <option value="4">´ë±¸/°æºÏ</option>
-                        <option value="5">±¤ÁÖ/Àü¶ó</option>
-                        <option value="6">Á¦ÁÖ</option>
+                        <option value="1">ì„œìš¸</option>
+                        <option value="2">ê²½ê¸°/ì¸ì²œ</option>
+                        <option value="3">ì¶©ì²­/ê°•ì›</option>
+                        <option value="4">ëŒ€êµ¬/ê²½ë¶</option>
+                        <option value="5">ê´‘ì£¼/ì „ë¼</option>
+                        <option value="6">ì œì£¼</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td>»ó¼¼ÁÖ¼Ò</td>
+                <td>ìƒì„¸ì£¼ì†Œ</td>
                 <td>
-                    <input type="text" name="place" id="place" placeholder="»ó¼¼ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ½Ã¿À" style="font-family: 'Jua', sans-serif;">
+                    <input type="text" name="place" id="place" placeholder="ìƒì„¸ì£¼ì†Œë¥¼ ì…ë ¥í•˜ì‹œì˜¤" style="font-family: 'Jua', sans-serif;">
                 </td>
             </tr>
             <tr>
-                <td>°ü¶÷½Ã°£(ºĞ)</td>
+                <td>ê´€ëŒì‹œê°„(ë¶„)</td>
                 <td>
-                    <input type="number" name="time" id="time" placeholder="°ü¶÷½Ã°£À» ÀÔ·ÂÇÏ½Ã¿À" style="width: 150px; font-family: 'Jua', sans-serif;">
+                    <input type="number" name="time" id="time" placeholder="ê´€ëŒì‹œê°„ì„ ì…ë ¥í•˜ì‹œì˜¤" style="width: 150px; font-family: 'Jua', sans-serif;">
                 </td>
             </tr>
             <tr>
-                <td>±â°£</td>
+                <td>ê¸°ê°„</td>
                 <td style="display: flex; margin-top: 9px;">
                     <input type="date" name="date1" id="date1" style="font-family: 'Jua', sans-serif;">
                     <span id="span1" style="line-height: 2.5;">&nbsp;~&nbsp;</span>
@@ -185,20 +185,20 @@
                 </td>
             </tr>
             <tr>
-                <td>½Ã°£</td>
+                <td>ì‹œê°„</td>
                 <td>
                     <select id="select1" class="sel101" style="font-family: 'Jua', sans-serif;">
-                        <option value="1">¿ÀÀü</option>
-                        <option value="2">¿ÀÈÄ</option>
-                        <option value="3">ÀüÃ¼</option>
+                        <option value="1">ì˜¤ì „</option>
+                        <option value="2">ì˜¤í›„</option>
+                        <option value="3">ì „ì²´</option>
                     </select>
                 </td>
             </tr>
             <tr>
-                <td>°ü¶÷µî±Ş</td>
+                <td>ê´€ëŒë“±ê¸‰</td>
                 <td>
                     <select id="select1" class="sel101" style="font-family: 'Jua', sans-serif;">
-                        <option value="1">ÀüÃ¼</option>
+                        <option value="1">ì „ì²´</option>
                         <option value="2">7</option>
                         <option value="3">12</option>
                         <option value="4">15</option>
@@ -207,65 +207,65 @@
                 </td>
             </tr>
             <tr>
-                <td>°¡°İ</td>
+                <td>ê°€ê²©</td>
                 <td>
-                    <input type="number" name="price" id="price" placeholder="°¡°İÀ» ÀÔ·ÂÇÏ½Ã¿À" style="width: 150px; font-family: 'Jua', sans-serif;">
+                    <input type="number" name="price" id="price" placeholder="ê°€ê²©ì„ ì…ë ¥í•˜ì‹œì˜¤" style="width: 150px; font-family: 'Jua', sans-serif;">
                 </td>
             </tr>
             <tr>
-                <td>ÁÂ¼®¼ö</td>
+                <td>ì¢Œì„ìˆ˜</td>
                 <td>
-                    <input type="number" name="price" id="price" placeholder="ÁÂ¼®¼ö¸¦ ÀÔ·ÂÇÏ½Ã¿À" style="width: 150px; font-family: 'Jua', sans-serif;">
+                    <input type="number" name="price" id="price" placeholder="ì¢Œì„ìˆ˜ë¥¼ ì…ë ¥í•˜ì‹œì˜¤" style="width: 150px; font-family: 'Jua', sans-serif;">
                 </td>
             </tr>
         </table>
         <div style="width: 50%; margin-top: 52px;">
             <div style="display: flex;">
                 <label class="custom-file-label" for="customFile1" style="margin-left: 50px;">
-                    Æ÷½ºÅÍ
+                    í¬ìŠ¤í„°
                 </label>
                 <input type="file" id="customFile1" name="customFile1" class="custom-file-input">
-                <input type="text" id="filePath1" placeholder="»çÁøÀ» ¼±ÅÃÇÏ½Ã¿À" style="width: 48%; font-family: 'Jua', sans-serif;">
+                <input type="text" id="filePath1" placeholder="ì‚¬ì§„ì„ ì„ íƒí•˜ì‹œì˜¤" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
             <div style="display: flex; margin-top: 8px;">
                 <label class="custom-file-label" for="customFile2" style="margin-left: 50px;">
-                    »ó¼¼1
+                    ìƒì„¸1
                 </label>
                 <input type="file" id="customFile2" name="customFile2" class="custom-file-input">
-                <input type="text" id="filePath2" placeholder="»çÁøÀ» ¼±ÅÃÇÏ½Ã¿À" style="width: 48%; font-family: 'Jua', sans-serif;">
+                <input type="text" id="filePath2" placeholder="ì‚¬ì§„ì„ ì„ íƒí•˜ì‹œì˜¤" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
             <div style="display: flex; margin-top: 8px;">
                 <label class="custom-file-label" for="customFile3" style="margin-left: 50px;">
-                    »ó¼¼2
+                    ìƒì„¸2
                 </label>
                 <input type="file" id="customFile3" name="customFile3" class="custom-file-input">
-                <input type="text" id="filePath3" placeholder="»çÁøÀ» ¼±ÅÃÇÏ½Ã¿À" style="width: 48%; font-family: 'Jua', sans-serif;">
+                <input type="text" id="filePath3" placeholder="ì‚¬ì§„ì„ ì„ íƒí•˜ì‹œì˜¤" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
             <div style="display: flex; margin-top: 8px;">
                 <label class="custom-file-label" for="customFile4" style="margin-left: 50px;">
-                    »ó¼¼3
+                    ìƒì„¸3
                 </label>
                 <input type="file" id="customFile4" name="customFile4" class="custom-file-input">
-                <input type="text" id="filePath4" placeholder="»çÁøÀ» ¼±ÅÃÇÏ½Ã¿À" style="width: 48%; font-family: 'Jua', sans-serif;">
+                <input type="text" id="filePath4" placeholder="ì‚¬ì§„ì„ ì„ íƒí•˜ì‹œì˜¤" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
             <div style="display: flex; margin-top: 8px;">
                 <label class="custom-file-label" for="customFile5" style="margin-left: 50px;">
-                    »ó¼¼4
+                    ìƒì„¸4
                 </label>
                 <input type="file" id="customFile5" name="customFile5" class="custom-file-input">
-                <input type="text" id="filePath5" placeholder="»çÁøÀ» ¼±ÅÃÇÏ½Ã¿À" style="width: 48%; font-family: 'Jua', sans-serif;">
+                <input type="text" id="filePath5" placeholder="ì‚¬ì§„ì„ ì„ íƒí•˜ì‹œì˜¤" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
             <div style="display: flex; margin-top: 8px;">
                 <label class="custom-file-label" for="customFile6" style="margin-left: 50px;">
-                    »ó¼¼5
+                    ìƒì„¸5
                 </label>
                 <input type="file" id="customFile6" name="customFile6" class="custom-file-input">
-                <input type="text" id="filePath6" placeholder="»çÁøÀ» ¼±ÅÃÇÏ½Ã¿À" style="width: 48%; font-family: 'Jua', sans-serif;">
+                <input type="text" id="filePath6" placeholder="ì‚¬ì§„ì„ ì„ íƒí•˜ì‹œì˜¤" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
         </div>
     </div>
     
-    <button id="bts3" type="submit" style="font-family: 'Jua', sans-serif;">µî·Ï</button>
+    <button id="bts3" type="submit" style="font-family: 'Jua', sans-serif;">ë“±ë¡</button>
 </form>
 
 <script>
@@ -288,7 +288,7 @@
    	                
    	            },
    	            error: function() {
-   	                console.log("¿¡·¯");
+   	                console.log("ì—ëŸ¬");
    	            }
    	        });
    	    });
@@ -296,10 +296,10 @@
         const imagePathInput1 = document.getElementById('filePath1');
 
         imageInput1.addEventListener('change', function(event) {
-        const selectedFile = event.target.files[0]; // ¼±ÅÃÇÑ ÆÄÀÏÀÇ Á¤º¸ °¡Á®¿À±â
+        const selectedFile = event.target.files[0]; // ì„ íƒí•œ íŒŒì¼ì˜ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
             if (selectedFile) {
                 const fileName = selectedFile.name;
-                imagePathInput1.value = fileName; // ÀÔ·Â¶õ¿¡ °æ·Î ¼³Á¤
+                imagePathInput1.value = fileName; // ì…ë ¥ë€ì— ê²½ë¡œ ì„¤ì •
             }
         });
 
@@ -307,10 +307,10 @@
         const imagePathInput2 = document.getElementById('filePath2');
 
         imageInput2.addEventListener('change', function(event) {
-        const selectedFile = event.target.files[0]; // ¼±ÅÃÇÑ ÆÄÀÏÀÇ Á¤º¸ °¡Á®¿À±â
+        const selectedFile = event.target.files[0]; // ì„ íƒí•œ íŒŒì¼ì˜ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
             if (selectedFile) {
                 const fileName = selectedFile.name;
-                imagePathInput2.value = fileName; // ÀÔ·Â¶õ¿¡ °æ·Î ¼³Á¤
+                imagePathInput2.value = fileName; // ì…ë ¥ë€ì— ê²½ë¡œ ì„¤ì •
             }
         });
 
@@ -318,10 +318,10 @@
         const imagePathInput3 = document.getElementById('filePath3');
 
         imageInput3.addEventListener('change', function(event) {
-        const selectedFile = event.target.files[0]; // ¼±ÅÃÇÑ ÆÄÀÏÀÇ Á¤º¸ °¡Á®¿À±â
+        const selectedFile = event.target.files[0]; // ì„ íƒí•œ íŒŒì¼ì˜ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
             if (selectedFile) {
                 const fileName = selectedFile.name;
-                imagePathInput3.value = fileName; // ÀÔ·Â¶õ¿¡ °æ·Î ¼³Á¤
+                imagePathInput3.value = fileName; // ì…ë ¥ë€ì— ê²½ë¡œ ì„¤ì •
             }
         });
 
@@ -329,10 +329,10 @@
         const imagePathInput4 = document.getElementById('filePath4');
 
         imageInput4.addEventListener('change', function(event) {
-        const selectedFile = event.target.files[0]; // ¼±ÅÃÇÑ ÆÄÀÏÀÇ Á¤º¸ °¡Á®¿À±â
+        const selectedFile = event.target.files[0]; // ì„ íƒí•œ íŒŒì¼ì˜ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
             if (selectedFile) {
                 const fileName = selectedFile.name;
-                imagePathInput4.value = fileName; // ÀÔ·Â¶õ¿¡ °æ·Î ¼³Á¤
+                imagePathInput4.value = fileName; // ì…ë ¥ë€ì— ê²½ë¡œ ì„¤ì •
             }
         });
 
@@ -340,10 +340,10 @@
         const imagePathInput5 = document.getElementById('filePath5');
 
         imageInput5.addEventListener('change', function(event) {
-        const selectedFile = event.target.files[0]; // ¼±ÅÃÇÑ ÆÄÀÏÀÇ Á¤º¸ °¡Á®¿À±â
+        const selectedFile = event.target.files[0]; // ì„ íƒí•œ íŒŒì¼ì˜ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
             if (selectedFile) {
                 const fileName = selectedFile.name;
-                imagePathInput5.value = fileName; // ÀÔ·Â¶õ¿¡ °æ·Î ¼³Á¤
+                imagePathInput5.value = fileName; // ì…ë ¥ë€ì— ê²½ë¡œ ì„¤ì •
             }
         });
 
@@ -351,10 +351,10 @@
         const imagePathInput6 = document.getElementById('filePath6');
 
         imageInput6.addEventListener('change', function(event) {
-        const selectedFile = event.target.files[0]; // ¼±ÅÃÇÑ ÆÄÀÏÀÇ Á¤º¸ °¡Á®¿À±â
+        const selectedFile = event.target.files[0]; // ì„ íƒí•œ íŒŒì¼ì˜ ì •ë³´ ê°€ì ¸ì˜¤ê¸°
             if (selectedFile) {
                 const fileName = selectedFile.name;
-                imagePathInput6.value = fileName; // ÀÔ·Â¶õ¿¡ °æ·Î ¼³Á¤
+                imagePathInput6.value = fileName; // ì…ë ¥ë€ì— ê²½ë¡œ ì„¤ì •
             }
         });
     });
