@@ -2,8 +2,23 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<entry key="">
-	
+<entry key="searchProduct">
+	SELECT 
+		   PRODUCT_NO
+	     , PRODUCT_TITLE
+	     , ADDRESS
+	     , START_PERIOD
+	     , END_PERIOD
+	     , PRICE
+	     , POSTER_PATH
+	  FROM PRODUCT
+	  JOIN PRODUCT_IMG USING(PRODUCT_NO)
+<<<<<<< HEAD
+	 WHERE PRODUCT_TITLE LIKE '%' || ? || '%'
+=======
+	 WHERE PRODUCT_TITLE LIKE ?
+>>>>>>> 1dcb2b0efffea0dd9ca7800c427c4086eca0c97b
 </entry>
+
 
 </properties>

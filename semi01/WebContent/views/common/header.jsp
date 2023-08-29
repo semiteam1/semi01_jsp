@@ -1,16 +1,21 @@
+<%@page import="com.kh.semi01.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+
+	User loginMember = (User)session.getAttribute("loginMember");    
+	
+	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>티켓딱대</title>
+<link href="resource/image/logo2.png" rel="shortcut icon" type="image/x-icon">
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<link href="../../resources/image/logo2.png" rel="shortcut icon" type="image/x-icon">
 <style>
     /* 기본 세팅 존 */
 
@@ -75,10 +80,10 @@
         float: left;
     }
     .left{
-        width: 60%;
+        width: 50%;
     }
     .right{
-        width: 40%;
+        width: 50%;
     }
     /* 오른쪽 내용물 */
     .right>div{
@@ -86,13 +91,16 @@
         height: 100%;
         float: left;
         box-sizing: border-box;
+        width: 20%;
     }
-    .login,.sin,.contact{
-        width: 23.5%;
+    .login,.sin,.contact,.user_info{
+        width: 20%;
+        box-sizing: border-box;
     }
     .check{
         width: 29.5%;
     }
+
     /* 유틸란 링크 사이즈 */
     .header_util_link {
     display: flex;
@@ -103,6 +111,7 @@
     line-height: 18px;
     color: #878d95;
     }
+
     /* 유틸 끝 */
 
     /* 메인 시작 */
@@ -251,14 +260,32 @@
         width: 100%;
         height: 100%;
     }
+
+    .header_gnb{
+        position: relative;
+        z-index: 2;
+    }
     
     /* 검색 끝 */
     /* 헤더 끝 */
+    /* 작은카테고리 앞으로 나오게*/
+    
 
     
 </style>
 </head>
 <body>
+	
+	<% if(alertMsg != null) { %>
+	
+		<script>
+			alert("<%= alertMsg %>");
+		</script>
+		
+		<% session.removeAttribute("alertMsg"); %>
+		
+	<% } %>
+
 	<div class="warp"> <!-- 기본 배경-->
 
         <div class="header"> <!-- 헤더-->
@@ -266,10 +293,15 @@
             <div class="util"> <!-- 유틸 부분 (로긴..)-->
                 <div class="util_inner">
                     <div class="left"></div>
-                    <!-- 로그인 전 화면 -->
-                    <!-- <div class="right" >
+                    
+                    <!-- 로그인 전 화면  --> 
+                    <% if(loginMember == null){ %>
+                     <div class="right" >
+						<div class="user_info">
+                            <a href="#" class="header_util_link" ></a>
+                        </div>
                         <div class="login">
-                            <a href="#" class="header_util_link" >로그인</a>
+                            <a href="<%=contextPath %>/login.ur" class="header_util_link" >로그인</a>
                         </div>
                         <div class="check">
                             <a href="#" class="header_util_link" onclick="book();">예매확인/취소</a>
@@ -286,17 +318,21 @@
                         </script>
 
                         <div class="sin">
-                            <a href="#" class="header_util_link">회원가입</a>
+                            <a href="<%=contextPath %>/newUser.ur" class="header_util_link">회원가입</a>
                         </div>
                         <div class="contact">
-                            <a href="#" class="header_util_link">고객센터</a>
+                            <a href="<%=contextPath %>/views/service/customerservice/" class="header_util_link">고객센터</a>
                         </div>
-                    </div> -->
-
+                    </div> 
+                    <%}else { %>
+	
                     <!-- 로그인 후 화면 -->
-                    <div class="right" >
+                     <div class="right" >
+						<div class="user_info">
+                            <div  class="header_util_link" style="font-weight: 900; color: #242428;" ><%=loginMember.getUserName() %> 님</div>
+                        </div>
                         <div class="login">
-                            <a href="#" class="header_util_link" >로그아웃</a>
+                            <a href="<%=contextPath %>/logout.me" class="header_util_link" >로그아웃</a>
                         </div>
 
                         <div class="check">
@@ -310,14 +346,15 @@
                         <div class="contact">
                             <a href="#" class="header_util_link">고객센터</a>
                         </div>
-                    </div>
+                    </div> 
+                    <%} %>
 
                 </div>
             </div>
 
             <div class="header_main"> <!-- 헤더 메인 (로고, 대카테고리)-->
                 <div class="header_main_left"> <!-- 로고-->
-                    <a href="#" class="logo"><img src="resources/image/logo.png" id="logo_main"></a>
+                    <a href="<%= contextPath %>" class="logo"><img src="resource/logo/logo.png" id="logo_main"></a>
                 </div>
                 <div class="header_main_mid"> <!-- 대카테고리-->
                     <a href="#" class="category"  >
@@ -344,39 +381,39 @@
                         </li>
                         <li><a href="<%= contextPath %>/movie.pr" style="color: red;">영화</a>
                             <ul>
-                                <li><a href="#">로맨스</a></li>
-                                <li><a href="#">공포/스릴러</a></li>
-                                <li><a href="#">코미디</a></li>
-                                <li><a href="#">액션</a></li>
+                                <li><a href="#" class="minCategory">로맨스</a></li>
+                                <li><a href="#" class="minCategory">공포/스릴러</a></li>
+                                <li><a href="#" class="minCategory">코미디</a></li>
+                                <li><a href="#" class="minCategory">액션</a></li>
                             </ul>
                         
                         </li>
                         <li><a href="#">전시</a>
                             <ul>
-                                <li><a href="#">그림전시</a></li>
-                                <li><a href="#">작품전시</a></li>
-                                <li><a href="#">사진전시</a></li>
-                                <li><a href="#">체험전시</a></li>
+                                <li><a href="#" class="minCategory">그림전시</a></li>
+                                <li><a href="#" class="minCategory">작품전시</a></li>
+                                <li><a href="#" class="minCategory">사진전시</a></li>
+                                <li><a href="#" class="minCategory">체험전시</a></li>
                             </ul>
                         </li>
                         <li><a href="#">공연</a>
                             <ul>
-                                <li><a href="#">뮤지컬</a></li>
-                                <li><a href="#">연극</a></li>
-                                <li><a href="#">클래식</a></li>
-                                <li><a href="#">콘서트</a></li>
+                                <li><a href="#" class="minCategory">뮤지컬</a></li>
+                                <li><a href="#" class="minCategory">연극</a></li>
+                                <li><a href="#" class="minCategory">클래식</a></li>
+                                <li><a href="#" class="minCategory">콘서트</a></li>
                             </ul>
                             <li  style="width: 2px; height: 20px; margin-top: 8px; background-color: #515155;"></li>
                         <li><a href="#">랭킹</a></li>
                         <li><a href="#">지역</a>
                             <ul class="local">
-                                <li><a href="#">서울</a></li>
-                                <li><a href="#">경기/이천</a></li>
-                                <li><a href="#">충청/강원</a></li>
-                                <li><a href="#">대구/경북</a></li>
-                                <li><a href="#">부산/경남</a></li>
-                                <li><a href="#">광주/전라</a></li>
-                                <li><a href="#">제주</a></li>
+                                <li><a href="#" class="minCategory">서울</a></li>
+                                <li><a href="#" class="minCategory">경기/이천</a></li>
+                                <li><a href="#" class="minCategory">충청/강원</a></li>
+                                <li><a href="#" class="minCategory">대구/경북</a></li>
+                                <li><a href="#" class="minCategory">부산/경남</a></li>
+                                <li><a href="#" class="minCategory">광주/전라</a></li>
+                                <li><a href="#" class="minCategory">제주</a></li>
                             </ul>
                         </li>
                         
@@ -384,8 +421,10 @@
 
                     </ul>
                     <div class="header_search_box" > <!-- 검색 -->
-                        <input type="search" name="search" id="search" class="header_search_input" placeholder="검색어를 입력해 주세요" value="">
-                        <button id="btnImg"><img src="resources/image/search.png" id="btn_Img" alt=""></button>
+                    	<form action="<%= contextPath %>/search.pr">
+                        <input type="search" name="sKeyWord" id="search" class="header_search_input" placeholder="검색어를 입력해 주세요">
+                        <button type="submit" id="btnImg"><img src="resource/search.png" id="btn_Img" ></button>
+                   		</form>
                     </div>           
                 </div>
 
