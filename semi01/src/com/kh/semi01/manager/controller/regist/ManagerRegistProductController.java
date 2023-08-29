@@ -46,9 +46,14 @@ public class ManagerRegistProductController extends HttpServlet {
                 System.out.println("Saved File Name: " + savedFileName);
             }
         }
+        
+        String category = multiRequest.getParameter("category");
+		String boardTitle = multiRequest.getParameter("title");
+		String boardContent = multiRequest.getParameter("content");
+		String boardWriter = multiRequest.getParameter("userNo");
     }
 
-	/**
+	/**                                   
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
