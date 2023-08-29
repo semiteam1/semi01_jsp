@@ -1,4 +1,4 @@
-package com.manager.controller.regist;
+package com.kh.semi01.manager.controller.regist;
 
 import java.io.IOException;
 import java.util.ArrayList;

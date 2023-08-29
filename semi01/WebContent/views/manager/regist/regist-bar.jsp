@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,6 +16,6 @@
   </style>
 </head>
 <body>
-  <h2 style="margin-top: 30px; text-align: left; margin-left: 4px;">»óÇ°µî·Ï</h2>
+  <h2 style="margin-top: 30px; text-align: left; margin-left: 4px;">ìƒí’ˆë“±ë¡</h2>
 </body>
 </html>

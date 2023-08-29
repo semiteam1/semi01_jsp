@@ -10,7 +10,7 @@
 <link rel="shortcut icon" href="resource/logo/bichon-frise.png">
 <style>
 	.outer {
-        height: 2000px;
+        height: 1000px;
         width: 1180px;
         position: relative;
         z-index: 0;
@@ -88,11 +88,9 @@
         /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
         /* 사이드바 */
         .sticky_outer {
-            display: flex;
-            justify-content: space-between;
-            width: 170px;
-            height: 800px;
-            margin: 0px;
+            width: 160px;
+            height: 1000px;
+            float: left;
         }
 
         /* 배너 이미지 사이즈조정 */
@@ -178,122 +176,86 @@
             </script>
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- 랭킹 추천 -->
-        <div class="recommend_img">
-            <span style="font-weight: bold; font-size: 25px;">전체랭킹 딱대</span>
-            <br>
-            <hr>
-            <br><br><br>
-            
-            <div class="div_img">
-                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                    <div class="caption">
-                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                </a>
-            </div>
-            
-            
-            <div class="div_img">
-                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                    <div class="caption">
-                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                </a>
-            </div>
-            
-            
-            <div class="div_img">
-                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                    <div class="caption">
-                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                    </a>
-                </div>
-            
-                <div class="div_img">
-                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                    <div class="caption">
-                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                    </a>
-                </div>
-            
-                <div class="div_img">
-                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                    <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                    <div class="caption">
-                        <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                    </div>
-                    </a>
-                </div>
-                <br><br>
-                <img src="resource/이미지자료/페이딱.png" style="width: 100%;">
-                <br><br><br>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- 관심사 랭킹 추천 -->
+    <div class="recommend_img">
 
-                <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
-                <br>
-                <hr>
-                
-                
-                <div class="div_img">
-                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                        <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                    </a>
+        <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
+        <br>
+        <hr>
+        
+        
+        <div class="div_img">
+            <a href="<%= contextPath %>/detail.pr">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
                 </div>
-                
-                
-                <div class="div_img">
-                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                        <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                    </a>
+            </a>
+        </div>
+        
+        
+        <div class="div_img">
+            <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
                 </div>
-                
-                
-                <div class="div_img">
-                    <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                        <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                        </a>
-                    </div>
-                
-                    <div class="div_img">
-                        <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                        <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                        </a>
-                    </div>
-                
-                    <div class="div_img">
-                        <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-                        <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                        <div class="caption">
-                            <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-                        </div>
-                        </a>
-                    </div>
-                    
-                    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-                    <!-- 사이드바 -->
-                    <!-- <div class="sticky_outer">
-                        <img src="resource/이미지자료/류지완 샘플이미지/새로배너.PNG" class="sidebar">
-                    </div> -->
+            </a>
+        </div>
+        
+        
+        <div class="div_img">
+            <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                </div>
+                </a>
+            </div>
+        
+            <div class="div_img">
+                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                </div>
+                </a>
+            </div>
+        
+            <div class="div_img">
+                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                </div>
+                </a>
             </div>
             <br><br>
+            <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
+            <br><br><br>
+
+        </div>
+        
+        
+    </div>
+    
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+<!-- 사이드바 -->
+<!-- <div class="sticky_outer">
+    <img src="resource/이미지자료/류지완 샘플이미지/새로배너.PNG" class="sidebar">
+</div>
+<br><br>  -->
+
+
+        </div>
+        
+
+</div>
+<br><br>
 
 	
 	<%@ include file = "/views/common/footer.jsp" %>

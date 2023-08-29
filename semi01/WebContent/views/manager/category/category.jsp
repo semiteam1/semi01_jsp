@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,9 +51,9 @@
             width: 33%;
         }
         .chart-container {
-          width: 100%; /* ���ϴ� �ʺ�� ���� */
-          height: 300px; /* ���ϴ� ���̷� ���� */
-          overflow: auto; /* �ʿ��� ��� ��ũ�� ���� */
+          width: 100%; /* 원하는 너비로 조정 */
+          height: 300px; /* 원하는 높이로 조정 */
+          overflow: auto; /* 필요한 경우 스크롤 생성 */
         }
     </style>
 </head>
@@ -61,67 +61,67 @@
     <div class="outer1" style="margin-top: 152px;">
         <table id="tables4" align="center">
           <tr style="font-weight: bold;">
-            <td id="tba1">ī�װ���</td>
-            <td id="tba2">���ƿ�</td>
-            <td id="tba3">�Ǹŷ�</td>
+            <td id="tba1">카테고리</td>
+            <td id="tba2">좋아요</td>
+            <td id="tba3">판매량</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>
           <tr>
-            <td id="tba1">�θǽ�</td>
+            <td id="tba1">로맨스</td>
             <td id="tba2">30211</td>
             <td id="tba3">4312</td>
           </tr>

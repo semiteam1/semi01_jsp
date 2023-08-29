@@ -18,6 +18,14 @@ public class ProductService {
 		
 		return list;
 		
+	}
+	
+	public Product selectProductDetail(int productNo) {
+		Connection conn = getConnection();
+		Product p = new ProductDao().selectProductDetail(conn, productNo);
+		
+		close(conn);
+		return p;
 		
 	}
 }
