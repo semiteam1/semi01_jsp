@@ -89,7 +89,7 @@ public class JDBCTemplate {
 	public static void close(Statement stmt) {
 		
 		try {
-			if(stmt != null && !stmt.isClosed()) {
+			if(stmt != null && stmt.isClosed()) {
 				stmt.close();
 			}
 		} catch (SQLException e) {
