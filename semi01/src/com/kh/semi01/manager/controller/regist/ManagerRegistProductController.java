@@ -52,6 +52,7 @@ public class ManagerRegistProductController extends HttpServlet {
                 count++;
                 if(count == 1) {
                 	img.setPosterName(savedFileName);
+                	p.setPosterName(savedFileName);
                 }else if(count == 2) {
                 	img.setDetail1Name(savedFileName);
                 }else if(count == 3) {
@@ -74,29 +75,24 @@ public class ManagerRegistProductController extends HttpServlet {
         String address = multiRequest.getParameter("place");
         int time = Integer.parseInt(multiRequest.getParameter("time"));
         
-        String dateString1 = multiRequest.getParameter("date1");
-        String dateString2 = multiRequest.getParameter("date2");
+        String startDate = multiRequest.getParameter("date1");
+        String endDate = multiRequest.getParameter("date2");
 
-	     // 문자열을 날짜 객체로 변환
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date1 = null;
-        Date date2 = null;
-        try {
-            date1 = dateFormat.parse(dateString1);
-            date2 = dateFormat.parse(dateString2);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        java.sql.Date startDate = new java.sql.Date(date1.getTime());
-        java.sql.Date endDate = new java.sql.Date(date2.getTime());
-        
 	    int dayOrNight = Integer.parseInt(multiRequest.getParameter("salsa4"));
 	    int possbleAge = Integer.parseInt(multiRequest.getParameter("salsa5"));
 	    int price = Integer.parseInt(multiRequest.getParameter("price"));
 	    int seatsNum = Integer.parseInt(multiRequest.getParameter("seatsNum"));
 	    
-	    
+	    p.setCategory(smallCategory);
+	    p.setProductTitle(title);
+	    p.setLocal(local);
+	    p.setAddress(address);
+	    p.setStartPeriod(startDate);
+	    p.setEndPeriod(endDate);
+	    p.setProductLevel(String.valueOf(possbleAge));
+	    p.setRunTime(time);
+	    p.setPrice(price);
+	    p.setImage(savePath);
     }
 
 	/**                                   
