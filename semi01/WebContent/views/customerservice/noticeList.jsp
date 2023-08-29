@@ -119,11 +119,32 @@
             <h2 align="center">공지사항</h2>
             <img id="event" src="resource/이미지자료/이벤트.png">
             <table class="rightmain">
+                <thead>
                 <tr id="tr1">
-                    <td>번호</td>
-                    <td colspan="2">제목</td>
-                    <td>조회수</td>
+                    <td>번호</td>noticeno
+                    <td colspan="2">제목</td>noticetitle
+                    <td>조회수</td>noticecount
                 </tr>
+                </thead>
+      
+                <tbody>
+      				<!--1. 공지글이 없는 경우-->
+      				<%if(list.isEmpty()){ %>
+      				
+      				<tr>
+      					<td colsapn="5">존재하는 공지사항이 없습니다.</td>
+      				</tr>
+      			   <%}else { %>
+      			   	   <!-- 2. 공지글이 있을 경우 -->
+      			   	   <%for(Notice n:list){ %>
+      			   	   <tr>
+      			   	   		<td><%=n.getNoticeNo() %></td>
+      			   	   		<td><%=n.getNoticeTitle() %></td>
+      			   	   		<td><%=n.getNoticeCount() %></td>
+      			   	   </tr>
+      			   	   <%} %>
+      			   <%} %>       
+                </tbody>
                 <tr>
                     <th>티켓오픈</th>
                     <th width="400">[단독판매] PUBG NATIONS CUP 2023 티켓오픈 안내</th>
@@ -147,7 +168,12 @@
     <script>
         $(function(){
             $(".leftmenu").hover().css("cursor","pointer");
-            
+            $(".rightmenu>tbody>tr").click(function(){
+            	const num = $(this).children().eq(0).text()
+            	
+            	location.href = '<%=contextPath%>/detail.no?num=' + num;
+            })
+           
         })
     </script>
 

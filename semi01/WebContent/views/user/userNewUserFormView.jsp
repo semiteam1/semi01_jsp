@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+    String alertMsg =(String)session.getAttribute("alertMsg");
 %>
 <!--  회원가입 화면 -->
 <!DOCTYPE html>
@@ -151,9 +152,22 @@
             border: none;
             
         }
+        .id_input{
+            box-sizing: border-box;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
     </style>
 </head>
 <body>
+    <% if(alertMsg != null) { %> 
+		
+		<script>
+			alert("<%= alertMsg %>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+		
+	<% } %>
     <div class="logo_div">
         <a href="<%=contextPath %>"><img src="resource/logo/logo.png" id="logo" alt=""></a>
     </div>
@@ -197,7 +211,7 @@
                 <div class="int_box" >
                     <div class="int_movie" id="int">
                         <div class="tag">영화</div>
-                        <div class="choice_box" id="fst"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('1');">로멘스</button></div>
+                        <div class="choice_box" id="fst"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('1');">로맨스</button></div>
                         <div class="choice_box"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('2');">공포/스릴러</button></div>
                         <div class="choice_box"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('3');">코미디</button></div>
                         <div class="choice_box" id="last"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('4');">액션</button></div>
@@ -211,7 +225,7 @@
                     </div>
                     <div class="int_movie" id="int">
                         <div class="tag">공연</div>
-                        <div class="choice_box" id="fst"><button type="button" class="int_btn_show" id="musical" onclick="selectShow('9');" >뮤직컬</button></div>
+                        <div class="choice_box" id="fst"><button type="button" class="int_btn_show" id="musical" onclick="selectShow('9');" >뮤지컬</button></div>
                         <div class="choice_box"><button type="button" class="int_btn_show" id="act" onclick="selectShow('10');" >연극</button></div>
                         <div class="choice_box"><button type="button" class="int_btn_show" id="classical" onclick="selectShow('11');" >클래식</button></div>
                         <div class="choice_box" id="last"><button type="button" class="int_btn_show" id="concert" onclick="selectShow('12');" >콘서트</button></div>
@@ -222,8 +236,9 @@
                 </div>
             </div>
             <div class="submit_box">
-                <button class="submit_btn" type="button" onclick="test4();">회원 가입</button>
+                <button class="submit_btn" type="submit" onclick="test4();">회원 가입</button>
             </div>
+
             </div>
            
         </div>
@@ -242,6 +257,7 @@
         }
 
         $(document).ready(function() {
+
             $(".int_btn_movie").click(function() {
                 // 모든 버튼의 테두리 색상을 원래대로 되돌립니다.
                 $(".int_btn_movie").css("border-color", "rgba(128, 128, 128, 0.603)");
@@ -288,79 +304,127 @@
             
             var nameReg = /^[a-zA-Z가-힣]{2,15}$/
 
+            if($(".submit_btn").attr("type") == "button" ){
+                alert("아이디를 확인해주세요.");
+            }else{
 
-            if( !idReg.test( $(".new_userId").val() ) ) { // 아이디 안맞다
-                $(".submit_btn").attr("type","button"); 
-                alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
-                $(".message_output").text("* 입력하신 아이디가 잘못되었습니다.");
-                
-            }else{ // 아이디 맞다 
-                $(".message_output").text(" ");
-
-                if(!PwdReg.test( $(".new_userPwd").val() )){ // 비번 틀리다
+                if( !idReg.test( $(".new_userId").val() ) ) { // 아이디 안맞다
                     $(".submit_btn").attr("type","button"); 
-                    alert("비밀번호는 영문 숫자 특수기호 조합 8자리 이상이어야 합니다.")
-                    $(".message_output").text("* 입력하신 비밀번호가 잘못되었습니다.");
-                }else { // 비번맞다
+                    alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+                    $(".message_output").text("* 입력하신 아이디가 잘못되었습니다.");
+                    
+                }else{ // 아이디 맞다 
+                    $(".message_output").text(" ");
 
-                    if(!nameReg.test($(".new_user_name").val() )){ // 이름 틀리다
+                    if(!PwdReg.test( $(".new_userPwd").val() )){ // 비번 틀리다
                         $(".submit_btn").attr("type","button"); 
-                        alert("이름은 영어나 한글로 2~15자 이어야 합니다.")
-                        $(".message_output").text("* 입력하신 이름이 잘못되었습니다.");
-                    
-                    }else{ // 이름맞다
+                        alert("비밀번호는 영문 숫자 특수기호 조합 8자리 이상이어야 합니다.")
+                        $(".message_output").text("* 입력하신 비밀번호가 잘못되었습니다.");
+                    }else { // 비번맞다
+
+                        if(!nameReg.test($(".new_user_name").val() )){ // 이름 틀리다
+                            $(".submit_btn").attr("type","button"); 
+                            alert("이름은 영어나 한글로 2~15자 이어야 합니다.")
+                            $(".message_output").text("* 입력하신 이름이 잘못되었습니다.");
                         
-                    
-                    
-                        if(regExp.test(value)){ // 생년월일 맞다
-                            $(".message_output").text(" ");
+                        }else{ // 이름맞다
+                            
+                        
+                        
+                            if(regExp.test(value)){ // 생년월일 맞다
+                                $(".message_output").text(" ");
 
-                            if (regPhone.test(phone) == true) { // 전번 체크 함
+                                if (regPhone.test(phone) == true) { // 전번 체크 함
 
-                                if($("#select_movie_hidden").val() == "" ){ // 영화 안함
-                                    $(".submit_btn").attr("type","button"); 
-                                    alert("관심 카테고리 (영화)를 선택해 주세요.")
-                                    $(".message_output").text("* 관심 카테고리 (영화)를 선택해 주세요.");
-
-                                }else{ // 영화 체크함
-
-                                    if($("#select_display_hidden").val() == "" ){ // 전시 체크 암함
+                                    if($("#select_movie_hidden").val() == "" ){ // 영화 안함
                                         $(".submit_btn").attr("type","button"); 
-                                        alert("관심 카테고리 (전시)를 선택해 주세요.")
-                                        $(".message_output").text("* 관심 카테고리 (전시)를 선택해 주세요.");
-                                    }else{ // 전시 체크함
+                                        alert("관심 카테고리 (영화)를 선택해 주세요.")
+                                        $(".message_output").text("* 관심 카테고리 (영화)를 선택해 주세요.");
 
-                                        if($("#select_show_hidden").val() == "" ){ // 공연 체크 안함
+                                    }else{ // 영화 체크함
+
+                                        if($("#select_display_hidden").val() == "" ){ // 전시 체크 암함
                                             $(".submit_btn").attr("type","button"); 
-                                            alert("관심 카테고리 (공연)를 선택해 주세요.")
-                                            $(".message_output").text("* 관심 카테고리 (공연)를 선택해 주세요.");
-                                        }else{ // 공연 체크함
-                                            $(".submit_btn").attr("type","submit"); 
+                                            alert("관심 카테고리 (전시)를 선택해 주세요.")
+                                            $(".message_output").text("* 관심 카테고리 (전시)를 선택해 주세요.");
+                                        }else{ // 전시 체크함
 
-                                        
+                                            if($("#select_show_hidden").val() == "" ){ // 공연 체크 안함
+                                                $(".submit_btn").attr("type","button"); 
+                                                alert("관심 카테고리 (공연)를 선택해 주세요.")
+                                                $(".message_output").text("* 관심 카테고리 (공연)를 선택해 주세요.");
+                                            }else{ // 공연 체크함
+                                                $(".submit_btn").attr("type","submit"); 
+
+                                            
+                                            }
                                         }
                                     }
+                                }else {// 전번 체크 안함
+                                    $(".submit_btn").attr("type","button"); 
+                                    alert("휴대폰 번호를 확인해주세요.")
+                                    $(".message_output").text("* 입력하신 전화번호가 잘못되었습니다.");
                                 }
-                            }else {// 전번 체크 안함
+                                
+                            }else {  // 생년월일 틀림
+                                alert("생년월일이 잘못되었습니다.")
                                 $(".submit_btn").attr("type","button"); 
-                                alert("휴대폰 번호를 확인해주세요.")
-                                $(".message_output").text("* 입력하신 전화번호가 잘못되었습니다.");
+                                $(".message_output").text("* 입력하신 생년월일이 잘못되었습니다.");
                             }
-                            
-                        }else {  // 생년월일 틀림
-                            alert("생년월일이 잘못되었습니다.")
-                            $(".submit_btn").attr("type","button"); 
-                            $(".message_output").text("* 입력하신 생년월일이 잘못되었습니다.");
                         }
                     }
+
                 }
 
-               
-            }
-
+            }   
         }
-
     </script>
+    <script>
+    var idReg = /^[a-z]+[a-z0-9]{5,19}$/;
+
+    var $newUserId = $(".new_userId");
+    var $idInput = $(".id_input");
+    var $messageOutput = $(".message_output");
+    var $submitBtn = $(".submit_btn");
+
+    $newUserId.keyup(function() {
+        var userId = $newUserId.val();
+        
+        if (!idReg.test(userId)) { // 아이디 체크 불합격
+            $idInput.css("border", "2px solid red");
+            $messageOutput.text("* 아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+            $submitBtn.attr("type", "button");
+        } else { // 합격
+            $idInput.css("border", "none");
+            $messageOutput.text("");
+
+            $.ajax({
+                url: "idCheck.ur",
+                data: { checkId: userId },
+                success: function(result) {
+                    console.log(result);
+                    if (result === "NNNNY") { // 사용가능
+                        $idInput.css("border", "none");
+                        $messageOutput.text("* 사용 가능한 아이디 입니다.");
+                        $submitBtn.attr("type", "submit");
+                    } else if (result === "NNNNN") { // 사용불가능
+                        $idInput.css("border", "2px solid red");
+                        console.log($submitBtn.attr("type"));
+                        $submitBtn.attr("type", "button");
+                        $messageOutput.text("* 이미 존재하거나 탈퇴한 회원의 아이디입니다.");
+                    } else {
+                        console.log(result);
+                        alert("오류발생");
+                    }
+                },
+                error: function() {
+                    console.log("아이디 중복체크 통신 실패!");
+                    alert("아이디 중복체크 통신 실패!");
+                }
+            });
+        }
+    });
+</script>
 
 </body>
 </html>

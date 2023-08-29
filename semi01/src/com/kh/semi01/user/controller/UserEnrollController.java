@@ -48,9 +48,15 @@ public class UserEnrollController extends HttpServlet {
 		int result = new UserService().insertUser(u);
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("enrollUser", result);
 		
-		response.sendRedirect(request.getContextPath()+"/login.ur");
+		if(result > 0) { // 등록성공
+			session.setAttribute("alertMsg", "성공적으로 회원가입 되었습니다.");
+			response.sendRedirect(request.getContextPath()+"/login.ur");
+		}else {
+			session.setAttribute("alertMsg", "회원가입에 실패하였습니다.");
+			response.sendRedirect(request.getContextPath()+"/newUser.ur");
+		}
+		
 		
 	}
 

@@ -36,11 +36,21 @@ public class LoginController extends HttpServlet {
 		
 		User loginMember = new UserService().loginMember(userId, userPwd);
 		System.out.println(loginMember);
-	
-		HttpSession session = request.getSession();
-		session.setAttribute("loginMember", loginMember);
 		
-		response.sendRedirect(request.getContextPath());
+		HttpSession session = request.getSession();
+		
+		if(loginMember == null) {
+
+			session.setAttribute("alertMsg", "아이디 비밀번호를 잘못입력했습니다. 다시 확인해주세요.");
+			response.sendRedirect(request.getContextPath()+"/login.ur");
+		}
+		else {
+			session.setAttribute("loginMember", loginMember);
+			session.setAttribute("alertMsg", loginMember.getUserName() + " 님 환영합니다!!");
+			response.sendRedirect(request.getContextPath());
+		}
+		
+
 	}
 
 	/**

@@ -329,7 +329,7 @@
                     <!-- 로그인 후 화면 -->
                      <div class="right" >
 						<div class="user_info">
-                            <div  class="header_util_link" style="font-weight: 900; color: #242428;" ><%=loginMember.getUserName() %>님</div>
+                            <div  class="header_util_link" style="font-weight: 900; color: #242428;" ><%=loginMember.getUserName() %> 님</div>
                         </div>
                         <div class="login">
                             <a href="<%=contextPath %>/logout.me" class="header_util_link" >로그아웃</a>
