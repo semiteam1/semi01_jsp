@@ -140,7 +140,7 @@
       			   	   <tr>
       			   	   		<td><%=n.getNoticeNo() %></td>
       			   	   		<td><%=n.getNoticeTitle() %></td>
-      			   	   		<td><%=n.getNoticeCount()() %></td>
+      			   	   		<td><%=n.getNoticeCount() %></td>
       			   	   </tr>
       			   	   <%} %>
       			   <%} %>       
