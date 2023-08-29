@@ -59,6 +59,44 @@ public class UserService {
 		return updateUser;
 		
 	}
+	
+	public int deleteUser(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new UserDao().deleteUser(conn, userNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int updatePwd(int userNo, String updatePwd) {
+		
+		Connection conn = getConnection();
+		
+		int result = new UserDao().updatePwd(conn, userNo, updatePwd);
+		
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
 
 	public User findIdWithEmail(String chPwd, String chBday, String chEmail) {
 		Connection conn = getConnection();

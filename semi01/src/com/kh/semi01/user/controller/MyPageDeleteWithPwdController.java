@@ -9,19 +9,18 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.semi01.user.model.service.UserService;
-import com.kh.semi01.user.model.vo.User;
 
 /**
- * Servlet implementation class LoginController
+ * Servlet implementation class MyPageDeleteWithPwdController
  */
-@WebServlet("/login.me")
-public class LoginController extends HttpServlet {
+@WebServlet("/deleteUserWithPwd.us")
+public class MyPageDeleteWithPwdController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginController() {
+    public MyPageDeleteWithPwdController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,24 +29,30 @@ public class LoginController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
 		
-		User loginMember = new UserService().loginMember(userId, userPwd);
-		System.out.println(loginMember);
+		int userNo = Integer.parseInt(request.getParameter("userNo"));
+		
+		int result = new UserService().deleteUser(userNo);
 		
 		HttpSession session = request.getSession();
-		session.setAttribute("loginMember", loginMember);
 		
-		if(loginMember == null) {
-			session.setAttribute("alertMsg", "없는 계정입니다.");
+		if(result > 0) {
+			
+			session.setAttribute("alertMsg", "성공적으로 탈퇴에 성공했습니다. 그동안 이용해 주셔서 감사합니다.");
+			
+			session.removeAttribute("loginMember");
+			
+			response.sendRedirect(request.getContextPath());
+			
 		}
 		else {
-			session.setAttribute("alertMsg", loginMember.getUserName() + " 님 환영합니다!!");
+			
+			session.setAttribute("alertMsg", "회원탈퇴에 실패했습니다. 다시 시도해 주세요.");
+			
+			response.sendRedirect(request.getContextPath() + "/myPage.us");
+			
 		}
 		
-		response.sendRedirect(request.getContextPath());
 	}
 
 	/**

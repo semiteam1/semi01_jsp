@@ -197,7 +197,7 @@
                 <div class="int_box" >
                     <div class="int_movie" id="int">
                         <div class="tag">영화</div>
-                        <div class="choice_box" id="fst"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('1');">로멘스</button></div>
+                        <div class="choice_box" id="fst"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('1');">로맨스</button></div>
                         <div class="choice_box"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('2');">공포/스릴러</button></div>
                         <div class="choice_box"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('3');">코미디</button></div>
                         <div class="choice_box" id="last"><button type="button" class="int_btn_movie" id="movie" onclick="selectMovie('4');">액션</button></div>
@@ -211,7 +211,7 @@
                     </div>
                     <div class="int_movie" id="int">
                         <div class="tag">공연</div>
-                        <div class="choice_box" id="fst"><button type="button" class="int_btn_show" id="musical" onclick="selectShow('9');" >뮤직컬</button></div>
+                        <div class="choice_box" id="fst"><button type="button" class="int_btn_show" id="musical" onclick="selectShow('9');" >뮤지컬</button></div>
                         <div class="choice_box"><button type="button" class="int_btn_show" id="act" onclick="selectShow('10');" >연극</button></div>
                         <div class="choice_box"><button type="button" class="int_btn_show" id="classical" onclick="selectShow('11');" >클래식</button></div>
                         <div class="choice_box" id="last"><button type="button" class="int_btn_show" id="concert" onclick="selectShow('12');" >콘서트</button></div>
