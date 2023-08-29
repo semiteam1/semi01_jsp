@@ -14,6 +14,8 @@ public class Product {
 	private int price; 				// 가격
 	private String imagePath;
 	private String posterName;
+	private String levelName;
+
 	
 	// 기본 생성자
 	public Product() {}
@@ -49,14 +51,46 @@ public class Product {
 		this.posterName = posterName;
 	}
 	
+	
+	
+
+	public Product(int productNo, String productTitle, String address, String startPeriod, String endPeriod,
+			String levelName, int runTime, int price) {
+		super();
+		this.productNo = productNo;
+		this.productTitle = productTitle;
+		this.address = address;
+		this.startPeriod = startPeriod;
+		this.endPeriod = endPeriod;
+		this.levelName = levelName;
+		this.runTime = runTime;
+		this.price = price;
+	}
+	
+	
+
+	public Product(int productNo, String productTitle, String startPeriod, String endPeriod) {
+		super();
+		this.productNo = productNo;
+		this.productTitle = productTitle;
+		this.startPeriod = startPeriod;
+		this.endPeriod = endPeriod;
+	}
 
 	// getter-setter 메소드
-	
 	
 	public int getProductNo() {
 		return productNo;
 	}
 
+
+	public String getLevelName() {
+		return levelName;
+	}
+
+	public void setLevelName(String levelName) {
+		this.levelName = levelName;
+	}
 
 	public String getPosterName() {
 		return posterName;

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import static com.kh.semi01.common.JDBCTemplate.*;
 import com.kh.semi01.product.model.dao.ProductDao;
 import com.kh.semi01.product.model.vo.Product;
+import com.kh.semi01.product.model.vo.ProductIMG;
 
 public class ProductService {
 	
@@ -27,5 +28,29 @@ public class ProductService {
 		close(conn);
 		return p;
 		
+	}
+	
+	public ProductIMG selectProductIMG(int productNo) {
+		Connection conn = getConnection();
+		ProductIMG pi = new ProductDao().selectProductIMG(conn, productNo);
+		
+		close(conn);
+		return pi;
+	}
+	
+	public ArrayList<Product> selectProductTotalRank(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist = new ProductDao().selectProductTotalRank(conn);
+		
+		close(conn);
+		return plist;
+	}
+	
+	public ArrayList<ProductIMG> selectProductTotalRankIMG(){
+		Connection conn = getConnection();
+		ArrayList<ProductIMG> ilist = new ProductDao().selectProductTotalRankIMG(conn);
+		
+		close(conn);
+		return ilist;
 	}
 }

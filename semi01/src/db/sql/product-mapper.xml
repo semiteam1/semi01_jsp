@@ -16,4 +16,89 @@
 	  JOIN PRODUCT_IMG USING(PRODUCT_NO)
 	 WHERE PRODUCT_TITLE LIKE ?
 </entry>
+
+<entry key="selectProductDetail">
+	SELECT
+	       PRODUCT_NO
+	     , PRODUCT_TITLE
+	     , ADDRESS
+	     , START_PERIOD
+	     , END_PERIOD
+	     , LEVEL_NAME
+	     , RUN_TIME
+	     , PRICE
+	  FROM PRODUCT
+	  JOIN LEVEL_INFO USING(PRODUCT_LEVEL)
+	 WHERE PRODUCT_NO = ?
+</entry>
+
+<entry key="selectProductIMG">
+SELECT 
+       PRODUCT_NO
+     , POSTER_NAME
+     , DETAIL1_NAME
+     , DETAIL2_NAME
+     , DETAIL3_NAME
+     , DETAIL4_NAME
+     , DETAIL5_NAME
+     , IMAGE_PATH
+  FROM PRODUCT_IMG
+ WHERE PRODUCT_NO = ?
+</entry>
+
+<entry key="selectProductTotalRank">
+SELECT 
+       PRODUCT_NO
+     , CATEGORY_TYPE
+     , PRODUCT_TITLE
+     , LOCAL_NO
+     , ADDRESS
+     , START_PERIOD
+     , END_PERIOD
+     , PRODUCT_LEVEL
+     , RUN_TIME
+     , PRICE
+  FROM PRODUCT
+ WHERE PRODUCT_NO 
+    IN (
+       SELECT PRODUCT_NO
+         FROM (
+       SELECT
+              PRODUCT_NO
+            , COUNT(USER_NO) AS "좋아요_수"
+        FROM
+             PRODUCT_LIKE
+       GROUP BY
+             PRODUCT_NO
+       ORDER BY
+             좋아요_수 DESC))
+         AND ROWNUM = 5
+</entry>
+
+<entry key="selectProductTotalRankIMG">
+SELECT 
+       PRODUCT_NO
+     , POSTER_NAME
+     , DETAIL1_NAME
+     , DETAIL2_NAME
+     , DETAIL3_NAME
+     , DETAIL4_NAME
+     , DETAIL5_NAME
+     , IMAGE_PATH
+  FROM PRODUCT_IMG
+ WHERE PRODUCT_NO 
+    IN (
+       SELECT PRODUCT_NO
+         FROM (
+       SELECT
+              PRODUCT_NO
+            , COUNT(USER_NO) AS "좋아요_수"
+        FROM
+             PRODUCT_LIKE
+       GROUP BY
+             PRODUCT_NO
+       ORDER BY
+             좋아요_수 DESC))
+         AND ROWNUM = 5
+</entry>
 </properties>

@@ -1,5 +1,12 @@
+<%@page import="com.kh.semi01.product.model.vo.ProductIMG"%>
+<%@page import="com.kh.semi01.product.model.vo.Product"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Product> plist = (ArrayList<Product>)request.getAttribute("plist");
+	ArrayList<ProductIMG> ilist = (ArrayList<ProductIMG>)request.getAttribute("ilist");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +17,7 @@
 <link rel="shortcut icon" href="resource/logo/bichon-frise.png">
 <style>
 	.outer {
-        height: 1000px;
+        height: 2900px;
         width: 1180px;
         position: relative;
         z-index: 0;
@@ -23,10 +30,11 @@
         /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
         /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
         /* 바디 시작 */
+
         .body{
             /* background-color: skyblue; */
-            height: 2000px;
-
+            height: 100%;
+            width: 100%;
         }
 
         /* 상단 메인 배너 */
@@ -35,7 +43,11 @@
 
         .recommend_img{
             width: 1180px;
-            height: 2000px;
+            margin-left: 370px;
+        }
+
+        .recommend_categoryRank_img{
+            width: 1180px;
             margin-left: 370px;
         }
 
@@ -70,7 +82,7 @@
             overflow: hidden;
         }
         
-          /* 잘보여라@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+        /* 잘보여라@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
         /* 추천상품 */
 
         .div_img{
@@ -81,8 +93,34 @@
             padding-bottom: 30px;
         }
 
-        .div_img img {
-            border-radius: 20px;
+        .div_categoryRank_img{
+            width: 16.5%;
+            float: left;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 30px;
+        }
+
+        .div_img img, .div_categoryRank_img img {
+            border-radius: 10px;
+        }
+
+        a:hover{
+            text-decoration-line: none;
+        }
+
+        .caption{
+            margin-top: 10px;
+        }
+        .caption1{
+            color: black;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .caption2{
+            color: gray;
+            font-size: 12px;
         }
 
         /* @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ */
@@ -175,6 +213,158 @@
                 }
             </script>
 
+	 <% if(loginMember == null){ %>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- 로그인 전 전체 랭킹 추천 -->
+    <div class="recommend_img">
+
+        <span style="font-weight: bold; font-size: 25px;">전체 랭킹 딱대</span>
+        <br>
+        <hr>
+        
+        
+        <div class="div_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+            </a>
+        </div>
+        
+        
+        <div class="div_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+            </a>
+        </div>
+        
+        
+        <div class="div_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+        
+            <div class="div_img">
+                <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+        
+            <div class="div_img">
+                <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+            <br><br>
+            <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
+            <br><br><br>
+
+        </div>
+        <% }else { %>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- 로그인 후 각자의 관심사 랭킹 추천 -->
+    <div class="recommend_categoryRank_img">
+
+        <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
+        <br>
+        <hr>
+
+        <div class="div_categoryRank_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+            </a>
+        </div>
+        
+        
+        <div class="div_categoryRank_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+            </a>
+        </div>
+        
+        
+        <div class="div_categoryRank_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+            </a>
+        </div>
+        
+        
+        <div class="div_categoryRank_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+        
+            <div class="div_categoryRank_img">
+                <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+        
+            <div class="div_categoryRank_img">
+                <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+            <br><br>
+            <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
+            <br><br><br>    
+
+        </div>
+        <% } %>
+
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -188,56 +378,195 @@
         
         
         <div class="div_img">
-            <a href="<%= contextPath %>/detail.pr">
+            <a href="#">
                 <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
                 <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
                 </div>
             </a>
         </div>
         
         
         <div class="div_img">
-            <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+            <a href="#">
                 <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
                 <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
                 </div>
             </a>
         </div>
         
         
         <div class="div_img">
-            <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+            <a href="#">
                 <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
                 <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
                 </div>
                 </a>
             </div>
         
             <div class="div_img">
-                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                <a href="#">
                 <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
                 <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
                 </div>
                 </a>
             </div>
         
             <div class="div_img">
-                <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
+                <a href="#">
                 <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
                 <div class="caption">
-                    <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
                 </div>
                 </a>
             </div>
             <br><br>
-            <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
-            <br><br><br>
 
         </div>
+
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- 관심사 랭킹 추천 -->
+    <div class="recommend_img">
+
+        <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
+        <br>
+        <hr>
+        
+        
+        <div class="div_img">
+            <a href="#"">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+            </a>
+        </div>
+        
+        
+        <div class="div_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+            </a>
+        </div>
+        
+        
+        <div class="div_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+        
+            <div class="div_img">
+                <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+        
+            <div class="div_img">
+                <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+            <br><br>
+
+        </div>
+
+        <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+<!-- 관심사 랭킹 추천 -->
+    <div class="recommend_img">
+
+        <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
+        <br>
+        <hr>
+        
+        
+        <div class="div_img">
+            <a href="#"">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+            </a>
+        </div>
+        
+        
+        <div class="div_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+            </a>
+        </div>
+        
+        
+        <div class="div_img">
+            <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+        
+            <div class="div_img">
+                <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+        
+            <div class="div_img">
+                <a href="#">
+                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+                <div class="caption">
+                    <p class="caption1">제목</p>
+                    <p class="caption2">시작기간 ~ 끝기간</p>
+                </div>
+                </a>
+            </div>
+           
+
+            <img src="resource/이미지자료/광고배너.jpg" style="width: 100%;">
+        </div>
+
         
         
     </div>

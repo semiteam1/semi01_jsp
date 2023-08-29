@@ -1,10 +1,11 @@
+<%@page import="com.kh.semi01.product.model.vo.ProductIMG"%>
 <%@page import="com.kh.semi01.product.model.vo.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
-	String sKeyWord = (String)request.getAttribute("sKeyWord");
+	Product p = (Product)request.getAttribute("p");
+	ProductIMG pi = (ProductIMG)request.getAttribute("pi");
 %>
 <!DOCTYPE html>
 <html>
@@ -326,36 +327,35 @@
 </head>
 <body>
 	<%@ include file = "/views/common/header.jsp" %>
-	
+	<% System.out.println("asd" + pi); %>
 	<div class="outer">
 
 		<div class="product_img_info">
-			<div id="product_img"><img src="resource/이미지자료/01_공연/클래식/디즈니 지브리 포스터.jpg" alt="액션_가오갤3"></div>
+			<div id="product_img"><img src="<%= p.getImagePath() %>/ <%= p.getPosterName() %>" ></div>
 			<div id="product_info">
-				<div><h1><%= list.get(0).getProductTitle() %></h1></div>
+				<div><h1><%= p.getProductTitle() %></h1></div>
 				<hr style="border: 1px solid black;">
 				<ul id="product_info_ul">
 					<li id="product_info_li">
 						<span id="product_info_li_span1">장소</span>
-						<div>성남아트센터 콘서트홀</div>
+						<div><%= p.getAddress() %></div>
 					</li>
 					<li id="product_info_li">
 						<span id="product_info_li_span1">관람시간</span>
-						<div>300분</div>
+						<div><%= p.getRunTime() %></div>
 					</li>
 					<li id="product_info_li">
 						<span id="product_info_li_span1">기간</span>
-						<div>2023.08.10 ~ 2023.11.31</div>
+						<div><%= p.getStartPeriod() %> ~<br> <%= p.getEndPeriod() %></div>
 					</li>
 					<li id="product_info_li">
 						<span id="product_info_li_span1">관람등급</span>
-						<div>전체 이용가</div>
+						<div><%= p.getLevelName() %></div>
 					</li>
 				<br>
 				</ul>
 
-				<br>
-				<br>
+				<br><br><br>
 				<hr>
 				
 				<ul id="product_info_2">
@@ -363,14 +363,12 @@
 						<span id="product_info_2_span">가격</span>
 						<div>
 							<ul id="product_info_2_1" >
-								<li>성인 <em>40000</em>원</li>
-								<li>청소년 <em>20000</em>원</li>
-								<li>어린이 <em>10000</em>원</li>
+								<li><em><%= p.getPrice() %></em>원</li>
 							</ul>
 						</div>
 					</li>
 					<li>
-						<span id="product_info_2_span">할인</span>
+						<span id="product_info_2_span">&nbsp;할인</span>
 						<div>
 							<ul id="product_info_2_1">
 								<li>[회원할인] 브론즈 1% 할인</li>
@@ -420,6 +418,7 @@
 					
 				</div>
 			</div>
+			
 			<div class="booked_btn_form">
 				<button type="submit" class="booked_btn" onclick="book();">예매하기</button>
 			</div>
@@ -428,7 +427,12 @@
 		<script>
 
 			function book() {
-				window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");
+				if(<%= loginMember %> == null){
+					alert("로그인 후 이용해주세요");
+					location.href="<%= contextPath %>/login.ur";
+				}else{
+				window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");					
+				}
 			}
 
 		</script>
@@ -449,7 +453,7 @@
 		<!-- 상품관련정보 -->
 		  
 		<div id="tab1" class="tab-content">
-			<img src="resource/이미지자료/01_공연/클래식/디즈니 지브리 포스터.jpg" alt="">
+			<img src="<%= pi.getImagePath() %> / <%= pi.getDetail1Name() %>">
 		</div>
 		  
 		<div id="tab2" class="tab-content">

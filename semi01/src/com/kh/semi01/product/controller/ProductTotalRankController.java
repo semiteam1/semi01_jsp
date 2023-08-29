@@ -3,7 +3,6 @@ package com.kh.semi01.product.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,18 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi01.product.model.service.ProductService;
 import com.kh.semi01.product.model.vo.Product;
+import com.kh.semi01.product.model.vo.ProductIMG;
 
 /**
- * Servlet implementation class ProductSearch
+ * Servlet implementation class ProductTotalRankController
  */
-@WebServlet("/search.pr")
-public class ProductSearchController extends HttpServlet {
+@WebServlet("/trank.pr")
+public class ProductTotalRankController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductSearchController() {
+    public ProductTotalRankController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,21 +32,13 @@ public class ProductSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		String sKeyWord = request.getParameter("sKeyWord");
-		ArrayList<Product> list = new ProductService().searchProduct(sKeyWord);
+		ArrayList<Product> plist = new ProductService().selectProductTotalRank();
+		ArrayList<ProductIMG> ilist = new ProductService().selectProductTotalRankIMG();
 		
-		if(list.isEmpty()) {
-			request.setAttribute("sKeyWord", sKeyWord);
-			request.setAttribute("errorMsg", "에 대한 검색결과가 없습니다.");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/searchErrorMsg.jsp");
-			view.forward(request, response);
-			
-		}else {
-			request.setAttribute("list", list);
-			request.setAttribute("sKeyWord", sKeyWord);
-			request.getRequestDispatcher("views/product/productSearch.jsp").forward(request, response);
-		}
+		request.setAttribute("plist", plist);
+		request.setAttribute("ilist", ilist);
+		
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 	}
 

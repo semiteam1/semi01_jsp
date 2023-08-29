@@ -150,7 +150,7 @@
             <% for(Product p : list) { %>
                 <div class="search_product_box">
 
-                        <a href="<%= contextPath %>/detail.pr" class="search_product_box2">
+                        <a href="<%= contextPath %>/detail.pr?pno=<%= p.getProductNo() %>" class="search_product_box2">
                             <span><img src="<%= p.getImagePath() %>/<%= p.getPosterName() %>"></span>
                             <strong><%= p.getProductTitle() %></strong>
                             <dl>
@@ -167,13 +167,18 @@
                 </div>
                 <hr>
                 
-                <script>
+		<script>
 
-					function book() {
-						window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");
-					}
+			function book() {
+				if(<%= loginMember %> == null){
+					alert("로그인 후 이용해주세요");
+					location.href="<%= contextPath %>/login.ur";
+				}else{
+				window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");					
+				}
+			}
 
-				</script>
+		</script>
                 
             <% } %>
 

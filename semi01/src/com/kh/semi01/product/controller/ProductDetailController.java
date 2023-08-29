@@ -12,8 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.semi01.product.model.service.ProductService;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
-import com.kh.semi01.product.model.vo.Product_IMG;
-
 
 /**
  * Servlet implementation class ProductDetailView
@@ -27,7 +25,6 @@ public class ProductDetailController extends HttpServlet {
      */
     public ProductDetailController() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -36,11 +33,9 @@ public class ProductDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
-		int productNo = Integer.parseInt(request.getParameter("productNo"));
+		int productNo = Integer.parseInt(request.getParameter("pno"));
 		
-		ProductService pService = new ProductService();
-		
-		Product p = pService.selectProductDetail(productNo);
+		Product p = new ProductService().selectProductDetail(productNo);
 		
 		if(p == null) { // 조회 실패
 			
@@ -50,21 +45,14 @@ public class ProductDetailController extends HttpServlet {
 			
 		}else { // 조회 성공시
 			
-			ProductIMG pi = pService.selectProductDetail(productNo);
+			ProductIMG pi = new ProductService().selectProductIMG(productNo);
 			
 			request.setAttribute("p", p);
 			request.setAttribute("pi", pi);
 			
 			request.getRequestDispatcher("views/product/productDetail.jsp").forward(request, response);
 			
-			
-
 		}
-		
-		
-		
-		
-		
 		
 	}
 
