@@ -20,6 +20,16 @@ public class Notice {
 		this.noticeDate = noticeDate;
 		this.noticeCount = noticeCount;
 	}
+	
+	
+	
+	public Notice(int noticeNo, String noticeTitle, String noticeContent, String noticeDate) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.noticeDate = noticeDate;
+	}
 
 	// getter-setter 메소드
 	public int getNoticeNo() {

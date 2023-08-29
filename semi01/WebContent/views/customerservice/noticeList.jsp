@@ -107,23 +107,34 @@
         <!-- 바디의 왼쪽메뉴-->
         <div class="leftmenu">
             <div onclick="location.href='<%=contextPath %>/customer.cu'">고객센터 홈</div>
-            <div id="announce" style="color:red" onclick="location.href='<%=contextPath %>/notice.no';">공지사항 </div>
+            <div id="announce" style="color:red" onclick="location.href='<%=contextPath %>/list.no';">공지사항 </div>
             <div onclick="location.href='<%=contextPath %>/qna.qo'">Q&A</div>
         </div>
 
 
-        </script>
+       
        
         <!-- 바디의 오른쪽메뉴-->
         <div class="rightmenu">
             <h2 align="center">공지사항</h2>
             <img id="event" src="resource/이미지자료/이벤트.png">
+            
+            
+            <!--  현재 로그인한 사용자가 관리자 일 경우 보여질 div -->
+            <% if(loginMember !=null && loginMember.getUserId().equals("admin"))  {%>
+            <div align ="right" style="width: 870px;">
+            
+            <button onclick="location.href='<%=contextPath %>/enrollForm.no'">글작성</button>
+        
+        </div>
+        <%} %>
+            
             <table class="rightmain">
                 <thead>
                 <tr id="tr1">
-                    <td>번호</td>noticeno
-                    <td colspan="2">제목</td>noticetitle
-                    <td>조회수</td>noticecount
+                    <td>번호</td>
+                    <td colspan="2">제목</td>
+                    <td>조회수</td>
                 </tr>
                 </thead>
       
@@ -138,25 +149,13 @@
       			   	   <!-- 2. 공지글이 있을 경우 -->
       			   	   <%for(Notice n:list){ %>
       			   	   <tr>
-      			   	   		<td><%=n.getNoticeNo() %></td>
-      			   	   		<td><%=n.getNoticeTitle() %></td>
-      			   	   		<td><%=n.getNoticeCount() %></td>
+      			   	   		<th><%=n.getNoticeNo() %></th>
+      			   	   		<th colspan="2"><%=n.getNoticeTitle() %></th>
+      			   	   		<th><%=n.getNoticeCount() %></th>
       			   	   </tr>
       			   	   <%} %>
       			   <%} %>       
                 </tbody>
-                <tr>
-                    <th>티켓오픈</th>
-                    <th width="400">[단독판매] PUBG NATIONS CUP 2023 티켓오픈 안내</th>
-                    <th>오픈: 2023.08.24(목) 18:00	</th>
-                    <th>50</th>
-                </tr>
-                <tr>
-                    <th>티켓오픈</th>
-                    <th>누가 내 머리에 똥 쌌어 - 당진 티켓오픈 안내</th>
-                    <th>오픈: 2023.08.29(화) 09:00</th>
-                    <th>12</th>
-                </tr>
             </table>
         </div>
     </div>
@@ -168,11 +167,12 @@
     <script>
         $(function(){
             $(".leftmenu").hover().css("cursor","pointer");
-            $(".rightmenu>tbody>tr").click(function(){
+            $(".rightmain>tbody>tr").hover().css("cursor","pointer");
+            $(".rightmain>tbody>tr").click(function(){
             	const num = $(this).children().eq(0).text()
             	
             	location.href = '<%=contextPath%>/detail.no?num=' + num;
-            })
+            });
            
         })
     </script>

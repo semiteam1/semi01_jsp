@@ -1,8 +1,8 @@
 package com.kh.semi01.notice.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,16 +13,16 @@ import com.kh.semi01.notice.model.service.NoticeService;
 import com.kh.semi01.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeListController
+ * Servlet implementation class NoticeDetailController
  */
-@WebServlet("/list.no")
-public class NoticeListController extends HttpServlet {
+@WebServlet("/detail.no")
+public class NoticeDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListController() {
+    public NoticeDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,10 +31,21 @@ public class NoticeListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Notice> list = new NoticeService().selectNoticeList();
+		int noticeNo = Integer.parseInt(request.getParameter("num"));
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/customerservice/noticeList.jsp").forward(request, response);
+		// 조회수 증가
+		int result = new NoticeService().increaseCount(noticeNo);
+		
+		if(result > 0 ) {
+			Notice n = new NoticeService().selectNotice(noticeNo);
+			
+			request.setAttribute("n", n);
+			request.getRequestDispatcher("views/customerservice/noticeDetailView.jsp").forward(request, response);
+		}else {
+			request.setAttribute("errorMsg", "공지사항 조회에 실패했습니다.");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
+		}
 	}
 
 	/**

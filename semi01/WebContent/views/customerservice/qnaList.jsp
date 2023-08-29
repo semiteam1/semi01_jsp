@@ -95,7 +95,7 @@
         <!-- 바디의 왼쪽메뉴-->
         <div class="leftmenu">
             <div onclick="location.href='<%=contextPath %>/customer.cu'">고객센터 홈</div>
-            <div onclick="location.href='<%=contextPath %>/notice.no';">공지사항</div>
+            <div onclick="location.href='<%=contextPath %>/list.no';">공지사항</div>
             <div id="qnamenu" style="color:red" >Q&A </div>
         </div>        
         <!-- 바디의 오른쪽메뉴-->

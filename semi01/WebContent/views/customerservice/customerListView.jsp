@@ -146,7 +146,7 @@
         <!-- 바디의 왼쪽메뉴-->
         <div class="leftmenu">
             <div style="color:red" onclick="location.href='<%=contextPath %>/customer.cu';">고객센터 홈</div>
-            <div onclick="location.href='<%=contextPath %>/notice.no';">공지사항</div>
+            <div onclick="location.href='<%=contextPath %>/list.no';">공지사항</div>
             <div onclick="location.href='<%=contextPath %>/qna.qo';">Q&A</div>
         </div>
         
@@ -161,7 +161,7 @@
                     <a href="#" class="reservelogo"><img src="resource/이미지자료/고객센터/reserve.png" id="reservelogomain" alt=""></a>
                 </div>
                 <div id="son">
-                    <a href="<%=contextPath %>/notice.no" class="noticelog"><img src="resource/이미지자료/고객센터/notice.png" id="noticelogomain" alt=""></a>
+                    <a href="<%=contextPath %>/list.no" class="noticelog"><img src="resource/이미지자료/고객센터/notice.png" id="noticelogomain" alt=""></a>
                 </div>
                 <div id="son">
                     <a href="#" class="questionlog"><img src="resource/이미지자료/고객센터/question.png" id="questionlogomain" alt=""></a>
