@@ -5,8 +5,6 @@
 	String contextPath = request.getContextPath();
 
 	User loginMember = (User)session.getAttribute("loginMember");    
-	
-	String alertMsg = (String)session.getAttribute("alertMsg");
 %>
 <!DOCTYPE html>
 <html>
@@ -276,15 +274,6 @@
 </head>
 <body>
 	
-	<% if(alertMsg != null) { %>
-	
-		<script>
-			alert("<%= alertMsg %>");
-		</script>
-		
-		<% session.removeAttribute("alertMsg"); %>
-		
-	<% } %>
 
 	<div class="warp"> <!-- 기본 배경-->
 
