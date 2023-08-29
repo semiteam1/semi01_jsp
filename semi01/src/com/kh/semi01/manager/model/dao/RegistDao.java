@@ -103,21 +103,6 @@ public class RegistDao {
 		
 		String sql = prop.getProperty("insertProduct");
 		
-		LocalDate startDate = LocalDate.parse(p.getStartPeriod());
-        LocalDate endDate = LocalDate.parse(p.getEndPeriod());
-
-        List<String> dateList = new ArrayList<>();
-        while (!startDate.isAfter(endDate)) {
-            dateList.add(startDate.toString());
-            startDate = startDate.plusDays(1);
-        }
-
-        String[] dateArray = dateList.toArray(new String[0]);
-
-        for (String date : dateArray) {
-            System.out.println(date);
-        }
-		
 		try {
 			pstmt = conn.prepareStatement(sql);
 		} catch (SQLException e) {
@@ -125,5 +110,21 @@ public class RegistDao {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	
+	public int insertScreenInfo(Connection conn, String[] dateArray) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("selectLastPno");
+		
+		try {
+			for(int i=0; i<dateArray.length; i++) {
+				sql = prop.getProperty("insertScreenInfo");
+				pstmt = conn.prepareStatement(sql);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

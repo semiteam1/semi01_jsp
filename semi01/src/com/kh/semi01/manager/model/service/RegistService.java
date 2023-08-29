@@ -3,7 +3,9 @@ package com.kh.semi01.manager.model.service;
 import static com.kh.semi01.common.JDBCTemplate.*;
 
 import java.sql.Connection;
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.semi01.manager.model.dao.RegistDao;
 import com.kh.semi01.manager.model.vo.Select;
@@ -45,9 +47,22 @@ public class RegistService {
 	public int insertProduct(Product p, ProductIMG img, int dayOrNight, int seatsNum) {
 		Connection conn = getConnection();
 		
-		int result = new RegistDao().insertProduct(conn, p, img, dayOrNight, seatsNum);
+		int result1 = new RegistDao().insertProduct(conn, p, img, dayOrNight, seatsNum);
 		
-		if(result > 0) {
+		LocalDate startDate = LocalDate.parse(p.getStartPeriod());
+        LocalDate endDate = LocalDate.parse(p.getEndPeriod());
+
+        List<String> dateList = new ArrayList<>();
+        while (!startDate.isAfter(endDate)) {
+            dateList.add(startDate.toString());
+            startDate = startDate.plusDays(1);
+        }
+
+        String[] dateArray = dateList.toArray(new String[0]);
+        
+        int result2 = new RegistDao().insertScreenInfo(conn, dateArray);
+		
+		if(result1 > 0 && result2 > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
@@ -55,6 +70,6 @@ public class RegistService {
 		
 		close(conn);
 		
-		return result;
+		return result1 * result2;
 	}
 }
