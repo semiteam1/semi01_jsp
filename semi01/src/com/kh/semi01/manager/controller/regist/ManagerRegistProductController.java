@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi01.product.model.vo.Product;
+import com.kh.semi01.product.model.vo.ProductIMG;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -38,17 +40,33 @@ public class ManagerRegistProductController extends HttpServlet {
         int maxSize = 10 * 1024 * 1024; 
 
         MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8");
+        Product p = new Product();
+        ProductIMG img = new ProductIMG();
 
         String[] inputNames = {"customFile1", "customFile2", "customFile3", "customFile4", "customFile5", "customFile6"};
+        int count = 0;
         for (String inputName : inputNames) {
             if (multiRequest.getFile(inputName) != null) {
                 String originalFileName = multiRequest.getOriginalFileName(inputName);
                 String savedFileName = multiRequest.getFilesystemName(inputName);
-
-                System.out.println("Original File Name: " + originalFileName);
-                System.out.println("Saved File Name: " + savedFileName);
+                count++;
+                if(count == 1) {
+                	img.setPosterName(savedFileName);
+                }else if(count == 2) {
+                	img.setDetail1Name(savedFileName);
+                }else if(count == 3) {
+                	img.setDetail2Name(savedFileName);
+                }else if(count == 4) {
+                	img.setDetail3Name(savedFileName);
+                }else if(count == 5) {
+                	img.setDetail4Name(savedFileName);
+                }else if(count == 6) {
+                	img.setDetail5Name(savedFileName);
+                }
+                img.setImagePath(savePath);
             }
         }
+        System.out.println(img);
         
         String smallCategory = multiRequest.getParameter("salsa2");
         String title = multiRequest.getParameter("title");
