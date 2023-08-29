@@ -1,7 +1,7 @@
 package com.kh.semi01.manager.controller.regist;
 
 import java.io.IOException;
-import java.sql.Date;
+import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
@@ -78,20 +78,25 @@ public class ManagerRegistProductController extends HttpServlet {
         String dateString2 = multiRequest.getParameter("date2");
 
 	     // 문자열을 날짜 객체로 변환
-	     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	     Date date1 = null;
-	     Date date2 = null;
-	     try {
-			date1 = (Date)dateFormat.parse(dateString1);
-			date2 = (Date)dateFormat.parse(dateString2);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = dateFormat.parse(dateString1);
+            date2 = dateFormat.parse(dateString2);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        java.sql.Date startDate = new java.sql.Date(date1.getTime());
+        java.sql.Date endDate = new java.sql.Date(date2.getTime());
+        
 	    int dayOrNight = Integer.parseInt(multiRequest.getParameter("salsa4"));
 	    int possbleAge = Integer.parseInt(multiRequest.getParameter("salsa5"));
 	    int price = Integer.parseInt(multiRequest.getParameter("price"));
 	    int seatsNum = Integer.parseInt(multiRequest.getParameter("seatsNum"));
+	    
+	    
     }
 
 	/**                                   
