@@ -1,5 +1,11 @@
+<%@page import="com.kh.semi01.product.model.vo.Product"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	String sKeyWord = (String)request.getAttribute("sKeyWord");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -326,7 +332,7 @@
 		<div class="product_img_info">
 			<div id="product_img"><img src="resource/이미지자료/01_공연/클래식/디즈니 지브리 포스터.jpg" alt="액션_가오갤3"></div>
 			<div id="product_info">
-				<div><h1>[디즈니 VS 지브리] 애니메이션 첼로 페스티벌</h1></div>
+				<div><h1><%= list.get(0).getProductTitle() %></h1></div>
 				<hr style="border: 1px solid black;">
 				<ul id="product_info_ul">
 					<li id="product_info_li">

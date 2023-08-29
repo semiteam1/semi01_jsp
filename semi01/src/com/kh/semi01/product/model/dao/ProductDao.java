@@ -48,7 +48,8 @@ public class ProductDao {
 								   rset.getString("start_period"),
 								   rset.getString("end_period"),
 								   rset.getInt("price"),
-								   rset.getString("poster_path")
+								   rset.getString("image_path"),
+								   rset.getString("poster_name")
 								   ));
 			}
 			
@@ -60,5 +61,13 @@ public class ProductDao {
 		}
 		return list;
 		}
+	
+	public Product selectProductDetail(Connection conn, int productNo) {
+		Product p = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductDetail");
+	}
 
 }
