@@ -32,11 +32,10 @@ public class ManagerRegistProductController extends HttpServlet {
     	request.setCharacterEncoding("utf-8");
 
         String savePath = request.getSession().getServletContext().getRealPath("/resource/product_upfiles/");
-        int maxSize = 10 * 1024 * 1024; // 최대 파일 크기 설정 (10MB)
+        int maxSize = 10 * 1024 * 1024; 
 
         MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8");
 
-        // 각각의 파일 업로드 처리
         String[] inputNames = {"customFile1", "customFile2", "customFile3", "customFile4", "customFile5", "customFile6"};
         for (String inputName : inputNames) {
             if (multiRequest.getFile(inputName) != null) {
@@ -47,9 +46,14 @@ public class ManagerRegistProductController extends HttpServlet {
                 System.out.println("Saved File Name: " + savedFileName);
             }
         }
+        
+        String category = multiRequest.getParameter("category");
+		String boardTitle = multiRequest.getParameter("title");
+		String boardContent = multiRequest.getParameter("content");
+		String boardWriter = multiRequest.getParameter("userNo");
     }
 
-	/**
+	/**                                   
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
