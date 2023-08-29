@@ -126,7 +126,7 @@
   </style>
 </head>
 <body>
-  <form action="" method="post" id="goodsform" style="margin-left: 38px;">
+  <form action="/semi01/manager-regist-product.do" method="post" id="goodsform" style="margin-left: 38px;" enctype="multipart/form-data">
     <div id="container" style="margin-top: 13px;">
         <table id="tb9">
             <tr>
