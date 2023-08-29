@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+    String alertMsg =(String)session.getAttribute("alertMsg");
 %>
 <!--  로그인 화면 -->
 <!DOCTYPE html>
@@ -70,6 +71,14 @@
     </style>
 </head>
 <body>
+    <% if(alertMsg != null) { %> 
+		
+		<script>
+			alert("<%= alertMsg %>");
+		</script>
+		<% session.removeAttribute("alertMsg"); %>
+		
+	<% } %>
     <head>
         <div class="head_logo">
             <div class="logo"><a href="<%=contextPath %>"><img src="resource/logo/logo.png" alt=""></a></div>
