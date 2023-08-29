@@ -12,7 +12,7 @@ public class Product {
 	private String productLevel; 	// 관람등급 => 조회시 관람등급명 | 입력시 관람등급번호
 	private int runTime; 			// 상영시간
 	private int price; 				// 가격
-	private String posterPath;
+	private String imagePath;
 	private String posterName;
 	
 	// 기본 생성자
@@ -37,7 +37,7 @@ public class Product {
 	
 	// searchProduct 생성자
 	public Product(int productNo, String productTitle, String address, String startPeriod, String endPeriod,
-			int price, String posterPath, String posterName) {
+			int price, String imagePath, String posterName) {
 		super();
 		this.productNo = productNo;
 		this.productTitle = productTitle;
@@ -45,7 +45,7 @@ public class Product {
 		this.startPeriod = startPeriod;
 		this.endPeriod = endPeriod;
 		this.price = price;
-		this.posterPath = posterPath;
+		this.imagePath = imagePath;
 		this.posterName = posterName;
 	}
 	
@@ -142,12 +142,12 @@ public class Product {
 		this.price = price;
 	}
 
-	public String getPosterPath() {
-		return posterPath;
+	public String getImagePath() {
+		return imagePath;
 	}
 
-	public void setPosterPath(String posterPath) {
-		this.posterPath = posterPath;
+	public void setImage(String imagePath) {
+		this.imagePath = imagePath;
 	}
 
 	@Override
@@ -155,7 +155,7 @@ public class Product {
 		return "Product [productNo=" + productNo + ", category=" + category + ", productTitle=" + productTitle
 				+ ", local=" + local + ", address=" + address + ", startPeriod=" + startPeriod + ", endPeriod="
 				+ endPeriod + ", productLevel=" + productLevel + ", runTime=" + runTime + ", price=" + price
-				+ ", posterPath=" + posterPath + ", posterName=" + posterName + "]";
+				+ ", imagePath=" + imagePath + ", posterName=" + posterName + "]";
 	}
 
 	// toString() 메소드

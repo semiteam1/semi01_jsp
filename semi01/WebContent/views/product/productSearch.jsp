@@ -151,7 +151,7 @@
                 <div class="search_product_box">
 
                         <a href="<%= contextPath %>/detail.pr" class="search_product_box2">
-                            <span><img src="<%= p.getPosterPath() %>/<%= p.getPosterName() %>"></span>
+                            <span><img src="<%= p.getImagePath() %>/<%= p.getPosterName() %>"></span>
                             <strong><%= p.getProductTitle() %></strong>
                             <dl>
                                 <dt>장소 : &nbsp;</dt>

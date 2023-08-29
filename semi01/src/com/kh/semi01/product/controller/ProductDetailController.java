@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi01.product.model.service.ProductService;
 import com.kh.semi01.product.model.vo.Product;
+import com.kh.semi01.product.model.vo.ProductIMG;
 import com.kh.semi01.product.model.vo.Product_IMG;
 
 
@@ -49,10 +50,10 @@ public class ProductDetailController extends HttpServlet {
 			
 		}else { // 조회 성공시
 			
-			Product_IMG at = pService.selectProductDetail(productNo);
+			ProductIMG pi = pService.selectProductDetail(productNo);
 			
 			request.setAttribute("p", p);
-			request.setAttribute("at", at);
+			request.setAttribute("pi", pi);
 			
 			request.getRequestDispatcher("views/product/productDetail.jsp").forward(request, response);
 			
