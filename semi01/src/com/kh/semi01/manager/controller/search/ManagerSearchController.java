@@ -1,4 +1,4 @@
-package com.manager.controller.search;
+package com.kh.semi01.manager.controller.search;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class ManagerSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/views/manager-search.jsp").forward(request, response);
+		request.getRequestDispatcher("views/manager/manager-search.jsp").forward(request, response);
 	}
 
 	/**

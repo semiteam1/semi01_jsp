@@ -1,13 +1,12 @@
-package com.manager.service;
+package com.kh.semi01.manager.model.service;
 
-import static com.manager.common.JDBCTemplate.close;
-import static com.manager.common.JDBCTemplate.getConnection;
+import static com.kh.semi01.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.manager.dao.RegistDao;
-import com.manager.vo.Select;
+import com.kh.semi01.manager.model.dao.RegistDao;
+import com.kh.semi01.manager.model.vo.Select;
 
 public class RegistService {
 

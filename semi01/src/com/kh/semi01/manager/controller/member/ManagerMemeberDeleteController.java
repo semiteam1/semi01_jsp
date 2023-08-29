@@ -1,4 +1,4 @@
-package com.manager.controller.member;
+package com.kh.semi01.manager.controller.member;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.manager.service.MemberService;
+import com.kh.semi01.manager.model.service.MemberService;
 
 /**
  * Servlet implementation class ManagerMemeberDeleteController

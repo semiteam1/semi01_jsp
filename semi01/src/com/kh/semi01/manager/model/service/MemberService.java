@@ -1,14 +1,17 @@
-package com.manager.service;
+package com.kh.semi01.manager.model.service;
 
-import static com.manager.common.JDBCTemplate.*;
-import static com.manager.common.JDBCTemplate.getConnection;
+import static com.kh.semi01.common.JDBCTemplate.close;
+import static com.kh.semi01.common.JDBCTemplate.commit;
+import static com.kh.semi01.common.JDBCTemplate.getConnection;
+import static com.kh.semi01.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.manager.common.model.vo.PageInfo;
-import com.manager.dao.MemberDao;
-import com.manager.vo.Member;
+import com.kh.semi01.manager.common.model.vo.PageInfo;
+import com.kh.semi01.manager.model.dao.MemberDao;
+import com.kh.semi01.manager.model.vo.Member;
+import com.kh.semi01.user.model.vo.User;
 
 public class MemberService {
 
@@ -22,40 +25,40 @@ public class MemberService {
 		return listCount;
 	}
 	
-	public ArrayList<Member> selectList(PageInfo pi){
+	public ArrayList<User> selectList(PageInfo pi){
 		Connection conn = getConnection();
 		
-		ArrayList<Member> list = new MemberDao().selectList(conn, pi);
+		ArrayList<User> list = new MemberDao().selectList(conn, pi);
 		
 		close(conn);
 		
 		return list;
 	}
 	
-	public ArrayList<Member> searchMemberByUserNo(int userNo, PageInfo pi){
+	public ArrayList<User> searchMemberByUserNo(int userNo, PageInfo pi){
 		Connection conn = getConnection();
 		
-		ArrayList<Member> list = new MemberDao().searchMemberByUserNo(conn, userNo, pi);
+		ArrayList<User> list = new MemberDao().searchMemberByUserNo(conn, userNo, pi);
 		
 		close(conn);
 		
 		return list;
 	}
 	
-	public ArrayList<Member> searchMemberByUserId(String userId, PageInfo pi){
+	public ArrayList<User> searchMemberByUserId(String userId, PageInfo pi){
 		Connection conn = getConnection();
 		
-		ArrayList<Member> list = new MemberDao().searchMemberByUserId(conn, userId, pi);
+		ArrayList<User> list = new MemberDao().searchMemberByUserId(conn, userId, pi);
 		
 		close(conn);
 		
 		return list;
 	}
 	
-	public ArrayList<Member> searchMemberByUserName(String userName, PageInfo pi){
+	public ArrayList<User> searchMemberByUserName(String userName, PageInfo pi){
 		Connection conn = getConnection();
 		
-		ArrayList<Member> list = new MemberDao().searchMemberByUserName(conn, userName, pi);
+		ArrayList<User> list = new MemberDao().searchMemberByUserName(conn, userName, pi);
 		
 		close(conn);
 		
@@ -92,20 +95,20 @@ public class MemberService {
 		return count;
 	}
 	
-	public Member selectManagerMember(int userNo) {
+	public User selectManagerMember(int userNo) {
 		Connection conn = getConnection();
 		
-		Member m = new MemberDao().selectManagerMember(conn, userNo);
+		User u = new MemberDao().selectManagerMember(conn, userNo);
 		
 		close(conn);
 		
-		return m;
+		return u;
 	}
 	
-	public int updateMember(Member m) {
+	public int updateMember(User u) {
 		Connection conn = getConnection();
 		
-		int result = new MemberDao().updateMember(conn, m);
+		int result = new MemberDao().updateMember(conn, u);
 		
 		if(result > 0) {
 			commit(conn);

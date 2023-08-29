@@ -329,7 +329,11 @@
                     <!-- 로그인 후 화면 -->
                      <div class="right" >
 						<div class="user_info">
+							<% if(loginMember.getUserNo() == 1){ %>
+								<div  class="header_util_link" style="font-weight: 900; color: #242428;" ><a href="<%=contextPath%>/manager-member.do?cpage=1">관리자페이지</a></div>
+							<%}else { %>
                             <div  class="header_util_link" style="font-weight: 900; color: #242428;" ><%=loginMember.getUserName() %> 님</div>
+							<%} %>
                         </div>
                         <div class="login">
                             <a href="<%=contextPath %>/logout.me" class="header_util_link" >로그아웃</a>

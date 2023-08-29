@@ -1,4 +1,4 @@
-package com.manager.vo;
+package com.kh.semi01.manager.model.vo;
 
 public class Select {
 	private int categoryType;

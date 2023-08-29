@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@page import="com.manager.common.model.vo.PageInfo" %>
-<%@page import="com.manager.vo.Member" %>
+<%@page import="com.kh.semi01.manager.common.model.vo.PageInfo" %>
+<%@page import="com.kh.semi01.user.model.vo.User" %>
 <%@page import="java.util.ArrayList" %>
 
 <%
 	String contextPath = request.getContextPath();
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<Member> list = (ArrayList<Member>)request.getAttribute("list");
+	ArrayList<User> list = (ArrayList<User>)request.getAttribute("list");
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();

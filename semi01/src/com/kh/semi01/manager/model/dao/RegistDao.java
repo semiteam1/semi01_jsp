@@ -1,6 +1,6 @@
-package com.manager.dao;
+package com.kh.semi01.manager.model.dao;
 
-import static com.manager.common.JDBCTemplate.close;
+import static com.kh.semi01.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,7 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.manager.vo.Select;
+import com.kh.semi01.manager.model.vo.Select;
 
 public class RegistDao {
 	private Properties prop = new Properties();

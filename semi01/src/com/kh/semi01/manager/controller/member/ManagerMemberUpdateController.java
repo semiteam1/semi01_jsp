@@ -1,4 +1,4 @@
-package com.manager.controller.member;
+package com.kh.semi01.manager.controller.member;
 
 import java.io.IOException;
 
@@ -8,9 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
-import com.manager.service.MemberService;
-import com.manager.vo.Member;
+import com.kh.semi01.manager.model.service.MemberService;
+import com.kh.semi01.user.model.vo.User;
 
 /**
  * Servlet implementation class ManagerMemberUpdateController
@@ -40,17 +39,17 @@ public class ManagerMemberUpdateController extends HttpServlet {
 		String userPhone = request.getParameter("userPhone");
 		String userGrade = request.getParameter("userGrade");
 		
-		Member m = new Member();
-		m.setUserNo(userNo);
-		m.setUserId(userId);
-		m.setUserPwd(userPwd);
-		m.setUserName(userName);
-		m.setUserBirth(userBirth);
-		m.setEmail(userEmail);
-		m.setPhone(userPhone);
-		m.setGradeNo(userGrade);
+		User u = new User();
+		u.setUserNo(userNo);
+		u.setUserId(userId);
+		u.setUserPwd(userPwd);
+		u.setUserName(userName);
+		u.setUserBirth(userBirth);
+		u.setEmail(userEmail);
+		u.setPhone(userPhone);
+		u.setGrade(userGrade);
 		
-		int result = new MemberService().updateMember(m);
+		int result = new MemberService().updateMember(u);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		response.getWriter().print(result);

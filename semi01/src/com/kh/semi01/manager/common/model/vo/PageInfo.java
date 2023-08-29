@@ -1,4 +1,4 @@
-package com.manager.common.model.vo;
+package com.kh.semi01.manager.common.model.vo;
 
 public class PageInfo {
 	private int listCount; 

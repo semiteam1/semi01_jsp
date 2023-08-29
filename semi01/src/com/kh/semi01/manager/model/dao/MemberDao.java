@@ -1,6 +1,6 @@
-package com.manager.dao;
+package com.kh.semi01.manager.model.dao;
 
-import static com.manager.common.JDBCTemplate.close;
+import static com.kh.semi01.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -11,8 +11,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.manager.common.model.vo.PageInfo;
-import com.manager.vo.Member;
+import com.kh.semi01.manager.common.model.vo.PageInfo;
+import com.kh.semi01.user.model.vo.User;
 
 public class MemberDao {
 	private Properties prop = new Properties();
@@ -48,8 +48,8 @@ public class MemberDao {
 		return listCount;
 	}
 	
-	public ArrayList<Member> selectList(Connection conn, PageInfo pi){
-		ArrayList<Member> list = new ArrayList<Member>();
+	public ArrayList<User> selectList(Connection conn, PageInfo pi){
+		ArrayList<User> list = new ArrayList<User>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -64,7 +64,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Member(rset.getInt("user_no"), rset.getString("user_id"), rset.getString("user_pwd"), rset.getString("user_name"), rset.getString("user_birth"), String.valueOf(rset.getInt("interest_movie")), String.valueOf(rset.getInt("interest_display")), String.valueOf(rset.getInt("interest_show")), rset.getString("email"), rset.getString("phone"), String.valueOf(rset.getInt("grade_no")), rset.getString("status")));
+				list.add(new User(rset.getInt("user_no"), rset.getString("user_id"), rset.getString("user_pwd"), rset.getString("user_name"), rset.getString("user_birth"), String.valueOf(rset.getInt("interest_movie")), String.valueOf(rset.getInt("interest_display")), String.valueOf(rset.getInt("interest_show")), rset.getString("email"), rset.getString("phone"), String.valueOf(rset.getInt("grade_no")), rset.getString("status")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -75,8 +75,8 @@ public class MemberDao {
 		return list;
 	}
 	
-	public ArrayList<Member> searchMemberByUserNo(Connection conn, int userNo, PageInfo pi){
-		ArrayList<Member> list = new ArrayList<Member>();
+	public ArrayList<User> searchMemberByUserNo(Connection conn, int userNo, PageInfo pi){
+		ArrayList<User> list = new ArrayList<User>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -92,7 +92,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Member(rset.getInt("user_no"), rset.getString("user_id"), rset.getString("user_pwd"), rset.getString("user_name"), rset.getString("user_birth"), String.valueOf(rset.getInt("interest_movie")), String.valueOf(rset.getInt("interest_display")), String.valueOf(rset.getInt("interest_show")), rset.getString("email"), rset.getString("phone"), String.valueOf(rset.getInt("grade_no")), rset.getString("status")));
+				list.add(new User(rset.getInt("user_no"), rset.getString("user_id"), rset.getString("user_pwd"), rset.getString("user_name"), rset.getString("user_birth"), String.valueOf(rset.getInt("interest_movie")), String.valueOf(rset.getInt("interest_display")), String.valueOf(rset.getInt("interest_show")), rset.getString("email"), rset.getString("phone"), String.valueOf(rset.getInt("grade_no")), rset.getString("status")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -151,8 +151,8 @@ public class MemberDao {
 		return count;
 	}
 	
-	public ArrayList<Member> searchMemberByUserId(Connection conn, String userId, PageInfo pi){
-		ArrayList<Member> list = new ArrayList<Member>();
+	public ArrayList<User> searchMemberByUserId(Connection conn, String userId, PageInfo pi){
+		ArrayList<User> list = new ArrayList<User>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -168,7 +168,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Member(rset.getInt("user_no"), rset.getString("user_id"), rset.getString("user_pwd"), rset.getString("user_name"), rset.getString("user_birth"), String.valueOf(rset.getInt("interest_movie")), String.valueOf(rset.getInt("interest_display")), String.valueOf(rset.getInt("interest_show")), rset.getString("email"), rset.getString("phone"), String.valueOf(rset.getInt("grade_no")), rset.getString("status")));
+				list.add(new User(rset.getInt("user_no"), rset.getString("user_id"), rset.getString("user_pwd"), rset.getString("user_name"), rset.getString("user_birth"), String.valueOf(rset.getInt("interest_movie")), String.valueOf(rset.getInt("interest_display")), String.valueOf(rset.getInt("interest_show")), rset.getString("email"), rset.getString("phone"), String.valueOf(rset.getInt("grade_no")), rset.getString("status")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -203,8 +203,8 @@ public class MemberDao {
 		return count;
 	}
 	
-	public ArrayList<Member> searchMemberByUserName(Connection conn, String userName, PageInfo pi){
-		ArrayList<Member> list = new ArrayList<Member>();
+	public ArrayList<User> searchMemberByUserName(Connection conn, String userName, PageInfo pi){
+		ArrayList<User> list = new ArrayList<User>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -220,7 +220,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Member(rset.getInt("user_no"), rset.getString("user_id"), rset.getString("user_pwd"), rset.getString("user_name"), rset.getString("user_birth"), String.valueOf(rset.getInt("interest_movie")), String.valueOf(rset.getInt("interest_display")), String.valueOf(rset.getInt("interest_show")), rset.getString("email"), rset.getString("phone"), String.valueOf(rset.getInt("grade_no")), rset.getString("status")));
+				list.add(new User(rset.getInt("user_no"), rset.getString("user_id"), rset.getString("user_pwd"), rset.getString("user_name"), rset.getString("user_birth"), String.valueOf(rset.getInt("interest_movie")), String.valueOf(rset.getInt("interest_display")), String.valueOf(rset.getInt("interest_show")), rset.getString("email"), rset.getString("phone"), String.valueOf(rset.getInt("grade_no")), rset.getString("status")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -231,8 +231,8 @@ public class MemberDao {
 		return list;
 	}
 	
-	public Member selectManagerMember(Connection conn, int userNo) {
-		Member m = null;
+	public User selectManagerMember(Connection conn, int userNo) {
+		User m = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -244,7 +244,7 @@ public class MemberDao {
 			
 			rset = pstmt.executeQuery();
 			if(rset.next()) {
-				m = new Member(rset.getInt("user_no"), rset.getString("user_id"), rset.getString("user_pwd"), rset.getString("user_name"), rset.getString("user_birth"), rset.getString("category_name1"), rset.getString("category_name2"), rset.getString("category_name3"), rset.getString("email"), rset.getString("phone"), rset.getString("grade_name"), rset.getString("status"));
+				m = new User(rset.getInt("user_no"), rset.getString("user_id"), rset.getString("user_pwd"), rset.getString("user_name"), rset.getString("user_birth"), rset.getString("category_name1"), rset.getString("category_name2"), rset.getString("category_name3"), rset.getString("email"), rset.getString("phone"), rset.getString("grade_name"), rset.getString("status"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -256,7 +256,7 @@ public class MemberDao {
 		return m;
 	}
 	
-	public int updateMember(Connection conn, Member m) {
+	public int updateMember(Connection conn, User u) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -264,14 +264,14 @@ public class MemberDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, m.getUserId());
-			pstmt.setString(2, m.getUserPwd());
-			pstmt.setString(3, m.getUserName());
-			pstmt.setString(4, m.getUserBirth());
-			pstmt.setString(5, m.getEmail());
-			pstmt.setString(6, m.getPhone());
-			pstmt.setInt(7, Integer.parseInt(m.getGradeNo()));
-			pstmt.setInt(8, m.getUserNo());
+			pstmt.setString(1, u.getUserId());
+			pstmt.setString(2, u.getUserPwd());
+			pstmt.setString(3, u.getUserName());
+			pstmt.setString(4, u.getUserBirth());
+			pstmt.setString(5, u.getEmail());
+			pstmt.setString(6, u.getPhone());
+			pstmt.setInt(7, Integer.parseInt(u.getGrade()));
+			pstmt.setInt(8, u.getUserNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {

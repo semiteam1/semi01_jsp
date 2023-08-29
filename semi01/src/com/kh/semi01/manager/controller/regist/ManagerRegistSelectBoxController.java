@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.manager.service.RegistService;
-import com.manager.vo.Select;
+import com.kh.semi01.manager.model.service.RegistService;
+import com.kh.semi01.manager.model.vo.Select;
 
 /**
  * Servlet implementation class ManagerRegistSelectBoxController

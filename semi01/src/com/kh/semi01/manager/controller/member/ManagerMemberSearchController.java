@@ -1,4 +1,4 @@
-package com.manager.controller.member;
+package com.kh.semi01.manager.controller.member;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.manager.common.model.vo.PageInfo;
-import com.manager.service.MemberService;
-import com.manager.vo.Member;
+import com.kh.semi01.manager.common.model.vo.PageInfo;
+import com.kh.semi01.manager.model.service.MemberService;
+import com.kh.semi01.user.model.vo.User;
 
 /**
  * Servlet implementation class ManagerMemberSearchController
@@ -59,7 +59,7 @@ public class ManagerMemberSearchController extends HttpServlet {
 				endPage = maxPage;
 			}
 			PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-			ArrayList<Member> list = new MemberService().searchMemberByUserNo(userNo, pi);
+			ArrayList<User> list = new MemberService().searchMemberByUserNo(userNo, pi);
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 		}else if(select.equals("user_id")){
@@ -77,7 +77,7 @@ public class ManagerMemberSearchController extends HttpServlet {
 				endPage = maxPage;
 			}
 			PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-			ArrayList<Member> list = new MemberService().searchMemberByUserId(userId, pi);
+			ArrayList<User> list = new MemberService().searchMemberByUserId(userId, pi);
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 		}else {
@@ -95,11 +95,11 @@ public class ManagerMemberSearchController extends HttpServlet {
 				endPage = maxPage;
 			}
 			PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-			ArrayList<Member> list = new MemberService().searchMemberByUserName(userName, pi);
+			ArrayList<User> list = new MemberService().searchMemberByUserName(userName, pi);
 			request.setAttribute("pi", pi);
 			request.setAttribute("list", list);
 		}
-		request.getRequestDispatcher("WEB-INF/views/manager-member.jsp").forward(request, response);
+		request.getRequestDispatcher("views/manager/manager-member.jsp").forward(request, response);
 	}
 
 	/**

@@ -1,4 +1,4 @@
-package com.manager.controller.regist;
+package com.kh.semi01.manager.controller.regist;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class ManagerRegistController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/views/manager-regist.jsp").forward(request, response);
+		request.getRequestDispatcher("views/manager/manager-regist.jsp").forward(request, response);
 	}
 
 	/**

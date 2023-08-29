@@ -1,4 +1,4 @@
-package com.manager.controller.member;
+package com.kh.semi01.manager.controller.member;
 
 import java.io.IOException;
 
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONObject;
 
-import com.manager.service.MemberService;
-import com.manager.vo.Member;
+import com.kh.semi01.manager.model.service.MemberService;
+import com.kh.semi01.user.model.vo.User;
 
 /**
  * Servlet implementation class ManagerMemberReadController
@@ -33,21 +33,21 @@ public class ManagerMemberReadController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int userNo = Integer.parseInt(request.getParameter("userNum"));
-		Member m = new MemberService().selectManagerMember(userNo);
+		User u = new MemberService().selectManagerMember(userNo);
 		
 		JSONObject jObj = new JSONObject(); 
-		jObj.put("userNo", m.getUserNo()); 
-		jObj.put("userId", m.getUserId()); 
-		jObj.put("userPwd", m.getUserPwd());
-		jObj.put("userName", m.getUserName());
-		jObj.put("userBirth", m.getUserBirth());
-		jObj.put("interestMovie", m.getInterestMovie());
-		jObj.put("interestDisplay", m.getInterestDisplay());
-		jObj.put("interestShow", m.getInterestShow());
-		jObj.put("email", m.getEmail());
-		jObj.put("phone", m.getPhone());
-		jObj.put("gradeNo", m.getGradeNo());
-		jObj.put("status", m.getStatus());
+		jObj.put("userNo", u.getUserNo()); 
+		jObj.put("userId", u.getUserId()); 
+		jObj.put("userPwd", u.getUserPwd());
+		jObj.put("userName", u.getUserName());
+		jObj.put("userBirth", u.getUserBirth());
+		jObj.put("interestMovie", u.getInterestMovie());
+		jObj.put("interestDisplay", u.getInterestDisplay());
+		jObj.put("interestShow", u.getInterestShow());
+		jObj.put("email", u.getEmail());
+		jObj.put("phone", u.getPhone());
+		jObj.put("gradeNo", u.getGrade());
+		jObj.put("status", u.getStatus());
 		
 		response.setContentType("application/json; charset=UTF-8");
 		response.getWriter().print(jObj);

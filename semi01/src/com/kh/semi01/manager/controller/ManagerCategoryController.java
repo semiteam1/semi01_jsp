@@ -1,4 +1,4 @@
-package com.manager.controller;
+package com.kh.semi01.manager.controller;
 
 import java.io.IOException;
 
@@ -27,7 +27,7 @@ public class ManagerCategoryController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("WEB-INF/views/manager-category.jsp").forward(request, response);
+		request.getRequestDispatcher("views/manager/manager-category.jsp").forward(request, response);
 	}
 
 	/**

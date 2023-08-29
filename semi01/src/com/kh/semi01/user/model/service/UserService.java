@@ -1,9 +1,11 @@
 package com.kh.semi01.user.model.service;
 
-import java.net.ConnectException;
-import java.sql.Connection;
+import static com.kh.semi01.common.JDBCTemplate.close;
+import static com.kh.semi01.common.JDBCTemplate.commit;
+import static com.kh.semi01.common.JDBCTemplate.getConnection;
+import static com.kh.semi01.common.JDBCTemplate.rollback;
 
-import static com.kh.semi01.common.JDBCTemplate.*;
+import java.sql.Connection;
 
 import com.kh.semi01.user.model.dao.UserDao;
 import com.kh.semi01.user.model.vo.User;
