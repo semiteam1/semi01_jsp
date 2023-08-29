@@ -1,6 +1,9 @@
 package com.kh.semi01.manager.controller.regist;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -25,7 +28,7 @@ public class ManagerRegistProductController extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
+	/** 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -47,10 +50,30 @@ public class ManagerRegistProductController extends HttpServlet {
             }
         }
         
-        String category = multiRequest.getParameter("category");
-		String boardTitle = multiRequest.getParameter("title");
-		String boardContent = multiRequest.getParameter("content");
-		String boardWriter = multiRequest.getParameter("userNo");
+        String smallCategory = multiRequest.getParameter("salsa2");
+        String title = multiRequest.getParameter("title");
+        String local = multiRequest.getParameter("salsa3");
+        String address = multiRequest.getParameter("place");
+        int time = Integer.parseInt(multiRequest.getParameter("time"));
+        
+        String dateString1 = multiRequest.getParameter("date1");
+        String dateString2 = multiRequest.getParameter("date2");
+
+	     // 문자열을 날짜 객체로 변환
+	     SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	     Date date1 = null;
+	     Date date2 = null;
+	     try {
+			date1 = (Date)dateFormat.parse(dateString1);
+			date2 = (Date)dateFormat.parse(dateString2);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    int dayOrNight = Integer.parseInt(multiRequest.getParameter("salsa4"));
+	    int possbleAge = Integer.parseInt(multiRequest.getParameter("salsa5"));
+	    int price = Integer.parseInt(multiRequest.getParameter("price"));
+	    int seatsNum = Integer.parseInt(multiRequest.getParameter("seatsNum"));
     }
 
 	/**                                   
