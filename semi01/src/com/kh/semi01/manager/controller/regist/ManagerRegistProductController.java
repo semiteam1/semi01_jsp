@@ -1,9 +1,6 @@
 package com.kh.semi01.manager.controller.regist;
 
 import java.io.IOException;
-import java.util.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.semi01.manager.model.dao.RegistDao;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
 import com.oreilly.servlet.MultipartRequest;
@@ -78,7 +76,7 @@ public class ManagerRegistProductController extends HttpServlet {
         String endDate = multiRequest.getParameter("date2");
 
 	    int dayOrNight = Integer.parseInt(multiRequest.getParameter("salsa4"));
-	    int possbleAge = Integer.parseInt(multiRequest.getParameter("salsa5"));
+	    String possibleAge = multiRequest.getParameter("salsa5");
 	    int price = Integer.parseInt(multiRequest.getParameter("price"));
 	    int seatsNum = Integer.parseInt(multiRequest.getParameter("seatsNum"));
 	    
@@ -88,10 +86,12 @@ public class ManagerRegistProductController extends HttpServlet {
 	    p.setAddress(address);
 	    p.setStartPeriod(startDate);
 	    p.setEndPeriod(endDate);
-	    p.setProductLevel(String.valueOf(possbleAge));
+	    p.setProductLevel(possibleAge);
 	    p.setRunTime(time);
 	    p.setPrice(price);
 	    p.setImage(savePath);
+	    
+	    int result = new RegistDao().insertProduct(p, img, dayOrNight, seatsNum);
     }
 
 	/**                                   

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import com.kh.semi01.manager.model.dao.RegistDao;
 import com.kh.semi01.manager.model.vo.Select;
+import com.kh.semi01.product.model.vo.Product;
+import com.kh.semi01.product.model.vo.ProductIMG;
 
 public class RegistService {
 
@@ -38,5 +40,11 @@ public class RegistService {
 		close(conn);
 		
 		return sel;
+	}
+	
+	public int insertProduct(Product p, ProductIMG img, int dayOrNight, int seatsNum) {
+		Connection conn = getConnection();
+		
+		int result1 = new RegistDao().insertProduct(conn, p);
 	}
 }

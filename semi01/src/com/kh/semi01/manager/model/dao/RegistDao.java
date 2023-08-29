@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.kh.semi01.manager.model.vo.Select;
+import com.kh.semi01.product.model.vo.Product;
 
 public class RegistDao {
 	private Properties prop = new Properties();
@@ -91,5 +92,19 @@ public class RegistDao {
 			close(pstmt);
 		}
 		return sel;
+	}
+	
+	public int insertProduct(Connection conn, Product p) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertProduct");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
