@@ -382,7 +382,7 @@
 
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 		<!-- 예매 파트 -->
-		<form action="">
+		<!-- <form action="<%= contextPath %>/payment.pa" method="post"> -->
 			<div class="booked">
 				<div class="booked_part1">
 					<div class="booked_part1_calender1">
@@ -415,9 +415,18 @@
 				</div>
 			</div>
 			<div class="booked_btn_form">
-				<button type="submit" class="booked_btn">예매하기</button>
+				<button type="submit" class="booked_btn" onclick="book();">예매하기</button>
 			</div>
-		</form>
+		<!-- </form> -->
+
+		<script>
+
+			function book() {
+				window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");
+			}
+
+		</script>
+		
 		<br><br><br><br>
 		
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
@@ -591,61 +600,7 @@
 				</div>
 			</div>
 
-		<div class="footer">
-			<div id="footer_1">
-				<a href="#">이용약관</a>|
-				<a href="#">개인정보취급방침</a>|
-				<a href="#">인재채용</a>|
-				<a href="#">고객센터</a>
-			</div>
-			<div id="footer_2">
-				<P id="p1">
-					<br>
-					이눔식기 주식회사 <br><br>
-					
-					주소 :  서울특별시 강남구 테헤란로14길 6 남도빌딩 3F H-class | 대표이사 : 김시연 | 사업자등록번호 : 없떵<br>
-					010-2646-7652 | @naver.com | 개발자코스 : 종일반 | 사업자정보확인 | 개인정보보호책임자 : 김시연
-				</P>
-				<p id="p2">
-					Copyright © 1998-2023 KH Information Educational Institute All Right Reserved
-				</p>
-			</div>
-			
-			
-		</div>        
-		<!-- Back to top button -->
-		<button id="backToTopBtn">Top</button>
-		
-<!-- Anchor element representing the top of the page -->
-<a href="#top" id="topAnchor"></a>
 
-<!-- Your script files can go here -->
-
-<script>
-	// When the page is fully loaded
-	window.onload = function () {
-		var backToTopBtn = document.getElementById("backToTopBtn");
-		var topAnchor = document.getElementById("topAnchor");
-		
-		// Show/hide the back-to-top button based on scroll position
-		window.onscroll = function () {
-			if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-				backToTopBtn.style.display = "block";
-			} else {
-				backToTopBtn.style.display = "none";
-			}
-		};
-
-		// Scroll to the top when the button is clicked
-		backToTopBtn.onclick = function () {
-			document.documentElement.scrollTop = 0;
-		};
-	};
-</script>
-
-</div>	
-
-	</div>
 	
 	<%@ include file = "/views/common/footer.jsp" %>
 </body>

@@ -1,8 +1,10 @@
+<%@page import="com.kh.semi01.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
 	int type = (int)request.getAttribute("type");
+	User u = (User)request.getAttribute("u");
 %>
 <!--  아이디 보여주거나 비번 변경 -->
 <!DOCTYPE html>
@@ -175,12 +177,14 @@
                 </div>                
                 <div class="ur_id_info">
                     <div class="ur_id">
-                        *테스트문구입니다.
+                        <%=u.getUserId() %>
                     </div>
                 </div>
                 <button type="submit" id="btn_email">로그인하기</button>
               </div> 
               <%}else { %>
+    </form>
+    <form action="<%=contextPath %>/Changepwd.ur" method="post">
 
               <div id="tab1" class="tab-content">
                 <div class="ur_id_ment">
@@ -193,14 +197,17 @@
                     </div>
                     <div class="email_input">
                         <img src="resource/이미지자료/비밀번호.png" id="newMember_img">
-                        <input type="password" id="new_user" class="userPwdCheck" name="fine_email" placeholder="비밀번호 확인" required>
+                        <input type="password" id="new_user" class="userPwdCheck" placeholder="비밀번호 확인" required>
                     </div>
                 </div> 
+                <input type="hidden" name="userNo" value="<%=u.getUserNo()%>">
+                <input type="hidden" name="userId" value="<%=u.getUserId()%>">
+                <input type="hidden" name="userPwd" value="<%=u.getUserPwd()%>">
                 <button type="button" id="btn_email" class="btn_pwd" onclick="check();">로그인하기</button>
               </div>
 				<%} %>
 
-              
+    </form>         
 
               
                 <div class="find_id_pwd" >
@@ -215,7 +222,7 @@
                     <img src="resource/이미지자료/배너2.png">
                 </div>
 
-              
+            
             <script>
                 
                 function check(){
@@ -223,14 +230,11 @@
                     let reg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/
                     var password = $(".userPwd").val();
                     var passwordcheck = $(".userPwdCheck").val();
-                    
-                    console.log(password);
-                    console.log(passwordcheck);
-
                   
                     if(!reg.test( $(".userPwd").val() )){ // 비번 틀리다
                         $(".btn_pwd").attr("type","button"); 
                         alert("비밀번호는 영문 숫자 특수기호 조합 8자리 이상이어야 합니다.")
+                        $(".userPwd").select()
                       
                     }else { // 비번맞다
                         if(password === passwordcheck){ // 일치
@@ -238,6 +242,7 @@
                         }else{
                             $(".btn_pwd").attr("type","button"); 
                             alert("비밀번호와 비밀밀번호 확인이 일치하지 않습니다.")
+                            passwordcheck.select();
                         }
                     }
                     
@@ -251,6 +256,6 @@
              
               
         </div>
-    </form>
+    
 </body>
 </html>

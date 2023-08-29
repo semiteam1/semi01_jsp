@@ -33,25 +33,19 @@ public class ProductSearchController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		String sKeyWord = request.getParameter("searchKeyWord");
+		String sKeyWord = request.getParameter("sKeyWord");
 		
 		ArrayList<Product> list = new ProductService().searchProduct(sKeyWord);
-		
 		if(list.isEmpty()) {
-			request.setAttribute("errorMsg", "해당 키워드에 대한 결과가 없습니다. 다시 검색해주세요.");
-			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			request.setAttribute("sKeyWord", sKeyWord);
+			request.setAttribute("errorMsg", "에 대한 검색결과가 없습니다.");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/searchErrorMsg.jsp");
 			view.forward(request, response);
 		}else {
 			request.setAttribute("list", list);
 			request.setAttribute("sKeyWord", sKeyWord);
 			request.getRequestDispatcher("views/product/productSearch.jsp").forward(request, response);
 		}
-		
-		
-		
-		
-		
-		
 		
 	}
 
