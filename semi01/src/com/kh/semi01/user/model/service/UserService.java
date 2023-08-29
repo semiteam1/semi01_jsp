@@ -154,4 +154,13 @@ public class UserService {
 		return result;
 	}
 
+	public int idCheck(String checkId) {
+		Connection conn = getConnection();
+		
+		int count = new UserDao().idCheck(conn,checkId);
+		
+		close(conn);
+		
+		return count;
+	}
 }
