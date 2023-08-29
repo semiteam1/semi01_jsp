@@ -45,6 +45,16 @@ public class RegistService {
 	public int insertProduct(Product p, ProductIMG img, int dayOrNight, int seatsNum) {
 		Connection conn = getConnection();
 		
-		int result1 = new RegistDao().insertProduct(conn, p);
+		int result = new RegistDao().insertProduct(conn, p, img, dayOrNight, seatsNum);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 }

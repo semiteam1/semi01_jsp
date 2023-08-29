@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi01.manager.model.dao.RegistDao;
+import com.kh.semi01.manager.model.service.RegistService;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
 import com.oreilly.servlet.MultipartRequest;
@@ -74,7 +74,7 @@ public class ManagerRegistProductController extends HttpServlet {
         
         String startDate = multiRequest.getParameter("date1");
         String endDate = multiRequest.getParameter("date2");
-
+        
 	    int dayOrNight = Integer.parseInt(multiRequest.getParameter("salsa4"));
 	    String possibleAge = multiRequest.getParameter("salsa5");
 	    int price = Integer.parseInt(multiRequest.getParameter("price"));
@@ -91,7 +91,7 @@ public class ManagerRegistProductController extends HttpServlet {
 	    p.setPrice(price);
 	    p.setImage(savePath);
 	    
-	    int result = new RegistDao().insertProduct(p, img, dayOrNight, seatsNum);
+	    int result = new RegistService().insertProduct(p, img, dayOrNight, seatsNum);
     }
 
 	/**                                   
