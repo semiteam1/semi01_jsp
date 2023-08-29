@@ -20,4 +20,10 @@ public class ProductService {
 		
 		
 	}
+	
+	public Product selectProductDetail(int productNo) {
+		Connection conn = getConnection();
+		Product p = 
+		
+	}
 }
