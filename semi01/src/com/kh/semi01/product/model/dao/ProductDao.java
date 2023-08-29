@@ -48,7 +48,8 @@ public class ProductDao {
 								   rset.getString("start_period"),
 								   rset.getString("end_period"),
 								   rset.getInt("price"),
-								   rset.getString("poster_path")
+								   rset.getString("poster_path"),
+								   rset.getString("poster_name")
 								   ));
 			}
 			

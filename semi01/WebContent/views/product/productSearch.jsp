@@ -113,7 +113,7 @@
 	<div class="outer">
 	 
 	  <div class="search">
-            <p class="search_num"><em class="search_num_em"><%= sKeyWord %></em>에 대한 검색결과는 총 <em class="search_num_em"><%= list.size() %></em>건 입니다.</p>
+            <p class="search_num"><em class="search_num_em"><%="'" + sKeyWord + "'" %></em>&nbsp;에 대한 검색결과는 총 <em class="search_num_em"><%= list.size() %></em>건 입니다.</p>
 
             <!-- 검색 분류 탭-->
             <ul class="search_tap">
@@ -147,25 +147,33 @@
 
             <div class="search_product">
             
-            <% for(int i=0; i>list.size(); i++) { %>
+            <% for(Product p : list) { %>
                 <div class="search_product_box">
 
                         <a href="<%= contextPath %>/detail.pr" class="search_product_box2">
-                            <span><img src="resource/이미지자료/01_공연/클래식/김겨울 포스터.jpg"></span>
-                            <strong><%= list.get(i).getProductTitle() %></strong>
+                            <span><img src="<%= p.getPosterPath() %>/<%= p.getPosterName() %>"></span>
+                            <strong><%= p.getProductTitle() %></strong>
                             <dl>
                                 <dt>장소 : &nbsp;</dt>
-                                <dd><%= list.get(i).getAddress() %></dd>
+                                <dd><%= p.getAddress() %></dd>
                                 <dt>기간 : &nbsp;</dt>
-                                <dd><%= list.get(i).getStartPeriod() %> ~ <%= list.get(i).getEndPeriod() %></dd>
+                                <dd><%= p.getStartPeriod() %> ~ <%= p.getEndPeriod() %></dd>
                                 <dt>관람가 : &nbsp;</dt>
-                                <dd><%= list.get(i).getPrice() %>원</dd>
+                                <dd><%= p.getPrice() %>원</dd>
                             </dl>
                         </a>
 
-                    <button type="button" class="btn btn-danger">예매하기</button>
+                    <button type="button" class="btn btn-danger" onclick="book();">예매하기</button>
                 </div>
                 <hr>
+                
+                <script>
+
+					function book() {
+						window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");
+					}
+
+				</script>
                 
             <% } %>
 

@@ -13,6 +13,7 @@ public class Product {
 	private int runTime; 			// 상영시간
 	private int price; 				// 가격
 	private String posterPath;
+	private String posterName;
 	
 	// 기본 생성자
 	public Product() {}
@@ -36,7 +37,7 @@ public class Product {
 	
 	// searchProduct 생성자
 	public Product(int productNo, String productTitle, String address, String startPeriod, String endPeriod,
-			int price, String posterPath) {
+			int price, String posterPath, String posterName) {
 		super();
 		this.productNo = productNo;
 		this.productTitle = productTitle;
@@ -45,14 +46,25 @@ public class Product {
 		this.endPeriod = endPeriod;
 		this.price = price;
 		this.posterPath = posterPath;
+		this.posterName = posterName;
 	}
 	
 
 	// getter-setter 메소드
+	
+	
 	public int getProductNo() {
 		return productNo;
 	}
 
+
+	public String getPosterName() {
+		return posterName;
+	}
+
+	public void setPosterName(String posterName) {
+		this.posterName = posterName;
+	}
 
 	public void setProductNo(int productNo) {
 		this.productNo = productNo;
@@ -143,7 +155,7 @@ public class Product {
 		return "Product [productNo=" + productNo + ", category=" + category + ", productTitle=" + productTitle
 				+ ", local=" + local + ", address=" + address + ", startPeriod=" + startPeriod + ", endPeriod="
 				+ endPeriod + ", productLevel=" + productLevel + ", runTime=" + runTime + ", price=" + price
-				+ ", posterPath=" + posterPath + "]";
+				+ ", posterPath=" + posterPath + ", posterName=" + posterName + "]";
 	}
 
 	// toString() 메소드
