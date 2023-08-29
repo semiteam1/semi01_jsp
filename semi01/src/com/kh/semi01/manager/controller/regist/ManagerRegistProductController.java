@@ -67,7 +67,6 @@ public class ManagerRegistProductController extends HttpServlet {
                 img.setImagePath(savePath);
             }
         }
-        System.out.println(img);
         
         String smallCategory = multiRequest.getParameter("salsa2");
         String title = multiRequest.getParameter("title");
