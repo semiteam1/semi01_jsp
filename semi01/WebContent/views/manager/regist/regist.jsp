@@ -224,42 +224,42 @@
                 <label class="custom-file-label" for="customFile1" style="margin-left: 50px;">
                     포스터
                 </label>
-                <input type="file" id="customFile1" class="custom-file-input">
+                <input type="file" id="customFile1" name="customFile1" class="custom-file-input">
                 <input type="text" id="filePath1" placeholder="사진을 선택하시오" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
             <div style="display: flex; margin-top: 8px;">
                 <label class="custom-file-label" for="customFile2" style="margin-left: 50px;">
                     상세1
                 </label>
-                <input type="file" id="customFile2" class="custom-file-input">
+                <input type="file" id="customFile2" name="customFile2" class="custom-file-input">
                 <input type="text" id="filePath2" placeholder="사진을 선택하시오" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
             <div style="display: flex; margin-top: 8px;">
                 <label class="custom-file-label" for="customFile3" style="margin-left: 50px;">
                     상세2
                 </label>
-                <input type="file" id="customFile3" class="custom-file-input">
+                <input type="file" id="customFile3" name="customFile3" class="custom-file-input">
                 <input type="text" id="filePath3" placeholder="사진을 선택하시오" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
             <div style="display: flex; margin-top: 8px;">
                 <label class="custom-file-label" for="customFile4" style="margin-left: 50px;">
                     상세3
                 </label>
-                <input type="file" id="customFile4" class="custom-file-input">
+                <input type="file" id="customFile4" name="customFile4" class="custom-file-input">
                 <input type="text" id="filePath4" placeholder="사진을 선택하시오" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
             <div style="display: flex; margin-top: 8px;">
                 <label class="custom-file-label" for="customFile5" style="margin-left: 50px;">
                     상세4
                 </label>
-                <input type="file" id="customFile5" class="custom-file-input">
+                <input type="file" id="customFile5" name="customFile5" class="custom-file-input">
                 <input type="text" id="filePath5" placeholder="사진을 선택하시오" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
             <div style="display: flex; margin-top: 8px;">
                 <label class="custom-file-label" for="customFile6" style="margin-left: 50px;">
                     상세5
                 </label>
-                <input type="file" id="customFile6" class="custom-file-input">
+                <input type="file" id="customFile6" name="customFile6" class="custom-file-input">
                 <input type="text" id="filePath6" placeholder="사진을 선택하시오" style="width: 48%; font-family: 'Jua', sans-serif;">
             </div>
         </div>
