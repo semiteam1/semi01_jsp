@@ -91,6 +91,9 @@ public class ManagerRegistProductController extends HttpServlet {
 	    p.setPrice(price);
 	    p.setImage(savePath);
 	    
+	    System.out.println(p.getStartPeriod());
+	    System.out.println(p.getEndPeriod());
+	    
 	    int result = new RegistService().insertProduct(p, img, dayOrNight, seatsNum);
 	    
 	    if(result > 0) {

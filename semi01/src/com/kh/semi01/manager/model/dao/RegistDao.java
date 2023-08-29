@@ -9,8 +9,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -104,21 +102,19 @@ public class RegistDao {
 		
 		String sql = prop.getProperty("insertProduct");
 		
-        SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
+		int year1 = Integer.parseInt(p.getStartPeriod().substring(0, 4));
+        int month1 = Integer.parseInt(p.getStartPeriod().substring(5, 7));
+        int day1 = Integer.parseInt(p.getStartPeriod().substring(8, 10));
         
-        Date startDate = null;
-        Date endDate = null;
+        int year2 = Integer.parseInt(p.getEndPeriod().substring(0, 4));
+        int month2 = Integer.parseInt(p.getEndPeriod().substring(5, 7));
+        int day2 = Integer.parseInt(p.getEndPeriod().substring(8, 10));
         
-        try {
-        	startDate = (Date) inputFormat.parse(p.getStartPeriod());
-			endDate = (Date) inputFormat.parse(p.getEndPeriod());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+        month1--;
+        month2--;
 
-        java.sql.Date start = new java.sql.Date(startDate.getTime());
-        java.sql.Date end = new java.sql.Date(endDate.getTime());
+        Date start = new Date(year1 - 1900, month1, day1);
+        Date end = new Date(year2 - 1900, month2, day2);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, Integer.parseInt(p.getCategory()));
@@ -162,14 +158,15 @@ public class RegistDao {
 			int num1 = rset.getInt("NUM");
 			for(int i=0; i<dateArray.length; i++) {
 				sql = prop.getProperty("insertScreenInfo");
-				SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd");
-		        Date date = null;
-		        try {
-					date = (Date) inputFormat.parse(dateArray[i]);
-				} catch (ParseException e) {
-					e.printStackTrace();
-				} 
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+				String date1 = dateArray[i];
+				int year1 = Integer.parseInt(date1.substring(0, 4));
+		        int month1 = Integer.parseInt(date1.substring(5, 7));
+		        int day1 = Integer.parseInt(date1.substring(8, 10));
+		        
+		        month1--;
+
+		        Date date = new Date(year1 - 1900, month1, day1);
+		        
 	            pstmt = conn.prepareStatement(sql);
 	            pstmt.setInt(1, num1);
 	            pstmt.setDate(2, date);
