@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-	String contextPath = request.getContextPath();
-%>
+
 <!--  로그인 화면 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -136,6 +134,8 @@
 </style>
 </head>
 <body>
+<%@ include file = "../common/header.jsp" %>
+
 <!-- 내용 넣을 수 있는 구간 시작 -->
 
 <div class="원하는데로_바꾸세요">
@@ -146,24 +146,26 @@
     <div class="servicefunction">
         <!-- 바디의 왼쪽메뉴-->
         <div class="leftmenu">
-            <div>고객센터 홈</div>
-            <div>공지사항</div>
-            <div>qna</div>
+            <div style="color:red" onclick="location.href='<%=contextPath %>/customer.cu';">고객센터 홈</div>
+            <div onclick="location.href='<%=contextPath %>/notice.no';">공지사항</div>
+            <div onclick="location.href='<%=contextPath %>/qna.qo';">Q&A</div>
         </div>
+        
+        
         <!-- 바디의 오른쪽메뉴-->
         <div class="rightmenu">
             <div id="bodyright"> 
                 <div id="son">
-                    <a href="#" class="qnalogo"><img src="../../resorce/이미지자료/고객센터/qna.png" id="qnalogomain" alt=""></a>
+                    <a href="<%=contextPath %>/qna.qo" class="qnalogo"><img src="resource/이미지자료/고객센터/qna.png" id="qnalogomain" alt=""></a>
                 </div>
                 <div id="son">
-                    <a href="#" class="reservelogo"><img src="../../resorce/이미지자료/고객센터/reserve.png" id="reservelogomain" alt=""></a>
+                    <a href="#" class="reservelogo"><img src="resource/이미지자료/고객센터/reserve.png" id="reservelogomain" alt=""></a>
                 </div>
                 <div id="son">
-                    <a href="#" class="noticelog"><img src="../../resorce/이미지자료/고객센터/notice.png" id="noticelogomain" alt=""></a>
+                    <a href="<%=contextPath %>/notice.no" class="noticelog"><img src="resource/이미지자료/고객센터/notice.png" id="noticelogomain" alt=""></a>
                 </div>
                 <div id="son">
-                    <a href="#" class="questionlog"><img src="../../resorce/이미지자료/고객센터/question.png" id="questionlogomain" alt=""></a>
+                    <a href="#" class="questionlog"><img src="resource/이미지자료/고객센터/question.png" id="questionlogomain" alt=""></a>
                 </div>
             </div>
         </div>
@@ -210,7 +212,10 @@
     </script>
 </div>
 
+
+
 <!-- 내용물 넣을 수 있는 구간 끝 -->
     <!-- 바디 끝 -->
+    <%@ include file = "../common/footer.jsp" %>
 </body>
 </html>
