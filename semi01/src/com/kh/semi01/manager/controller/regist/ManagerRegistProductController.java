@@ -2,7 +2,6 @@ package com.kh.semi01.manager.controller.regist;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.manager.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
@@ -40,19 +38,10 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 			
 			int maxSize = 10 * 1024 * 1024;
 			
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/board_upfiles/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resource/board_upfiles/");
 			
-			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
-			
-			int result = new BoardService().insertBoard(b, at);
-			
-			if(result > 0) {
-				response.sendRedirect(request.getContextPath() + "/list.bo?cpage=1");
-			}else {
-				request.setAttribute("errorMsg", "공지사항 등록에 실패했습니다.");
-				RequestDispatcher view =request.getRequestDispatcher("views/common/errorPage.jsp");
-				view.forward(request, response);
-			}			
+			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8");
+					
 		}
 	}
 
