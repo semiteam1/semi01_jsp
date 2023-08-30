@@ -132,12 +132,12 @@
             <tr>
                 <td>카테고리</td>
                 <td style="display: flex; margin-top: 10px;">
-                    <select id="selects1" class="sel101" style="margin-right: 13px; font-family: 'Jua', sans-serif;">
+                    <select id="selects1" name="salsa1" class="sel101" style="margin-right: 13px; font-family: 'Jua', sans-serif;">
                         <option value="movie">영화</option>
                         <option value="display">전시</option>
                         <option value="show">공연</option>
                     </select>
-                    <select id="selects2" class="sel101" style="font-family: 'Jua', sans-serif;">
+                    <select id="selects2" name="salsa2" class="sel101" style="font-family: 'Jua', sans-serif;">
                         <option value="1">로맨스</option>
                         <option value="2">공포/스릴러</option>
                         <option value="3">코미디</option>
@@ -154,7 +154,7 @@
             <tr>
                 <td>지역</td>
                 <td>
-                    <select id="selects3" class="sel101" style="font-family: 'Jua', sans-serif;">
+                    <select id="selects3" name="salsa3" class="sel101" style="font-family: 'Jua', sans-serif;">
                         <option value="1">서울</option>
                         <option value="2">경기/인천</option>
                         <option value="3">충청/강원</option>
@@ -187,7 +187,7 @@
             <tr>
                 <td>시간</td>
                 <td>
-                    <select id="select1" class="sel101" style="font-family: 'Jua', sans-serif;">
+                    <select id="select1" name="salsa4" class="sel101" style="font-family: 'Jua', sans-serif;">
                         <option value="1">오전</option>
                         <option value="2">오후</option>
                         <option value="3">전체</option>
@@ -197,7 +197,7 @@
             <tr>
                 <td>관람등급</td>
                 <td>
-                    <select id="select1" class="sel101" style="font-family: 'Jua', sans-serif;">
+                    <select id="select1" name="salsa5" class="sel101" style="font-family: 'Jua', sans-serif;">
                         <option value="1">전체</option>
                         <option value="2">7</option>
                         <option value="3">12</option>
@@ -215,7 +215,7 @@
             <tr>
                 <td>좌석수</td>
                 <td>
-                    <input type="number" name="price" id="price" placeholder="좌석수를 입력하시오" style="width: 150px; font-family: 'Jua', sans-serif;">
+                    <input type="number" name="seatsNum" id="price" placeholder="좌석수를 입력하시오" style="width: 150px; font-family: 'Jua', sans-serif;">
                 </td>
             </tr>
         </table>
