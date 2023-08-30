@@ -9,6 +9,22 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+    .outer{
+        background-color: black;
+        color: white;
+        width:1000px;
+        height: 500px;
+        margin: auto;
+        margin-top : 50px;
+    } /*쓰기 귀찮으면 메뉴바에 추가하면됨*/
+
+    /*#enroll-form table{border: 1px solid white;}*/
+    #update-form input, #update-form textarea{
+        width: 100%;
+        box-sizing: border-box;
+    }
+</style>
 </head>
 <body>
 	<%@ include file = "../common/header.jsp" %>

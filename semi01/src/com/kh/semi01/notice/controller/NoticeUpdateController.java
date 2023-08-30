@@ -1,11 +1,16 @@
 package com.kh.semi01.notice.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.semi01.notice.model.service.NoticeService;
+import com.kh.semi01.notice.model.vo.Notice;
 
 /**
  * Servlet implementation class NoticeUpdateController
@@ -31,6 +36,25 @@ public class NoticeUpdateController extends HttpServlet {
 		int noticeNo = Integer.parseInt(request.getParameter("num"));
 		String noticeTitle = request.getParameter("title");
 		String noticeContent = request.getParameter("content");
+		
+		Notice n = new Notice();
+		
+		n.setNoticeNo(noticeNo);
+		n.setNoticeTitle(noticeTitle);
+		n.setNoticeContent(noticeContent);
+		
+		int result = new NoticeService().updateNotice(n);
+		
+		if(result>0) {
+			
+			request.getSession().setAttribute("alertMsg", "성공적으로 공지사항 수정 되었습니다.");
+			response.sendRedirect(request.getContextPath() + "/detail.no?num="+noticeNo);
+		}else {
+			request.setAttribute("errorMsg", "공지사항 수정에 실패했습니다.");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);			
+		}
+		
 	}
 
 	/**

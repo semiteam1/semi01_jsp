@@ -57,7 +57,7 @@
             <% if(loginMember != null && loginMember.getUserId().equals("admin") ){ %>
             
             <button onclick="location.href='<%=contextPath %>/updateForm.no?num=<%=n.getNoticeNo() %>'">수정하기</button>
-            <button onclick="location.href='<%= contextPath %>/delete.me.no?num=<%=n.getNoticeNo() %>'">수정하기</button>
+            <button onclick="location.href='<%= contextPath %>/delete.me.no?num=<%=n.getNoticeNo() %>'">삭제하기</button>
             
             <!-- 
             	삭제 구현 해보기

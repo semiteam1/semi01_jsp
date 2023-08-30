@@ -8,7 +8,8 @@ SELECT
      , NOTICE_CONTENT
      , NOTICE_DATE
      , NOTICE_COUNT
-  FROM NOTICE
+  FROM NOTICE N
+  WHERE N.STATUS = 'Y'
  ORDER
     BY NOTICE_NO DESC
 </entry>
@@ -33,6 +34,7 @@ SELECT
 UPDATE NOTICE
 	SET NOTICE_COUNT = NOTICE_COUNT + 1
 WHERE NOTICE_NO = ?
+  AND STATUS = 'Y'
 </entry>
 
 <entry key="selectNotice">
@@ -44,5 +46,16 @@ SELECT
 		  
       FROM NOTICE 
      WHERE NOTICE_NO = ?
+</entry>
+<entry key="updateNotice">
+UPDATE NOTICE
+   SET NOTICE_TITLE = ?
+     , NOTICE_CONTENT = ?
+WHERE NOTICE_NO = ?
+</entry>
+<entry key ="deleteNotice">
+	UPDATE NOTICE
+	   SET STATUS = 'N'
+	WHERE NOTICE_NO = ?
 </entry>
 </properties>

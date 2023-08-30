@@ -58,4 +58,30 @@ public class NoticeService {
 		close(conn);
 		return n;
 	}
+	public int updateNotice(Notice n) {
+		Connection conn = getConnection();
+		
+		int result = new NoticeDao().updateNotice(conn, n);
+		
+		
+		if(result>0) {// 성공
+			commit(conn);
+		}else {// 실패
+			rollback(conn);
+		}
+			close(conn);
+			return result;
+	}
+	
+	public int deleteNotice(int noticeNo) {
+		Connection conn = getConnection();
+		int result = new NoticeDao().deleteNotice(conn, noticeNo);
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+			close(conn);
+			return result;
+	}
 }
