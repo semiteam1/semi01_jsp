@@ -6,21 +6,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.semi01.user.model.service.UserService;
-import com.kh.semi01.user.model.vo.Review;
 
 /**
- * Servlet implementation class MyReviewUpdateController
+ * Servlet implementation class MyReviewDeleteController
  */
-@WebServlet("/updateReviewForm.us")
-public class MyReviewUpdateFormController extends HttpServlet {
+@WebServlet("/deleteReview.us")
+public class MyReviewDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyReviewUpdateFormController() {
+    public MyReviewDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,12 +32,20 @@ public class MyReviewUpdateFormController extends HttpServlet {
 		
 		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
 		
-		Review r = new UserService().selectReview(reviewNo);
+		int result = new UserService().deleteReview(reviewNo);
 		
-		request.setAttribute("r", r);
+		HttpSession session = request.getSession();
 		
-		request.getRequestDispatcher("views/user/myReviewUpdateForm.jsp").forward(request, response);
+		if(result > 0) {
+			session.setAttribute("alertMsg", "리뷰 삭제에 성공했습니다.");
+			
+		}
+		else {
+			session.setAttribute("alertMsg", "리뷰 삭제에 실패했습니다.");
+		}
 		
+		response.sendRedirect(request.getContextPath() + "/myReview.us?cpage=1");
+
 	}
 
 	/**

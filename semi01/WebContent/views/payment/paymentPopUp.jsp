@@ -99,8 +99,8 @@
 						<th>결제수단</th>
 						<td>
 							<select name="payment" id="payment" onchange="payTool(this.value)">
-								<option value="1">계좌이체</option>
-								<option value="2">신용카드</option>
+								<option value="10">계좌이체</option>
+								<option value="20">신용카드</option>
 							</select>
 						</td>
 						<td id="credit">
@@ -110,9 +110,8 @@
 								<option value="22">신한카드</option>
 								<option value="23">우리카드</option>
 								<option value="24">하나카드</option>
-								<option value="25">농협카드</option>
-								<option value="26">현대카드</option>
-								<option value="27">삼성카드</option>
+								<option value="25">현대카드</option>
+								<option value="26">삼성카드</option>
 							</select>
 						</td>
 					</tr>

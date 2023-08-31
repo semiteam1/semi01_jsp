@@ -1,5 +1,13 @@
+<%@page import="com.kh.semi01.user.model.vo.Book"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.semi01.common.model.vo.PageInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+
+	ArrayList<Book> list = (ArrayList<Book>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -182,7 +190,7 @@
         font-size: 14px;
         border-style: none;
     }
-    .myTicket-content button {
+    .myTicket-content button .paging-area>button {
         margin: 10px;
         display: inline;
         height: 35px;
@@ -199,6 +207,9 @@
     }
     .myTicket-content button:hover {
         opacity: 0.7;
+    }
+    .paging-area {
+        margin-top: 40px;
     }
     /* //마이페이지 끝 */
 </style>
@@ -270,55 +281,90 @@
                     </div>
                     
                     <div id="right-bottom">
-                        <div class="myTicket-content">
+                    
+                    <% if(list.isEmpty()) { %>
+                    	
+                    	<br><br>
+						<div align="center">예매내역이 없습니다.</div>
+						
+					<% } else { %>	
+					
+						<% for(Book b : list) { %>
+                    		
+	                       <div class="myTicket-content">
+	
+	                            <div class="content-img">
+	                                <a href="#"><img src="<%= b.getTitleImg() %>"></a>
+	                            </div>
+	
+	                            <div class="content-text">
+	                                <table>
+	                                    <tr>
+	                                        <td class="form-title" width="100">공연 제목</td>
+	                                        <td class="form-content"><%= b.getProduct() %></td>
+	                                    </tr>
+	                                    <tr>
+	                                        <td class="form-title">공연 장소</td>
+	                                        <td class="form-content"><%= b.getAddress() %></td>
+	                                    </tr>
+	                                    <tr>
+	                                        <td class="form-title">공연 일시</td>
+	                                        <td class="form-content"><%= b.getScreenDate() %></td>
+	                                    </tr>
+	                                    <tr>
+	                                    	<td><a href="<%= contextPath %>/ticketDetail.us?cpage=<%= pi.getCurrentPage() %>&tno=<%= b.getBookedNo() %>">상세보기</a></td>
+	                                        <td><a href="<%= contextPath %>/reviewWrite.us">한줄평쓰기</a></td>
+	                                    </tr>
+	                                </table>
+	                            </div>
+	
+	                            <div class="content-delete">
+	                                <button class="close" onclick="return ticketDelete();">X</button>
+	                            </div>
+	                            
+	                   		</div>
+                   		
+        					<% } %>
+                        
+                        <% } %>
+                        
+                 	   <script>
 
-                            <div class="content-img">
-                                <a href="#"><img src="resources/image/콘크리트유토피아.jpg"></a>
-                            </div>
-
-                            <div class="content-text">
-                                <table>
-                                    <tr>
-                                        <td class="form-title" width="100">공연 제목</td>
-                                        <td class="form-content">콘크리트 유토피아</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="form-title">공연 장소</td>
-                                        <td class="form-content">CGV 고양백석, 1관</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="form-title">공연 일시</td>
-                                        <td class="form-content">2023.08.13 (일) 11:00</td>
-                                    </tr>
-                                    <tr>
-                                    	<td><a href="<%= contextPath %>/ticketDetail.us">상세보기</a></td>
-                                        <td><a href="<%= contextPath %>/reviewWrite.us">한줄평쓰기</a></td>
-                                    </tr>
-                                </table>
-                            </div>
-
-                            <div class="content-delete">
-                                <button class="close" onclick="return ticketDelete();">X</button>
-                            </div>
-
-                            <script>
-
-                                function ticketDelete() {
-        
-                                    if(confirm("예매내역을 삭제하시겠습니까?")) {
-                                        location.href = "#";
-                                    }
-                                    else {
-                                        return false;
-                                    }
-        
-                                }
-        
-                            </script>
-                            
-                        </div>  
+                           function ticketDelete() {
+   
+                               if(confirm("예매내역을 삭제하시겠습니까?")) {
+                                   location.href = "#";
+                               }
+                               else {
+                                   return false;
+                               }
+   
+                           }
+   
+                       </script>
+                        
+                       <div class="paging-area" align="center">
+                       <% if(!list.isEmpty()) { %>
+                           <% if(pi.getCurrentPage() != 1) { %>
+			            		<button onclick="location.href='<%= contextPath %>/myTicket.us?cpage=<%= pi.getCurrentPage() - 1 %>'">&lt;</button>
+			            	<% } %>
+			            
+			            	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
+				            	<% if(p == pi.getCurrentPage()) { %>
+				            		<button disabled style="background-color: #cecece; color: #707070"><%= p %></button>
+				            	<% } else { %>
+				            		<button onclick="location.href='<%= contextPath %>/myTicket.us?cpage=<%= p %>'"><%= p %></button>
+				            	<% } %>
+				            <% } %>
+				            
+				            <% if(pi.getCurrentPage() != pi.getMaxPage()) { %>
+				            	<button onclick="location.href='<%= contextPath %>/myTicket.us?cpage=<%= pi.getCurrentPage() + 1 %>'">&gt;</button>
+				            <% } %>
+			        	<% } %>    
+                       </div>
                         
                     </div>
+                    
                 </div>
 
             </div>

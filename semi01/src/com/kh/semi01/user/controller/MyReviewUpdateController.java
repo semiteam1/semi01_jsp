@@ -49,7 +49,7 @@ public class MyReviewUpdateController extends HttpServlet {
 			session.setAttribute("r", r);
 		}
 		
-		response.sendRedirect(request.getContextPath() + "/myReivew.us?cpage=1");
+		response.sendRedirect(request.getContextPath() + "/myReview.us?cpage=1");
 		
 	}
 

@@ -1,11 +1,17 @@
 package com.kh.semi01.user.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.kh.semi01.user.model.service.UserService;
+import com.kh.semi01.user.model.vo.Book;
 
 /**
  * Servlet implementation class MyTicketDetailCotroller
@@ -27,7 +33,22 @@ public class MyTicketDetailCotroller extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/user/myTicketDetail.jsp").forward(request, response);
+		int currentPage = Integer.parseInt(request.getParameter("cpage"));
+		int ticketNo = Integer.parseInt(request.getParameter("tno"));
+		
+		Book b = new UserService().selectTicketDetail(ticketNo);
+		
+		if(b == null) {
+			request.getSession().setAttribute("alertMsg", "상세조회에 실패했습니다.");
+			
+			response.sendRedirect(request.getContextPath() + "/myTicket.us?cpage=" + currentPage);
+		}
+		else {
+			request.setAttribute("b", b);
+			
+			request.getRequestDispatcher("views/user/myTicketDetail.jsp").forward(request, response);
+		}
+		
 		
 	}
 

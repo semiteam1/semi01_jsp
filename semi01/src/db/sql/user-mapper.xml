@@ -164,19 +164,17 @@ UPDATE USER_INFO
    AND USER_PWD = ?
 </entry>
 
-<!-- 회원정보 수정용 sql -->
-<entry key="updateUser">
-	UPDATE USER_INFO
-	   SET USER_NAME = ?
-	     , INTEREST_MOVIE = ?
-	     , INTEREST_DISPLAY = ?
-	     , INTEREST_SHOW = ?
-	     , EMAIL = ?
-	     , PHONE = ?
-	 WHERE USER_NO = ?
+<entry key="idCheck">
+<!--  아이디 체크용 -->
+	SELECT 
+	       COUNT(*) COUNT
+	  FROM USER_INFO
+	 WHERE USER_ID = ?
 </entry>
 
-<!-- 마이페이지 회원정보 조회용 sql -->
+<!-- 마이페이지 -->
+
+<!-- 회원정보 조회용 SQL -->
 <entry key="selectUser">
 	SELECT
 	       USER_NO
@@ -200,36 +198,42 @@ UPDATE USER_INFO
 	   AND STATUS = 'Y'
 </entry>
 
-<!-- 회원탈퇴용 sql -->
-<entry key="deleteUser">
+<!-- 회원정보 수정용 SQL -->
+<entry key="updateUser">
 	UPDATE USER_INFO
-	    SET STATUS = 'N'
-	  WHERE USER_NO = ?
+	   SET USER_NAME = ?
+	     , INTEREST_MOVIE = ?
+	     , INTEREST_DISPLAY = ?
+	     , INTEREST_SHOW = ?
+	     , EMAIL = ?
+	     , PHONE = ?
+	 WHERE USER_NO = ?
 </entry>
 
-<!-- 비밀번호 변경용 sql -->
+<!-- 비밀번호 변경용 SQL -->
 <entry key="updatePwd">
 	UPDATE USER_INFO
 	    SET USER_PWD = ?
 	  WHERE USER_NO = ?
 </entry>
 
-<entry key="idCheck">
-<!--  아이디 체크용 -->
-	SELECT 
-	       COUNT(*) COUNT
-	  FROM USER_INFO
-	 WHERE USER_ID = ?
+<!-- 회원탈퇴용 SQL -->
+<entry key="deleteUser">
+	UPDATE USER_INFO
+	    SET STATUS = 'N'
+	  WHERE USER_NO = ?
 </entry>
 
-<!-- 예매횟수 조회용 sql -->
+<!-- 마이등급 -->
+
+<!-- 예매횟수 조회용 SQL -->
 <entry key="selectBookCount">
 	SELECT COUNT(*) "COUNT"
 	  FROM BOOKED_INFO
 	 WHERE USER_NO = ?
 </entry>
 
-<!-- 총 예매 금액 조회용 sql -->
+<!-- 총 예매 금액 조회용 SQL -->
 <entry key="selectBookPrice">
 	SELECT TO_CHAR(SUM(PRICE), '999,999,999') "PRICE"
 	  FROM PRODUCT
@@ -237,12 +241,17 @@ UPDATE USER_INFO
 	 WHERE USER_NO = ?
 </entry>
 
+<!-- 마이 리뷰 -->
+
+<!-- 회원이 작성한 리뷰 개수 조회용 SQL -->
 <entry key="selectReviewCount">
 	SELECT COUNT(*) "COUNT"
 	  FROM REVIEW_INFO
 	 WHERE USER_NO = ?
+	   AND STATUS = 'Y'
 </entry>
 
+<!-- 회원이 작성한 리뷰 조회용 SQL -->
 <entry key="selectAllReview">
 	SELECT *
 	  FROM (
@@ -250,21 +259,26 @@ UPDATE USER_INFO
 	          FROM (
 	                SELECT
 	                	   REVIEW_NO
+                         , IMAGE_PATH || '/' || POSTER_NAME "TITLE_IMG"
 	                     , PRODUCT_TITLE
-	                     , USER_ID
+	                     , SUBSTR(USER_ID, 1, 1) || '**' || SUBSTR(USER_ID, 4) "USER_ID"
 	                     , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') "REVIEW_DATE"
 	                     , REVIEW_CONTENT
-	                  FROM REVIEW_INFO
+	                     , R.STATUS
+	                  FROM REVIEW_INFO R
 	                  JOIN PRODUCT USING (PRODUCT_NO)
 	                  JOIN USER_INFO USING (USER_NO)
+                      JOIN PRODUCT_IMG USING (PRODUCT_NO)
 	                 WHERE USER_NO = ?
+	                   AND R.STATUS = 'Y'
 	                 ORDER
-	                    BY REVIEW_DATE DESC, PRODUCT_TITLE DESC
+	                    BY REVIEW_DATE DESC
 	                ) A
 	                )
 	  WHERE RNUM BETWEEN ? AND ?
 </entry>
 
+<!-- 회원이 작성한 리뷰 상세 조회용 SQL -->
 <entry key="selectReview">
 	SELECT 
 	       REVIEW_NO
@@ -278,11 +292,76 @@ UPDATE USER_INFO
 	 WHERE REVIEW_NO = ?
 </entry>
 
+<!-- 리뷰 수정용 SQL -->
 <entry key="updateReview">
 	UPDATE REVIEW_INFO
 	   SET REVIEW_CONTENT = ?
 	     , REVIEW_DATE = SYSDATE
 	 WHERE REVIEW_NO = ?
+</entry>
+
+<!-- 리뷰 삭제용 SQL -->
+<entry key="deleteReview">
+	UPDATE REVIEW_INFO
+	   SET STATUS = 'N'
+	 WHERE REVIEW_NO = ?
+</entry>
+
+<!-- 마이티켓 -->
+
+<!-- 회원이 예매한 티켓 수 조회용 SQL -->
+<entry key="selectTicketCount">
+	SELECT COUNT(*) "COUNT"
+	  FROM BOOKED_INFO
+	 WHERE USER_NO = ?
+	   AND STATUS = 'Y'
+</entry>
+
+<!-- 회원 예매내역 조회용 SQL -->
+<entry key="selectAllTicket">
+	SELECT *
+	  FROM (
+	        SELECT ROWNUM RNUM, A.*
+	          FROM (
+	                SELECT 
+	                       BOOKED_NO
+	                     , IMAGE_PATH || '/' || POSTER_NAME "TITLE_IMG"
+	                     , PRODUCT_TITLE
+	                     , SUBSTR(ADDRESS, 1, (INSTR(ADDRESS, '_') - 1)) "ADDRESS"
+	                     , TO_CHAR(SCREEN_DATE, 'RRRR.MM.DD')|| '(' || TO_CHAR(SCREEN_DATE, 'DY') || ')' || ' ' || DECODE(SCREENING_DAY_TIME, 'Y', '11:00', 'N', '18:00') "SCREEN_DATE"
+	                  FROM PRODUCT_IMG
+	                  JOIN PRODUCT USING (PRODUCT_NO)
+	                  JOIN BOOKED_INFO USING (PRODUCT_NO)
+	                  JOIN SCREENING_INFO ON (SCREEN_DATE = SCREENING_DATE)
+	                 WHERE USER_NO = ?
+	                   AND STATUS = 'Y'
+	                 ORDER 
+	                    BY 5 DESC
+	                ) A
+	        )
+	  WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectTicketDetail">
+	SELECT
+		   BOOKED_NO
+	     , PRODUCT_TITLE
+	     , SUBSTR(ADDRESS, 1, (INSTR(ADDRESS, '_') - 1)) "ADDRESS"
+	     , TO_CHAR(SCREEN_DATE, 'RRRR.MM.DD')|| '(' || TO_CHAR(SCREEN_DATE, 'DY') || ')' || ' ' || DECODE(SCREENING_DAY_TIME, 'Y', '11:00', 'N', '18:00') "SCREEN_DATE"
+	     , AUDIENCE
+	     , PRICE*AUDIENCE "BOOK_PRICE"
+	     , GRADE_NAME
+	     , GRADE_DISCOUNT
+	     , PRICE*GRADE_DISCOUNT "DISCOUNT"
+	     , PAYMENT_NAME
+	     , (PRICE*AUDIENCE) - (PRICE*GRADE_DISCOUNT) "FINAL_PRICE"
+	  FROM BOOKED_INFO
+	  JOIN PRODUCT USING (PRODUCT_NO)
+	  JOIN SCREENING_INFO ON (SCREEN_DATE = SCREENING_DATE)
+	  JOIN PAYMENT ON (PAYMENT = PAYMENT_NO)
+	  JOIN USER_INFO USING (USER_NO)
+	  JOIN GRADE USING (GRADE_NO)
+	 WHERE BOOKED_NO = ?
 </entry>
 
 </properties>

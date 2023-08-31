@@ -137,7 +137,6 @@
         height: 200px;
         margin: auto;
         /* border: 1px solid red; */
-        line-height: 3;
         border-bottom: 1px solid #ceccc0;
         padding-top: 10px;
         padding-bottom: 10px;
@@ -152,24 +151,24 @@
     }
     .content-img>a {
         width: 100%;
-        height: 100%;
     }
     .content-img>a>img {
         width: 100%;
-        height: 100%;
+        height: 180px;
     }
     .content-img>a>img:hover {
-        width: 100%;
-        height: 100%;
         opacity: 0.7;
     }
     .content-text {
         width: 60%;
+        padding-top: 10px;
     }
     .content-text>table {
-    	line-height: 4;
+    	line-height: 3;
     }
-    .content-text a:hover {
+    .content-text button {
+    }
+    .content-text button:hover {
     	opacity: 0.5;
     }
     .content-delete {
@@ -291,42 +290,52 @@
 						
 							<% for(Review r : list) { %>
 						
-		                        <div class="myReview-content">
-		                            
-		                            <div class="content-img">
-		                                <a href="#"><img src="resources/image/우비짱구.jpg"></a>
-		                            </div>
-		                            <div class="content-text">
-		                                <table>
-		                                    <tr>
-		                                        <th colspan="3">
-		                                            <h5><%= r.getProduct() %></h5>
-		                                        </th>
-		                                    </tr>
-		                                    <tr>
-		                                        <td width="50" style="color: #707070;"><%= r.getUser() %></td>
-		                                        <td style="color: #8c8c8c;">|</td>
-		                                        <td style="color: #707070;"><%= r.getReviewDate() %></td>
-		                                    </tr>
-		                                    <tr>
-		                                        <td colspan="3">
-		                                            <p><%= r.getReviewContent() %></p>
-		                                        </td>
-		                                    </tr>
-		                                    <tr>
-		                                    	<td colspan="3">
-		                                    		<a href="<%= contextPath %>/updateReviewForm.us?rno=<%= r.getReviewNo() %>">수정하기</a>
-		                                    	</td>
-		                                    </tr>
-		                                </table>
-		                            </div>
-		
-		                            <div class="content-delete">
-		                                <button class="close" onclick="return reviewDelete();">X</button>
-		                            </div>
-		
-		                        </div>
-                        
+                                <div class="myReview-content">
+
+                                        <form action="<%= contextPath %>/updateReviewForm.us" method="post">
+                                            <input type="hidden" name="reviewNo" value="<%= r.getReviewNo() %>">
+			                            
+                                            <div class="content-img">
+                                                <a href="#"><img src="<%= r.getTitleImg() %>"></a>
+                                            </div>
+                                            <div class="content-text">
+                                                <table>
+                                                    <tr>
+                                                        <th colspan="3">
+                                                            <h5><%= r.getProduct() %></h5>
+                                                        </th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="30" style="color: #707070;"><%= r.getUser() %></td>
+                                                        <td width="10" style="color: #8c8c8c;">|</td>
+                                                        <td style="color: #707070;"><%= r.getReviewDate() %></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <p><%= r.getReviewContent() %></p>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="3">
+                                                            <button type="submit">수정하기</button>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                            
+                                        </form>
+
+                                        <form action="<%= contextPath %>/deleteReview.us" method="post">
+                                            <input type="hidden" name="reviewNo" value="<%= r.getReviewNo() %>">
+                                            
+                                            <div class="content-delete">
+                                                <button class="close" type="submit" onclick="return reviewDelete();">X</button>
+                                            </div>
+                                        </form>
+			                            
+                                </div>
+			                        
+	                        	
                         	<% } %>
                         
                        	<% } %>
@@ -335,12 +344,7 @@
 
                             function reviewDelete() {
     
-                                if(confirm("작성한 한줄평을 삭제하시겠습니까?")) {
-                                    location.href = "#";
-                                }
-                                else {
-                                    return false;
-                                }
+                                return confirm("작성한 한줄평을 삭제하시겠습니까?");
     
                             }
     

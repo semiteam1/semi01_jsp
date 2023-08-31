@@ -410,9 +410,8 @@
                                 <li><a href="#" class="minCategory">서울</a></li>
                                 <li><a href="#" class="minCategory">경기/이천</a></li>
                                 <li><a href="#" class="minCategory">충청/강원</a></li>
-                                <li><a href="#" class="minCategory">대구/경북</a></li>
-                                <li><a href="#" class="minCategory">부산/경남</a></li>
-                                <li><a href="#" class="minCategory">광주/전라</a></li>
+                                <li><a href="#" class="minCategory">경상</a></li>
+                                <li><a href="#" class="minCategory">전라</a></li>
                                 <li><a href="#" class="minCategory">제주</a></li>
                             </ul>
                         </li>

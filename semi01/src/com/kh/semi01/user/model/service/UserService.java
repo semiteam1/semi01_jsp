@@ -2,12 +2,14 @@ package com.kh.semi01.user.model.service;
 
 import java.net.ConnectException;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 import static com.kh.semi01.common.JDBCTemplate.*;
 
 import com.kh.semi01.common.model.vo.PageInfo;
 import com.kh.semi01.user.model.dao.UserDao;
+import com.kh.semi01.user.model.vo.Book;
 import com.kh.semi01.user.model.vo.Review;
 import com.kh.semi01.user.model.vo.User;
 
@@ -236,12 +238,72 @@ public class UserService {
 		Review r = null;
 		
 		if(result > 0) {
+			commit(conn);
+			
 			r = new UserDao().selectReview(conn, reviewNo);
+		}
+		else {
+			rollback(conn);
 		}
 		
 		close(conn);
 		
 		return r;
+		
+	}
+	
+	public int deleteReview(int reviewNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new UserDao().deleteReview(conn, reviewNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int selectTicketCount(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int ticketCount = new UserDao().selectTicketCount(conn, userNo);
+		
+		close(conn);
+		
+		return ticketCount;
+		
+	}
+	
+	public ArrayList<Book> selectAllTicket(int userNo, PageInfo pi) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Book> list = new UserDao().selectAllTicket(conn, userNo, pi);
+		
+		close(conn);
+		
+		return list;
+		
+	}
+	
+	public Book selectTicketDetail(int ticketNo) {
+		
+		Connection conn = getConnection();
+		
+		Book b = new UserDao().selectTicketDetail(conn, ticketNo);
+		
+		close(conn);
+		
+		return b;
 		
 	}
 	

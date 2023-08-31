@@ -15,6 +15,7 @@ import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 import static com.kh.semi01.common.JDBCTemplate.*;
 
 import com.kh.semi01.common.model.vo.PageInfo;
+import com.kh.semi01.user.model.vo.Book;
 import com.kh.semi01.user.model.vo.Review;
 import com.kh.semi01.user.model.vo.User;
 
@@ -563,8 +564,8 @@ private Properties prop = new Properties();
 		
 		String sql = prop.getProperty("selectAllReview");
 		
-		int startRow = (pi.getCurrentPage() - 1) * pi.getReviewLimit() + 1;
-		int endRow = startRow + pi.getReviewLimit() - 1;
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
 		
 		try {
 			
@@ -578,10 +579,12 @@ private Properties prop = new Properties();
 			
 			while(rset.next()) {
 				list.add(new Review(rset.getInt("review_no"),
+									rset.getString("title_img"),
 									rset.getString("product_title"),
 									rset.getString("review_content"),
 									rset.getString("user_id"),
-									rset.getString("review_date")));
+									rset.getString("review_date"),
+									rset.getString("status")));
 			}
 			
 		} catch (SQLException e) {
@@ -657,6 +660,118 @@ private Properties prop = new Properties();
 		}
 		
 		return result;
+		
+	}
+	
+	public int deleteReview(Connection conn, int reviewNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteReview");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, reviewNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int selectTicketCount(Connection conn, int userNo) {
+		
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectTicketCount");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+		
+	}
+	
+	public ArrayList<Book> selectAllTicket(Connection conn, int userNo, PageInfo pi) {
+		
+		ArrayList<Book> list = new ArrayList<Book>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAllTicket");
+		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				list.add(new Book(rset.getInt("booked_no"), 
+								  rset.getString("product_title"), 
+								  rset.getString("screen_date"),
+								  rset.getString("title_img"), 
+								  rset.getString("address")));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	
+	public Book selectTicketDetail(Connection conn, int ticketNo) {
+		
+		Book b = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectTicketDetail");
 		
 	}
 

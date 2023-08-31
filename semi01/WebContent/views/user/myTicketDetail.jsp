@@ -253,12 +253,12 @@
                                     <td class="form-content">30,000원 - 성인 2명(15000X2)</td>
                                 </tr>
                                 <tr>
-                                    <td class="form-title">할인 금액</td>
-                                    <td class="form-content">-15,000원</td>
+                                    <td class="form-title">할인 금액(할인수단)</td>
+                                    <td class="form-content">-15,000원(등급할인)</td>
                                 </tr>
                                 <tr>
                                     <td class="form-title">결제 수단</td>
-                                    <td class="form-content">등급 할인, 카드 할인</td>
+                                    <td class="form-content">계좌이체</td>
                                 </tr>
                                 <tr>
                                     <td class="form-title">결제 금액</td>

@@ -215,7 +215,7 @@
                     		location.href = "<%= contextPath %>/myPage.us";
                     		break;
                     	case 2 :
-                    		location.href = "<%= contextPath %>/myTicket.us";
+                    		location.href = "<%= contextPath %>/myTicket.us?cpage=1";
                     		break;
                     	case 3 :
                     		location.href = "<%= contextPath %>/myReview.us?cpage=1";
