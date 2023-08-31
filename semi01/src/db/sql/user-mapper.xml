@@ -9,7 +9,7 @@ SELECT
      , USER_ID
      , USER_PWD
      , USER_NAME
-     , USER_BIRTH
+     , TO_CHAR(TO_DATE(USER_BIRTH, 'RR/MM/DD'), 'RRRR-MM-DD') "USER_BIRTH"
      , C.CATEGORY_NAME "INTEREST_MOVIE"
      , D.CATEGORY_NAME "INTEREST_DISPLAY"
      , E.CATEGORY_NAME "INTEREST_SHOW"
@@ -164,6 +164,7 @@ UPDATE USER_INFO
    AND USER_PWD = ?
 </entry>
 
+<!-- 회원정보 수정용 sql -->
 <entry key="updateUser">
 	UPDATE USER_INFO
 	   SET USER_NAME = ?
@@ -175,6 +176,7 @@ UPDATE USER_INFO
 	 WHERE USER_NO = ?
 </entry>
 
+<!-- 마이페이지 회원정보 조회용 sql -->
 <entry key="selectUser">
 	SELECT
 	       USER_NO
@@ -198,12 +200,14 @@ UPDATE USER_INFO
 	   AND STATUS = 'Y'
 </entry>
 
+<!-- 회원탈퇴용 sql -->
 <entry key="deleteUser">
 	UPDATE USER_INFO
 	    SET STATUS = 'N'
 	  WHERE USER_NO = ?
 </entry>
 
+<!-- 비밀번호 변경용 sql -->
 <entry key="updatePwd">
 	UPDATE USER_INFO
 	    SET USER_PWD = ?
@@ -217,4 +221,68 @@ UPDATE USER_INFO
 	  FROM USER_INFO
 	 WHERE USER_ID = ?
 </entry>
+
+<!-- 예매횟수 조회용 sql -->
+<entry key="selectBookCount">
+	SELECT COUNT(*) "COUNT"
+	  FROM BOOKED_INFO
+	 WHERE USER_NO = ?
+</entry>
+
+<!-- 총 예매 금액 조회용 sql -->
+<entry key="selectBookPrice">
+	SELECT TO_CHAR(SUM(PRICE), '999,999,999') "PRICE"
+	  FROM PRODUCT
+	  JOIN BOOKED_INFO USING (PRODUCT_NO)
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="selectReviewCount">
+	SELECT COUNT(*) "COUNT"
+	  FROM REVIEW_INFO
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="selectAllReview">
+	SELECT *
+	  FROM (
+	        SELECT ROWNUM RNUM, A.*
+	          FROM (
+	                SELECT
+	                	   REVIEW_NO
+	                     , PRODUCT_TITLE
+	                     , USER_ID
+	                     , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') "REVIEW_DATE"
+	                     , REVIEW_CONTENT
+	                  FROM REVIEW_INFO
+	                  JOIN PRODUCT USING (PRODUCT_NO)
+	                  JOIN USER_INFO USING (USER_NO)
+	                 WHERE USER_NO = ?
+	                 ORDER
+	                    BY REVIEW_DATE DESC, PRODUCT_TITLE DESC
+	                ) A
+	                )
+	  WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectReview">
+	SELECT 
+	       REVIEW_NO
+	     , PRODUCT_TITLE
+	     , USER_ID
+	     , TO_CHAR(REVIEW_DATE, 'YYYY-MM-DD') "REVIEW_DATE"
+	     , REVIEW_CONTENT
+	  FROM REVIEW_INFO
+	  JOIN PRODUCT USING (PRODUCT_NO)
+	  JOIN USER_INFO USING (USER_NO)
+	 WHERE REVIEW_NO = ?
+</entry>
+
+<entry key="updateReview">
+	UPDATE REVIEW_INFO
+	   SET REVIEW_CONTENT = ?
+	     , REVIEW_DATE = SYSDATE
+	 WHERE REVIEW_NO = ?
+</entry>
+
 </properties>

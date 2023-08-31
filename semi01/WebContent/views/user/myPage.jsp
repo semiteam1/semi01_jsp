@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String phone = (((User)session.getAttribute("loginMember")).getPhone() == null) ? "" : ((User)session.getAttribute("loginMember")).getPhone();
+	
+	String email = (((User)session.getAttribute("loginMember")).getEmail() == null) ? "" : ((User)session.getAttribute("loginMember")).getEmail();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -213,7 +218,7 @@
                     		location.href = "<%= contextPath %>/myTicket.us";
                     		break;
                     	case 3 :
-                    		location.href = "<%= contextPath %>/myReview.us";
+                    		location.href = "<%= contextPath %>/myReview.us?cpage=1";
                     		break;
                     	case 4 :
                     		location.href = "<%= contextPath %>/myLevel.us";
@@ -248,11 +253,11 @@
                                     </tr>
                                     <tr>
                                         <td class="form-title">전화번호</td>
-                                        <td colspan="3" class="form-content"><input type="text" name="phone" value="<%= loginMember.getPhone() %>"></td>
+                                        <td colspan="3" class="form-content"><input type="text" name="phone" value="<%= phone %>" required></td>
                                     </tr>
                                     <tr>
                                         <td class="form-title">이메일</td>
-                                        <td colspan="3" class="form-content"><input type="email" name="email" value="<%= loginMember.getEmail() %>"></td>
+                                        <td colspan="3" class="form-content"><input type="email" name="email" value="<%= email %>"></td>
                                     </tr>
                                     <tr>
                                         <td class="form-title">*생년월일</td>

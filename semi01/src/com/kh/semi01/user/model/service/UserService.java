@@ -2,10 +2,13 @@ package com.kh.semi01.user.model.service;
 
 import java.net.ConnectException;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import static com.kh.semi01.common.JDBCTemplate.*;
 
+import com.kh.semi01.common.model.vo.PageInfo;
 import com.kh.semi01.user.model.dao.UserDao;
+import com.kh.semi01.user.model.vo.Review;
 import com.kh.semi01.user.model.vo.User;
 
 public class UserService {
@@ -163,4 +166,83 @@ public class UserService {
 		
 		return count;
 	}
+	
+	public int selectBookCount(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int count = new UserDao().selectBookCount(conn, userNo);
+		
+		close(conn);
+		
+		return count;
+		
+	}
+	
+	public String selectBookPrice(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		String price = new UserDao().selectBookPrice(conn, userNo);
+		
+		close(conn);
+		
+		return price;
+		
+	}
+	
+	public int selectReviewCount(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int reviewCount = new UserDao().selectReviewCount(conn, userNo);
+		
+		close(conn);
+		
+		return reviewCount;
+		
+	}
+	
+	public ArrayList<Review> selectAllReview(int userNo, PageInfo pi) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new UserDao().selectAllReview(conn, userNo, pi);
+		
+		close(conn);
+		
+		return list;
+		
+	}
+	
+	public Review selectReview(int reviewNo) {
+		
+		Connection conn = getConnection();
+		
+		Review r = new UserDao().selectReview(conn, reviewNo);
+		
+		close(conn);
+		
+		return r;
+		
+	}
+	
+	public Review updateReview(int reviewNo, String reviewContent) {
+		
+		Connection conn = getConnection();
+		
+		int result = new UserDao().updateReview(conn, reviewNo, reviewContent);
+		
+		Review r = null;
+		
+		if(result > 0) {
+			r = new UserDao().selectReview(conn, reviewNo);
+		}
+		
+		close(conn);
+		
+		return r;
+		
+	}
+	
 }

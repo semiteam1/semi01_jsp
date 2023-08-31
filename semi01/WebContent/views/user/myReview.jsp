@@ -1,5 +1,13 @@
+<%@page import="com.kh.semi01.user.model.vo.Review"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.semi01.common.model.vo.PageInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+
+	ArrayList<Review> list = (ArrayList<Review>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,7 +184,7 @@
     	cursor: pointer;
     	opacity: 0.5;
     }
-    .myReview-content button {
+    .myReview-content button, .paging-area>button {
         margin: 10px;
         display: inline;
         height: 35px;
@@ -190,6 +198,9 @@
         text-align: center;
         font-size: 13px;
         color: #202020;
+    }
+    .paging-area {
+        margin-top: 40px;
     }
     .form-title {
         color: #707070;
@@ -271,90 +282,88 @@
                     
                     <div id="right-bottom">
 
-                        <div class="myReview-content">
-                            
-                            <div class="content-img">
-                                <a href="#"><img src="resources/image/우비짱구.jpg"></a>
-                            </div>
-                            <div class="content-text">
-                                <table>
-                                    <tr>
-                                        <th colspan="3">
-                                            <h5>짱구는 못말려 : 우비짱구의 대모험</h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td width="50" style="color: #707070;">us**01</td>
-                                        <td style="color: #8c8c8c;">|</td>
-                                        <td style="color: #707070;">2023-08-24</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <p>너무너무 재미있었어요!!</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    	<td colspan="3">
-                                    		<a href="<%= contextPath %>/updateReview.us">수정하기</a>
-                                    	</td>
-                                    </tr>
-                                </table>
-                            </div>
+						<% if(list.isEmpty()) { %>
+						
+							<br><br>
+							<div align="center">작성하신 리뷰가 없습니다.</div>
+							
+						<% } else { %>
+						
+							<% for(Review r : list) { %>
+						
+		                        <div class="myReview-content">
+		                            
+		                            <div class="content-img">
+		                                <a href="#"><img src="resources/image/우비짱구.jpg"></a>
+		                            </div>
+		                            <div class="content-text">
+		                                <table>
+		                                    <tr>
+		                                        <th colspan="3">
+		                                            <h5><%= r.getProduct() %></h5>
+		                                        </th>
+		                                    </tr>
+		                                    <tr>
+		                                        <td width="50" style="color: #707070;"><%= r.getUser() %></td>
+		                                        <td style="color: #8c8c8c;">|</td>
+		                                        <td style="color: #707070;"><%= r.getReviewDate() %></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td colspan="3">
+		                                            <p><%= r.getReviewContent() %></p>
+		                                        </td>
+		                                    </tr>
+		                                    <tr>
+		                                    	<td colspan="3">
+		                                    		<a href="<%= contextPath %>/updateReviewForm.us?rno=<%= r.getReviewNo() %>">수정하기</a>
+		                                    	</td>
+		                                    </tr>
+		                                </table>
+		                            </div>
+		
+		                            <div class="content-delete">
+		                                <button class="close" onclick="return reviewDelete();">X</button>
+		                            </div>
+		
+		                        </div>
+                        
+                        	<% } %>
+                        
+                       	<% } %>
+                        
+                        <script>
 
-                            <div class="content-delete">
-                                <button class="close" onclick="return reviewDelete();">X</button>
-                            </div>
-
-                            <script>
-
-                                function reviewDelete() {
-        
-                                    if(confirm("작성한 한줄평을 삭제하시겠습니까?")) {
-                                        location.href = "#";
-                                    }
-                                    else {
-                                        return false;
-                                    }
-        
+                            function reviewDelete() {
+    
+                                if(confirm("작성한 한줄평을 삭제하시겠습니까?")) {
+                                    location.href = "#";
                                 }
-        
-                            </script>
+                                else {
+                                    return false;
+                                }
+    
+                            }
+    
+                        </script>
 
-                        </div>
-
-                        <div class="myReview-content">
-                            
-                            <div class="content-img">
-                                <a href="#"><img src="resources/image/회사원짱구.png"></a>
-                            </div>
-                            <div class="content-text">
-                                <table>
-                                    <tr>
-                                        <th colspan="3">
-                                            <h5>짱구는 못말려 : 신입사원이 된 짱구</h5>
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <td width="50" style="color: #707070;">us**01</td>
-                                        <td style="color: #8c8c8c;">|</td>
-                                        <td style="color: #707070;">2023-07-27</td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="3">
-                                            <p>인생작입니다. 강추!!</p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                    	<td colspan="3">
-                                    		<a href="#">수정하기</a>
-                                    	</td>
-                                    </tr>
-                                </table>
-                            </div>
-                            <div class="content-delete">
-                                <button class="close" onclick="return ReviewDelete();">X</button>
-                            </div>
-
+                        <div class="paging-area" align="center">
+                        <% if(!list.isEmpty()) { %>
+                            <% if(pi.getCurrentPage() != 1) { %>
+				            	<button onclick="location.href='<%= contextPath %>/myReview.us?cpage=<%= pi.getCurrentPage() - 1 %>'">&lt;</button>
+				            <% } %>
+				            
+				            <% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
+				            	<% if(p == pi.getCurrentPage()) { %>
+				            		<button disabled style="background-color: #cecece; color: #707070"><%= p %></button>
+				            	<% } else { %>
+				            		<button onclick="location.href='<%= contextPath %>/myReview.us?cpage=<%= p %>'"><%= p %></button>
+				            	<% } %>
+				            <% } %>
+				            
+				            <% if(pi.getCurrentPage() != pi.getMaxPage()) { %>
+				            	<button onclick="location.href='<%= contextPath %>/myReview.us?cpage=<%= pi.getCurrentPage() + 1 %>'">&gt;</button>
+				            <% } %>
+				        <% } %>    
                         </div>
 
                     </div>

@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	int count = (int)request.getAttribute("count");
+
+	String price = ((String)request.getAttribute("price") == null) ? "0" : (String)request.getAttribute("price");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -150,6 +155,9 @@
     #description {
         width: 70%;
     }
+    #description b {
+    	color: blue;
+    }
     #selectLevel {
         margin: 10px;
         display: block;
@@ -267,9 +275,9 @@
                             </div>
                             <div id="description">
 
-                                <h4><u><%= loginMember.getUserName() %></u> 님의 회원등급은 <u><%= loginMember.getGrade() %></u> 입니다.</h4>
+                                <h4><b><%= loginMember.getUserName() %></b> 님의 회원등급은 <b><%= loginMember.getGrade() %></b> 입니다.</h4>
                                 <br>
-                                <h6>주문 X건 | 주문금액 X원</h6>
+                                <h6>주문 <b><%= count %></b>건 | 주문금액 <b><%= price %></b>원</h6>
                                 <br>
                                 <button id="selectLevel">등급 알아보기</button>
 

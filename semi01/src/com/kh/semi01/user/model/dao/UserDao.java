@@ -7,11 +7,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
 import static com.kh.semi01.common.JDBCTemplate.*;
+
+import com.kh.semi01.common.model.vo.PageInfo;
+import com.kh.semi01.user.model.vo.Review;
 import com.kh.semi01.user.model.vo.User;
 
 public class UserDao {
@@ -441,6 +445,208 @@ private Properties prop = new Properties();
 			
 			pstmt.setString(1, updatePwd);
 			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int selectBookCount(Connection conn, int userNo) {
+		
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBookCount");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+		
+	}
+	
+	public String selectBookPrice(Connection conn, int userNo) {
+		
+		String price = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectBookPrice");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				price = rset.getString("price");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return price;
+		
+	}
+	
+	public int selectReviewCount(Connection conn, int userNo) {
+		
+		int reviewCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReviewCount");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				reviewCount = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return reviewCount;
+		
+	}
+	
+	public ArrayList<Review> selectAllReview(Connection conn, int userNo, PageInfo pi) {
+		
+		ArrayList<Review> list = new ArrayList<Review>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAllReview");
+		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getReviewLimit() + 1;
+		int endRow = startRow + pi.getReviewLimit() - 1;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Review(rset.getInt("review_no"),
+									rset.getString("product_title"),
+									rset.getString("review_content"),
+									rset.getString("user_id"),
+									rset.getString("review_date")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	
+	public Review selectReview(Connection conn, int reviewNo) {
+		
+		Review r = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectReview");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, reviewNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				r = new Review();
+				
+				r.setReviewNo(rset.getInt("review_no"));
+				r.setProduct(rset.getString("product_title"));
+				r.setUser(rset.getString("user_id"));
+				r.setReviewDate(rset.getString("review_date"));
+				r.setReviewContent(rset.getString("review_content"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return r;
+		
+	}
+	
+	public int updateReview(Connection conn, int reviewNo, String reviewContent) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("updateReview");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, reviewContent);
+			pstmt.setInt(2, reviewNo);
 			
 			result = pstmt.executeUpdate();
 			

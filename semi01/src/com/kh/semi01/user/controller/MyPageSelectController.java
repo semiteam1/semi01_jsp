@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class MyPageSelectController
@@ -27,7 +28,16 @@ public class MyPageSelectController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/user/myPage.jsp").forward(request, response);
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute("loginMember") == null) {
+			session.setAttribute("alertMsg", "로그인 후에 이용해주세요.");
+			
+			response.sendRedirect(request.getContextPath());
+		}
+		else {
+			request.getRequestDispatcher("views/user/myPage.jsp").forward(request, response);
+		}
 		
 	}
 

@@ -123,7 +123,7 @@
     }
     .myTicket-content {
         width: 80%;
-        height: 250px;
+        height: 200px;
         margin: auto;
         /* border: 1px solid blue; */
         line-height: 3;
@@ -156,7 +156,7 @@
         width: 60%;
     }
     .content-text>table {
-    	line-height: 4;
+    	line-height: 3;
     }
     .content-text a:hover {
     	opacity: 0.5;
@@ -290,6 +290,7 @@
                                         <td class="form-title">공연 일시</td>
                                         <td class="form-content">2023.08.13 (일) 11:00</td>
                                     </tr>
+                                    <tr>
                                     	<td><a href="<%= contextPath %>/ticketDetail.us">상세보기</a></td>
                                         <td><a href="<%= contextPath %>/reviewWrite.us">한줄평쓰기</a></td>
                                     </tr>
