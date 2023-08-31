@@ -21,14 +21,17 @@
 	SELECT
 	       PRODUCT_NO
 	     , PRODUCT_TITLE
-	     , ADDRESS
-	     , START_PERIOD
-	     , END_PERIOD
+	     , SUBSTR(SUBSTR(ADDRESS, 0, INSTR(ADDRESS, '_', 1, 1)), 1, LENGTH(SUBSTR(ADDRESS, 0, INSTR(ADDRESS, '_', 1, 1)))-1) "ADDRESS"
+	     , TO_CHAR(START_PERIOD, 'YYYY/MM/DD') "START_PERIOD"
+	     , TO_CHAR(END_PERIOD, 'YYYY/MM/DD') "END_PERIOD"
 	     , LEVEL_NAME
 	     , RUN_TIME
 	     , PRICE
+	     , IMAGE_PATH
+	     , POSTER_NAME
 	  FROM PRODUCT
 	  JOIN LEVEL_INFO USING(PRODUCT_LEVEL)
+	  JOIN PRODUCT_IMG USING(PRODUCT_NO)
 	 WHERE PRODUCT_NO = ?
 </entry>
 
@@ -47,58 +50,96 @@ SELECT
 </entry>
 
 <entry key="selectProductTotalRank">
-SELECT 
-       PRODUCT_NO
-     , CATEGORY_TYPE
-     , PRODUCT_TITLE
-     , LOCAL_NO
-     , ADDRESS
-     , START_PERIOD
-     , END_PERIOD
-     , PRODUCT_LEVEL
-     , RUN_TIME
-     , PRICE
-  FROM PRODUCT
- WHERE PRODUCT_NO 
-    IN (
-       SELECT PRODUCT_NO
-         FROM (
-       SELECT
-              PRODUCT_NO
-            , COUNT(USER_NO) AS "좋아요_수"
-        FROM
-             PRODUCT_LIKE
-       GROUP BY
-             PRODUCT_NO
-       ORDER BY
-             좋아요_수 DESC))
-         AND ROWNUM = 5
+	SELECT
+	       R.PRODUCT_NO,
+	       R.PRODUCT_TITLE,
+	       TO_CHAR(R.START_PERIOD, 'YYYY/MM/DD') "START_PERIOD",
+	       TO_CHAR(R.END_PERIOD, 'YYYY/MM/DD') "END_PERIOD"
+	  FROM 
+	     (
+	SELECT
+	       P.PRODUCT_NO,
+	       P.PRODUCT_TITLE,
+	       P.START_PERIOD,
+	       P.END_PERIOD,
+	       COUNT(PL.USER_NO) AS "좋아요_수"
+	  FROM
+	       PRODUCT_LIKE PL
+	  JOIN
+	       PRODUCT P
+	    ON
+	       PL.PRODUCT_NO = P.PRODUCT_NO
+	 GROUP BY
+	       P.PRODUCT_NO,
+	       P.PRODUCT_TITLE,
+	       P.START_PERIOD,
+	       P.END_PERIOD
+	 ORDER BY
+	       "좋아요_수" DESC,
+	       PRODUCT_TITLE ASC
+	     ) R
+	<![CDATA[WHERE ROWNUM <= 5]]>
 </entry>
 
 <entry key="selectProductTotalRankIMG">
-SELECT 
-       PRODUCT_NO
-     , POSTER_NAME
-     , DETAIL1_NAME
-     , DETAIL2_NAME
-     , DETAIL3_NAME
-     , DETAIL4_NAME
-     , DETAIL5_NAME
-     , IMAGE_PATH
-  FROM PRODUCT_IMG
- WHERE PRODUCT_NO 
-    IN (
-       SELECT PRODUCT_NO
-         FROM (
-       SELECT
-              PRODUCT_NO
-            , COUNT(USER_NO) AS "좋아요_수"
-        FROM
-             PRODUCT_LIKE
-       GROUP BY
-             PRODUCT_NO
-       ORDER BY
-             좋아요_수 DESC))
-         AND ROWNUM = 5
+	SELECT
+	       R.PRODUCT_NO,
+	       R.POSTER_NAME,
+	       R.DETAIL1_NAME,
+	       R.DETAIL2_NAME,
+	       R.DETAIL3_NAME,
+	       R.DETAIL4_NAME,
+	       R.DETAIL5_NAME,
+	       R.IMAGE_PATH
+	 FROM
+	    (
+   SELECT
+	      PI.PRODUCT_NO,
+	      P.PRODUCT_TITLE,
+	      PI.POSTER_NAME,
+	      PI.DETAIL1_NAME,
+	      PI.DETAIL2_NAME,
+	      PI.DETAIL3_NAME,
+	      PI.DETAIL4_NAME,
+	      PI.DETAIL5_NAME,
+	      PI.IMAGE_PATH,
+	      COUNT(PL.USER_NO) AS "좋아요_수"
+	 FROM
+	      PRODUCT_LIKE PL
+	 JOIN
+	      PRODUCT_IMG PI
+	   ON
+	      PL.PRODUCT_NO = PI.PRODUCT_NO
+	 JOIN
+	      PRODUCT P
+	   ON
+	      P.PRODUCT_NO = PI.PRODUCT_NO
+	GROUP BY
+	      PI.PRODUCT_NO,
+	      P.PRODUCT_TITLE,
+	      PI.POSTER_NAME,
+  	      PI.DETAIL1_NAME,
+	      PI.DETAIL2_NAME,
+	      PI.DETAIL3_NAME,
+	      PI.DETAIL4_NAME,
+	      PI.DETAIL5_NAME,
+	      PI.IMAGE_PATH
+	ORDER BY
+	      "좋아요_수" DESC,
+	      PRODUCT_TITLE ASC
+	        ) R
+<![CDATA[WHERE ROWNUM <= 5]]>
+</entry>
+
+<entry key="selectScreeningInfo">
+	SELECT 
+	       PRODUCT_NO
+	     , SCREENING_DATE
+	     , SCREENING_DAY_TIME
+	     , SCREENING_NIGHT_TIME
+	     , SCREENING_DAY_SEAT
+	     , SCREENING_NIGHT_SEAT
+	  FROM SCREENING_INFO
+	 WHERE PRODUCT_NO = ?
 </entry>
 </properties>

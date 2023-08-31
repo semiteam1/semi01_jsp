@@ -1,18 +1,29 @@
+<%@page import="com.kh.semi01.product.model.vo.ScreeningInfo"%>
+<%@page import="java.sql.Date"%>
 <%@page import="com.kh.semi01.product.model.vo.ProductIMG"%>
 <%@page import="com.kh.semi01.product.model.vo.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
 	Product p = (Product)request.getAttribute("p");
 	ProductIMG pi = (ProductIMG)request.getAttribute("pi");
+	ScreeningInfo si = (ScreeningInfo)request.getAttribute("si");
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wlk95u7r30&submodules=geocoder"></script>
+<script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=wlk95u7r30"></script>
+<title>티켓딱대 상품 상세페이지</title>
 <style>
+
+
 	.outer{
 		width: 1180px;
         margin: auto;
@@ -156,6 +167,10 @@
             cursor: pointer;
         }
 
+		.booked_btn:hover{
+			background-color: darkred;
+		}
+
         .booked_part1_calender1{
             /* border: 5px solid blue; */
             height: 100%;
@@ -164,12 +179,15 @@
             font-size: 15px;
             font-weight: 900;
             padding-left: 20px;
+			margin-right: 50px;
         }
         
         .booked_part1_calender2{
             height: 100%;
-            width: 30%;
-            
+            width: 29%;
+            float: left;
+			padding-top: 40px;
+
         }
 
         .booked_part1_calender3{
@@ -213,6 +231,11 @@
             padding-right: 120px;
             cursor: pointer;
         }
+
+		.click{
+			background-color: black;
+			color: white;
+		}
         
 
 
@@ -331,9 +354,11 @@
 	<div class="outer">
 
 		<div class="product_img_info">
-			<div id="product_img"><img src="<%= p.getImagePath() %>/ <%= p.getPosterName() %>" ></div>
+			<div id="product_img"><img src="<%= p.getImagePath() %>/<%= p.getPosterName() %>" ></div>
+			<% System.out.println("p : " + p); %>
 			<div id="product_info">
 				<div><h1><%= p.getProductTitle() %></h1></div>
+				<br>
 				<hr style="border: 1px solid black;">
 				<ul id="product_info_ul">
 					<li id="product_info_li">
@@ -342,11 +367,11 @@
 					</li>
 					<li id="product_info_li">
 						<span id="product_info_li_span1">관람시간</span>
-						<div><%= p.getRunTime() %></div>
+						<div><%= p.getRunTime() %>분</div>
 					</li>
 					<li id="product_info_li">
 						<span id="product_info_li_span1">기간</span>
-						<div><%= p.getStartPeriod() %> ~<br> <%= p.getEndPeriod() %></div>
+						<div><%= p.getStartPeriod() %> ~ <%= p.getEndPeriod() %></div>
 					</li>
 					<li id="product_info_li">
 						<span id="product_info_li_span1">관람등급</span>
@@ -355,9 +380,9 @@
 				<br>
 				</ul>
 
-				<br><br><br>
+				<br><br>
 				<hr>
-				
+				<br>
 				<ul id="product_info_2">
 					<li>
 						<span id="product_info_2_span">가격</span>
@@ -375,8 +400,8 @@
 								<li>[회원할인] 실버 5% 할인</li>
 								<li>[회원할인] 골드 10% 할인</li>
 								<li>[회원할인] 마스터 15% 할인</li>
-								<li>[카드할인] 현대카드 10% 할인</li>
-								<li>[카드할인] 롯데카드 5% 할인</li>
+								<!-- <li>[카드할인] 현대카드 10% 할인</li>
+								<li>[카드할인] 롯데카드 5% 할인</li> -->
 							</ul>
 						</div>
 					</li>
@@ -393,10 +418,28 @@
 						<br><br>
 						<p id="step">step 1</p><br>
 						날짜 선택
+
 					</div>
 
 					<div class="booked_part1_calender2">
-						달력
+						<input type="date" id="dateInput" value="xxx" name="dd">
+							<script>
+							const startPeriodString = "<%= p.getStartPeriod() %>";
+							const endPeriodString = "<%= p.getEndPeriod() %>";
+
+							const startPeriodDate = new Date(startPeriodString);
+							const endPeriodDate = new Date(endPeriodString);
+
+							const minDate = new Date(startPeriodDate);
+							minDate.setDate(minDate.getDate() + 1);
+
+							const maxDate = new Date(endPeriodDate);
+							maxDate.setDate(maxDate.getDate() + 1);
+
+							const dateInput = document.getElementById("dateInput");
+							dateInput.min = minDate.toISOString().split('T')[0];
+							dateInput.max = maxDate.toISOString().split('T')[0];
+							</script>
 					</div>
 				</div>
 				<div class="booked_part2">
@@ -406,18 +449,50 @@
 						회차 선택
 					</div>
 					<div class="booked_part2_ampm2" align="center">
-						<button class="booked_part2_ampm">11시 00분</button>
-						<button class="booked_part2_ampm">18시 00분</button>
+						<button class="booked_part2_ampm non_click" id="dayTime">11 : 00</button>
+						<button class="booked_part2_ampm non_click" id="nightTime">18 : 00</button>
 					</div>
+					
 				</div>
 				<div class="booked_part3">
 					<br><br>
 					<b>예매 가능 좌석</b>
 					<br><br><br><br>
-					<b class="booked_part3_b">20매</b>
+					<b class="booked_part3_b" id="seatCount"></b>
 					
 				</div>
 			</div>
+					<script type="text/javascript">
+						const dayTime = document.getElementById("dayTime");
+						const nightTime = document.getElementById("nightTime");
+						const seatCount = document.getElementById("seatCount");
+						
+
+						dayTime.addEventListener("click", function() {
+				            seatCount.textContent = "<%= si.getScreeningDaySeat() %>매";
+				        });
+
+						nightTime.addEventListener("click", function() {
+				            seatCount.textContent = "<%= si.getScreeningNightSeat() %>매";
+				        });
+						
+						
+						const nonClick = document.querySelectorAll(".non_click");
+
+						function handleClick(event) {
+						// div에서 모든 "click" 클래스 제거
+						nonClick.forEach((e) => {
+							e.classList.remove("click");
+						});
+						// 클릭한 div만 "click"클래스 추가
+						event.target.classList.add("click");
+						}
+
+						nonClick.forEach((e) => {
+						e.addEventListener("click", handleClick);
+						});
+						
+					</script>
 			
 			<div class="booked_btn_form">
 				<button type="submit" class="booked_btn" onclick="book();">예매하기</button>
@@ -431,6 +506,8 @@
 					alert("로그인 후 이용해주세요");
 					location.href="<%= contextPath %>/login.ur";
 				}else{
+					
+					
 				window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");					
 				}
 			}
@@ -451,9 +528,16 @@
 
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 		<!-- 상품관련정보 -->
-		  
 		<div id="tab1" class="tab-content">
-			<img src="<%= pi.getImagePath() %> / <%= pi.getDetail1Name() %>">
+
+
+		
+		<img src="<%= pi.getImagePath() %>/<%= pi.getDetail1Name() %>">
+		<img src="<%= pi.getImagePath() %>/<%= pi.getDetail2Name() %>">
+		<img src="<%= pi.getImagePath() %>/<%= pi.getDetail3Name() %>">
+		<img src="<%= pi.getImagePath() %>/<%= pi.getDetail4Name() %>">
+		<img src="<%= pi.getImagePath() %>/<%= pi.getDetail5Name() %>">
+		
 		</div>
 		  
 		<div id="tab2" class="tab-content">
@@ -506,7 +590,205 @@
 			<hr style="border: 1px solid black;">
 			<br>
 			<img src="resource/이미지자료/류지완 샘플이미지/공연장정보 샘플.PNG">
+			<!-- <div id="map" style="width:1180px;height:700px;"></div> -->
 		  </div>
+		  <!-- <script> -->
+
+			<!-- // var mapOptions = {
+			// 	center: new naver.maps.LatLng(response),
+			// 	zoom: 15
+			// };
+			// var map = new naver.maps.Map('map', mapOptions);
+
+			// var map = new naver.maps.Map("map", {
+			// 		center: new naver.maps.LatLng(37.3595316, 127.1052133),
+			// 		zoom: 15,
+			// 		mapTypeControl: true
+			// 	});
+
+			// 	var infoWindow = new naver.maps.InfoWindow({
+			// 		anchorSkew: true
+			// 	});
+
+			// 	map.setCursor('pointer');
+
+			// 	function searchCoordinateToAddress(latlng) {
+
+			// 		infoWindow.close();
+
+			// 		naver.maps.Service.reverseGeocode({
+			// 			coords: latlng,
+			// 			orders: [
+			// 				naver.maps.Service.OrderType.ADDR,
+			// 				naver.maps.Service.OrderType.ROAD_ADDR
+			// 			].join(',')
+			// 		}, function(status, response) {
+			// 			if (status === naver.maps.Service.Status.ERROR) {
+			// 				return alert('Something Wrong!');
+			// 			}
+
+			// 			var items = response.v2.results,
+			// 				address = '',
+			// 				htmlAddresses = [];
+
+			// 			for (var i=0, ii=items.length, item, addrType; i<ii; i++) {
+			// 				item = items[i];
+			// 				address = makeAddress(item) || '';
+			// 				addrType = item.name === 'roadaddr' ? '[도로명 주소]' : '[지번 주소]';
+
+			// 				htmlAddresses.push((i+1) +'. '+ addrType +' '+ address);
+			// 			}
+
+			// 			infoWindow.setContent([
+			// 				'<div style="padding:10px;min-width:200px;line-height:150%;">',
+			// 				'<h4 style="margin-top:5px;">검색 좌표</h4><br />',
+			// 				htmlAddresses.join('<br />'),
+			// 				'</div>'
+			// 			].join('\n'));
+
+			// 			infoWindow.open(map, latlng);
+			// 		});
+			// 	}
+
+			// 	function searchAddressToCoordinate(address) {
+			// 		naver.maps.Service.geocode({
+			// 			query: address
+			// 		}, function(status, response) {
+			// 			if (status === naver.maps.Service.Status.ERROR) {
+			// 				return alert('Something Wrong!');
+			// 			}
+
+			// 			if (response.v2.meta.totalCount === 0) {
+			// 				return alert('totalCount' + response.v2.meta.totalCount);
+			// 			}
+
+			// 			var htmlAddresses = [],
+			// 				item = response.v2.addresses[0],
+			// 				point = new naver.maps.Point(item.x, item.y);
+
+			// 			if (item.roadAddress) {
+			// 				htmlAddresses.push('[도로명 주소] ' + item.roadAddress);
+			// 			}
+
+			// 			if (item.jibunAddress) {
+			// 				htmlAddresses.push('[지번 주소] ' + item.jibunAddress);
+			// 			}
+
+			// 			if (item.englishAddress) {
+			// 				htmlAddresses.push('[영문명 주소] ' + item.englishAddress);
+			// 			}
+
+			// 			infoWindow.setContent([
+			// 				'<div style="padding:10px;min-width:200px;line-height:150%;">',
+			// 				'<h4 style="margin-top:5px;">검색 주소 : '+ address +'</h4><br />',
+			// 				htmlAddresses.join('<br />'),
+			// 				'</div>'
+			// 			].join('\n'));
+
+			// 			map.setCenter(point);
+			// 			infoWindow.open(map, point);
+			// 		});
+			// 	}
+
+			// 	function initGeocoder() {
+			// 		map.addListener('click', function(e) {
+			// 			searchCoordinateToAddress(e.coord);
+			// 		});
+
+			// 		$('#address').on('keydown', function(e) {
+			// 			var keyCode = e.which;
+
+			// 			if (keyCode === 13) { // Enter Key
+			// 				searchAddressToCoordinate($('#address').val());
+			// 			}
+			// 		});
+
+			// 		$('#submit').on('click', function(e) {
+			// 			e.preventDefault();
+
+			// 			searchAddressToCoordinate($('#address').val());
+			// 		});
+
+			// 		searchAddressToCoordinate('수택동 684-6');
+			// 	}
+
+			// 	function makeAddress(item) {
+			// 		if (!item) {
+			// 			return;
+			// 		}
+
+			// 		var name = item.name,
+			// 			region = item.region,
+			// 			land = item.land,
+			// 			isRoadAddress = name === 'roadaddr';
+
+			// 		var sido = '', sigugun = '', dongmyun = '', ri = '', rest = '';
+
+			// 		if (hasArea(region.area1)) {
+			// 			sido = region.area1.name;
+			// 		}
+
+			// 		if (hasArea(region.area2)) {
+			// 			sigugun = region.area2.name;
+			// 		}
+
+			// 		if (hasArea(region.area3)) {
+			// 			dongmyun = region.area3.name;
+			// 		}
+
+			// 		if (hasArea(region.area4)) {
+			// 			ri = region.area4.name;
+			// 		}
+
+			// 		if (land) {
+			// 			if (hasData(land.number1)) {
+			// 				if (hasData(land.type) && land.type === '2') {
+			// 					rest += '산';
+			// 				}
+
+			// 				rest += land.number1;
+
+			// 				if (hasData(land.number2)) {
+			// 					rest += ('-' + land.number2);
+			// 				}
+			// 			}
+
+			// 			if (isRoadAddress === true) {
+			// 				if (checkLastString(dongmyun, '면')) {
+			// 					ri = land.name;
+			// 				} else {
+			// 					dongmyun = land.name;
+			// 					ri = '';
+			// 				}
+
+			// 				if (hasAddition(land.addition0)) {
+			// 					rest += ' ' + land.addition0.value;
+			// 				}
+			// 			}
+			// 		}
+
+			// 		return [sido, sigugun, dongmyun, ri, rest].join(' ');
+			// 	}
+
+			// 	function hasArea(area) {
+			// 		return !!(area && area.name && area.name !== '');
+			// 	}
+
+			// 	function hasData(data) {
+			// 		return !!(data && data !== '');
+			// 	}
+
+			// 	function checkLastString (word, lastString) {
+			// 		return new RegExp(lastString + '$').test(word);
+			// 	}
+
+			// 	function hasAddition (addition) {
+			// 		return !!(addition && addition.value);
+			// 	}
+
+			// 	naver.maps.onJSContentLoaded = initGeocoder;
+
+			// </script> -->
 
 		  <div id="tab5" class="tab-content">
 			<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
@@ -544,7 +826,7 @@
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 		<!-- 제일 하단 추천상품 -->
 		<span style="font-weight: bold; font-size: 25px;">랭킹 딱대</span>
-				  <hr>
+				  <br><hr><br>
 
 				  <div class="recommend_img">
 					

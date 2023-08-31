@@ -7,6 +7,7 @@ import static com.kh.semi01.common.JDBCTemplate.*;
 import com.kh.semi01.product.model.dao.ProductDao;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
+import com.kh.semi01.product.model.vo.ScreeningInfo;
 
 public class ProductService {
 	
@@ -38,6 +39,14 @@ public class ProductService {
 		return pi;
 	}
 	
+	public ScreeningInfo selectScreeningInfo(int productNo) {
+		Connection conn = getConnection();
+		ScreeningInfo si = new ProductDao().selectScreeningInfo(conn, productNo);
+		
+		close(conn);
+		return si;
+	}
+	
 	public ArrayList<Product> selectProductTotalRank(){
 		Connection conn = getConnection();
 		ArrayList<Product> plist = new ProductDao().selectProductTotalRank(conn);
@@ -53,4 +62,6 @@ public class ProductService {
 		close(conn);
 		return ilist;
 	}
+	
+
 }

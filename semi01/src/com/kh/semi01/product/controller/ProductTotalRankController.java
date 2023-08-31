@@ -32,12 +32,13 @@ public class ProductTotalRankController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		ArrayList<Product> plist = new ProductService().selectProductTotalRank();
 		ArrayList<ProductIMG> ilist = new ProductService().selectProductTotalRankIMG();
-		
 		request.setAttribute("plist", plist);
 		request.setAttribute("ilist", ilist);
-		
+		System.out.println("컨트롤러 plist" + plist);
+		System.out.println("컨트롤러 ilist" + ilist);
 		request.getRequestDispatcher("index.jsp").forward(request, response);
 		
 	}

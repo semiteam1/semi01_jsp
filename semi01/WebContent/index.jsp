@@ -87,6 +87,7 @@
 
         .div_img{
             width: 20%;
+            height: 390px;
             float: left;
             padding-left: 10px;
             padding-right: 10px;
@@ -95,6 +96,7 @@
 
         .div_categoryRank_img{
             width: 16.5%;
+            height: 390px;
             float: left;
             padding-left: 10px;
             padding-right: 10px;
@@ -103,6 +105,7 @@
 
         .div_img img, .div_categoryRank_img img {
             border-radius: 10px;
+            height: 307px;
         }
 
         a:hover{
@@ -225,59 +228,19 @@
         <span style="font-weight: bold; font-size: 25px;">전체 랭킹 딱대</span>
         <br>
         <hr>
-        
-        
+
+		<% for(int i=0; i<plist.size(); i++) {%>
         <div class="div_img">
-            <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+            <a href="<%= contextPath %>/detail.pr?pno=<%= plist.get(i).getProductNo() %>">
+                <img src="<%= ilist.get(i).getImagePath() %>/<%= ilist.get(i).getPosterName() %>" alt="Fjords" style="width:100%">
                 <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
+                    <p class="caption1"><%= plist.get(i).getProductTitle() %></p>
+                    <p class="caption2"><%= plist.get(i).getStartPeriod() %> ~ <%= plist.get(i).getEndPeriod() %></p>
                 </div>
             </a>
         </div>
+		<% } %>
         
-        
-        <div class="div_img">
-            <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-            </a>
-        </div>
-        
-        
-        <div class="div_img">
-            <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-                </a>
-            </div>
-        
-            <div class="div_img">
-                <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-                </a>
-            </div>
-        
-            <div class="div_img">
-                <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-                </a>
-            </div>
             <br><br>
             <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
             <br><br><br>

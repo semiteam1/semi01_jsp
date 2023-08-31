@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.semi01.product.model.service.ProductService;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
+import com.kh.semi01.product.model.vo.ScreeningInfo;
 
 /**
  * Servlet implementation class ProductDetailView
@@ -46,10 +47,12 @@ public class ProductDetailController extends HttpServlet {
 		}else { // 조회 성공시
 			
 			ProductIMG pi = new ProductService().selectProductIMG(productNo);
+			ScreeningInfo si = new ProductService().selectScreeningInfo(productNo);
 			
 			request.setAttribute("p", p);
 			request.setAttribute("pi", pi);
-			
+			request.setAttribute("si", si);
+			System.out.println("pi  :2323" + pi);
 			request.getRequestDispatcher("views/product/productDetail.jsp").forward(request, response);
 			
 		}
