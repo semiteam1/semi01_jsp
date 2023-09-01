@@ -8,8 +8,10 @@ import java.util.ArrayList;
 import static com.kh.semi01.common.JDBCTemplate.*;
 
 import com.kh.semi01.common.model.vo.PageInfo;
+import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.user.model.dao.UserDao;
 import com.kh.semi01.user.model.vo.Book;
+import com.kh.semi01.user.model.vo.Grade;
 import com.kh.semi01.user.model.vo.Review;
 import com.kh.semi01.user.model.vo.User;
 
@@ -295,15 +297,27 @@ public class UserService {
 		
 	}
 	
-	public Book selectTicketDetail(int ticketNo) {
+	public Book selectTicketDetail(int bookedNo) {
 		
 		Connection conn = getConnection();
 		
-		Book b = new UserDao().selectTicketDetail(conn, ticketNo);
+		Book b = new UserDao().selectTicketDetail(conn, bookedNo);
 		
 		close(conn);
 		
 		return b;
+		
+	}
+	
+	public Grade selectGradeInfo(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		Grade g = new UserDao().selectGradeInfo(conn, userNo);
+		
+		close(conn);
+		
+		return g;
 		
 	}
 	

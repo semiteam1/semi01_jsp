@@ -5,6 +5,10 @@ public class Book {
 	private int bookedNo;		// 예매번호
 	private String user;		// 회원 => 조회 시 회원명 | 입력 시 회원번호
 	private String product;		// 상품 => 조회 시 상품명 | 입력 시 상품번호
+	private int audience;		// 관람인원수
+	private String payment;		// 결제수단 => 조회 시 결제수단명 | 입력 시 결제수단 번호
+	private String card;		// 카드종류 => 조회 시 카드사명 | 입력 시 카드사 번호
+	private int price;			// 가격
 	private String bookedDate;	// 예매날짜 => 입출력을 자유롭게 하기 위해서 String으로
 	private String screenDate;	// 관람날짜 => 입출력을 자유롭게 하기 위해서 String으로
 	private String titleImg;	// 포스터 이미지 조회용
@@ -15,20 +19,24 @@ public class Book {
 	public Book() {}
 
 	// 전체 매개변수 생성자
-	public Book(int bookedNo, String user, String product, String bookedDate, String screenDate, String titleImg,
-			String address, String status) {
+	public Book(int bookedNo, String user, String product, int audience, String payment, String card, int price,
+			String bookedDate, String screenDate, String titleImg, String address, String status) {
 		super();
 		this.bookedNo = bookedNo;
 		this.user = user;
 		this.product = product;
+		this.audience = audience;
+		this.payment = payment;
+		this.card = card;
+		this.price = price;
 		this.bookedDate = bookedDate;
 		this.screenDate = screenDate;
 		this.titleImg = titleImg;
 		this.address = address;
 		this.status = status;
 	}
-	
-	// 회원 예매내역 조회용 매개변수 생성자
+
+	// 예매내역 조회용 생성자
 	public Book(int bookedNo, String product, String screenDate, String titleImg, String address) {
 		super();
 		this.bookedNo = bookedNo;
@@ -38,6 +46,19 @@ public class Book {
 		this.address = address;
 	}
 
+	// 예매내역 상세 조회용 생성자
+	public Book(int bookedNo, String product, int audience, String payment, int price, String screenDate,
+			String address) {
+		super();
+		this.bookedNo = bookedNo;
+		this.product = product;
+		this.audience = audience;
+		this.payment = payment;
+		this.price = price;
+		this.screenDate = screenDate;
+		this.address = address;
+	}
+	
 	// getter-setter 메소드
 	public int getBookedNo() {
 		return bookedNo;
@@ -61,6 +82,38 @@ public class Book {
 
 	public void setProduct(String product) {
 		this.product = product;
+	}
+
+	public int getAudience() {
+		return audience;
+	}
+
+	public void setAudience(int audience) {
+		this.audience = audience;
+	}
+
+	public String getPayment() {
+		return payment;
+	}
+
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+
+	public String getCard() {
+		return card;
+	}
+
+	public void setCard(String card) {
+		this.card = card;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
 	}
 
 	public String getBookedDate() {
@@ -106,9 +159,10 @@ public class Book {
 	// toString() 메소드
 	@Override
 	public String toString() {
-		return "Book [bookedNo=" + bookedNo + ", user=" + user + ", product=" + product + ", bookedDate=" + bookedDate
+		return "Book [bookedNo=" + bookedNo + ", user=" + user + ", product=" + product + ", audience=" + audience
+				+ ", payment=" + payment + ", card=" + card + ", price=" + price + ", bookedDate=" + bookedDate
 				+ ", screenDate=" + screenDate + ", titleImg=" + titleImg + ", address=" + address + ", status="
 				+ status + "]";
-	}
+	}	
 	
 }

@@ -1,3 +1,6 @@
+<%@page import="com.kh.semi01.user.model.vo.Review"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.semi01.common.model.vo.PageInfo"%>
 <%@page import="com.kh.semi01.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -7,6 +10,7 @@
 	User loginMember = (User)session.getAttribute("loginMember");
 	
 	String alertMsg = (String)session.getAttribute("alertMsg");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -336,7 +340,7 @@
                         </div>
 
                         <div class="check">
-                            <a href="<%= contextPath %>/myTicket.us" class="header_util_link">예매확인/취소</a>
+                            <a href="<%= contextPath %>/myTicket.us?cpage=1" class="header_util_link">예매확인/취소</a>
                         </div>
 
                         <div class="sin">

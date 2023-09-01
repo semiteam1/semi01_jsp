@@ -10,12 +10,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import javax.naming.spi.DirStateFactory.Result;
 import javax.swing.text.html.HTMLDocument.HTMLReader.PreAction;
 
 import static com.kh.semi01.common.JDBCTemplate.*;
 
 import com.kh.semi01.common.model.vo.PageInfo;
+import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.user.model.vo.Book;
+import com.kh.semi01.user.model.vo.Grade;
 import com.kh.semi01.user.model.vo.Review;
 import com.kh.semi01.user.model.vo.User;
 
@@ -62,6 +65,7 @@ private Properties prop = new Properties();
 							 rset.getString("EMAIL"),
 							 rset.getString("PHONE"),
 							 rset.getString("GRADE_NAME"),
+							 rset.getString("ENROLL_DATE"),
 							 rset.getString("STATUS")
 							);
 						
@@ -137,6 +141,7 @@ private Properties prop = new Properties();
 							 rset.getString("EMAIL"),
 							 rset.getString("PHONE"),
 							 rset.getString("GRADE_NAME"),
+							 rset.getString("ENROLL_DATE"),
 							 rset.getString("STATUS")
 							);
 			}
@@ -179,6 +184,7 @@ private Properties prop = new Properties();
 							 rset.getString("EMAIL"),
 							 rset.getString("PHONE"),
 							 rset.getString("GRADE_NAME"),
+							 rset.getString("ENROLL_DATE"),
 							 rset.getString("STATUS")
 							);
 			}
@@ -221,6 +227,7 @@ private Properties prop = new Properties();
 							 rset.getString("EMAIL"),
 							 rset.getString("PHONE"),
 							 rset.getString("GRADE_NAME"),
+							 rset.getString("ENROLL_DATE"),
 							 rset.getString("STATUS")
 							);
 			}
@@ -263,6 +270,7 @@ private Properties prop = new Properties();
 							 rset.getString("EMAIL"),
 							 rset.getString("PHONE"),
 							 rset.getString("GRADE_NAME"),
+							 rset.getString("ENROLL_DATE"),
 							 rset.getString("STATUS")
 							);
 			}
@@ -392,6 +400,7 @@ private Properties prop = new Properties();
 							 rset.getString("email"), 
 							 rset.getString("phone"), 
 							 rset.getString("grade_name"), 
+							 rset.getString("ENROLL_DATE"),
 							 rset.getString("status"));
 			}
 			
@@ -764,7 +773,7 @@ private Properties prop = new Properties();
 		
 	}
 	
-	public Book selectTicketDetail(Connection conn, int ticketNo) {
+	public Book selectTicketDetail(Connection conn, int bookedNo) {
 		
 		Book b = null;
 		
@@ -772,6 +781,70 @@ private Properties prop = new Properties();
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectTicketDetail");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bookedNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				b = new Book(rset.getInt("booked_no"),
+							 rset.getString("product_title"),
+							 rset.getInt("audience"),
+							 rset.getString("payment_name"),
+							 rset.getInt("price"),
+							 rset.getString("screen_date"),
+							 rset.getString("address")
+							 );
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return b;
+		
+	}
+	
+	public Grade selectGradeInfo(Connection conn, int userNo) {
+		
+		Grade g = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectGradeInfo");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				g = new Grade(rset.getInt("grade_no"),
+							  rset.getString("grade_name"),
+							  rset.getDouble("grade_discount"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return g;
 		
 	}
 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	String email = (((User)session.getAttribute("loginMember")).getEmail() == null) ? "" : ((User)session.getAttribute("loginMember")).getEmail();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -10,27 +10,15 @@
 <title>티켓딱대</title>
 <style>
     /* 마이페이지 시작 */
-    div {
-        /* border: 1px solid red; */
-    }
-    .background {
-        background-color: #f8f8f8;
-        height: 800px;
-        /* border: 1px solid red; */
-    }
-    .outer {
-        /* border: 1px solid red; */
-        /* background-color: #f8f8f8; */
-        /* background-color: #f8f8f8; */
-        width: 50%;
-        height: 100%;
-        margin: auto;
-    }
+    
     #myPage-body {
         width: 100%;
         height: 80%;
+        /* border: 1px solid red; */
         background-color: white;
         border-radius: 20px;
+        /* background-color: #f8f8f8; */
+        /* background-color: white; */
     }
     #myPage-footer {
         width: 100%;
@@ -67,6 +55,15 @@
         color: #202020;
         font-size: 15px;
     }
+    .form-title {
+        color: #707070;
+        font-size: 15px;
+    }
+    .form-content>input {
+        color: #202020;
+        font-size: 14px;
+        border-style: none;
+    }
     #myPage-content {
         width: 80%;
         height: 100%;
@@ -92,16 +89,6 @@
     #myPage-content button:hover {
         opacity: 0.7;
     }
-    .form-title {
-        color: #707070;
-        font-size: 15px;
-        width: 100px;
-    }
-    .form-content>input {
-        color: #202020;
-        font-size: 14px;
-        /* border-style: none; */
-    }
     button {
         background-color: #f8f8f8;
         color: #8c8c8c;
@@ -120,13 +107,13 @@
     <div class="background">
 
         <div class="outer">
-    		
-    		<%@ include file = "../common/myPageLogo.jsp" %>
+    
+            <%@ include file = "../common/myPageLogo.jsp" %>
     
             <div id="myPage-body">
                 
-           		<%@ include file = "../common/myPageTap.jsp" %>
-                
+                <%@ include file = "../common/myPageTap.jsp" %>
+
                 <div id="right" class="float">
                     <div id="right-top">
                         <div id="myPage-title">
@@ -155,7 +142,7 @@
                                     </tr>
                                     <tr>
                                         <td class="form-title">이메일</td>
-                                        <td colspan="3" class="form-content"><input type="email" name="email" value="<%= email %>"></td>
+                                        <td colspan="3" class="form-content"><input type="email" name="email" value="<%= loginMember.getEmail() %>"></td>
                                     </tr>
                                     <tr>
                                         <td class="form-title">*생년월일</td>
@@ -172,38 +159,32 @@
                                     <tr>
                                         <td rowspan="3" class="form-title">관심있는 태그</td>
                                         <td>
-                                            <td>
-                                                <select name="interestMovie">
-                                                    <option value="1">로맨스(영화)</option>
-                                                    <option value="2">공포/스릴러(영화)</option>
-                                                    <option value="3">코미디(영화)</option>
-                                                    <option value="4">액션(영화)</option>
-                                                </select>
-                                            </td>
+	                                        <select name="interestMovie">
+	                                            <option value="1">로맨스(영화)</option>
+	                                            <option value="2">공포/스릴러(영화)</option>
+	                                            <option value="3">코미디(영화)</option>
+	                                            <option value="4">액션(영화)</option>
+	                                        </select>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <td>
-                                                <select name="interestDisplay">
-                                                    <option value="5">그림(전시)</option>
-                                                    <option value="6">작품(전시)</option>
-                                                    <option value="7">사진(전시)</option>
-                                                    <option value="8">체험(전시)</option>
-                                                </select>
-                                            </td>
+	                                        <select name="interestDisplay">
+	                                            <option value="5">그림(전시)</option>
+	                                            <option value="6">작품(전시)</option>
+	                                            <option value="7">사진(전시)</option>
+	                                            <option value="8">체험(전시)</option>
+	                                        </select>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <td>
-                                                <select name="interestShow">
-                                                    <option value="9">뮤지컬(공연)</option>
-                                                    <option value="10">연극(공연)</option>
-                                                    <option value="11">클래식(공연)</option>
-                                                    <option value="12">콘서트(공연)</option>
-                                                </select>
-                                            </td>
+	                                        <select name="interestShow">
+	                                            <option value="9">뮤지컬(공연)</option>
+	                                            <option value="10">연극(공연)</option>
+	                                            <option value="11">클래식(공연)</option>
+	                                            <option value="12">콘서트(공연)</option>
+	                                        </select>
                                         </td>
                                     </tr>
                                 </table>

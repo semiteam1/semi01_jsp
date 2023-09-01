@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MyReviewWriteController
  */
-@WebServlet("/reviewWrite.us")
-public class MyReviewWriteController extends HttpServlet {
+@WebServlet("/reviewWriteForm.us")
+public class MyReviewWriteFormController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyReviewWriteController() {
+    public MyReviewWriteFormController() {
         super();
         // TODO Auto-generated constructor stub
     }
