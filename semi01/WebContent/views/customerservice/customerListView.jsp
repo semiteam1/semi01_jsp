@@ -155,7 +155,7 @@
         <div class="rightmenu">
             <div id="bodyright"> 
                 <div id="son">
-                    <a href="<%=contextPath %>/qna.qo" class="qnalogo"><img src="resource/이미지자료/고객센터/qna.png" id="qnalogomain" alt=""></a>
+                    <a href="<%=contextPath %>/list.qo" class="qnalogo"><img src="resource/이미지자료/고객센터/qna.png" id="qnalogomain" alt=""></a>
                 </div>
                 <div id="son">
                     <a href="#" class="reservelogo"><img src="resource/이미지자료/고객센터/reserve.png" id="reservelogomain" alt=""></a>

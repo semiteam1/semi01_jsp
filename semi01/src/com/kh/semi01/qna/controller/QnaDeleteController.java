@@ -1,28 +1,28 @@
 package com.kh.semi01.qna.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.semi01.qna.model.service.QnaService;
-import com.kh.semi01.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class QnaListController
+ * Servlet implementation class QnaDeleteController
  */
-@WebServlet("/list.qo")
-public class QnaListController extends HttpServlet {
+@WebServlet("/delete.me.qo")
+public class QnaDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QnaListController() {
+    public QnaDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +31,19 @@ public class QnaListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Qna> list = new QnaService().selectQnaList();
+		int qnaNo = Integer.parseInt(request.getParameter("num"));
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/customerservice/qnaList.jsp").forward(request, response);
+		int result = new QnaService().deleteQna(qnaNo);
+		HttpSession session = request.getSession();
 		
-		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "Q&A 삭제에 성공하였습니다.");
+			response.sendRedirect(request.getContextPath()+ "/list.qo");
+		}else {
+			request.setAttribute("errorMsg", "Q&A 삭제에 실패하였습니다.");
+			RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			view.forward(request, response);
+		}
 	}
 
 	/**

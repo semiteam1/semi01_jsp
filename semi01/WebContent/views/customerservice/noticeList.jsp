@@ -108,7 +108,7 @@
         <div class="leftmenu">
             <div onclick="location.href='<%=contextPath %>/customer.cu'">고객센터 홈</div>
             <div id="announce" style="color:red" onclick="location.href='<%=contextPath %>/list.no';">공지사항 </div>
-            <div onclick="location.href='<%=contextPath %>/qna.qo'">Q&A</div>
+            <div onclick="location.href='<%=contextPath %>/list.qo'">Q&A</div>
         </div>
 
 
