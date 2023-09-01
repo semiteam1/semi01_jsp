@@ -354,7 +354,7 @@
                         </div>
 
                         <div class="contact">
-                            <a href="#" class="header_util_link">고객센터</a>
+                            <a href="<%=contextPath %>/customer.cu" class="header_util_link">고객센터</a>
                         </div>
                     </div> 
                     <%} %>

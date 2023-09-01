@@ -1,5 +1,10 @@
+<%@page import="com.kh.semi01.qna.model.vo.Qna"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	ArrayList<Qna> list = (ArrayList<Qna>)request.getAttribute("list");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -63,7 +68,7 @@
        
         /*테이블영역*/
         .list-area{
-        border: 1px solid white;
+        border: 1px solid black;
         width: 100%;
         text-align: center;
         }
@@ -95,11 +100,24 @@
         <!-- 바디의 왼쪽메뉴-->
         <div class="leftmenu">
             <div onclick="location.href='<%=contextPath %>/customer.cu'">고객센터 홈</div>
-            <div onclick="location.href='<%=contextPath %>/notice.no';">공지사항</div>
+            <div onclick="location.href='<%=contextPath %>/list.no';">공지사항</div>
             <div id="qnamenu" style="color:red" >Q&A </div>
         </div>        
         <!-- 바디의 오른쪽메뉴-->
         <div class="rightmenu">
+        	<!--  현재 로그인한 사용자가 관리자 일 경우 보여질 div -->
+            <% if(loginMember !=null )  {%>
+            <div align ="right" style="width: 870px;">
+            
+            <button onclick="location.href='<%=contextPath %>/enrollForm.qo'">Q&A글작성</button>
+            </div>
+        	<%} %>
+        	<%if(loginMember !=null &&loginMember.getUserId().equals("admin")) {%>
+        	<div align ="right" style="width: 870px;">
+            
+            <button onclick="location.href='<%=contextPath %>/answerEnrollForm.qo'">Q&A답변작성</button>
+            </div>
+        	<%} %>
             <table align="center" class="list-area">
                 <thead>
                     <tr>
@@ -109,24 +127,30 @@
                         <th width="100">등록일자</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody>                
                     <!-- case1. 게시글이 없을 경우-->
+                    <%if(list.isEmpty()){ %>
                     <tr>
                         <th colspan="4">조회된 게시글이 없습니다.</th>
                     </tr>
+                    <%}else { %>
                     <!-- case2. 게시글이 있을 경우-->
+                    <%for(Qna q:list){ %>
                     <tr>
-                        <td>1</td>
-                        <td>윤대표의 잘생김의 비결은 뭔가요?</td>
-                        <td>조과장</td>
-                        <td>2023-08-25</td>
+                        <td><%=q.getQnaNo() %></td>
+                        <td><%=q.getQnaTitle() %> <button onclick="location.href='<%=contextPath %>/detail.qo.no?num='+num">detail</button></td>
+                        <td><%=q.getUser() %></td>
+                        <td><%=q.getQnaDate() %></td>
                     </tr>
+                    	<%} %>
+                    <%for(Qna q:list){ %>
                     <tr>
-                        <td>2</td>
-                        <td>용석님은 코딩을 너무 잘하는데 비결이 뭔가요?</td>
-                        <td>조과장</td>
-                        <td>2021-08-21</td>
+                    	<td colspan="3"><%=q.getQnaReply() %><td>
                     </tr>
+                    	<%} %>
+                    <%} %>
+                    
+                    
                 </tbody>
             </table>
         </div>
@@ -136,7 +160,22 @@
  <script>
         $(function(){
             $(".leftmenu").hover().css("cursor","pointer");
-            
+            $(".rightmenu tr").click(function(){
+            	const $r = $(this).next();
+            	
+            	if($r.css("display")=="none"){
+            		 $(this).siblings("r").slideUp();
+                     //보여지게끔
+                     // $p.css("display","block");
+                     $r.slideDown();
+            		
+            	}else {
+                    $r.slideUp();
+                }
+            	//const num = $(this).children().eq(0).text()
+            	
+            	//location.href = '<%=contextPath%>/detail.qo?num=' + num;
+            });
         })
     </script>
 

@@ -24,6 +24,15 @@ public class Qna {
 		this.qnaDate = qnaDate;
 	}
 
+	public Qna(int qnaNo, String qnaTitle, String qnaContent,String user , String qnaDate) {
+		super();
+		this.qnaNo = qnaNo;
+		this.qnaTitle = qnaTitle;
+		this.qnaContent = qnaContent;
+		this.user = user;
+		this.qnaDate = qnaDate;
+	}
+
 	// getter-setter 메소드
 	public int getQnaNo() {
 		return qnaNo;

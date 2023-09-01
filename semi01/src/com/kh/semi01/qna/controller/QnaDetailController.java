@@ -1,28 +1,26 @@
-package com.kh.semi01.notice.controller;
+package com.kh.semi01.qna.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi01.notice.model.service.NoticeService;
-import com.kh.semi01.notice.model.vo.Notice;
+import com.kh.semi01.qna.model.service.QnaService;
+import com.kh.semi01.qna.model.vo.Qna;
 
 /**
- * Servlet implementation class NoticeListController
+ * Servlet implementation class QnaDetailController
  */
-@WebServlet("/list.no")
-public class NoticeListController extends HttpServlet {
+@WebServlet("/detail.qo")
+public class QnaDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeListController() {
+    public QnaDetailController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,10 +29,12 @@ public class NoticeListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Notice> list = new NoticeService().selectNoticeList();
+		int qnaNo= Integer.parseInt(request.getParameter("num"));
 		
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/customerservice/noticeList.jsp").forward(request, response);
+		Qna q =new QnaService().selectQna(qnaNo);
+		
+		request.setAttribute("q", q);
+		request.getRequestDispatcher("views/customerservice/qnaDetailView.jsp").forward(request, response);
 	}
 
 	/**
