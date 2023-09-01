@@ -6,6 +6,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.kh.semi01.user.model.service.UserService;
+import com.kh.semi01.user.model.vo.Review;
 
 /**
  * Servlet implementation class MyReviewUpdateController
@@ -27,7 +31,25 @@ public class MyReviewUpdateController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/user/myReviewUpdate.jsp").forward(request, response);
+		request.setCharacterEncoding("UTF-8");
+		
+		int reviewNo = Integer.parseInt(request.getParameter("reviewNo"));
+		String reviewContent = request.getParameter("reviewContent");
+		
+		Review r = new UserService().updateReview(reviewNo, reviewContent);
+		
+		HttpSession session = request.getSession();
+		
+		if(r == null) {
+			session.setAttribute("alertMsg", "리뷰 수정에 실패했습니다.");
+		}
+		else {
+			session.setAttribute("alertMsg", "리뷰 수정에 성공했습니다.");
+			
+			session.setAttribute("r", r);
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/myReview.us?cpage=1");
 		
 	}
 

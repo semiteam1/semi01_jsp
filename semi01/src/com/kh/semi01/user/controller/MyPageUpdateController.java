@@ -46,14 +46,6 @@ public class MyPageUpdateController extends HttpServlet {
 		
 		if(updateUser != null) {
 			
-			if(updateUser.getEmail() == null) {
-				updateUser.setEmail("");
-			}
-			
-			if(updateUser.getPhone() == null) {
-				updateUser.setPhone("");
-			}
-			
 			request.getSession().setAttribute("loginMember", updateUser);
 			
 			request.getSession().setAttribute("alertMsg", "정보변경에 성공했습니다.");

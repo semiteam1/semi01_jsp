@@ -1,12 +1,16 @@
+<%@page import="com.kh.semi01.user.model.vo.Review"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.semi01.common.model.vo.PageInfo"%>
 <%@page import="com.kh.semi01.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
 
-	User loginMember = (User)session.getAttribute("loginMember");    
+	User loginMember = (User)session.getAttribute("loginMember");
 	
 	String alertMsg = (String)session.getAttribute("alertMsg");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -340,7 +344,7 @@
                         </div>
 
                         <div class="check">
-                            <a href="<%= contextPath %>/myTicket.us" class="header_util_link">예매확인/취소</a>
+                            <a href="<%= contextPath %>/myTicket.us?cpage=1" class="header_util_link">예매확인/취소</a>
                         </div>
 
                         <div class="sin">
@@ -414,9 +418,8 @@
                                 <li><a href="#" class="minCategory">서울</a></li>
                                 <li><a href="#" class="minCategory">경기/이천</a></li>
                                 <li><a href="#" class="minCategory">충청/강원</a></li>
-                                <li><a href="#" class="minCategory">대구/경북</a></li>
-                                <li><a href="#" class="minCategory">부산/경남</a></li>
-                                <li><a href="#" class="minCategory">광주/전라</a></li>
+                                <li><a href="#" class="minCategory">경상</a></li>
+                                <li><a href="#" class="minCategory">전라</a></li>
                                 <li><a href="#" class="minCategory">제주</a></li>
                             </ul>
                         </li>

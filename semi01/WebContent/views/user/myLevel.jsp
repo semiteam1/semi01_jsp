@@ -1,21 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	int count = (int)request.getAttribute("count");
+
+	String price = ((String)request.getAttribute("price") == null) ? "0" : (String)request.getAttribute("price");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>티켓딱대</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-
-<!-- Popper JS -->
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
     /* 마이페이지 시작 */
     div {
@@ -34,17 +28,6 @@
         height: 100%;
         margin: auto;
     }
-    #myReview-header {
-        width: 100%;
-        height: 15%;
-        /* border: 1px solid red; */
-        text-align: center;
-        padding-top: 10px;
-    }
-    #myReview-header>img {
-        width: 200px;
-        height: 100px;
-    }
     #myReview-body {
         width: 100%;
         height: 80%;
@@ -57,41 +40,6 @@
     #myReview-footer {
         width: 100%;
         height: 5%;
-    }
-    .float {
-        float: left;
-        height: 100%;
-    }
-    #left {
-        width: 20%;
-        padding-top: 40px;
-        border-right: 2px solid #f8f8f8;
-        /* border: 1px solid red; */
-    }
-    .tab {
-        width: 100%;
-        height: 10%;
-        text-align: center;
-        line-height: 5;
-        font-size: 15px;
-        font-weight: bold;
-        color: #202020;
-        /* border: 1px solid red; */
-    }
-    .tab:hover {
-        cursor: pointer;
-        opacity: 0.5;
-    }
-    .tab-inner {
-        display: none;
-        text-align: center;
-        line-height: 2;
-        font-size: 12px;
-        color: #707070;
-    }
-    .tab-inner:hover {
-        cursor: pointer;
-        opacity: 0.5;
     }
     #right {
         width: 80%;
@@ -150,6 +98,9 @@
     #description {
         width: 70%;
     }
+    #description b {
+    	color: blue;
+    }
     #selectLevel {
         margin: 10px;
         display: block;
@@ -199,55 +150,11 @@
 
         <div class="outer">
     
-            <div id="myReview-header">
-                <img src="resource/logo/로고2.png">
-            </div>
+            <%@ include file = "../common/myPageLogo.jsp" %>
     
             <div id="myReview-body">
                 
-               <div id="left" class="float">
-
-                    <div class="tab">마이페이지</div>
-                    <div class="tab-inner" onclick="myMenu(1);">회원정보조회</div>
-                    <div class="tab">마이티켓</div>
-                    <div class="tab-inner" onclick="myMenu(2);">예매조회</div>
-                    <div class="tab">마이리뷰</div>
-                    <div class="tab-inner" onclick="myMenu(3);">한줄평조회</div>
-                    <div class="tab-inner" onclick="myMenu(2);">한줄평작성</div>
-                    <div class="tab">마이등급</div>
-                    <div class="tab-inner" onclick="myMenu(4);">등급조회</div>
-
-                </div>
-
-                <script>
-
-                    $(".tab").click(function() {
-                                
-                        $(this).nextUntil(".tab").slideToggle();
-
-                    });
-
-                    function myMenu(num) {
-                    	
-                    	switch(num) {
-                    	case 1 :
-                    		location.href = "<%= contextPath %>/myPage.us";
-                    		break;
-                    	case 2 :
-                    		location.href = "<%= contextPath %>/myTicket.us";
-                    		break;
-                    	case 3 :
-                    		location.href = "<%= contextPath %>/myReview.us";
-                    		break;
-                    	case 4 :
-                    		location.href = "<%= contextPath %>/myLevel.us";
-                    		
-                    	}
-
-                    }
-
-                </script>
-
+				<%@ include file = "../common/myPageTap.jsp" %>
 
                 <div id="right" class="float">
                     <div id="right-top">
@@ -267,9 +174,9 @@
                             </div>
                             <div id="description">
 
-                                <h4><u><%= loginMember.getUserName() %></u> 님의 회원등급은 <u><%= loginMember.getGrade() %></u> 입니다.</h4>
+                                <h4><b><%= loginMember.getUserName() %></b> 님의 회원등급은 <b><%= loginMember.getGrade() %></b> 입니다.</h4>
                                 <br>
-                                <h6>주문 X건 | 주문금액 X원</h6>
+                                <h6>주문 <b><%= count %></b>건 | 주문금액 <b><%= price %></b>원</h6>
                                 <br>
                                 <button id="selectLevel">등급 알아보기</button>
 

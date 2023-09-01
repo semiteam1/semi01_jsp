@@ -4,10 +4,19 @@ import static com.kh.semi01.common.JDBCTemplate.close;
 import static com.kh.semi01.common.JDBCTemplate.commit;
 import static com.kh.semi01.common.JDBCTemplate.getConnection;
 import static com.kh.semi01.common.JDBCTemplate.rollback;
+import java.net.ConnectException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.ArrayList;
 
 import java.sql.Connection;
 
+import com.kh.semi01.common.model.vo.PageInfo;
+import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.user.model.dao.UserDao;
+import com.kh.semi01.user.model.vo.Book;
+import com.kh.semi01.user.model.vo.Grade;
+import com.kh.semi01.user.model.vo.Review;
 import com.kh.semi01.user.model.vo.User;
 
 public class UserService {
@@ -165,4 +174,155 @@ public class UserService {
 		
 		return count;
 	}
+	
+	public int selectBookCount(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int count = new UserDao().selectBookCount(conn, userNo);
+		
+		close(conn);
+		
+		return count;
+		
+	}
+	
+	public String selectBookPrice(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		String price = new UserDao().selectBookPrice(conn, userNo);
+		
+		close(conn);
+		
+		return price;
+		
+	}
+	
+	public int selectReviewCount(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int reviewCount = new UserDao().selectReviewCount(conn, userNo);
+		
+		close(conn);
+		
+		return reviewCount;
+		
+	}
+	
+	public ArrayList<Review> selectAllReview(int userNo, PageInfo pi) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Review> list = new UserDao().selectAllReview(conn, userNo, pi);
+		
+		close(conn);
+		
+		return list;
+		
+	}
+	
+	public Review selectReview(int reviewNo) {
+		
+		Connection conn = getConnection();
+		
+		Review r = new UserDao().selectReview(conn, reviewNo);
+		
+		close(conn);
+		
+		return r;
+		
+	}
+	
+	public Review updateReview(int reviewNo, String reviewContent) {
+		
+		Connection conn = getConnection();
+		
+		int result = new UserDao().updateReview(conn, reviewNo, reviewContent);
+		
+		Review r = null;
+		
+		if(result > 0) {
+			commit(conn);
+			
+			r = new UserDao().selectReview(conn, reviewNo);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return r;
+		
+	}
+	
+	public int deleteReview(int reviewNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new UserDao().deleteReview(conn, reviewNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int selectTicketCount(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int ticketCount = new UserDao().selectTicketCount(conn, userNo);
+		
+		close(conn);
+		
+		return ticketCount;
+		
+	}
+	
+	public ArrayList<Book> selectAllTicket(int userNo, PageInfo pi) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Book> list = new UserDao().selectAllTicket(conn, userNo, pi);
+		
+		close(conn);
+		
+		return list;
+		
+	}
+	
+	public Book selectTicketDetail(int bookedNo) {
+		
+		Connection conn = getConnection();
+		
+		Book b = new UserDao().selectTicketDetail(conn, bookedNo);
+		
+		close(conn);
+		
+		return b;
+		
+	}
+	
+	public Grade selectGradeInfo(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		Grade g = new UserDao().selectGradeInfo(conn, userNo);
+		
+		close(conn);
+		
+		return g;
+		
+	}
+	
 }
