@@ -138,18 +138,17 @@
                     <%for(Qna q:list){ %>
                     <tr>
                         <td><%=q.getQnaNo() %></td>
-                        <td><%=q.getQnaTitle() %> <button onclick="location.href='<%=contextPath %>/detail.qo.no?num='+num">detail</button></td>
+                        <td><%=q.getQnaTitle() %> <button onclick="location.href='<%=contextPath %>/detail.qo?num=<%=q.getQnaNo() %>'">detail</button></td>
                         <td><%=q.getUser() %></td>
                         <td><%=q.getQnaDate() %></td>
                     </tr>
-                    	<%} %>
-                    <%for(Qna q:list){ %>
                     <tr>
                     	<td colspan="3"><%=q.getQnaReply() %><td>
                     </tr>
-                    	<%} %>
+                    	
                     <%} %>
                     
+                    <%} %>
                     
                 </tbody>
             </table>
