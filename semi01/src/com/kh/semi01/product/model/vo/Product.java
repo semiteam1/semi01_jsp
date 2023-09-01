@@ -78,6 +78,16 @@ public class Product {
 		this.startPeriod = startPeriod;
 		this.endPeriod = endPeriod;
 	}
+	
+	public Product(int productNo, String productTitle, String startPeriod, String endPeriod, String imagePath, String posterName) {
+		super();
+		this.productNo = productNo;
+		this.productTitle = productTitle;
+		this.startPeriod = startPeriod;
+		this.endPeriod = endPeriod;
+		this.imagePath = imagePath;
+		this.posterName = posterName;
+	}
 
 	// getter-setter 메소드
 	

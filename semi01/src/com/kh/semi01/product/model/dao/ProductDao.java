@@ -239,5 +239,102 @@ public class ProductDao {
 		
 	}
 	
-
+	public ArrayList<Product> selectProductDisplayRank(Connection conn, int userNo){
+		ArrayList<Product> dlist = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductDisplayRank");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				dlist.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return dlist;
+	
+	}
+	
+	public ArrayList<Product> selectProductMovieRank(Connection conn, int userNo){
+		ArrayList<Product> mlist = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductMovieRank");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				mlist.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return mlist;
+	
+	}
+	
+	public ArrayList<Product> selectProductShowRank(Connection conn, int userNo){
+		ArrayList<Product> slist = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductShowRank");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				slist.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return slist;
+	
+	}
 }

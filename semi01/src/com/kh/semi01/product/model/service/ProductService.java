@@ -63,5 +63,29 @@ public class ProductService {
 		return ilist;
 	}
 	
+	public ArrayList<Product> selectProductDisplayRank(int userNo){
+		Connection conn = getConnection();
+		ArrayList<Product> dlist = new ProductDao().selectProductDisplayRank(conn, userNo);
+		
+		close(conn);
+		return dlist;
+	}
+	
+	public ArrayList<Product> selectProductMovieRank(int userNo){
+		Connection conn = getConnection();
+		ArrayList<Product> mlist = new ProductDao().selectProductDisplayRank(conn, userNo);
+		
+		close(conn);
+		return mlist;
+	}
+	
+	public ArrayList<Product> selectProductShowRank(int userNo){
+		Connection conn = getConnection();
+		ArrayList<Product> slist = new ProductDao().selectProductDisplayRank(conn, userNo);
+		
+		close(conn);
+		return slist;
+	}
+	
 
 }

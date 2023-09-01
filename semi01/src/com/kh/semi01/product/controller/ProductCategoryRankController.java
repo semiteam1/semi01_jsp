@@ -3,6 +3,7 @@ package com.kh.semi01.product.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,19 +12,18 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi01.product.model.service.ProductService;
 import com.kh.semi01.product.model.vo.Product;
-import com.kh.semi01.product.model.vo.ProductIMG;
 
 /**
- * Servlet implementation class ProductTotalRankController
+ * Servlet implementation class ProductCategoryRankController
  */
-@WebServlet("/trank.pr")
-public class ProductTotalRankController extends HttpServlet {
+@WebServlet("/crank.pr")
+public class ProductCategoryRankController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProductTotalRankController() {
+    public ProductCategoryRankController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,23 +33,21 @@ public class ProductTotalRankController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
-		ArrayList<Product> plist = new ProductService().selectProductTotalRank();
-		ArrayList<ProductIMG> ilist = new ProductService().selectProductTotalRankIMG();
-
-		
-		
-		request.setAttribute("plist", plist); // 전체 상품 중 좋아요 상위 5개
-		request.setAttribute("ilist", ilist); // 전체 상품 중 좋아요 상위 5개 (이미지 경로)
-
-		
-		System.out.println("컨트롤러 plist" + plist);
-		System.out.println("컨트롤러 ilist" + ilist);
-
-		
-		
-		request.getRequestDispatcher("index.jsp").forward(request, response);
-		
+			int userNo = Integer.parseInt((request.getParameter("userNo")));
+			
+			ArrayList<Product> dlist = new ProductService().selectProductDisplayRank(userNo);
+			ArrayList<Product> mlist = new ProductService().selectProductMovieRank(userNo);
+			ArrayList<Product> slist = new ProductService().selectProductShowRank(userNo);
+			
+			request.setAttribute("dlist", dlist);
+			request.setAttribute("mlist", mlist);
+			request.setAttribute("slist", slist);
+			
+			System.out.println("컨트롤러 dlist" + dlist);
+			System.out.println("컨트롤러 mlist" + mlist);
+			System.out.println("컨트롤러 slist" + slist);
+			
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 	/**

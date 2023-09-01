@@ -142,4 +142,97 @@ SELECT
 	  FROM SCREENING_INFO
 	 WHERE PRODUCT_NO = ?
 </entry>
+
+<entry key="selectProductDisplayRank">
+	 SELECT PRODUCT_NO
+	     , PRODUCT_TITLE
+	     , START_PERIOD
+	     , END_PERIOD
+	     , POSTER_NAME
+	     , IMAGE_PATH
+	 FROM (
+	    SELECT *
+	      FROM PRODUCT P
+	      JOIN CATEGORY_INFO USING(CATEGORY_TYPE)
+	      JOIN LOCAL_INFO USING (LOCAL_NO)
+	      JOIN LEVEL_INFO USING (PRODUCT_LEVEL)
+	     WHERE PRODUCT_NO 
+	        IN (
+	           SELECT PRODUCT_NO
+	             FROM (
+	           SELECT
+	                  PRODUCT_NO
+	                , COUNT(USER_NO) AS "좋아요_수"
+	            FROM PRODUCT_LIKE
+	           GROUP BY
+	                 PRODUCT_NO
+	           ORDER BY
+	                 좋아요_수 DESC)))
+	 JOIN USER_INFO U ON ( CATEGORY_TYPE = U.INTEREST_DISPLAY)
+	 JOIN PRODUCT_IMG USING(PRODUCT_NO)
+	 WHERE USER_NO = ?
+	 <![CDATA[AND ROWNUM <3]]>
+</entry>
+
+<entry key="selectProductMovieRank">
+	 SELECT PRODUCT_NO
+	     , PRODUCT_TITLE
+	     , START_PERIOD
+	     , END_PERIOD
+	     , POSTER_NAME
+	     , IMAGE_PATH
+	 FROM (
+	    SELECT *
+	      FROM PRODUCT P
+	      JOIN CATEGORY_INFO USING(CATEGORY_TYPE)
+	      JOIN LOCAL_INFO USING (LOCAL_NO)
+	      JOIN LEVEL_INFO USING (PRODUCT_LEVEL)
+	     WHERE PRODUCT_NO 
+	        IN (
+	           SELECT PRODUCT_NO
+	             FROM (
+	           SELECT
+	                  PRODUCT_NO
+	                , COUNT(USER_NO) AS "좋아요_수"
+	            FROM PRODUCT_LIKE
+	           GROUP BY
+	                 PRODUCT_NO
+	           ORDER BY
+	                 좋아요_수 DESC)))
+	 JOIN USER_INFO U ON ( CATEGORY_TYPE = U.INTEREST_MOVIE)
+	 JOIN PRODUCT_IMG USING(PRODUCT_NO)
+	 WHERE USER_NO = ?
+	 <![CDATA[AND ROWNUM <3]]>
+</entry>
+
+<entry key="selectProductShowRank">
+	 SELECT PRODUCT_NO
+	     , PRODUCT_TITLE
+	     , START_PERIOD
+	     , END_PERIOD
+	     , POSTER_NAME
+	     , IMAGE_PATH
+	 FROM (
+	    SELECT *
+	      FROM PRODUCT P
+	      JOIN CATEGORY_INFO USING(CATEGORY_TYPE)
+	      JOIN LOCAL_INFO USING (LOCAL_NO)
+	      JOIN LEVEL_INFO USING (PRODUCT_LEVEL)
+	     WHERE PRODUCT_NO 
+	        IN (
+	           SELECT PRODUCT_NO
+	             FROM (
+	           SELECT
+	                  PRODUCT_NO
+	                , COUNT(USER_NO) AS "좋아요_수"
+	            FROM PRODUCT_LIKE
+	           GROUP BY
+	                 PRODUCT_NO
+	           ORDER BY
+	                 좋아요_수 DESC)))
+	 JOIN USER_INFO U ON ( CATEGORY_TYPE = U.INTEREST_SHOW)
+	 JOIN PRODUCT_IMG USING(PRODUCT_NO)
+	 WHERE USER_NO = ?
+	 <![CDATA[AND ROWNUM <3]]>
+</entry>
 </properties>
