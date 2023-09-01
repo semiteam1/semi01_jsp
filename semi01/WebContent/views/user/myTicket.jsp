@@ -192,7 +192,8 @@
                     		
 	                       <div class="myTicket-content">
 	
-								<form action="<%= contextPath %>/reviewWriteForm.us" method="post">
+								<form action="<%= contextPath %>/deleteTicket.us" method="post">
+								<input type="hidden" name="bookedNo" value="<%= b.getBookedNo() %>">
 	
 	                            <div class="content-img">
 	                                <a href="#"><img src="<%= b.getTitleImg() %>"></a>
@@ -214,17 +215,12 @@
 	                                    </tr>
 	                                    <tr>
 	                                    	<td><a href="<%= contextPath %>/ticketDetail.us?cpage=<%= pi.getCurrentPage() %>&tno=<%= b.getBookedNo() %>">상세보기</a></td>
-	                                        
-	                                        <% if(b.getProduct() != null) { %>
-	                                        	<td><button>한줄평쓰기</button></td>
-	                                        <% } %>
-	                                        
 	                                    </tr>
 	                                </table>
 	                            </div>
 	
 	                            <div class="content-delete">
-	                                <button class="close" onclick="return ticketDelete();">X</button>
+	                                <button class="close" type="submit" onclick="return ticketDelete();">X</button>
 	                            </div>
 	                            
 	                            </form>
@@ -239,12 +235,7 @@
 
                            function ticketDelete() {
    
-                               if(confirm("예매내역을 삭제하시겠습니까?")) {
-                                   location.href = "#";
-                               }
-                               else {
-                                   return false;
-                               }
+                               return confirm("예매내역을 삭제하시겠습니까?");
    
                            }
    

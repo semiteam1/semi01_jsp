@@ -415,7 +415,7 @@
 
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 		<!-- 예매 파트 -->
-		<!-- <form action="<%= contextPath %>/payment.pa" method="post"> -->
+		<form action="<%= contextPath %>/payment.pa" method="post">
 			<div class="booked">
 				<div class="booked_part1">
 					<div class="booked_part1_calender1">
@@ -426,7 +426,7 @@
 					</div>
 
 					<div class="booked_part1_calender2">
-						<input type="date" id="dateInput" value="xxx" name="dd">
+						<input type="date" id="dateInput" name="bookedDate">
 							<script>
 							const startPeriodString = "<%= p.getStartPeriod() %>";
 							const endPeriodString = "<%= p.getEndPeriod() %>";
@@ -453,8 +453,10 @@
 						회차 선택
 					</div>
 					<div class="booked_part2_ampm2" align="center">
-						<button class="booked_part2_ampm non_click" id="dayTime">11 : 00</button>
-						<button class="booked_part2_ampm non_click" id="nightTime">18 : 00</button>
+						<input type="button" class="booked_part2_ampm non_click" id="dayTime" name="dayTime" value="11:00">
+						<input type="button" class="booked_part2_ampm non_click" id="nightTime" name="nightTime" value="18:00" onclick="time();">
+						<input type="hidden" id="time" name="time">
+						<input type="hidden" id="seat" name="seat">
 					</div>
 					
 				</div>
@@ -474,10 +476,14 @@
 
 						dayTime.addEventListener("click", function() {
 				            seatCount.textContent = "<%= si.getScreeningDaySeat() %>매";
+				            $("#time").val("11:00");
+				            $("#seat").val("<%= si.getScreeningDaySeat() %>");
 				        });
 
 						nightTime.addEventListener("click", function() {
 				            seatCount.textContent = "<%= si.getScreeningNightSeat() %>매";
+							$("#time").val("18:00");
+							$("#seat").val(<%= si.getScreeningNightSeat() %>);
 				        });
 						
 						
@@ -499,13 +505,14 @@
 					</script>
 			
 			<div class="booked_btn_form">
-				<button type="submit" class="booked_btn" onclick="book();">예매하기</button>
+				<button type="submit" class="booked_btn">예매하기</button>
 			</div>
-		<!-- </form> -->
+		</form>
 
 		<script>
 
 			function book() {
+				
 				if(<%= loginMember %> == null){
 					alert("로그인 후 이용해주세요");
 					location.href="<%= contextPath %>/login.ur";

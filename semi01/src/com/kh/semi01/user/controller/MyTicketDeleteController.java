@@ -1,27 +1,25 @@
-package com.kh.semi01.payment;
+package com.kh.semi01.user.controller;
 
 import java.io.IOException;
-import java.sql.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.semi01.user.model.vo.Book;
+import com.kh.semi01.user.model.service.UserService;
 
 /**
- * Servlet implementation class PaymentController
+ * Servlet implementation class MyTicketDeleteController
  */
-@WebServlet("/payment.pa")
-public class PaymentController extends HttpServlet {
+@WebServlet("/deleteTicket.us")
+public class MyTicketDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PaymentController() {
+    public MyTicketDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,18 +28,17 @@ public class PaymentController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+		int bookedNo = Integer.parseInt(request.getParameter("bookedNo"));
 		
-		String bookedDate = request.getParameter("bookedDate");
-		String time = request.getParameter("time");
-		int seat = Integer.parseInt(request.getParameter("seat"));
+//		int result = new UserService().deleteTicket(bookedNo);
 		
-		String result = time + ", " + bookedDate + ", " + seat;
-		
-		System.out.println(time + ", " + bookedDate + ", " + seat);
-		
-		request.setAttribute("result", result);
-		
-		request.getRequestDispatcher("views/payment/paymentPopUp.jsp").forward(request, response);
+//		if(result > 0) {
+//			
+//		}
+//		else {
+//			
+//		}
 		
 	}
 

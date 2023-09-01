@@ -187,7 +187,7 @@
 
                             <div class="btns">
                                 <button onclick="history.back();">돌아가기</button>
-                                <button onclick="ticketDelete();">예매취소</button>
+                                <button disabled onclick="ticketDelete();">예매취소</button>
                             </div>
                             
                         </div>

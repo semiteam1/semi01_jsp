@@ -1,7 +1,13 @@
+<%@page import="com.kh.semi01.user.model.service.UserService"%>
+<%@page import="com.kh.semi01.user.model.vo.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+
+	String result = (String)request.getAttribute("result");
+	
+	Book b = new UserService().selectTicketDetail(1);
 %>
 <!DOCTYPE html>
 <html>
@@ -82,7 +88,7 @@
 		</div>
 		<form action="<%= contextPath %>/paymentFinal.pa" method="post">
 			<div id="book-info">
-				<h3>예매 정보 입력</h3>
+				<h3>예매 정보 확인</h3>
 				<table>
 					<tr>
 						<th>관람 인원수</th>
@@ -132,7 +138,7 @@
 				<table>
 					<tr>
 						<th>공연 제목</th>
-						<td>콘크리트 유토피아</td>
+						<td><%= b.getProduct() %></td>
 					</tr>
 					<tr>
 						<th>공연 장소</th>
@@ -205,5 +211,14 @@
 		</script>
 
 	</div>
+	
+	<iframe
+  id="inlineFrameExample"
+  title="Inline Frame Example"
+  width="300"
+  height="200"
+  src="https://www.openstreetmap.org/export/embed.html?bbox=-0.004017949104309083%2C51.47612752641776%2C0.00030577182769775396%2C51.478569861898606&layer=mapnik"
+>
+</iframe>
 </body>
 </html>
