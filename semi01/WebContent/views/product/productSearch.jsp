@@ -38,11 +38,11 @@
         }
         .search_num_em{
             font-style: normal;
-            color: darkred;
+            color: red;
         }
         
         /* 검색 분류 탭 */
-        .search_tap{
+        /* .search_tap{
             margin-top: 50px;
         }
 
@@ -56,7 +56,7 @@
             float: left;
             text-align: center;
             line-height: 48px;
-        }
+        } */
 
         /* 검색 결과 상품 */
         .search_result{
@@ -115,7 +115,7 @@
 	  <div class="search">
             <p class="search_num"><em class="search_num_em"><%="'" + sKeyWord + "'" %></em>&nbsp;에 대한 검색결과는 총 <em class="search_num_em"><%= list.size() %></em>건 입니다.</p>
 
-            <!-- 검색 분류 탭-->
+            <!-- 검색 분류 탭
             <ul class="search_tap">
                 <li>
                     <a href="">영화</a>
@@ -126,8 +126,8 @@
                 <li>
                     <a href="">공연</a>
                 </li>
-            </ul>
-            <br><br><br><br>
+            </ul> -->
+            <br><br>
 
             <!-- 검색 결과 -->
 
@@ -141,7 +141,9 @@
                 <option value="price_up">가격 오름차순</option>
             </select>
             </div>  
-            <br><br><br><br>
+            <br>
+            <hr>
+
 
             <!-- 정보가 보이는 검색된 상품 -->
 
@@ -182,21 +184,6 @@
                 
             <% } %>
 
-
-
-                <!-- 
-                <hr>
-                <br>
-
-                페이지 컨트롤러
-                <ul class="pagination justify-content-center" style="border: 0px;">
-                    <li class="page-item"><a class="page-link" href="#">이전</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">다음</a></li>
-                  </ul>
-                <br><br> -->
             </div>
 
             

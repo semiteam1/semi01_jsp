@@ -1,6 +1,8 @@
 <%@page import="com.kh.semi01.user.model.vo.Review"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.semi01.common.model.vo.PageInfo"%>
+<%@page import="com.kh.semi01.product.model.vo.Product"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.semi01.user.model.vo.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>

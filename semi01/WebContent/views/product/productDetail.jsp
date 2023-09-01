@@ -1,18 +1,33 @@
+<%@page import="com.kh.semi01.product.model.vo.ScreeningInfo"%>
+<%@page import="java.sql.Date"%>
 <%@page import="com.kh.semi01.product.model.vo.ProductIMG"%>
 <%@page import="com.kh.semi01.product.model.vo.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
 	Product p = (Product)request.getAttribute("p");
 	ProductIMG pi = (ProductIMG)request.getAttribute("pi");
+	ScreeningInfo si = (ScreeningInfo)request.getAttribute("si");
+
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dbb5ff76fc35c0a9a7090c83b37365f7"></script>
+		  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dbb5ff76fc35c0a9a7090c83b37365f7&libraries=LIBRARY"></script>
+		  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dbb5ff76fc35c0a9a7090c83b37365f7&libraries=services"></script>
+		  <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=dbb5ff76fc35c0a9a7090c83b37365f7&libraries=services,clusterer,drawing"></script>
+
+<title>티켓딱대 상품 상세페이지</title>
 <style>
+
+
 	.outer{
 		width: 1180px;
         margin: auto;
@@ -156,6 +171,10 @@
             cursor: pointer;
         }
 
+		.booked_btn:hover{
+			background-color: darkred;
+		}
+
         .booked_part1_calender1{
             /* border: 5px solid blue; */
             height: 100%;
@@ -164,12 +183,15 @@
             font-size: 15px;
             font-weight: 900;
             padding-left: 20px;
+			margin-right: 50px;
         }
         
         .booked_part1_calender2{
             height: 100%;
-            width: 30%;
-            
+            width: 29%;
+            float: left;
+			padding-top: 40px;
+
         }
 
         .booked_part1_calender3{
@@ -213,6 +235,11 @@
             padding-right: 120px;
             cursor: pointer;
         }
+
+		.click{
+			background-color: black;
+			color: white;
+		}
         
 
 
@@ -331,9 +358,11 @@
 	<div class="outer">
 
 		<div class="product_img_info">
-			<div id="product_img"><img src="<%= p.getImagePath() %>/ <%= p.getPosterName() %>" ></div>
+			<div id="product_img"><img src="<%= p.getImagePath() %>/<%= p.getPosterName() %>" ></div>
+			<% System.out.println("p : " + p); %>
 			<div id="product_info">
 				<div><h1><%= p.getProductTitle() %></h1></div>
+				<br>
 				<hr style="border: 1px solid black;">
 				<ul id="product_info_ul">
 					<li id="product_info_li">
@@ -342,11 +371,11 @@
 					</li>
 					<li id="product_info_li">
 						<span id="product_info_li_span1">관람시간</span>
-						<div><%= p.getRunTime() %></div>
+						<div><%= p.getRunTime() %>분</div>
 					</li>
 					<li id="product_info_li">
 						<span id="product_info_li_span1">기간</span>
-						<div><%= p.getStartPeriod() %> ~<br> <%= p.getEndPeriod() %></div>
+						<div><%= p.getStartPeriod() %> ~ <%= p.getEndPeriod() %></div>
 					</li>
 					<li id="product_info_li">
 						<span id="product_info_li_span1">관람등급</span>
@@ -355,9 +384,9 @@
 				<br>
 				</ul>
 
-				<br><br><br>
+				<br><br>
 				<hr>
-				
+				<br>
 				<ul id="product_info_2">
 					<li>
 						<span id="product_info_2_span">가격</span>
@@ -375,8 +404,8 @@
 								<li>[회원할인] 실버 5% 할인</li>
 								<li>[회원할인] 골드 10% 할인</li>
 								<li>[회원할인] 마스터 15% 할인</li>
-								<li>[카드할인] 현대카드 10% 할인</li>
-								<li>[카드할인] 롯데카드 5% 할인</li>
+								<!-- <li>[카드할인] 현대카드 10% 할인</li>
+								<li>[카드할인] 롯데카드 5% 할인</li> -->
 							</ul>
 						</div>
 					</li>
@@ -393,10 +422,28 @@
 						<br><br>
 						<p id="step">step 1</p><br>
 						날짜 선택
+
 					</div>
 
 					<div class="booked_part1_calender2">
-						달력
+						<input type="date" id="dateInput" value="xxx" name="dd">
+							<script>
+							const startPeriodString = "<%= p.getStartPeriod() %>";
+							const endPeriodString = "<%= p.getEndPeriod() %>";
+
+							const startPeriodDate = new Date(startPeriodString);
+							const endPeriodDate = new Date(endPeriodString);
+
+							const minDate = new Date(startPeriodDate);
+							minDate.setDate(minDate.getDate() + 1);
+
+							const maxDate = new Date(endPeriodDate);
+							maxDate.setDate(maxDate.getDate() + 1);
+
+							const dateInput = document.getElementById("dateInput");
+							dateInput.min = minDate.toISOString().split('T')[0];
+							dateInput.max = maxDate.toISOString().split('T')[0];
+							</script>
 					</div>
 				</div>
 				<div class="booked_part2">
@@ -406,18 +453,50 @@
 						회차 선택
 					</div>
 					<div class="booked_part2_ampm2" align="center">
-						<button class="booked_part2_ampm">11시 00분</button>
-						<button class="booked_part2_ampm">18시 00분</button>
+						<button class="booked_part2_ampm non_click" id="dayTime">11 : 00</button>
+						<button class="booked_part2_ampm non_click" id="nightTime">18 : 00</button>
 					</div>
+					
 				</div>
 				<div class="booked_part3">
 					<br><br>
 					<b>예매 가능 좌석</b>
 					<br><br><br><br>
-					<b class="booked_part3_b">20매</b>
+					<b class="booked_part3_b" id="seatCount"></b>
 					
 				</div>
 			</div>
+					<script type="text/javascript">
+						const dayTime = document.getElementById("dayTime");
+						const nightTime = document.getElementById("nightTime");
+						const seatCount = document.getElementById("seatCount");
+						
+
+						dayTime.addEventListener("click", function() {
+				            seatCount.textContent = "<%= si.getScreeningDaySeat() %>매";
+				        });
+
+						nightTime.addEventListener("click", function() {
+				            seatCount.textContent = "<%= si.getScreeningNightSeat() %>매";
+				        });
+						
+						
+						const nonClick = document.querySelectorAll(".non_click");
+
+						function handleClick(event) {
+						// div에서 모든 "click" 클래스 제거
+						nonClick.forEach((e) => {
+							e.classList.remove("click");
+						});
+						// 클릭한 div만 "click"클래스 추가
+						event.target.classList.add("click");
+						}
+
+						nonClick.forEach((e) => {
+						e.addEventListener("click", handleClick);
+						});
+						
+					</script>
 			
 			<div class="booked_btn_form">
 				<button type="submit" class="booked_btn" onclick="book();">예매하기</button>
@@ -431,6 +510,8 @@
 					alert("로그인 후 이용해주세요");
 					location.href="<%= contextPath %>/login.ur";
 				}else{
+					
+					
 				window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");					
 				}
 			}
@@ -451,9 +532,16 @@
 
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 		<!-- 상품관련정보 -->
-		  
 		<div id="tab1" class="tab-content">
-			<img src="<%= pi.getImagePath() %> / <%= pi.getDetail1Name() %>">
+
+
+		
+		<img src="<%= pi.getImagePath() %>/<%= pi.getDetail1Name() %>">
+		<img src="<%= pi.getImagePath() %>/<%= pi.getDetail2Name() %>">
+		<img src="<%= pi.getImagePath() %>/<%= pi.getDetail3Name() %>">
+		<img src="<%= pi.getImagePath() %>/<%= pi.getDetail4Name() %>">
+		<img src="<%= pi.getImagePath() %>/<%= pi.getDetail5Name() %>">
+		
 		</div>
 		  
 		<div id="tab2" class="tab-content">
@@ -506,7 +594,47 @@
 			<hr style="border: 1px solid black;">
 			<br>
 			<img src="resource/이미지자료/류지완 샘플이미지/공연장정보 샘플.PNG">
+			<div id="map" style="width:1180px;height:700px;"></div>
 		  </div>
+		  
+		  <script>
+			  var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+				    mapOption = {
+				        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+				        level: 3 // 지도의 확대 레벨
+				    };  
+
+				// 지도를 생성합니다    
+				var map = new kakao.maps.Map(mapContainer, mapOption); 
+		
+				// 주소-좌표 변환 객체를 생성합니다
+				var geocoder = new kakao.maps.services.Geocoder();
+		
+				// 주소로 좌표를 검색합니다
+				geocoder.addressSearch('경기도 구리시 수택동 684-6', function(result, status) {
+		
+				    // 정상적으로 검색이 완료됐으면 
+				     if (status === kakao.maps.services.Status.OK) {
+		
+				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+		
+				        // 결과값으로 받은 위치를 마커로 표시합니다
+				        var marker = new kakao.maps.Marker({
+				            map: map,
+				            position: coords
+				        });
+		
+				        // 인포윈도우로 장소에 대한 설명을 표시합니다
+				        var infowindow = new kakao.maps.InfoWindow({
+				            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+				        });
+				        infowindow.open(map, marker);
+		
+				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+				        map.setCenter(coords);
+				    } 
+				});    
+		  </script>
 
 		  <div id="tab5" class="tab-content">
 			<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
@@ -544,7 +672,7 @@
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 		<!-- 제일 하단 추천상품 -->
 		<span style="font-weight: bold; font-size: 25px;">랭킹 딱대</span>
-				  <hr>
+				  <br><hr><br>
 
 				  <div class="recommend_img">
 					

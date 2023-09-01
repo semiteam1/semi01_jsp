@@ -4,8 +4,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<Product> plist = (ArrayList<Product>)request.getAttribute("plist");
 	ArrayList<ProductIMG> ilist = (ArrayList<ProductIMG>)request.getAttribute("ilist");
+	ArrayList<Product> plist = (ArrayList<Product>)request.getAttribute("plist");
+	
+	ArrayList<Product> dlist = (ArrayList<Product>)request.getAttribute("dlist");
+	ArrayList<Product> mlist = (ArrayList<Product>)request.getAttribute("mlist");
+	ArrayList<Product> slist = (ArrayList<Product>)request.getAttribute("slist");
 %>
 <!DOCTYPE html>
 <html>
@@ -87,6 +91,7 @@
 
         .div_img{
             width: 20%;
+            height: 390px;
             float: left;
             padding-left: 10px;
             padding-right: 10px;
@@ -95,6 +100,7 @@
 
         .div_categoryRank_img{
             width: 16.5%;
+            height: 390px;
             float: left;
             padding-left: 10px;
             padding-right: 10px;
@@ -103,6 +109,7 @@
 
         .div_img img, .div_categoryRank_img img {
             border-radius: 10px;
+            height: 307px;
         }
 
         a:hover{
@@ -225,65 +232,26 @@
         <span style="font-weight: bold; font-size: 25px;">전체 랭킹 딱대</span>
         <br>
         <hr>
-        
-        
+		<% if(plist != null){ %>
+		<% for(int i=0; i<plist.size(); i++) {%>
         <div class="div_img">
-            <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
+            <a href="<%= contextPath %>/detail.pr?pno=<%= plist.get(i).getProductNo() %>">
+                <img src="<%= ilist.get(i).getImagePath() %>/<%= ilist.get(i).getPosterName() %>" alt="Fjords" style="width:100%">
                 <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
+                    <p class="caption1"><%= plist.get(i).getProductTitle() %></p>
+                    <p class="caption2"><%= plist.get(i).getStartPeriod() %> ~ <%= plist.get(i).getEndPeriod() %></p>
                 </div>
             </a>
         </div>
+        <% } %>
+		<% } %>
         
-        
-        <div class="div_img">
-            <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-            </a>
-        </div>
-        
-        
-        <div class="div_img">
-            <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-                </a>
-            </div>
-        
-            <div class="div_img">
-                <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-                </a>
-            </div>
-        
-            <div class="div_img">
-                <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-                </a>
-            </div>
             <br><br>
             <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
             <br><br><br>
 
         </div>
-        <% }else { %>
+        <% }else if(loginMember != null){ %>
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -291,73 +259,27 @@
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- 로그인 후 각자의 관심사 랭킹 추천 -->
     <div class="recommend_categoryRank_img">
-
+		<form action="<%= contextPath %>/crank.pr?uno=<%= loginMember.getUserNo() %>" id="enroll-form" method="post">
+		<input type="hidden" name="userNo" value="<%= loginMember.getUserNo()%>">
         <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
         <br>
         <hr>
+		
+		<% if(plist != null){ %>
+			<% for(int i=0; i<dlist.size(); i++) {%>
+	        <div class="div_categoryRank_img">
+	            <a href="<%= contextPath %>/detail.pr?pno=<%= dlist.get(i).getProductNo() %>">
+	                <img src="<%= dlist.get(i).getImagePath() %>/<%= dlist.get(i).getPosterName() %>" alt="Fjords" style="width:100%">
+	                <div class="caption">
+	                    <p class="caption1"><%= dlist.get(i).getProductTitle() %></p>
+	                    <p class="caption2"><%= dlist.get(i).getStartPeriod() %> ~ <%= dlist.get(i).getEndPeriod() %></p>
+	                </div>
+	            </a>
+	        </div>
+            <% } %>
+		<% } %>
+		</form>
 
-        <div class="div_categoryRank_img">
-            <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-            </a>
-        </div>
-        
-        
-        <div class="div_categoryRank_img">
-            <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-            </a>
-        </div>
-        
-        
-        <div class="div_categoryRank_img">
-            <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-            </a>
-        </div>
-        
-        
-        <div class="div_categoryRank_img">
-            <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-                </a>
-            </div>
-        
-            <div class="div_categoryRank_img">
-                <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-                </a>
-            </div>
-        
-            <div class="div_categoryRank_img">
-                <a href="#">
-                <img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-                <div class="caption">
-                    <p class="caption1">제목</p>
-                    <p class="caption2">시작기간 ~ 끝기간</p>
-                </div>
-                </a>
-            </div>
             <br><br>
             <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
             <br><br><br>    
@@ -585,7 +507,24 @@
 
 </div>
 <br><br>
+	<script>
 
+         $(function() {
+             
+             
+             
+             if(<%= loginMember %> == null){
+            	 if(<%=plist%>== null){
+                     window.location.href = '<%= request.getContextPath() %>/trank.pr';
+                 }
+            	 
+           	// }else if(<%= loginMember %> != null){
+	        //      if(<%=slist%> == null){
+	        //          window.location.href = '<%= request.getContextPath() %>/crank.pr?uno=<%= loginMember.getUserNo() %>';
+	        //      }
+            //  }
+         });
+	</script>
 	
 	<%@ include file = "/views/common/footer.jsp" %>
 </body>
