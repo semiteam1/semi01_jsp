@@ -1,7 +1,12 @@
+<%@page import="com.kh.semi01.user.model.vo.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	String contextPath = request.getContextPath();
+
+	String userName = (String)request.getAttribute("userName");
+	
+	String price = (String)request.getAttribute("price");
 %>
 <!DOCTYPE html>
 <html>
@@ -61,42 +66,34 @@
 </style>
 </head>
 <body>
-	<div class="outer">
+	<div class="outer" align="center">
+	
 		<div id="logo" align="center">
 			<img width="200" height="100" src="resource/logo/logo.png">
 		</div>
-		<form action="<%= contextPath %>/paymentRealFinal.pa" method="post">
 			
-            <div id="pay-info">
-                <h3>계좌이체</h3>
-                <table>
-                    <tr>
-                        <th>주문자</th>
-                        <td>홍길동</td>
-                    </tr>
-                    <tr>
-                        <th>결제 금액</th>
-                        <td>13,500원</td>
-                    </tr>
-					<tr>
-						<th>입금하실 계좌번호</th>
-						<td>신한, 110-456-789043 / (주)티켓딱대</td>
-					</tr>
-                </table>
-                <p align="center">※미결제 상태로 24시간을 초과하면 예매가 자동 취소 되오니 유의해 주시기 바랍니다.※</p>
-            </div>
-
-		</form>
-
-        <div id="pageClose" align="center">
-            <a href="#" onclick="javascript:window.close()">확인</a>
+        <div id="pay-info">
+            <h3>계좌이체</h3>
+            <table>
+                <tr>
+                    <th>주문자</th>
+                    <td><%= userName %></td>
+                </tr>
+                <tr>
+                    <th>결제 금액</th>
+                    <td><%= price %>원</td>
+                </tr>
+				<tr>
+					<th>입금하실 계좌번호</th>
+					<td>신한, 110-456-789043 / (주)티켓딱대</td>
+				</tr>
+            </table>
+            <p align="center">※미결제 상태로 24시간을 초과하면 예매가 자동 취소 되오니 유의해 주시기 바랍니다.※</p>
         </div>
 
-		<script>
-
-			
-
-		</script>
+     	<div id="pageClose" align="center">
+       		<a href="<%= contextPath %>/myTicket.us?cpage=1">확인</a>
+     	</div>
 
 	</div>
 </body>

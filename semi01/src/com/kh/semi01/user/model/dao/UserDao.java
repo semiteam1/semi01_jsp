@@ -814,6 +814,32 @@ private Properties prop = new Properties();
 		
 	}
 	
+	public int deleteTicket(Connection conn, int bookedNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteTicket");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bookedNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
 	public Grade selectGradeInfo(Connection conn, int userNo) {
 		
 		Grade g = null;

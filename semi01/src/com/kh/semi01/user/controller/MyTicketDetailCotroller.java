@@ -37,7 +37,7 @@ public class MyTicketDetailCotroller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int currentPage = Integer.parseInt(request.getParameter("cpage"));
-		int bookedNo = Integer.parseInt(request.getParameter("tno"));
+		int bookedNo = Integer.parseInt(request.getParameter("bno"));
 		int userNo = ((User)(request.getSession().getAttribute("loginMember"))).getUserNo();
 		
 		UserService us = new UserService();
@@ -52,6 +52,7 @@ public class MyTicketDetailCotroller extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/myTicket.us?cpage=" + currentPage);
 		}
 		else {
+			request.setAttribute("bookedNo", bookedNo);
 			request.setAttribute("b", b);
 			request.setAttribute("g", g);
 			

@@ -330,11 +330,11 @@ UPDATE USER_INFO
 	        SELECT ROWNUM RNUM, A.*
 	          FROM (
 	                SELECT 
-	                       BOOKED_NO
+	                       DISTINCT BOOKED_NO
 	                     , IMAGE_PATH || '/' || POSTER_NAME "TITLE_IMG"
 	                     , PRODUCT_TITLE
 	                     , SUBSTR(ADDRESS, 1, (INSTR(ADDRESS, '_') - 1)) "ADDRESS"
-	                     , TO_CHAR(SCREEN_DATE, 'RRRR.MM.DD')|| '(' || TO_CHAR(SCREEN_DATE, 'DY') || ')' || ' ' || DECODE(SCREENING_DAY_TIME, 'Y', '11:00', 'N', '18:00') "SCREEN_DATE"
+	                     , SCREEN_DATE || '(' || TO_CHAR(TO_DATE(SCREEN_DATE), 'DY') || ')' || ' ' || SCREEN_TIME "SCREEN_DATE"
 	                  FROM PRODUCT_IMG
 	                  JOIN PRODUCT USING (PRODUCT_NO)
 	                  JOIN BOOKED_INFO USING (PRODUCT_NO)
@@ -350,12 +350,12 @@ UPDATE USER_INFO
 
 <entry key="selectTicketDetail">
 	SELECT
-		   BOOKED_NO
+		   DISTINCT BOOKED_NO
 	     , PRODUCT_TITLE
 	     , AUDIENCE
 	     , PAYMENT_NAME
 	     , PRICE
-	     , TO_CHAR(SCREEN_DATE, 'RRRR.MM.DD')|| '(' || TO_CHAR(SCREEN_DATE, 'DY') || ')' || ' ' || DECODE(SCREENING_DAY_TIME, 'Y', '11:00', 'N', '18:00') "SCREEN_DATE"
+	     , SCREEN_DATE || '(' || TO_CHAR(TO_DATE(SCREEN_DATE), 'DY') || ')' || ' ' || SCREEN_TIME "SCREEN_DATE"
 	     , SUBSTR(ADDRESS, 1, (INSTR(ADDRESS, '_') - 1)) "ADDRESS"
 	     , GRADE_NAME
 	     , GRADE_DISCOUNT
@@ -368,6 +368,13 @@ UPDATE USER_INFO
 	 WHERE BOOKED_NO = ?
 </entry>
 
+<entry key="deleteTicket">
+	UPDATE BOOKED_INFO
+	   SET STATUS = 'N'
+	 WHERE BOOKED_NO = ?
+</entry>
+
+<!-- 회원 등급 조회용 SQL -->
 <entry key="selectGradeInfo">
 	SELECT
 	       GRADE_NO
@@ -378,8 +385,5 @@ UPDATE USER_INFO
 	 WHERE USER_NO = ?
 </entry>
 
-<entry key="">
-
-</entry>
 
 </properties>

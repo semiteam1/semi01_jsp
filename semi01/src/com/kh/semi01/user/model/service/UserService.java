@@ -313,6 +313,25 @@ public class UserService {
 		
 	}
 	
+	public int deleteTicket(int bookedNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new UserDao().deleteTicket(conn, bookedNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
 	public Grade selectGradeInfo(int userNo) {
 		
 		Connection conn = getConnection();

@@ -59,7 +59,7 @@ public class MyTicketSelectController extends HttpServlet {
 		
 		ArrayList<Book> list = new UserService().selectAllTicket(userNo, pi);
 		
-		System.out.println(list.get(0).getTitleImg());
+//		System.out.println(list.get(0).getTitleImg());
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

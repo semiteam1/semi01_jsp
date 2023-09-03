@@ -11,6 +11,7 @@ public class Book {
 	private int price;			// 가격
 	private String bookedDate;	// 예매날짜 => 입출력을 자유롭게 하기 위해서 String으로
 	private String screenDate;	// 관람날짜 => 입출력을 자유롭게 하기 위해서 String으로
+	private String screenTime;	// 관람시간 => "11:00 or 18:00"으로 입력
 	private String titleImg;	// 포스터 이미지 조회용
 	private String address;		// 공연 장소
 	private String status;		// 삭제 여부
@@ -20,7 +21,7 @@ public class Book {
 
 	// 전체 매개변수 생성자
 	public Book(int bookedNo, String user, String product, int audience, String payment, String card, int price,
-			String bookedDate, String screenDate, String titleImg, String address, String status) {
+			String bookedDate, String screenDate, String screenTime, String titleImg, String address, String status) {
 		super();
 		this.bookedNo = bookedNo;
 		this.user = user;
@@ -31,6 +32,7 @@ public class Book {
 		this.price = price;
 		this.bookedDate = bookedDate;
 		this.screenDate = screenDate;
+		this.screenTime = screenTime;
 		this.titleImg = titleImg;
 		this.address = address;
 		this.status = status;
@@ -59,6 +61,18 @@ public class Book {
 		this.address = address;
 	}
 	
+	// 예매내역 등록용 생성자
+	public Book(String user, String product, int audience, String payment, String card, String screenDate, String screenTime) {
+		super();
+		this.user = user;
+		this.product = product;
+		this.audience = audience;
+		this.payment = payment;
+		this.card = card;
+		this.screenDate = screenDate;
+		this.screenTime = screenTime;
+	}
+
 	// getter-setter 메소드
 	public int getBookedNo() {
 		return bookedNo;
@@ -131,6 +145,14 @@ public class Book {
 	public void setScreenDate(String screenDate) {
 		this.screenDate = screenDate;
 	}
+	
+	public String getScreenTime() {
+		return screenTime;
+	}
+	
+	public void setScreenTime(String screenTime) {
+		this.screenTime = screenTime;
+	}
 
 	public String getTitleImg() {
 		return titleImg;
@@ -161,7 +183,7 @@ public class Book {
 	public String toString() {
 		return "Book [bookedNo=" + bookedNo + ", user=" + user + ", product=" + product + ", audience=" + audience
 				+ ", payment=" + payment + ", card=" + card + ", price=" + price + ", bookedDate=" + bookedDate
-				+ ", screenDate=" + screenDate + ", titleImg=" + titleImg + ", address=" + address + ", status="
+				+ ", screenDate=" + screenDate + ", screenTime=" + screenTime + ", titleImg=" + titleImg + ", address=" + address + ", status="
 				+ status + "]";
 	}	
 	

@@ -9,6 +9,8 @@
 	Grade g = (Grade)request.getAttribute("g");
 
 	Book b = (Book)request.getAttribute("b");
+	
+	int bookedNo = (int)request.getAttribute("bookedNo");
 
 	String bookPrice = df.format(b.getPrice() * b.getAudience());
 			
@@ -122,6 +124,10 @@
     .content-table b {
     	color: blue;
     }
+    #account>td {
+    	text-decoration: underline;
+        font-weight: bold;
+    }
     /* //마이페이지 끝 */
 </style>
 </head>
@@ -183,11 +189,15 @@
                                     <td class="form-title">결제 금액</td>
                                     <td class="form-content"><%= payPrice %>원</td>
                                 </tr>
+                                <tr id="account">
+                                    <td class="form-title">입금 계좌</td>
+                                    <td class="form-content">신한, 110-456-789043 / (주)티켓딱대</td>
+                                </tr>
                             </table>
 
                             <div class="btns">
                                 <button onclick="history.back();">돌아가기</button>
-                                <button disabled onclick="ticketDelete();">예매취소</button>
+                                <button onclick="ticketDelete();">예매취소</button>
                             </div>
                             
                         </div>
@@ -197,7 +207,7 @@
                             function ticketDelete() {
     
                                 if(confirm("해당 예매내역을 삭제하시겠습니까?")) {
-                                    location.href = "#";
+                                    location.href = "<%= contextPath %>/deleteTicket.us?bno=<%= bookedNo %>";
                                 }
                                 else {
                                     return false;

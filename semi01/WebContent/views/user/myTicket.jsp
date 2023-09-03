@@ -193,7 +193,7 @@
 	                       <div class="myTicket-content">
 	
 								<form action="<%= contextPath %>/deleteTicket.us" method="post">
-								<input type="hidden" name="bookedNo" value="<%= b.getBookedNo() %>">
+								<input type="hidden" name="bno" value="<%= b.getBookedNo() %>">
 	
 	                            <div class="content-img">
 	                                <a href="#"><img src="<%= b.getTitleImg() %>"></a>
@@ -214,7 +214,8 @@
 	                                        <td class="form-content"><%= b.getScreenDate() %></td>
 	                                    </tr>
 	                                    <tr>
-	                                    	<td><a href="<%= contextPath %>/ticketDetail.us?cpage=<%= pi.getCurrentPage() %>&tno=<%= b.getBookedNo() %>">상세보기</a></td>
+	                                    	<td><a href="<%= contextPath %>/ticketDetail.us?cpage=<%= pi.getCurrentPage() %>&bno=<%= b.getBookedNo() %>">상세보기</a></td>
+	                                    	<td><a href="<%= contextPath %>/reviewWriteForm.us?bno=<%= b.getBookedNo() %>">한줄평작성</a></td>
 	                                    </tr>
 	                                </table>
 	                            </div>
