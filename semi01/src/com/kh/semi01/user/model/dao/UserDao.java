@@ -628,7 +628,7 @@ private Properties prop = new Properties();
 				r = new Review();
 				
 				r.setReviewNo(rset.getInt("review_no"));
-				r.setProduct(rset.getString("product_title"));
+				r.setBookedProduct(rset.getString("product_title"));
 				r.setUser(rset.getString("user_id"));
 				r.setReviewDate(rset.getString("review_date"));
 				r.setReviewContent(rset.getString("review_content"));
@@ -871,6 +871,109 @@ private Properties prop = new Properties();
 		}
 		
 		return g;
+		
+	}
+	
+	public int insertReview(Connection conn, Review r) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertReview");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, Integer.parseInt(r.getBookedProduct()));
+			pstmt.setString(2, r.getReviewContent());
+			pstmt.setInt(3, Integer.parseInt(r.getUser()));
+			
+			result = pstmt.executeUpdate();;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int selectTicketWithoutReviewCount(Connection conn, int userNo) {
+		
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectTicketWithoutReviewCount");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+		
+	}
+	
+	public ArrayList<Book> selectTicketWithoutReview(Connection conn, int userNo, PageInfo pi) {
+		
+		ArrayList<Book> list = new ArrayList<Book>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectTicketWithoutReview");
+		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				list.add(new Book(rset.getInt("booked_no"), 
+								  rset.getString("product_title"), 
+								  rset.getString("screen_date"),
+								  rset.getString("title_img"), 
+								  rset.getString("address")));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
 		
 	}
 

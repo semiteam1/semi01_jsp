@@ -109,10 +109,12 @@
     .content-text>table {
     	line-height: 3;
     }
-    .content-text button {
-    }
     .content-text button:hover {
     	opacity: 0.5;
+    }
+    .content-text p {
+    	font-size: 12px;
+        margin-bottom: 0;
     }
     .content-delete {
         width: 10%;
@@ -152,6 +154,16 @@
         color: #202020;
         font-size: 14px;
         border-style: none;
+    }
+    .content-text button {
+        color: #007bff;
+        background-color: white;
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+    .content-text button:hover {
+        text-decoration: underline;
     }
     /* //마이페이지 끝 */
 </style>
@@ -201,7 +213,7 @@
                                                 <table>
                                                     <tr>
                                                         <th colspan="3">
-                                                            <h5><%= r.getProduct() %></h5>
+                                                            <h5><%= r.getBookedProduct() %></h5>
                                                         </th>
                                                     </tr>
                                                     <tr>

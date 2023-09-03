@@ -215,7 +215,7 @@
 	                                        <td class="form-content"><%= b.getScreenDate() %></td>
 	                                    </tr>
 	                                    <tr>
-	                                    	<td><a href="<%= contextPath %>/ticketDetail.us?cpage=<%= pi.getCurrentPage() %>&bno=<%= b.getBookedNo() %>">상세보기</a></td>
+                                    		<td><a href="<%= contextPath %>/reviewWriteForm.us?bno=<%= b.getBookedNo() %>">한줄평쓰기</a></td>
 	                                    </tr>
 	                                </table>
 	                            </div>

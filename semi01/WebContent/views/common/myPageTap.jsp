@@ -71,9 +71,9 @@
         <div class="tab-inner" onclick="myMenu(2);">예매조회</div>
         <div class="tab">마이리뷰</div>
         <div class="tab-inner" onclick="myMenu(3);">한줄평조회</div>
-        <div class="tab-inner" onclick="myMenu(2);">한줄평작성</div>
+        <div class="tab-inner" onclick="myMenu(4);">한줄평작성</div>
         <div class="tab">마이등급</div>
-        <div class="tab-inner" onclick="myMenu(4);">등급조회</div>
+        <div class="tab-inner" onclick="myMenu(5);">등급조회</div>
 
     </div>
 
@@ -98,6 +98,9 @@
         		location.href = "/semi01/myReview.us?cpage=1";
         		break;
         	case 4 :
+        		location.href = "/semi01/myTicketWithoutReview.us?cpage=1";
+        		break;
+        	case 5 :
         		location.href = "/semi01/myLevel.us";
         		
         	}

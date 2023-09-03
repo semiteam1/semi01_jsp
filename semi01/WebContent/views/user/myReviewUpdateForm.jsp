@@ -152,7 +152,7 @@
                             <input type="hidden" name="reviewNo" value="<%= r.getReviewNo() %>">
 
                                 <div id="content-title">
-                                    <h4><%= r.getProduct() %></h4>
+                                    <h4><%= r.getBookedProduct() %></h4>
                                 </div>
                                 <div id="content-text">
                                     <input name="reviewContent" value="<%= r.getReviewContent() %>">

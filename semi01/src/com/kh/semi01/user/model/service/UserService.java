@@ -344,4 +344,47 @@ public class UserService {
 		
 	}
 	
+	public int insertReview(Review r) {
+		
+		Connection conn = getConnection();
+		
+		int result = new UserDao().insertReview(conn, r);
+		
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int selectTicketWithoutReviewCount(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int ticketCount = new UserDao().selectTicketWithoutReviewCount(conn, userNo);
+		
+		close(conn);
+		
+		return ticketCount;
+		
+	}
+	
+	public ArrayList<Book> selectTicketWithoutReview(int userNo, PageInfo pi) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<Book> list = new UserDao().selectTicketWithoutReview(conn, userNo, pi);
+		
+		close(conn);
+		
+		return list;
+		
+	}
+	
 }

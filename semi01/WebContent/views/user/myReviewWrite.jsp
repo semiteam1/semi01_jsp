@@ -1,5 +1,9 @@
+<%@page import="com.kh.semi01.user.model.vo.Book"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	Book b = (Book)request.getAttribute("b");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -144,10 +148,13 @@
 
                         <div class="myReview-content" align="center">
                             
-                            <form action="#" method="post">
+                            <form action="<%= contextPath %>/reviewWrite.us" method="post">
+                            
+                            	<input type="hidden" name="bookedNo" value="<%= b.getBookedNo() %>">
+                            	<input type="hidden" name="userNo" value="<%= loginMember.getUserNo() %>">
 
                                 <div id="content-title">
-                                    <h4>콘크리트 유토피아</h4>
+                                    <h4><%= b.getProduct() %></h4>
                                 </div>
                                 <div id="content-text">
                                     <input name="reviewContent" placeholder="운영원칙에 어긋나는 게시물로 판단되는 글은 제재 조치를 받을 수 있습니다.">

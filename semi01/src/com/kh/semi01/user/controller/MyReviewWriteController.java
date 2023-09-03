@@ -1,4 +1,3 @@
-
 package com.kh.semi01.user.controller;
 
 import java.io.IOException;
@@ -7,22 +6,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.semi01.user.model.service.UserService;
-import com.kh.semi01.user.model.vo.Book;
 import com.kh.semi01.user.model.vo.Review;
+import com.kh.semi01.user.model.vo.User;
 
 /**
  * Servlet implementation class MyReviewWriteController
  */
-@WebServlet("/reviewWriteForm.us")
-public class MyReviewWriteFormController extends HttpServlet {
+@WebServlet("/reviewWrite.us")
+public class MyReviewWriteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyReviewWriteFormController() {
+    public MyReviewWriteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +31,30 @@ public class MyReviewWriteFormController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int bookedNo = Integer.parseInt(request.getParameter("bno"));
 
-		Book b = new UserService().selectTicketDetail(bookedNo);
+		request.setCharacterEncoding("UTF-8");
 		
-		request.setAttribute("b", b);
+		String bookedNo = request.getParameter("bookedNo");
+		String reviewContent = request.getParameter("reviewContent");
+		String userNo = request.getParameter("userNo");
+		
+		Review r = new Review(bookedNo, reviewContent, userNo);
+		
+		int result = new UserService().insertReview(r);
+		
+		HttpSession session = request.getSession();
+		
+		if(result > 0) {
+			session.setAttribute("alertMsg", "리뷰작성에 성공했습니다.");
+			
+			session.setAttribute("userNo", userNo);
+		}
+		else {
+			session.setAttribute("alertMsg", "리뷰작성에 실패했습니다.");
+		}
+		
+		response.sendRedirect(request.getContextPath() + "/myTicket.us?cpage=1");
 	
-		request.getRequestDispatcher("views/user/myReviewWrite.jsp").forward(request, response);
-		
 	}
 
 	/**

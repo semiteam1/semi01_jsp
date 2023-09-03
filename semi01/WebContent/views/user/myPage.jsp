@@ -172,38 +172,32 @@
                                     <tr>
                                         <td rowspan="3" class="form-title">관심있는 태그</td>
                                         <td>
-                                            <td>
-                                                <select name="interestMovie">
-                                                    <option value="1">로맨스(영화)</option>
-                                                    <option value="2">공포/스릴러(영화)</option>
-                                                    <option value="3">코미디(영화)</option>
-                                                    <option value="4">액션(영화)</option>
-                                                </select>
-                                            </td>
+	                                        <select name="interestMovie">
+	                                            <option value="1">로맨스(영화)</option>
+	                                            <option value="2">공포/스릴러(영화)</option>
+	                                            <option value="3">코미디(영화)</option>
+	                                            <option value="4">액션(영화)</option>
+	                                        </select>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <td>
-                                                <select name="interestDisplay">
-                                                    <option value="5">그림(전시)</option>
-                                                    <option value="6">작품(전시)</option>
-                                                    <option value="7">사진(전시)</option>
-                                                    <option value="8">체험(전시)</option>
-                                                </select>
-                                            </td>
+                                        	<select name="interestDisplay">
+                                                <option value="5">그림(전시)</option>
+                                                <option value="6">작품(전시)</option>
+                                                <option value="7">사진(전시)</option>
+                                                <option value="8">체험(전시)</option>
+                                            </select>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <td>
-                                                <select name="interestShow">
-                                                    <option value="9">뮤지컬(공연)</option>
-                                                    <option value="10">연극(공연)</option>
-                                                    <option value="11">클래식(공연)</option>
-                                                    <option value="12">콘서트(공연)</option>
-                                                </select>
-                                            </td>
+                                            <select name="interestShow">
+                                                <option value="9">뮤지컬(공연)</option>
+                                                <option value="10">연극(공연)</option>
+                                                <option value="11">클래식(공연)</option>
+                                                <option value="12">콘서트(공연)</option>
+                                            </select>
                                         </td>
                                     </tr>
                                 </table>
@@ -312,6 +306,8 @@
 
         function validatePwd() {
         	
+        	let PwdReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/;
+        	
         	if("<%= loginMember.getUserPwd() %>" != $("input[name=userPwd]").val()) {
         		
         		alert("현재 비밀번호를 잘못 입력하셨습니다.");
@@ -321,6 +317,16 @@
                 
                 return false;
         		
+        	}
+        	else if(!PwdReg.test($("input[name=updatePwd]").val()){ // 비번 틀리다
+                
+                alert("비밀번호는 영문 숫자 특수기호 조합 8자리 이상이어야 합니다.")
+
+                $("input[name=userPwd]+input[type=password]").val("");
+                $("input[name=updatePwd]").focus();
+
+                return false;
+            
         	}
         	else if($("input[name=updatePwd]").val() != $("input[name=checkPwd]").val()) {
 

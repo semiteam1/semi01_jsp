@@ -515,21 +515,7 @@
 
 		<script>
 
-			function book() {
-				
-				// if(<%= loginMember %> == null) {
-					
-				// 	alert("로그인 후 이용해주세요");
-					
-				// 	location.href="<%= contextPath %>/login.ur";
-					
-				// } else{
-					
-				// 	window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");	
-					
-				// }
-				
-			}
+			
 
 		</script>
 		
