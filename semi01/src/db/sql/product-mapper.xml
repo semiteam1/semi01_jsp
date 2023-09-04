@@ -681,4 +681,35 @@ SELECT
      JOIN PRODUCT_IMG USING(PRODUCT_NO)
     WHERE CATEGORY_TYPE = 1
 </entry>
+
+<entry key="insertLike">
+	INSERT
+	  INTO PRODUCT_LIKE
+	     (
+	       PRODUCT_NO
+	     , USER_NO  
+	     )
+	VALUES
+	     (
+	       ?
+	     , ?  
+	     )
+</entry>
+
+<entry key="deleteLike">
+	DELETE
+	  FROM PRODUCT_LIKE
+	 WHERE PRODUCT_NO = ?
+	   AND USER_NO = ?
+</entry>
+
+<entry key="selectLike">
+	SELECT 
+		   PRODUCT_NO
+		 , USER_NO  
+	  FROM PRODUCT_LIKE
+	 WHERE PRODUCT_NO = ?
+	   AND USER_NO = ?
+</entry>
+
 </properties>

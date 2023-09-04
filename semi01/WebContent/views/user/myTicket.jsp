@@ -194,35 +194,36 @@
 	                       <div class="myTicket-content">
 	
 								<form action="<%= contextPath %>/deleteTicket.us" method="post">
-								<input type="hidden" name="bno" value="<%= b.getBookedNo() %>">
-	
-	                            <div class="content-img">
-	                                <a href="#"><img src="<%= b.getTitleImg() %>"></a>
-	                            </div>
-	
-	                            <div class="content-text">
-	                                <table>
-	                                    <tr>
-	                                        <td class="form-title" width="100">공연 제목</td>
-	                                        <td class="form-content"><%= b.getProduct() %></td>
-	                                    </tr>
-	                                    <tr>
-	                                        <td class="form-title">공연 장소</td>
-	                                        <td class="form-content"><%= b.getAddress() %></td>
-	                                    </tr>
-	                                    <tr>
-	                                        <td class="form-title">공연 일시</td>
-	                                        <td class="form-content"><%= b.getScreenDate() %></td>
-	                                    </tr>
-	                                    <tr>
-	                                    	<td><a href="<%= contextPath %>/ticketDetail.us?cpage=<%= pi.getCurrentPage() %>&bno=<%= b.getBookedNo() %>">상세보기</a></td>
-	                                    </tr>
-	                                </table>
-	                            </div>
-	
-	                            <div class="content-delete">
-	                                <button class="close" type="submit" onclick="return ticketDelete();">X</button>
-	                            </div>
+								
+									<input type="hidden" name="bno" value="<%= b.getBookedNo() %>">
+		
+		                            <div class="content-img">
+		                                <a href="#"><img src="<%= b.getTitleImg() %>"></a>
+		                            </div>
+		
+		                            <div class="content-text">
+		                                <table>
+		                                    <tr>
+		                                        <td class="form-title" width="100">공연 제목</td>
+		                                        <td class="form-content"><%= b.getProduct() %></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td class="form-title">공연 장소</td>
+		                                        <td class="form-content"><%= b.getAddress() %></td>
+		                                    </tr>
+		                                    <tr>
+		                                        <td class="form-title">공연 일시</td>
+		                                        <td class="form-content"><%= b.getScreenDate() %></td>
+		                                    </tr>
+		                                    <tr>
+		                                    	<td><a href="<%= contextPath %>/ticketDetail.us?cpage=<%= pi.getCurrentPage() %>&bno=<%= b.getBookedNo() %>">상세보기</a></td>
+		                                    </tr>
+		                                </table>
+		                            </div>
+		
+		                            <div class="content-delete">
+		                                <button class="close" type="submit" onclick="return ticketDelete();">X</button>
+		                            </div>
 	                            
 	                            </form>
 	                            

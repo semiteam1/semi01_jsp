@@ -1,3 +1,4 @@
+<%@page import="com.kh.semi01.product.model.vo.ProductLike"%>
 <%@page import="com.kh.semi01.product.model.vo.ScreeningInfo"%>
 <%@page import="java.sql.Date"%>
 <%@page import="com.kh.semi01.product.model.vo.ProductIMG"%>
@@ -10,6 +11,7 @@
 	Product p = (Product)request.getAttribute("p");
 	ProductIMG pi = (ProductIMG)request.getAttribute("pi");
 	ScreeningInfo si = (ScreeningInfo)request.getAttribute("si");
+	ProductLike pl = (ProductLike)request.getAttribute("pl");
 	
 	ArrayList<ProductIMG> ilist = (ArrayList<ProductIMG>)request.getAttribute("ilist");
 	ArrayList<Product> plist = (ArrayList<Product>)request.getAttribute("plist");
@@ -398,13 +400,43 @@
 				<div>
 					<h1 style="width: 600px; float: left"><%= p.getProductTitle() %></h1>
 					
-					<button class="like_btn" id="Like" onclick="like();"><img style="width: 40px; height: 40px;" src="resource/이미지자료/류지완 샘플이미지/빈하트.png"></button>
-					<button class="like_btn" id="Like" onclick="Like();" style="display: none;"><img style="width: 40px; height: 40px;" src="resource/이미지자료/류지완 샘플이미지/풀하트.png"></button>
+					<% if(pl != null) { %>
+						<button type="button" class="like_btn"><img style="width: 40px; height: 40px;" src="resource/이미지자료/류지완 샘플이미지/풀하트.png"></button>
+					<% } else { %>
+						<button type="button" class="like_btn"><img style="width: 40px; height: 40px;" src="resource/이미지자료/류지완 샘플이미지/빈하트.png"></button>
+					<% } %>
+					
 				</div>
 
 				<script>
-
-
+				
+					$(function() {
+						
+						$(".like_btn").click(function() {
+							
+							<% if(loginMember == null) { %>
+							
+								alert("로그인 후에 이용 가능합니다.");
+							
+							<% } else {%>
+							
+								if($(this).children("img").attr("src") == "resource/이미지자료/류지완 샘플이미지/빈하트.png" ) {
+									
+									$(this).children("img").attr("src", "resource/이미지자료/류지완 샘플이미지/풀하트.png");
+								
+								}
+								else {
+									
+									$(this).children("img").attr("src", "resource/이미지자료/류지완 샘플이미지/빈하트.png");
+								
+								}
+						
+							<% } %>
+							
+						});
+						
+					})
+					
 				</script>
 
 				<br><br>
@@ -521,7 +553,7 @@
 							dayTime.addEventListener("click", function() {
 					            seatCount.textContent = "<%= si.getScreeningDaySeat() %>매";
 					            $("#screenTime").val("11:00");
-					            $("#spareSeat").val("<%= si.getScreeningDaySeat() %>");
+					            $("#spareSeat").val(<%= si.getScreeningDaySeat() %>);
 					        });
 	
 							nightTime.addEventListener("click", function() {
