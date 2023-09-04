@@ -1,29 +1,30 @@
+<%@page import="com.kh.semi01.product.model.service.ProductService"%>
 <%@page import="com.kh.semi01.product.model.vo.ProductIMG"%>
 <%@page import="com.kh.semi01.product.model.vo.Product"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<ProductIMG> ilist = (ArrayList<ProductIMG>)request.getAttribute("ilist");
-	ArrayList<Product> plist = (ArrayList<Product>)request.getAttribute("plist");
-	
-	ArrayList<Product> plist1 = (ArrayList<Product>)request.getAttribute("plist1");
-	ArrayList<Product> plist2 = (ArrayList<Product>)request.getAttribute("plist2");
-	ArrayList<Product> plist3 = (ArrayList<Product>)request.getAttribute("plist3");
-	ArrayList<Product> plist4 = (ArrayList<Product>)request.getAttribute("plist4");
-	ArrayList<Product> plist5 = (ArrayList<Product>)request.getAttribute("plist5");
-	ArrayList<Product> plist6 = (ArrayList<Product>)request.getAttribute("plist6");
-	ArrayList<Product> plist7 = (ArrayList<Product>)request.getAttribute("plist7");
-	ArrayList<Product> plist8 = (ArrayList<Product>)request.getAttribute("plist8");
-	ArrayList<Product> plist9 = (ArrayList<Product>)request.getAttribute("plist9");
-	ArrayList<Product> plist10 = (ArrayList<Product>)request.getAttribute("plist10");
-	ArrayList<Product> plist11 = (ArrayList<Product>)request.getAttribute("plist11");
-	ArrayList<Product> plist12 = (ArrayList<Product>)request.getAttribute("plist12");
-	
-	ArrayList<Product> dlist = (ArrayList<Product>)request.getAttribute("dlist");
-	ArrayList<Product> mlist = (ArrayList<Product>)request.getAttribute("mlist");
-	ArrayList<Product> slist = (ArrayList<Product>)request.getAttribute("slist");
-	
+ArrayList<Product> plist = new ProductService().selectProductTotalRank();
+ArrayList<ProductIMG> ilist = new ProductService().selectProductTotalRankIMG();
+
+ArrayList<Product> plist1 = new ProductService().selectProductCategoryTotalRank1();
+ArrayList<Product> plist2 = new ProductService().selectProductCategoryTotalRank2();
+ArrayList<Product> plist3 = new ProductService().selectProductCategoryTotalRank3();
+ArrayList<Product> plist4 = new ProductService().selectProductCategoryTotalRank4();
+ArrayList<Product> plist5 = new ProductService().selectProductCategoryTotalRank5();
+ArrayList<Product> plist6 = new ProductService().selectProductCategoryTotalRank6();
+ArrayList<Product> plist7 = new ProductService().selectProductCategoryTotalRank7();
+ArrayList<Product> plist8 = new ProductService().selectProductCategoryTotalRank8();
+ArrayList<Product> plist9 = new ProductService().selectProductCategoryTotalRank9();
+ArrayList<Product> plist10 = new ProductService().selectProductCategoryTotalRank10();
+ArrayList<Product> plist11 = new ProductService().selectProductCategoryTotalRank11();
+ArrayList<Product> plist12 = new ProductService().selectProductCategoryTotalRank12();
+
+ArrayList<Product> dlist = null;
+ArrayList<Product> mlist = null;
+ArrayList<Product> slist = null;
+
 %>
 <!DOCTYPE html>
 <html>
@@ -196,6 +197,13 @@
 </head>
 <body>
 	<%@ include file = "/views/common/header.jsp" %>
+	
+	<% if(loginMember != null){
+		
+		dlist = new ProductService().selectProductDisplayRank(loginMember.getUserNo());
+		mlist = new ProductService().selectProductMovieRank(loginMember.getUserNo());
+		slist = new ProductService().selectProductShowRank(loginMember.getUserNo());
+	}	%>
 	
 	<div class="outer">
 
@@ -743,32 +751,7 @@
 
 <br><br>
 	<script>
-		<% if(loginMember != null) { %>
-	
-		const userNo = <%=loginMember.getUserNo()%>
-		<% } %>
-		
-		
-		
-         $(function() {
-            // 사이트 접속시 로그인맴버 == null, plist == null 
-            // 로긴 널이면 plist 불러오는 trank 보내부루
-            // plist 받아다가 전처랭킹 조회됨
-            <% if(loginMember == null) { %>
-           	 	<% if(plist == null){ %>
-                    window.location.href = '<%= request.getContextPath() %>/trank.pr';
-            	<% } else{ %>
-            	<% } %>
-           	 
-            	
-          	<% }else{ %>
-          		 <% if(dlist == null){ %> // 아직 불러온적 없을때	            	
-                  location.href = '<%= contextPath %>/crank.pr?userNo=' + userNo;
-            	 <% } %>
 
-            <% } %>
-            
-         });
          
 
 	</script>

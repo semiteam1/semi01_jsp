@@ -207,7 +207,7 @@
         font-size: 18px;
         font-weight: 900;
         width: 100%;
-        height: 50px;
+        height: 47px;
         display: block;
         line-height: 35px;
         transform: scale(1);
