@@ -75,7 +75,7 @@
 }
 
 #product_img>img {
-	width: 405px;
+	width: 380px;
 	height: 500px;
 	border-radius: 10px;
 }
@@ -384,7 +384,6 @@
 			<div id="product_img">
 				<img src="<%= p.getImagePath() %>/<%= p.getPosterName() %>">
 			</div>
-			<% System.out.println("p : " + p); %>
 
 			<form action="<%= contextPath %>/book.bo?pno=<%= p.getProductNo() %>"
 				method="post">

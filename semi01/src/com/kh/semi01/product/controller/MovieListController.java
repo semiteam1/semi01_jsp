@@ -40,10 +40,7 @@ public class MovieListController extends HttpServlet {
 		request.setAttribute("ctype", ctype);
 		request.setAttribute("mlist", mlist); // 영화 상영예정작
 		request.setAttribute("mtlist", mtlist); // 영화 전체 리스트
-		System.out.println("대카테고리 서블릿 m" + mlist);
-		System.out.println("대카테고리 서블릿 mt" + mtlist);
-		
-		System.out.println("ctype" + ctype);
+
 		request.getRequestDispatcher("views/product/movieMain.jsp").forward(request, response);
 		
 	}
