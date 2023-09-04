@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	ArrayList<Product> mlist = (ArrayList<Product>)request.getAttribute("mlist");
-	ArrayList<Product> mtlist = (ArrayList<Product>)request.getAttribute("mtlist");
+	ArrayList<Product> rlist = (ArrayList<Product>)request.getAttribute("rlist");
+	ArrayList<Product> rtlist = (ArrayList<Product>)request.getAttribute("rtlist");
 %>    
 
 <!DOCTYPE html>
@@ -311,15 +311,15 @@
                         <!-- 전체 포스터 시작 -->
                         <div class="row">
                         	
-                        	<% for(int i=0; i<mlist.size(); i++){ %>
+                        	<% for(int i=0; i<rlist.size(); i++){ %>
 							<!-- 포스터, 설명글 시작 -->
 							<div class="col-md-5">
 								<div class="thumbnail">
-								<a href="<%= contextPath %>/detail.pr?pno=<%= mlist.get(i).getProductNo() %>">
-									<img src="<%=mlist.get(i).getImagePath() %>/<%= mlist.get(i).getPosterName() %>" alt="Lights" style="width:100%">
+								<a href="<%= contextPath %>/detail.pr?pno=<%= rlist.get(i).getProductNo() %>">
+									<img src="<%=rlist.get(i).getImagePath() %>/<%= rlist.get(i).getPosterName() %>" alt="Lights" style="width:100%">
 									<div class="caption">
-									<p><%=mlist.get(i).getProductTitle() %></p>
-									<pre><%= mlist.get(i).getStartPeriod() %>~<%= mlist.get(i).getEndPeriod() %></pre>
+									<p><%=rlist.get(i).getProductTitle() %></p>
+									<pre><%= rlist.get(i).getStartPeriod() %>~<%= rlist.get(i).getEndPeriod() %></pre>
 									</div>
 								</a>
 								</div>
@@ -345,15 +345,15 @@
                         <!-- 전체 포스터 시작 -->
                         <div class="row">
                         
-                        	<% for(int i=0; i<mtlist.size(); i++){ %>
+                        	<% for(int i=0; i<rtlist.size(); i++){ %>
 							<!-- 포스터, 설명글  시작 -->
 							<div class="col-md-4">
 								<div class="thumbnail">
-								<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(i).getProductNo() %>">
-									<img src="<%= mtlist.get(i).getImagePath() %>/<%= mtlist.get(i).getPosterName() %>" alt="Lights" style="width:100%">
+								<a href="<%= contextPath %>/detail.pr?pno=<%= rtlist.get(i).getProductNo() %>">
+									<img src="<%= rtlist.get(i).getImagePath() %>/<%= rtlist.get(i).getPosterName() %>" alt="Lights" style="width:100%">
 									<div class="caption">
-									<p><%= mtlist.get(i).getProductTitle() %></p>
-									<pre><%= mtlist.get(i).getStartPeriod() %>~<%= mtlist.get(i).getEndPeriod() %></pre>
+									<p><%= rtlist.get(i).getProductTitle() %></p>
+									<pre><%= rtlist.get(i).getStartPeriod() %>~<%= rtlist.get(i).getEndPeriod() %></pre>
 									</div>
 								</a>
 								</div>

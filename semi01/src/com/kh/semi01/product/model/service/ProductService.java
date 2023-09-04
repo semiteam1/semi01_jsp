@@ -73,7 +73,7 @@ public class ProductService {
 	
 	public ArrayList<Product> selectProductMovieRank(int userNo){
 		Connection conn = getConnection();
-		ArrayList<Product> mlist = new ProductDao().selectProductDisplayRank(conn, userNo);
+		ArrayList<Product> mlist = new ProductDao().selectProductMovieRank(conn, userNo);
 		
 		close(conn);
 		return mlist;
@@ -81,11 +81,137 @@ public class ProductService {
 	
 	public ArrayList<Product> selectProductShowRank(int userNo){
 		Connection conn = getConnection();
-		ArrayList<Product> slist = new ProductDao().selectProductDisplayRank(conn, userNo);
+		ArrayList<Product> slist = new ProductDao().selectProductShowRank(conn, userNo);
 		
 		close(conn);
 		return slist;
 	}
 	
+	public ArrayList<Product> selectProductCategoryTotalRank1(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist1 = new ProductDao().selectProductCategoryTotalRank1(conn);
+		
+		close(conn);
+		return plist1;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank2(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist2 = new ProductDao().selectProductCategoryTotalRank2(conn);
+		
+		close(conn);
+		return plist2;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank3(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist3 = new ProductDao().selectProductCategoryTotalRank3(conn);
+		
+		close(conn);
+		return plist3;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank4(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist4 = new ProductDao().selectProductCategoryTotalRank4(conn);
+		
+		close(conn);
+		return plist4;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank5(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist5 = new ProductDao().selectProductCategoryTotalRank5(conn);
+		
+		close(conn);
+		return plist5;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank6(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist6 = new ProductDao().selectProductCategoryTotalRank6(conn);
+		
+		close(conn);
+		return plist6;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank7(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist7 = new ProductDao().selectProductCategoryTotalRank7(conn);
+		
+		close(conn);
+		return plist7;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank8(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist8 = new ProductDao().selectProductCategoryTotalRank8(conn);
+		
+		close(conn);
+		return plist8;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank9(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist9 = new ProductDao().selectProductCategoryTotalRank9(conn);
+		
+		close(conn);
+		return plist9;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank10(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist10 = new ProductDao().selectProductCategoryTotalRank10(conn);
+		
+		close(conn);
+		return plist10;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank11(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist11 = new ProductDao().selectProductCategoryTotalRank11(conn);
+		
+		close(conn);
+		return plist11;
+	}
+	
+	public ArrayList<Product> selectProductCategoryTotalRank12(){
+		Connection conn = getConnection();
+		ArrayList<Product> plist12 = new ProductDao().selectProductCategoryTotalRank12(conn);
+		
+		close(conn);
+		return plist12;
+	}
+	
+	public ArrayList<Product> selectExpectedMovieList(){
+		Connection conn = getConnection();
+		ArrayList<Product> mlist = new ProductDao().selectExpectedMovieList(conn);
+		
+		close(conn);
+		return mlist;
+	}
+	
+	public ArrayList<Product> selectTotalMovieList(){
+		Connection conn = getConnection();
+		ArrayList<Product> mtlist = new ProductDao().selectTotalMovieList(conn);
+		
+		close(conn);
+		return mtlist;
+	}
+	public ArrayList<Product> selectExpectedMovieRomanceList(){
+		Connection conn = getConnection();
+		ArrayList<Product> rlist = new ProductDao().selectExpectedMovieRomanceList(conn);
+		
+		close(conn);
+		return rlist;
+	}
+	
+	public ArrayList<Product> selectTotalMovieRomanceList(){
+		Connection conn = getConnection();
+		ArrayList<Product> rtlist = new ProductDao().selectTotalMovieRomanceList(conn);
+		
+		close(conn);
+		return rtlist;
+	}
 
 }

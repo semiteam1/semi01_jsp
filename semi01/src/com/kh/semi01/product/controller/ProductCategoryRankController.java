@@ -3,7 +3,6 @@ package com.kh.semi01.product.controller;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -42,10 +41,6 @@ public class ProductCategoryRankController extends HttpServlet {
 			request.setAttribute("dlist", dlist);
 			request.setAttribute("mlist", mlist);
 			request.setAttribute("slist", slist);
-			
-			System.out.println("컨트롤러 dlist" + dlist);
-			System.out.println("컨트롤러 mlist" + mlist);
-			System.out.println("컨트롤러 slist" + slist);
 			
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 	}

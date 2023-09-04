@@ -93,8 +93,8 @@ public class ProductDao {
 								rset.getString("level_name"),
 								rset.getInt("run_time"),
 								rset.getInt("price"),
-								rset.getString("image_path"),
-								rset.getString("poster_name")
+								rset.getString("poster_name"),
+								rset.getString("image_path")
 								);
 								
 			}
@@ -194,7 +194,6 @@ public class ProductDao {
 								   ));
 			}
 			
-			System.out.println("asdasd : " + plist);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -249,6 +248,7 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -282,6 +282,7 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -315,6 +316,7 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -337,4 +339,552 @@ public class ProductDao {
 			return slist;
 	
 	}
+	
+//	여기부터 소카테고리별 상위 5개씩 메인화면에 쏴주는 상품들 Dao 12개
+	public ArrayList<Product> selectProductCategoryTotalRank1(Connection conn){
+		ArrayList<Product> plist1 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank1");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist1.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+			System.out.println(plist1);
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist1;
+	
+	}
+	// 2
+	public ArrayList<Product> selectProductCategoryTotalRank2(Connection conn){
+		ArrayList<Product> plist2 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank2");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist2.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist2;
+	
+	}
+	
+	// 2
+	public ArrayList<Product> selectProductCategoryTotalRank3(Connection conn){
+		ArrayList<Product> plist3 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank3");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist3.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist3;
+	
+	}
+	
+	// 2
+	public ArrayList<Product> selectProductCategoryTotalRank4(Connection conn){
+		ArrayList<Product> plist4 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank4");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist4.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist4;
+	
+	}
+	
+	// 2
+	public ArrayList<Product> selectProductCategoryTotalRank5(Connection conn){
+		ArrayList<Product> plist5 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank5");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist5.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist5;
+	
+	}
+	
+	// 6
+	public ArrayList<Product> selectProductCategoryTotalRank6(Connection conn){
+		ArrayList<Product> plist6 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank6");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist6.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist6;
+	
+	}
+	
+	// 7
+	public ArrayList<Product> selectProductCategoryTotalRank7(Connection conn){
+		ArrayList<Product> plist7 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank7");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist7.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist7;
+	
+	}
+	
+	// 8
+	public ArrayList<Product> selectProductCategoryTotalRank8(Connection conn){
+		ArrayList<Product> plist8 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank8");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist8.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist8;
+	
+	}
+	
+	// 9
+	public ArrayList<Product> selectProductCategoryTotalRank9(Connection conn){
+		ArrayList<Product> plist9 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank9");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist9.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist9;
+	
+	}
+	
+	// 2
+	public ArrayList<Product> selectProductCategoryTotalRank10(Connection conn){
+		ArrayList<Product> plist10 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank10");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist10.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist10;
+	
+	}
+	
+	// 2
+	public ArrayList<Product> selectProductCategoryTotalRank11(Connection conn){
+		ArrayList<Product> plist11 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank11");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist11.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist11;
+	
+	}
+	
+	// 12
+	public ArrayList<Product> selectProductCategoryTotalRank12(Connection conn){
+		ArrayList<Product> plist12 = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductCategoryTotalRank12");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				plist12.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return plist12;
+	
+	}
+	
+	public ArrayList<Product> selectExpectedMovieList(Connection conn){
+		ArrayList<Product> mlist = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectExpectedMovie");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				mlist.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		System.out.println(mlist);
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return mlist;
+	}
+	
+	public ArrayList<Product> selectTotalMovieList(Connection conn){
+		ArrayList<Product> mtlist = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectTotalMovieList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				mtlist.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return mtlist;
+	}
+	public ArrayList<Product> selectExpectedMovieRomanceList(Connection conn){
+		ArrayList<Product> rlist = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectExpectedMovieRomanceList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				rlist.add(new Product(rset.getInt("product_no"),
+						rset.getString("product_title"),
+						rset.getString("start_period"),
+						rset.getString("end_period"),
+						rset.getString("poster_name"),
+						rset.getString("image_path")
+						));
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return rlist;
+	}
+	public ArrayList<Product> selectTotalMovieRomanceList(Connection conn){
+		ArrayList<Product> rtlist = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectTotalMovieRomanceList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				rtlist.add(new Product(rset.getInt("product_no"),
+						rset.getString("product_title"),
+						rset.getString("start_period"),
+						rset.getString("end_period"),
+						rset.getString("poster_name"),
+						rset.getString("image_path")
+						));
+			}
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return rtlist;
+	}
+
 }

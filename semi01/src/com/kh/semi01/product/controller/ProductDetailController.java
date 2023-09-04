@@ -1,6 +1,7 @@
 package com.kh.semi01.product.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.semi01.product.model.service.ProductService;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
+import com.kh.semi01.product.model.vo.ProductLike;
 import com.kh.semi01.product.model.vo.ScreeningInfo;
 
 /**
@@ -34,6 +36,12 @@ public class ProductDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		
+		ArrayList<Product> plist = new ProductService().selectProductTotalRank();
+		ArrayList<ProductIMG> ilist = new ProductService().selectProductTotalRankIMG();
+		
+		request.setAttribute("plist", plist); // 전체 상품 중 좋아요 상위 5개
+		request.setAttribute("ilist", ilist); // 전체 상품 중 좋아요 상위 5개 (이미지 경로)
+		
 		int productNo = Integer.parseInt(request.getParameter("pno"));
 		
 		Product p = new ProductService().selectProductDetail(productNo);
@@ -52,7 +60,6 @@ public class ProductDetailController extends HttpServlet {
 			request.setAttribute("p", p);
 			request.setAttribute("pi", pi);
 			request.setAttribute("si", si);
-			System.out.println("pi  :2323" + pi);
 			request.getRequestDispatcher("views/product/productDetail.jsp").forward(request, response);
 			
 		}
