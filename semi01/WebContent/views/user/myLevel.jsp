@@ -99,7 +99,7 @@
         width: 70%;
     }
     #description b {
-    	color: blue;
+    	color: #007bff;
     }
     #selectLevel {
         margin: 10px;

@@ -43,8 +43,17 @@
 <head>
 <meta charset="UTF-8">
 <title>티켓딱대</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
 <!-- jQuery library -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <style>
 	div {
 		/* border: 1px solid red; */
@@ -128,7 +137,7 @@
 			<input type="hidden" name="price">
 			
 			<div id="book-info">
-				<h3>예매 정보 확인</h3>
+				<h6>예매 정보 확인</h6>
 				<table>
 					<tr>
 						<th>관람 인원수</th>
@@ -174,7 +183,7 @@
 				</table>
 			</div>
 			<div id="product-info">
-				<h3>공연 정보 확인</h3>
+				<h6>공연 정보 확인</h6>
 				<table>
 					<tr>
 						<th>공연 제목</th>
@@ -195,7 +204,7 @@
 				</table>
 			</div>
 			<div id="user-info">
-				<h3>주문자 정보 확인</h3>
+				<h6>주문자 정보 확인</h6>
 				<table>
 					<tr>
 						<th>이름</th>

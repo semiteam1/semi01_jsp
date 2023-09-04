@@ -175,7 +175,7 @@
                     <div id="right-top">
                         <div id="myTicket-title">
                             <h4>
-                                마이티켓 <span>예매조회</span>
+                                마이리뷰 <span>한줄평 작성</span>
                             </h4>
                         </div>
                     </div>
