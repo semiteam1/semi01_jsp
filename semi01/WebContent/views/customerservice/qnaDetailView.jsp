@@ -11,8 +11,9 @@
 <title>Insert title here</title>
 <style>
     .outer{
-        background-color: black;
-        color: white;
+       background-color: #f8f9fa;
+        border-radius: 30px;
+        color: black;
         width:1000px;
         height: 500px;
         margin: auto;
@@ -25,7 +26,7 @@
 
 <div class="outer" align="center">
         <br>
-        <h2 align="center">공지사항 상세보기</h2>
+        <h2 align="center">Q&A 상세정보</h2>
         <br>
 
         <table id="detail-area" border="1">
@@ -54,7 +55,6 @@
             <!-- 현재 로그인한 사용자가 해당 글을 쓴 본인일 경우-->
             <% if(loginMember != null && q.getUser().equals(loginMember.getUserId()) ){ %>
             
-            <button onclick="location.href='<%=contextPath %>/updateForm.qo?num=<%=q.getQnaNo() %>'">수정하기</button>
             <button onclick="location.href='<%= contextPath %>/delete.me.qo?num=<%=q.getQnaNo() %>'">삭제하기</button>
             
             <!-- 
