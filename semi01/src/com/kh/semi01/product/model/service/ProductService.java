@@ -73,7 +73,7 @@ public class ProductService {
 	
 	public ArrayList<Product> selectProductMovieRank(int userNo){
 		Connection conn = getConnection();
-		ArrayList<Product> mlist = new ProductDao().selectProductDisplayRank(conn, userNo);
+		ArrayList<Product> mlist = new ProductDao().selectProductMovieRank(conn, userNo);
 		
 		close(conn);
 		return mlist;
@@ -81,7 +81,7 @@ public class ProductService {
 	
 	public ArrayList<Product> selectProductShowRank(int userNo){
 		Connection conn = getConnection();
-		ArrayList<Product> slist = new ProductDao().selectProductDisplayRank(conn, userNo);
+		ArrayList<Product> slist = new ProductDao().selectProductShowRank(conn, userNo);
 		
 		close(conn);
 		return slist;

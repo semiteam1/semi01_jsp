@@ -249,6 +249,7 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -257,8 +258,8 @@ public class ProductDao {
 				 					  rset.getString("product_title"),
 				 					  rset.getString("start_period"),
 				 					  rset.getString("end_period"),
-				 					  rset.getString("poster_name"),
-				 					  rset.getString("image_path")
+				 					  rset.getString("image_path"),
+				 					  rset.getString("poster_name")
 								   ));
 			}
 		
@@ -282,6 +283,7 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -290,8 +292,8 @@ public class ProductDao {
 				 					  rset.getString("product_title"),
 				 					  rset.getString("start_period"),
 				 					  rset.getString("end_period"),
-				 					  rset.getString("poster_name"),
-				 					  rset.getString("image_path")
+				 					  rset.getString("image_path"),
+				 					  rset.getString("poster_name")
 								   ));
 			}
 		
@@ -315,6 +317,7 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
 			
 			rset = pstmt.executeQuery();
 			
@@ -323,8 +326,8 @@ public class ProductDao {
 				 					  rset.getString("product_title"),
 				 					  rset.getString("start_period"),
 				 					  rset.getString("end_period"),
-				 					  rset.getString("poster_name"),
-				 					  rset.getString("image_path")
+				 					  rset.getString("image_path"),
+				 					  rset.getString("poster_name")
 								   ));
 			}
 		

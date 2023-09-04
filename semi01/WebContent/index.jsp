@@ -10,6 +10,7 @@
 	ArrayList<Product> dlist = (ArrayList<Product>)request.getAttribute("dlist");
 	ArrayList<Product> mlist = (ArrayList<Product>)request.getAttribute("mlist");
 	ArrayList<Product> slist = (ArrayList<Product>)request.getAttribute("slist");
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -107,9 +108,14 @@
             padding-bottom: 30px;
         }
 
-        .div_img img, .div_categoryRank_img img {
+        .div_img img {
             border-radius: 10px;
             height: 307px;
+        }
+
+        .div_categoryRank_img img{
+            border-radius: 10px;
+            height: 240px;
         }
 
         a:hover{
@@ -219,20 +225,18 @@
                     $('#myCarousel').carousel(slideIndex);
                 }
             </script>
+	<% if( loginMember == null && plist == null){%>
+		<!-- 아무것도 없는게 정상 -->
+		<p>아무것도 없을때</p>
+	<%}else if(loginMember == null && plist != null){ %>
+		<!-- plist 만 조회되서 넘어온 상태 (로그인 전)  -->
 
-	 <% if(loginMember == null){ %>
-
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
 <!-- 로그인 전 전체 랭킹 추천 -->
     <div class="recommend_img">
 
         <span style="font-weight: bold; font-size: 25px;">전체 랭킹 딱대</span>
         <br>
         <hr>
-		<% if(plist != null){ %>
 		<% for(int i=0; i<plist.size(); i++) {%>
         <div class="div_img">
             <a href="<%= contextPath %>/detail.pr?pno=<%= plist.get(i).getProductNo() %>">
@@ -243,7 +247,7 @@
                 </div>
             </a>
         </div>
-        <% } %>
+        
 		<% } %>
         
             <br><br>
@@ -251,40 +255,68 @@
             <br><br><br>
 
         </div>
-        <% }else if(loginMember != null){ %>
+        <% }else if(loginMember != null){ %> <!--  로그인 했을 때 -->
 
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-<!-- 로그인 후 각자의 관심사 랭킹 추천 -->
-    <div class="recommend_categoryRank_img">
-		<form action="<%= contextPath %>/crank.pr?uno=<%= loginMember.getUserNo() %>" id="enroll-form" method="post">
-		<input type="hidden" name="userNo" value="<%= loginMember.getUserNo()%>">
-        <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
-        <br>
-        <hr>
-		
-		<% if(plist != null){ %>
-			<% for(int i=0; i<dlist.size(); i++) {%>
-	        <div class="div_categoryRank_img">
-	            <a href="<%= contextPath %>/detail.pr?pno=<%= dlist.get(i).getProductNo() %>">
-	                <img src="<%= dlist.get(i).getImagePath() %>/<%= dlist.get(i).getPosterName() %>" alt="Fjords" style="width:100%">
-	                <div class="caption">
-	                    <p class="caption1"><%= dlist.get(i).getProductTitle() %></p>
-	                    <p class="caption2"><%= dlist.get(i).getStartPeriod() %> ~ <%= dlist.get(i).getEndPeriod() %></p>
-	                </div>
-	            </a>
+		<!-- 로그인 후 각자의 관심사 랭킹 추천 -->
+	    <div class="recommend_categoryRank_img">
+			<form action="<%= contextPath %>/crank.pr?uno=<%= loginMember.getUserNo() %>" id="enroll-form" method="post">
+			<input type="hidden" name="userNo" value="<%= loginMember.getUserNo()%>">
+	        <span style="font-weight: bold; font-size: 25px;">관심사 랭킹 딱대</span>
+	        <br>
+	        <hr>
+	        <% if(dlist != null){ %>
+				<% for(int i=0; i<dlist.size(); i++) {%>
+		        <div class="div_categoryRank_img">
+		            <a href="<%= contextPath %>/detail.pr?pno=<%= dlist.get(i).getProductNo() %>">
+		                <img src="<%= dlist.get(i).getImagePath() %>/<%= dlist.get(i).getPosterName() %>" alt="Fjowwwrds" style="width:100%">
+		                <div class="caption">
+		                    <p class="caption1"><%= dlist.get(i).getProductTitle() %></p>
+		                    <p class="caption2"><%= dlist.get(i).getStartPeriod() %> ~ <%= dlist.get(i).getEndPeriod() %></p>
+		                </div>
+		            </a>
+		        </div>
+	          
+				<% } %>
+				<% } %>
+				
+				
+				<% if(mlist != null){ %>
+				<% for(int i=0; i<mlist.size(); i++) {%>
+		        <div class="div_categoryRank_img">
+		            <a href="<%= contextPath %>/detail.pr?pno=<%= mlist.get(i).getProductNo() %>">
+		                <img src="<%= mlist.get(i).getImagePath() %>/<%= mlist.get(i).getPosterName() %>" alt="Fjowwwrds" style="width:100%">
+		                <div class="caption">
+		                    <p class="caption1"><%= mlist.get(i).getProductTitle() %></p>
+		                    <p class="caption2"><%= mlist.get(i).getStartPeriod() %> ~ <%= mlist.get(i).getEndPeriod() %></p>
+		                </div>
+		            </a>
+		        </div>
+	          
+				<% } %>
+				<% } %>
+				
+				
+				<% if(slist != null){ %>
+				<% for(int i=0; i<slist.size(); i++) {%>
+		        <div class="div_categoryRank_img">
+		            <a href="<%= contextPath %>/detail.pr?pno=<%= slist.get(i).getProductNo() %>">
+		                <img src="<%= slist.get(i).getImagePath() %>/<%= slist.get(i).getPosterName() %>" alt="Fjowwwrds" style="width:100%">
+		                <div class="caption">
+		                    <p class="caption1"><%= slist.get(i).getProductTitle() %></p>
+		                    <p class="caption2"><%= slist.get(i).getStartPeriod() %> ~ <%= slist.get(i).getEndPeriod() %></p>
+		                </div>
+		            </a>
+		        </div>
+	          
+				<% } %>
+				<% } %>
+			</form>
+	
+	            <br><br>
+	            <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
+	            <br><br><br>    
+	
 	        </div>
-            <% } %>
-		<% } %>
-		</form>
-
-            <br><br>
-            <img src="resource/이미지자료/류지완 샘플이미지/페이딱.png" style="width: 100%;">
-            <br><br><br>    
-
-        </div>
         <% } %>
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -508,19 +540,32 @@
 </div>
 <br><br>
 	<script>
-
+		<% if(loginMember != null) { %>
+	
+		const userNo = <%=loginMember.getUserNo()%>
+		<% } %>
+		
          $(function() {
              
              
-             
-             if(<%= loginMember %> == null){
-            	 if(<%=plist%>== null){
+             // 사이트 접속시 로그인맴버 == null, plist == null 
+             // 로긴 널이면 plist 불러오는 trank 보내부루
+             // plist 받아다가 전처랭킹 조회됨
+             <% if(loginMember == null) { %>
+            	 <% if(plist == null){ %>
                      window.location.href = '<%= request.getContextPath() %>/trank.pr';
-                 }
+                 <% } %>
             	 
-           	
+           	 <% }else{ %>
+           		 <% if(dlist == null){ %> // 아직 불러온적 없을때
+	            	
+	                  location.href = '<%= contextPath %>/crank.pr?userNo=' + userNo;
+	            <% } %>
+            <% } %>
+           
          });
 	</script>
+	
 	
 	<%@ include file = "/views/common/footer.jsp" %>
 </body>
