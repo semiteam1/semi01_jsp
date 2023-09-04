@@ -60,6 +60,7 @@ public class ManagerMainController extends HttpServlet {
 		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
+		request.setAttribute("isfirst", "1");
 		
 		request.getRequestDispatcher("views/manager/manager-member.jsp").forward(request, response);
 	}

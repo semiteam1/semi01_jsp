@@ -1,6 +1,9 @@
 package com.kh.semi01.manager.model.service;
 
-import static com.kh.semi01.common.JDBCTemplate.*;
+import static com.kh.semi01.common.JDBCTemplate.close;
+import static com.kh.semi01.common.JDBCTemplate.commit;
+import static com.kh.semi01.common.JDBCTemplate.getConnection;
+import static com.kh.semi01.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.time.LocalDate;
@@ -8,6 +11,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.semi01.manager.model.dao.RegistDao;
+import com.kh.semi01.manager.model.dao.SearchDao;
+import com.kh.semi01.manager.model.vo.DataClass;
 import com.kh.semi01.manager.model.vo.Select;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
@@ -47,7 +52,8 @@ public class RegistService {
 	public int insertProduct(Product p, ProductIMG img, String dayOrNight, int seatsNum) {
 		Connection conn = getConnection();
 		
-		int result1 = new RegistDao().insertProduct(conn, p, img);
+		int result1 = new RegistDao().insertProduct(conn, p);
+		int result2 = new RegistDao().insertImg(conn, img);
 		
 		LocalDate startDate = LocalDate.parse(p.getStartPeriod());
         LocalDate endDate = LocalDate.parse(p.getEndPeriod());
@@ -60,9 +66,9 @@ public class RegistService {
 
         String[] dateArray = dateList.toArray(new String[0]);
         
-        int result2 = new RegistDao().insertScreenInfo(conn, dateArray, dayOrNight, seatsNum);
+        int result3 = new RegistDao().insertScreenInfo(conn, dateArray, dayOrNight, seatsNum);
 		
-		if(result1 > 0 && result2 > 0) {
+		if(result1 > 0 && result2 > 0 && result3 > 0) {
 			commit(conn);
 		}else {
 			rollback(conn);
@@ -70,6 +76,6 @@ public class RegistService {
 		
 		close(conn);
 		
-		return result1 * result2;
+		return result1 * result2 * result3;
 	}
 }

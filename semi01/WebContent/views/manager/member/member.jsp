@@ -448,13 +448,25 @@
 			    </table>
 			  </div>
 			  `;
+			  const originalString1 = result.interestMovie;
+			  const originalString2 = result.interestDisplay;
+			  const originalString3 = result.interestShow;
+			  
+			  const startIndex = 0;
+			  const endIndex1 = originalString1.indexOf("(");
+			  const endIndex2 = originalString2.indexOf("(");
+			  const endIndex3 = originalString3.indexOf("(");
+			
+			  const substring1 = originalString1.substring(startIndex, endIndex1);
+			  const substring2 = originalString2.substring(startIndex, endIndex2);
+			  const substring3 = originalString3.substring(startIndex, endIndex3);
 			  $("#memNum").val(result.userNo);
 			  $("#memId").val(result.userId);
 			  $("#memName").val(result.userName);
 			  $("#memBirth").val(result.userBirth);
-			  $("#bta1").text(result.interestMovie);
-			  $("#bta2").text(result.interestDisplay);
-			  $("#bta3").text(result.interestShow);
+			  $("#bta1").text(substring1);
+			  $("#bta2").text(substring2);
+			  $("#bta3").text(substring3);
 			  $("#memEmail").val(result.email);
 			  $("#memPhone").val(result.phone);
 			  $("#memGrade").val(result.gradeNo);

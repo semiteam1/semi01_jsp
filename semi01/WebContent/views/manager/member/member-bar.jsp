@@ -131,10 +131,6 @@
 		  var selectedValue = $("#select1").val(); // 선택된 옵션의 값 가져오기
 		  var inputsVal = $("#inputs").val();
 		  if (selectedValue === '회원번호') {
-			  if(!isNumber(inputsVal)){
-				  alert("숫자를 입력하세요.");
-				  return;
-			  }
 			  form.append($("<input>", {
 	    		    type: "hidden",
 	    		    name: "cpage",
@@ -151,10 +147,6 @@
 	    		    value: inputsVal
 	          }));
 		  } else if (selectedValue === '회원아이디') {
-			  if (isNumber(inputsVal)) {
-				  alert("문자열을 입력하세요.");
-				  return;
-			  }
 			  form.append($("<input>", {
 	    		    type: "hidden",
 	    		    name: "cpage",
@@ -171,10 +163,6 @@
 	    		    value: inputsVal
 	          }));
 		  } else if (selectedValue === '회원명') {
-			  if (isNumber(inputsVal)) {
-				  alert("문자열을 입력하세요.");
-				  return;
-			  }
 			  form.append($("<input>", {
 	    		    type: "hidden",
 	    		    name: "cpage",

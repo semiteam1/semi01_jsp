@@ -2,6 +2,7 @@ package com.kh.semi01.manager.controller.regist;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,8 @@ public class ManagerRegistProductController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	request.setCharacterEncoding("utf-8");
 
-        String savePath = request.getSession().getServletContext().getRealPath("/resource/product_upfiles/");
+        //String savePath = request.getSession().getServletContext().getContext("/resources").getRealPath("");
+        String savePath = "C:\\team-semi-new\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
         int maxSize = 10 * 1024 * 1024; 
 
         MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8");
@@ -42,11 +44,12 @@ public class ManagerRegistProductController extends HttpServlet {
         ProductIMG img = new ProductIMG();
 
         String[] inputNames = {"customFile1", "customFile2", "customFile3", "customFile4", "customFile5", "customFile6"};
-        int count = 0;
+        // int count = 0;
         for (String inputName : inputNames) {
             if (multiRequest.getFile(inputName) != null) {
                 String originalFileName = multiRequest.getOriginalFileName(inputName);
                 String savedFileName = multiRequest.getFilesystemName(inputName);
+                /*
                 count++;
                 if(count == 1) {
                 	img.setPosterName(savedFileName);
@@ -63,8 +66,25 @@ public class ManagerRegistProductController extends HttpServlet {
                 	img.setDetail5Name(savedFileName);
                 }
                 img.setImagePath(savePath);
+                */
+                if(inputName.equals("customFile1")) {
+                	img.setPosterName(savedFileName);
+                	p.setPosterName(savePath);
+                }else if(inputName.equals("customFile2")) {
+                	img.setDetail1Name(savedFileName);
+                }else if(inputName.equals("customFile3")) {
+                	img.setDetail2Name(savedFileName);
+                }else if(inputName.equals("customFile4")) {
+                	img.setDetail3Name(savedFileName);
+                }else if(inputName.equals("customFile5")) {
+                	img.setDetail4Name(savedFileName);
+                }else if(inputName.equals("customFile6")) {
+                	img.setDetail5Name(savedFileName);
+                }
             }
         }
+        
+        img.setImagePath(savePath);
         
         String smallCategory = multiRequest.getParameter("salsa2");
         String title = multiRequest.getParameter("title");
@@ -90,16 +110,12 @@ public class ManagerRegistProductController extends HttpServlet {
 	    p.setRunTime(time);
 	    p.setPrice(price);
 	    p.setImage(savePath);
-	    
-	    System.out.println(p.getStartPeriod());
-	    System.out.println(p.getEndPeriod());
-	    
 	    int result = new RegistService().insertProduct(p, img, dayOrNight, seatsNum);
-	    
 	    if(result > 0) {
-	    	System.out.println("성공 SUCCESS");
+	    	RequestDispatcher dispatcher = request.getRequestDispatcher("/manager-search.do?cpage=1");
+	    	dispatcher.forward(request, response);
 	    }else {
-	    	System.out.println("실패 FAILED");
+	    	System.out.println("상품등록 실패 FAILED");
 	    }
     }
 

@@ -126,7 +126,7 @@
   </style>
 </head>
 <body>
-  <form action="/semi01/manager-regist-product.do" method="post" id="goodsform" style="margin-left: 38px;" enctype="multipart/form-data">
+  <form action="/manager-regist-product.do" method="post" id="goodsform" style="margin-left: 38px;" enctype="multipart/form-data">
     <div id="container" style="margin-top: 13px;">
         <table id="tb9">
             <tr>
@@ -265,7 +265,7 @@
         </div>
     </div>
     
-    <button id="bts3" type="submit" style="font-family: 'Jua', sans-serif;">등록</button>
+    <button id="bts3" type="submit" style="margin-top: 35px; font-family: 'Jua', sans-serif;">등록</button>
 </form>
 
 <script>

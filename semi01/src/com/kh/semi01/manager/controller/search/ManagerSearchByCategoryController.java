@@ -14,16 +14,16 @@ import com.kh.semi01.manager.model.service.SearchService;
 import com.kh.semi01.product.model.vo.Product;
 
 /**
- * Servlet implementation class ManagerSearchController
+ * Servlet implementation class ManagerSearchByCategoryController
  */
-@WebServlet("/manager-search.do")
-public class ManagerSearchController extends HttpServlet {
+@WebServlet("/manager-search-bycategory.do")
+public class ManagerSearchByCategoryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ManagerSearchController() {
+    public ManagerSearchByCategoryController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,6 +32,8 @@ public class ManagerSearchController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("utf-8");
+		
 		int listCount = 0;
 		int currentPage; 
 		int pageLimit; 
@@ -40,25 +42,15 @@ public class ManagerSearchController extends HttpServlet {
 		int maxPage; 
 		int startPage; 
 		int endPage; 
-		String value = "";
-		int number = 0;
-		if(request.getParameter("searchType1") != null && request.getParameter("searchType1").equals("지역")) {
-			value = request.getParameter("searchVal");
-		}else if(request.getParameter("searchType1") != null && request.getParameter("searchType1").equals("상품이름")){
-			value = request.getParameter("searchVal");
-		}else if(request.getParameter("searchType1") != null && request.getParameter("searchType1").equals("상품번호")) {
-			number = Integer.parseInt(request.getParameter("searchVal"));			
-		}
-		if(request.getParameter("searchType1") != null)
-		{
-			if(request.getParameter("searchType1").equals("지역")) {
-				listCount = new SearchService().selectProductListCountByLocal(value);			
-			}else if(request.getParameter("searchType1").equals("상품이름")){
-				listCount = new SearchService().selectProductListCountByName(value);
-			}else if(request.getParameter("searchType1").equals("상품번호")) {
-				listCount = new SearchService().selectProductListCountByNo(number);
-			}
-		}else{
+		
+		String category = request.getParameter("category");	
+		if(category.equals("영화")){
+			listCount = new SearchService().getProductMovieCount();
+		}else if(category.equals("전시")){
+			listCount = new SearchService().getProductDisplayCount();
+		}else if(category.equals("공연")) {
+			listCount = new SearchService().getProductShowCount();
+		}else {
 			listCount = new SearchService().selectListCount();
 		}
 		currentPage = Integer.parseInt(request.getParameter("cpage"));
@@ -74,18 +66,14 @@ public class ManagerSearchController extends HttpServlet {
 		}
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		ArrayList<Product> list = null;
-		if(request.getParameter("searchType1") != null)
-		{
-			if(request.getParameter("searchType1").equals("지역")) {
-				list = new SearchService().searchProductByLocal(value, pi);
-			}else if(request.getParameter("searchType1").equals("상품이름")){
-				list = new SearchService().searchProductByName(value, pi);
-			}else if(request.getParameter("searchType1").equals("상품번호")) {
-				list = new SearchService().searchProductByNo(number, pi);
-			}
+		if(category.equals("영화")){
+			list = new SearchService().getMovieList(pi);
+		}else if(category.equals("전시")){
+			list = new SearchService().getDisplayList(pi);
+		}else if(category.equals("공연")) {
+			list = new SearchService().getShowList(pi);
 		}else {
 			list = new SearchService().selectList(pi);
-			request.setAttribute("isfirst", "1");
 		}
 		
 		request.setAttribute("pi", pi);

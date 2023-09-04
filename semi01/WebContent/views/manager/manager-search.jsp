@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-  <title>°ü¸®ÀÚ ÆäÀÌÁö</title>
+  <title>ê´€ë¦¬ì í˜ì´ì§€</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
@@ -116,39 +116,41 @@
 <body>
   <div class="wrapper box-with-shadow divd" style="margin-top: 64px;">
     <div class="container1 divd">
-      <h3 style="font-size: 30px; margin-top: 42px; margin-bottom: 37px;">°ü¸®ÀÚ</h3>
+      <h3 style="font-size: 30px; margin-top: 42px; margin-bottom: 37px;">ê´€ë¦¬ì</h3>
     
-      <!-- È¸¿ø°ü½ÉÅÂ±× Á¶È¸, È¸¿ø»èÁ¦, È¸¿ø µî±ŞÁ¶Á¤, ½Å°í³»¿ªÈ®ÀÎ -->
-      <div class="box style1 divd" style="line-height: 3;">È¸¿ø°ü¸®</div>
-      <p class="p1" style="padding-bottom: 30px; margin-bottom: 0; margin-top: 0; border-radius: 0;">È¸¿øÁ¶È¸</p>
+      <!-- íšŒì›ê´€ì‹¬íƒœê·¸ ì¡°íšŒ, íšŒì›ì‚­ì œ, íšŒì› ë“±ê¸‰ì¡°ì •, ì‹ ê³ ë‚´ì—­í™•ì¸ -->
+      <div class="box style1 divd" style="line-height: 3;">íšŒì›ê´€ë¦¬</div>
+      <p class="p1" style="padding-bottom: 30px; margin-bottom: 0; margin-top: 0; border-radius: 0;">íšŒì›ì¡°íšŒ</p>
       <!--
-      <p class="p1">È¸¿ø°ü½ÉÅÂ±× Á¶È¸</p>
-      <p class="p1">È¸¿ø»èÁ¦</p>
-      <p class="p1">È¸¿ø µî±ŞÁ¶Á¤</p>
-      <p class="p1">½Å°í³»¿ªÈ®ÀÎ</p>
+      <p class="p1">íšŒì›ê´€ì‹¬íƒœê·¸ ì¡°íšŒ</p>
+      <p class="p1">íšŒì›ì‚­ì œ</p>
+      <p class="p1">íšŒì› ë“±ê¸‰ì¡°ì •</p>
+      <p class="p1">ì‹ ê³ ë‚´ì—­í™•ì¸</p>
       -->
       <!--
-      <div class="style1" style="line-height: 3;">°í°´¼¾ÅÍ °ü¸®</div>
-      <p class="p1">°øÁö»çÇ× Á¶È¸</p>
-      <p class="p1">°øÁö»çÇ× ¼öÁ¤</p>
-      <p class="p1">°øÁö»çÇ× »èÁ¦</p>
-      <p class="p1">Q&A ¼öÁ¤</p>
+      <div class="style1" style="line-height: 3;">ê³ ê°ì„¼í„° ê´€ë¦¬</div>
+      <p class="p1">ê³µì§€ì‚¬í•­ ì¡°íšŒ</p>
+      <p class="p1">ê³µì§€ì‚¬í•­ ìˆ˜ì •</p>
+      <p class="p1">ê³µì§€ì‚¬í•­ ì‚­ì œ</p>
+      <p class="p1">Q&A ìˆ˜ì •</p>
       -->
-      <div class="style1 divd" style="line-height: 3;">»óÇ°°ü¸®</div>
-      <p class="p1" style="margin-top: 0; margin-bottom: 0; padding-top: 10px; padding-bottom: 30px; border-radius: 0;">»óÇ°Á¶È¸</p>
-      <p class="p1" style="margin-top: 0; margin-bottom: 0; padding-top: 10px; padding-bottom: 30px; border-radius: 0;">»óÇ°µî·Ï</p>
+      <div class="style1 divd" style="line-height: 3;">ìƒí’ˆê´€ë¦¬</div>
+      <p class="p1" style="margin-top: 0; margin-bottom: 0; padding-top: 10px; padding-bottom: 30px; border-radius: 0;">ìƒí’ˆì¡°íšŒ</p>
+      <p class="p1" style="margin-top: 0; margin-bottom: 0; border-bottom: 1px solid #ABBBC7; padding-top: 10px; padding-bottom: 30px; border-radius: 0;">ìƒí’ˆë“±ë¡</p>
       <!--
-      <p class="p1">»óÇ°¼öÁ¤</p>
-      <p class="p1 p3">»óÇ°»èÁ¦</p>
-      <p class="p1 p3">¸®ºäÁ¶È¸</p>
-      <p class="p1 p3" style="margin: 0; padding-bottom: 30px; border-left: 1px solid #ABBBC7; border-right: 1px solid #ABBBC7; border-radius: 0;">¸®ºä»èÁ¦</p>
+      <p class="p1">ìƒí’ˆìˆ˜ì •</p>
+      <p class="p1 p3">ìƒí’ˆì‚­ì œ</p>
+      <p class="p1 p3">ë¦¬ë·°ì¡°íšŒ</p>
+      <p class="p1 p3" style="margin: 0; padding-bottom: 30px; border-left: 1px solid #ABBBC7; border-right: 1px solid #ABBBC7; border-radius: 0;">ë¦¬ë·°ì‚­ì œ</p>
       -->
-      <div class="box style1 divd" style="line-height: 3; border-bottom: 2px solid #ABBBC7;">Åë°è</div>
-      <p class="p1" style="padding-bottom: 32px; margin: 0; height: 35px; border-radius: 0; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; border-radius: 0;">ÆÇ¸ÅÅë°è</p>
-      <p class="p1" style="margin: 0; height: 35px; border-radius: 0; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; padding-bottom: 32px; border-radius: 0;">ÀÌ¿ëÀÚ Åë°è</p>
-      <p class="p1" style="margin: 0; height: 35px; border-radius: 0; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; border-bottom: 1px solid #ABBBC7; padding-bottom: 32px; border-radius: 0;">Ä«Å×°í¸® Åë°è</p>
+      <!-- 
+      <div class="box style1 divd" style="line-height: 3; border-bottom: 2px solid #ABBBC7;">í†µê³„</div>
+      <p class="p1" style="padding-bottom: 32px; margin: 0; height: 35px; border-radius: 0; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; border-radius: 0;">íŒë§¤í†µê³„</p>
+      <p class="p1" style="margin: 0; height: 35px; border-radius: 0; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; padding-bottom: 32px; border-radius: 0;">ì´ìš©ì í†µê³„</p>
+      <p class="p1" style="margin: 0; height: 35px; border-radius: 0; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; border-bottom: 1px solid #ABBBC7; padding-bottom: 32px; border-radius: 0;">ì¹´í…Œê³ ë¦¬ í†µê³„</p>
+      -->
       <!--
-      <p class="p1" style="margin: 0; height: 35px; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; border-bottom: 1px solid #ABBBC7; padding-bottom: 32px; border-radius: 0;">»óÇ°º° ÁÁ¾Æ¿ä Åë°è</p>
+      <p class="p1" style="margin: 0; height: 35px; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; border-bottom: 1px solid #ABBBC7; padding-bottom: 32px; border-radius: 0;">ìƒí’ˆë³„ ì¢‹ì•„ìš” í†µê³„</p>
       -->
     </div>
     <div class="container2 divd">
@@ -179,11 +181,11 @@
           var p1content = $(this).text();
           console.log(p1content);
           
-          if(p1content == "È¸¿øÁ¶È¸"){
+          if(p1content == "íšŒì›ì¡°íšŒ"){
         	  var form = $("<form>", {
-                  action: "manager-member.do", // ¼­ºí¸´ÀÇ URL
+                  action: "manager-member.do", // ì„œë¸”ë¦¿ì˜ URL
                   method: "get",
-                  style: "display: none;" // ÆûÀ» ¾Èº¸ÀÌµµ·Ï ½ºÅ¸ÀÏ¸µ
+                  style: "display: none;" // í¼ì„ ì•ˆë³´ì´ë„ë¡ ìŠ¤íƒ€ì¼ë§
               });
         	  
         	  form.append($("<input>", {
@@ -193,39 +195,46 @@
               }));
         	  
               form.appendTo("body").submit();
-          }else if(p1content == "»óÇ°µî·Ï"){
+          }else if(p1content == "ìƒí’ˆë“±ë¡"){
         	  var form = $("<form>", {
-                  action: "manager-regist.do", // ¼­ºí¸´ÀÇ URL
+                  action: "manager-regist.do", // ì„œë¸”ë¦¿ì˜ URL
                   method: "get",
-                  style: "display: none;" // ÆûÀ» ¾Èº¸ÀÌµµ·Ï ½ºÅ¸ÀÏ¸µ
+                  style: "display: none;" // í¼ì„ ì•ˆë³´ì´ë„ë¡ ìŠ¤íƒ€ì¼ë§
               });
               form.appendTo("body").submit();
-          }else if(p1content == "»óÇ°Á¶È¸"){
+          }else if(p1content == "ìƒí’ˆì¡°íšŒ"){
         	  var form = $("<form>", {
-                  action: "manager-search.do", // ¼­ºí¸´ÀÇ URL
+                  action: "manager-search.do", // ì„œë¸”ë¦¿ì˜ URL
                   method: "get",
-                  style: "display: none;" // ÆûÀ» ¾Èº¸ÀÌµµ·Ï ½ºÅ¸ÀÏ¸µ
+                  style: "display: none;" // í¼ì„ ì•ˆë³´ì´ë„ë¡ ìŠ¤íƒ€ì¼ë§
+              });
+        	  
+        	  form.append($("<input>", {
+      		    type: "hidden",
+      		    name: "cpage",
+      		    value: "1"
+            }));
+        	  
+              form.appendTo("body").submit();
+          }else if(p1content == "íŒë§¤í†µê³„"){
+        	  var form = $("<form>", {
+                  action: "manager-sales.do", // ì„œë¸”ë¦¿ì˜ URL
+                  method: "get",
+                  style: "display: none;" // í¼ì„ ì•ˆë³´ì´ë„ë¡ ìŠ¤íƒ€ì¼ë§
               });
               form.appendTo("body").submit();
-          }else if(p1content == "ÆÇ¸ÅÅë°è"){
+          }else if(p1content == "ì´ìš©ì í†µê³„"){
         	  var form = $("<form>", {
-                  action: "manager-sales.do", // ¼­ºí¸´ÀÇ URL
+                  action: "manager-user.do", // ì„œë¸”ë¦¿ì˜ URL
                   method: "get",
-                  style: "display: none;" // ÆûÀ» ¾Èº¸ÀÌµµ·Ï ½ºÅ¸ÀÏ¸µ
+                  style: "display: none;" // í¼ì„ ì•ˆë³´ì´ë„ë¡ ìŠ¤íƒ€ì¼ë§
               });
               form.appendTo("body").submit();
-          }else if(p1content == "ÀÌ¿ëÀÚ Åë°è"){
+          }else if(p1content == "ì¹´í…Œê³ ë¦¬ í†µê³„"){
         	  var form = $("<form>", {
-                  action: "manager-user.do", // ¼­ºí¸´ÀÇ URL
+                  action: "manager-category.do", // ì„œë¸”ë¦¿ì˜ URL
                   method: "get",
-                  style: "display: none;" // ÆûÀ» ¾Èº¸ÀÌµµ·Ï ½ºÅ¸ÀÏ¸µ
-              });
-              form.appendTo("body").submit();
-          }else if(p1content == "Ä«Å×°í¸® Åë°è"){
-        	  var form = $("<form>", {
-                  action: "manager-category.do", // ¼­ºí¸´ÀÇ URL
-                  method: "get",
-                  style: "display: none;" // ÆûÀ» ¾Èº¸ÀÌµµ·Ï ½ºÅ¸ÀÏ¸µ
+                  style: "display: none;" // í¼ì„ ì•ˆë³´ì´ë„ë¡ ìŠ¤íƒ€ì¼ë§
               });
               form.appendTo("body").submit();
           }

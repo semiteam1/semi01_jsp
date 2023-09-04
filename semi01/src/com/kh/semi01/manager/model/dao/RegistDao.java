@@ -96,7 +96,7 @@ public class RegistDao {
 		return sel;
 	}
 	
-	public int insertProduct(Connection conn, Product p, ProductIMG img) {
+	public int insertProduct(Connection conn, Product p) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -126,15 +126,7 @@ public class RegistDao {
 			pstmt.setInt(7, Integer.parseInt(p.getProductLevel()));
 			pstmt.setInt(8, p.getRunTime());
 			pstmt.setInt(9, p.getPrice());
-			
-			pstmt.setString(10, img.getPosterName());
-			pstmt.setString(11, img.getDetail1Name());
-			pstmt.setString(12, img.getDetail2Name());
-			pstmt.setString(13, img.getDetail3Name());
-			pstmt.setString(14, img.getDetail4Name());
-			pstmt.setString(15, img.getDetail5Name());
-			pstmt.setString(16, img.getImagePath());
-			
+
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -151,11 +143,13 @@ public class RegistDao {
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectLastPno");
-		
+		int num1 = 0;
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
-			int num1 = rset.getInt("NUM");
+			if(rset.next()) {
+				num1 = rset.getInt("NUM");				
+			}
 			for(int i=0; i<dateArray.length; i++) {
 				sql = prop.getProperty("insertScreenInfo");
 				String date1 = dateArray[i];
@@ -191,6 +185,41 @@ public class RegistDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public int insertImg(Connection conn, ProductIMG img) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectLastPno");
+		int num1 = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				num1 = rset.getInt("NUM");				
+			}
+			
+			sql = prop.getProperty("insertImg");
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, num1);
+			pstmt.setString(2, img.getPosterName());
+			pstmt.setString(3, img.getDetail1Name());
+			pstmt.setString(4, img.getDetail2Name());
+			pstmt.setString(5, img.getDetail3Name());
+			pstmt.setString(6, img.getDetail4Name());
+			pstmt.setString(7, img.getDetail5Name());
+			pstmt.setString(8, img.getImagePath());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
 			close(pstmt);
 		}
 		return result;

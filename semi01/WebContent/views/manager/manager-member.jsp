@@ -136,17 +136,19 @@
       -->
       <div class="style1 divd" style="line-height: 3;">상품관리</div>
       <p class="p1" style="margin-top: 0; margin-bottom: 0; padding-top: 10px; padding-bottom: 30px; border-radius: 0;">상품조회</p>
-      <p class="p1" style="margin-top: 0; margin-bottom: 0; padding-top: 10px; padding-bottom: 30px; border-radius: 0;">상품등록</p>
+      <p class="p1" style="margin-top: 0; margin-bottom: 0; border-bottom: 1px solid #ABBBC7; padding-top: 10px; padding-bottom: 30px; border-radius: 0;">상품등록</p>
       <!--
       <p class="p1">상품수정</p>
       <p class="p1 p3">상품삭제</p>
       <p class="p1 p3">리뷰조회</p>
       <p class="p1 p3" style="margin: 0; padding-bottom: 30px; border-left: 1px solid #ABBBC7; border-right: 1px solid #ABBBC7; border-radius: 0;">리뷰삭제</p>
       -->
+      <!-- 
       <div class="box style1 divd" style="line-height: 3; border-bottom: 2px solid #ABBBC7;">통계</div>
       <p class="p1" style="padding-bottom: 32px; margin: 0; height: 35px; border-radius: 0; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; border-radius: 0;">판매통계</p>
       <p class="p1" style="margin: 0; height: 35px; border-radius: 0; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; padding-bottom: 32px; border-radius: 0;">이용자 통계</p>
       <p class="p1" style="margin: 0; height: 35px; border-radius: 0; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; border-bottom: 1px solid #ABBBC7; padding-bottom: 32px; border-radius: 0;">카테고리 통계</p>
+      -->
       <!--
       <p class="p1" style="margin: 0; height: 35px; border-right: 1px solid #ABBBC7; border-left: 1px solid #ABBBC7; border-bottom: 1px solid #ABBBC7; padding-bottom: 32px; border-radius: 0;">상품별 좋아요 통계</p>
       -->
@@ -206,6 +208,13 @@
                   method: "get",
                   style: "display: none;" // 폼을 안보이도록 스타일링
               });
+        	  
+        	  form.append($("<input>", {
+      		    type: "hidden",
+      		    name: "cpage",
+      		    value: "1"
+            }));
+        	  
               form.appendTo("body").submit();
           }else if(p1content == "판매통계"){
         	  var form = $("<form>", {

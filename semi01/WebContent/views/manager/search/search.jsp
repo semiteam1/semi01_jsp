@@ -1,5 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@page import="com.kh.semi01.manager.common.model.vo.PageInfo" %>
+<%@page import="com.kh.semi01.product.model.vo.Product" %>
+<%@page import="java.util.ArrayList" %>
+
+<%
+	String contextPath = request.getContextPath();
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Product> list = (ArrayList<Product>)request.getAttribute("list");
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,14 +30,14 @@
       }
       #tb1{
         width: 100%;
-        table-layout: fixed; /* ≈◊¿Ã∫Ì ∑π¿Ãæ∆øÙ¿ª ∞Ì¡§¿∏∑Œ º≥¡§ */
-        width: 100%; /* ≈◊¿Ã∫Ì ¿¸√º ≥ ∫Ò º≥¡§ */
+        table-layout: fixed; /* ÌÖåÏù¥Î∏î Î†àÏù¥ÏïÑÏõÉÏùÑ Í≥†Ï†ïÏúºÎ°ú ÏÑ§Ï†ï */
+        width: 100%; /* ÌÖåÏù¥Î∏î Ï†ÑÏ≤¥ ÎÑàÎπÑ ÏÑ§Ï†ï */
       }
       td {
         max-height: 1.5em;
-        overflow: hidden;
-        white-space: nowrap; /* ≈ÿΩ∫∆Æ ¡Ÿ πŸ≤ﬁ πÊ¡ˆ */
-        text-overflow: ellipsis; /* ...¿∏∑Œ ≈ÿΩ∫∆Æ «•Ω√ */
+        /*overflow: hidden;*/
+        white-space: nowrap; /* ÌÖçÏä§Ìä∏ Ï§Ñ Î∞îÍøà Î∞©ÏßÄ */
+        text-overflow: ellipsis; /* ...ÏúºÎ°ú ÌÖçÏä§Ìä∏ ÌëúÏãú */
       }
       #tb1 tr:last-child{
         border-bottom: none;
@@ -159,9 +172,9 @@
       padding: 5px;
       border: 1px solid #888;
       width: 750px;
-      height: 657px;
+      height: 380px;
       margin: auto;
-      margin-top: 4px;
+      margin-top: 132px;
       border-radius: 10px;
     }
     .modal-content2{
@@ -303,7 +316,7 @@
   background-color: darkgray;
   }
   .custom-file-input {
-      visibility: hidden; /* ±‚∫ª ∆ƒ¿œ º±≈√ πˆ∆∞ º˚±Ë */
+      visibility: hidden; /* Í∏∞Î≥∏ ÌååÏùº ÏÑ†ÌÉù Î≤ÑÌäº Ïà®ÍπÄ */
       display: none;
       width: 0;
       height: 0;
@@ -379,14 +392,54 @@
       font-weight: bold;
       text-align: left;
     }
-    #delBtn1{
+    #delBtn1, #delBtn2, #delBtn3, #delBtn4, #delBtn5, #delBtn6, #delBtn7, #delBtn8, #delBtn9, #delBtn10{
       border: none;
       border-radius: 5px;
       font-weight: bold;
       height: 25px;
       background-color: white;
     }
+    #delBtn:hover{
+      cursor: pointer;
+      background-color: darkgray;
+    }
     #delBtn1:hover{
+      cursor: pointer;
+      background-color: darkgray;
+    }
+    #delBtn2:hover{
+      cursor: pointer;
+      background-color: darkgray;
+    }
+    #delBtn3:hover{
+      cursor: pointer;
+      background-color: darkgray;
+    }
+    #delBtn4:hover{
+      cursor: pointer;
+      background-color: darkgray;
+    }
+    #delBtn5:hover{
+      cursor: pointer;
+      background-color: darkgray;
+    }
+    #delBtn6:hover{
+      cursor: pointer;
+      background-color: darkgray;
+    }
+    #delBtn7:hover{
+      cursor: pointer;
+      background-color: darkgray;
+    }
+    #delBtn8:hover{
+      cursor: pointer;
+      background-color: darkgray;
+    }
+    #delBtn9:hover{
+      cursor: pointer;
+      background-color: darkgray;
+    }
+    #delBtn10:hover{
       cursor: pointer;
       background-color: darkgray;
     }
@@ -404,13 +457,20 @@
     #tables4Div{
       width: 635px;
       height: 417px;
-      overflow: auto;
+      overflow-y: scroll; /* ÏàòÏßÅ Ïä§ÌÅ¨Î°§Î∞îÎäî Ìï≠ÏÉÅ ÌëúÏãú */
+ 	  overflow-x: hidden; /* Í∞ÄÎ°ú Ïä§ÌÅ¨Î°§Î∞îÎäî Ïà®ÍπÄ */
     }
     #buttondiv{
-      width: 396px;
-      margin: auto;
-      margin-top: 24px;
-      display: flex;
+      /* margin: auto;
+      margin-top: 22px;
+      display: flex; */
+      display: inline-flex;
+      flex-wrap: wrap; /* Î≤ÑÌäºÎì§ÏùÑ Ïó¨Îü¨ Ï§ÑÎ°ú Î¨∂Ïùå */
+      justify-content: center; /* Í∞ÄÏö¥Îç∞ Ï†ïÎ†¨ */
+      align-items: center; /* ÏÑ∏Î°ú Ï§ëÏïô Ï†ïÎ†¨ */
+      margin-top: 13px;
+      border: none;
+      width: 100%; /* Ï†ÑÏ≤¥ ÎÑàÎπÑ ÌôúÏö© */
     }
     #buttondiv>.btn2{
       width: 31px;
@@ -426,255 +486,106 @@
     #buttondiv>.btn2:hover{
       background-color: darkgray;
     }
+    .modal-trigger td{
+		height: 22px;
+	}
+	#content1, #content2, #content3, #content4, #content5, #content6, #content7, #content8, #content9, #content10{
+		border: none;
+		width: 595px;
+		border-radius: 5px;
+		font-weight: bold;
+	}
+	#before, #after{
+		display: none;
+	}
+	#grand1, #grand2, #grand3, #grand4, #grand5{
+		display: none;
+	}
+	#buttondiv>.btn3{
+      width: 31px;
+      height: 31px;
+      margin-right: 2px;
+      border-radius: 5px;
+      border: none;
+      background-color: #ABBBC7;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #buttondiv>.btn3:hover{
+    	background-color: darkgray;
+    }
+    tr, th, td{
+     	box-sizing: border-box;
+    }
+    #dxdy1, #dxdy2{
+    	border: none;
+    	border-radius: 5px;
+    	margin-right: 5px;
+    }
+    #dsearchArea1{
+    	border: none;
+    	border-radius: 5px;
+    	margin-right: 5px;
+    }
+    #searchBtn11{
+    	border: none;
+    	border-radius: 5px;
+    }
+    #searchBtn11:hover{
+    	background-color: darkgray;
+    	cursor: pointer;
+    }
   </style>
 </head>
 <body>
   <div class="outer">
     <table id="tb1">
-      <tr>
-        <th style="width: 101px;">ªÛ«∞π¯»£</th>
-        <th style="width: 392px;">ªÛ«∞¿Ã∏ß</th>
-        <th style="width: 131px;">Ω√¿€≥Ø¬•</th>
-        <th style="width: 131px;">¡æ∑·≥Ø¬•</th>
-        <th style="width: 100px;">¡ˆø™</th>
-        <th style="border-right: none;"></th>
-        <th></th>
+      <tr style="width: 100%;">
+        <th style="width: 10%;">ÏÉÅÌíàÎ≤àÌò∏</th>
+        <th style="width: 41%;">ÏÉÅÌíàÏù¥Î¶Ñ</th>
+        <th style="width: 13%">ÏãúÏûëÎÇ†Ïßú</th>
+        <th style="width: 13%">Ï¢ÖÎ£åÎÇ†Ïßú</th>
+        <th style="width: 10%">ÏßÄÏó≠</th>
+        <th style="border-right: none; width: 8%;">
+        	<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </th>
+        <th style="width: 5%">
+        	<div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</div>
+        </th>
       </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
+      <%for(int i=0; i<list.size(); i++){ %>
+      <tr class="modal-trigger">
+        <td id="td1" style="width: 10%;"><%=list.get(i).getProductNo() %></td>
+        <td id="td2" style="width: 41%;"><%=list.get(i).getProductTitle() %></td>
+        <td id="td3" style="width: 13%"><%=list.get(i).getStartPeriod() %></td>
+        <td id="td4" style="width: 13%"><%=list.get(i).getEndPeriod() %></td>
+        <td id="td5" style="width: 10%"><%=list.get(i).getLocal() %></td>
+        <td id="td6" style="width: 8%;"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">Î¶¨Î∑∞Î≥¥Í∏∞</button></td>
+        <td id="td7" style="width: 5%"><button class="riska" style="font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button></td>
       </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
-      <tr>
-        <td id="td1" class="modal-trigger">10231</td>
-        <td id="td2" class="modal-trigger">∫–≥Î¿«¡˙¡÷</td>
-        <td id="td3" class="modal-trigger">2023/07/02</td>
-        <td id="td4" class="modal-trigger">2023/09/03</td>
-        <td id="td5" class="modal-trigger">∞Ê±‚/¿Œ√µ</td>
-        <td id="td6"><button class="reviewbtn" style="font-family: 'Jua', sans-serif;">∏Æ∫‰∫∏±‚</button></td>
-        <td id="td7"><button style="font-family: 'Jua', sans-serif;">ªË¡¶</button></td>
-      </tr>
+      <%} %>
     </table>
-    <div id="buttondiv" style="margin-top: 10px;">
-      <button class="btn2" style="font-family: 'Jua', sans-serif;"><</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">1</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">2</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">3</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">4</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">5</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">6</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">7</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">8</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">9</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">10</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">></button>
+    <div>
+      <div id="buttondiv" style="border: none;margin: auto; margin-top: 8px;">
+		<%if(currentPage != 1){ %>
+	    	<button class="btn2" style="font-family: 'Jua', sans-serif;" onclick="funcx41(<%=currentPage - 1 %>);">&lt;</button>
+        <%} %>
+        <%for(int p=startPage; p<=endPage; p++){ %>
+	        <%if(p == currentPage){ %>
+	        	<button class="btn2" style="font-family: 'Jua', sans-serif;" disabled><%=p %></button>
+	        <%} else{%>
+	        	<button class="btn2" style="font-family: 'Jua', sans-serif;" onclick="funcx31(<%=p %>);"><%=p %></button>
+	        <%} %>
+        <%} %>
+        <%if(currentPage != maxPage){ %>
+        	<button class="btn2" style="font-family: 'Jua', sans-serif;" onclick="funcx41(<%=currentPage + 1 %>);">&gt;</button>
+       	<%} %>
+    </div>
     </div>
   </div>
   <div class="modal" id="modal" style="width: 1016px; height: 674.391px; position: absolute; box-sizing: border-box; left: 0; top: 0;">
-    <div class="modal-content">
-      <div class="close" id="closeButton" style="border:none;">
+    <div class="modal-content" style="width: 478px;">
+      <div class="close" id="closeButton" style="border:none; margin-left: 446px;">
         &times;
       </div>
       <p id="modalText" style="margin-top: 0;"></p>
@@ -693,11 +604,409 @@
       <div class="close2" id="closeButton2">
         &times;
       </div>
+      <div style="display: flex;">
+	    <select id="dxdy1" style="margin-left: 309px; font-family: 'Jua', sans-serif;">
+	      <option>Î¶¨Î∑∞Î≤àÌò∏</option>
+	      <option>ÌöåÏõêÎ≤àÌò∏</option>
+	      <option>Î¶¨Î∑∞ÏûëÏÑ±ÎÇ†Ïßú</option>
+	    </select>
+	    <input type="text" id="dsearchArea1">
+	    <button id="searchBtn11" style="font-family: 'Jua', sans-serif;">Í≤ÄÏÉâ</button>
+      </div>
       <p id="modalText2" style="margin-top: 0;"></p>
+      <div id="buttondiv" style="border: none;margin: auto; margin-top: -3px;">
+	      <button class="btn3" id="before" style="font-family: 'Jua', sans-serif;"><</button>
+	      <button class="btn3" id="grand1" style="font-family: 'Jua', sans-serif;">1</button>
+	      <button class="btn3" id="grand2" style="font-family: 'Jua', sans-serif;">2</button>
+	      <button class="btn3" id="grand3" style="font-family: 'Jua', sans-serif;">3</button>
+	      <button class="btn3" id="grand4" style="font-family: 'Jua', sans-serif;">4</button>
+	      <button class="btn3" id="grand5" style="font-family: 'Jua', sans-serif;">5</button>
+	      <button class="btn3" id="after" style="font-family: 'Jua', sans-serif;">></button>
+	</div>
     </div>
   </div>
 
   <script>
+  var upno = null;
+  var productNo = null;
+  var firstpage = 0;
+  $("#grand1").click(function(){ cx_call(productNo, 1); });
+  $("#grand2").click(function(){ cx_call(productNo, 2); });
+  $("#grand3").click(function(){ cx_call(productNo, 3); });
+  $("#grand4").click(function(){ cx_call(productNo, 4); });
+  $("#grand5").click(function(){ cx_call(productNo, 5); });
+
+  $("#before").click(function(){ cx_prev(productNo); });
+  $("#after").click(function(){ cx_next(productNo); }); 
+  
+  $("#searchBtn11").click(function(){
+	  var reviewSearchType = $("#dxdy1").val();
+	  var reviewSearchContent = $("#dsearchArea1").val();
+	  
+	 cx(upno, 1, reviewSearchType, reviewSearchContent);
+  });
+  
+  $(".riska").click(function() {
+	  var trElement = $(this).closest("tr");
+	    
+	  var productNoText = trElement.find("#td1").text();
+	    
+	  event.stopPropagation();
+	  
+	  var form = $("<form>", {
+          action: "manager-delete.do", // ÏÑúÎ∏îÎ¶øÏùò URL
+          method: "get",
+          style: "display: none;" // ÌèºÏùÑ ÏïàÎ≥¥Ïù¥ÎèÑÎ°ù Ïä§ÌÉÄÏùºÎßÅ
+      });
+	  
+	  form.append($("<input>", {
+		    type: "hidden",
+		    name: "pno",
+		    value: productNoText
+      }));
+	  
+      form.appendTo("body").submit();
+    });
+  
+  function deleteReview(button, i){
+	    var tr = button.parentNode.parentNode;
+
+	    var rno = tr.querySelector('#rno' + i).textContent;
+
+	    $.ajax({
+            type: 'POST', 
+            url: 'manager-search-review-delete.do',
+            data: { rno: rno }, 
+            success: function (response) {
+            	$("#dsearchArea1").val("");
+                cx(productNo, 1, "", "");
+            },
+            error: function (xhr, status, error) {
+                console.error('ÎåìÍ∏Ä ÏÇ≠Ï†ú Ï§ë Ïò§Î•ò Î∞úÏÉù: ' + error);
+            }
+        });
+  }
+  
+  function cx(productNo, pages, reviewSearchType, reviewSearchContent){
+	  var nume = parseInt(pages);
+	  modalText2.innerHTML = `
+	  <hr>
+	  <div>
+	    <table id="tables5">
+	      <tr style="width: 600px;">
+	        <td style="width: 150px;">Î¶¨Î∑∞Î≤àÌò∏</td>
+	        <td style="width: 150px;">ÌöåÏõêÎ≤àÌò∏</td>
+	        <td style="width: 150px;">ÏûëÏÑ±ÎÇ†Ïßú</td>
+	        <td></td>
+	      </tr>
+	    </table>
+	    <div id="tables4Div" style="background-color: #EDEDED;">
+	      <table id="tables4">
+	        <tr style="width: 600px;">
+	          <td style="width: 150px;" id="rno1"></td>
+	          <td style="width: 150px;" id="userNo1"></td>
+	          <td style="width: 150px;" id="reviewDate1"></td>
+	          <td style="width: 150px;">
+	            <button id="delBtn1" onclick="deleteReview(this, 1);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td colspan="4">
+	            <textarea cols="30" rows="5" style="resize: none;" id="content1"></textarea>
+	          </td>
+	        </tr>
+	        <tr style="width: 600px;">
+	          <td style="width: 150px;" id="rno2"></td>
+	          <td style="width: 150px;" id="userNo2"></td>
+	          <td style="width: 150px;" id="reviewDate2"></td>
+	          <td style="width: 150px;">
+	            <button id="delBtn2" onclick="deleteReview(this, 2);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td colspan="4">
+	            <textarea cols="30" rows="5" style="resize: none;" id="content2"></textarea>
+	          </td>
+	        </tr>
+	        <tr style="width: 600px;">
+	          <td style="width: 150px;" id="rno3"></td>
+	          <td style="width: 150px;" id="userNo3"></td>
+	          <td style="width: 150px;" id="reviewDate3"></td>
+	          <td style="width: 150px;">
+	            <button id="delBtn3" onclick="deleteReview(this, 3);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td colspan="4">
+	            <textarea cols="30" rows="5" style="resize: none;" id="content3"></textarea>
+	          </td>
+	        </tr>
+	        <tr style="width: 600px;">
+	          <td style="width: 150px;" id="rno4"></td>
+	          <td style="width: 150px;" id="userNo4"></td>
+	          <td style="width: 150px;" id="reviewDate4"></td>
+	          <td style="width: 150px;">
+	            <button id="delBtn4" onclick="deleteReview(this, 4);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td colspan="4">
+	            <textarea cols="30" rows="5" style="resize: none;" id="content4"></textarea>
+	          </td>
+	        </tr>
+	        <tr style="width: 600px;">
+	          <td style="width: 150px;" id="rno5"></td>
+	          <td style="width: 150px;" id="userNo5"></td>
+	          <td style="width: 150px;" id="reviewDate5"></td>
+	          <td style="width: 150px;">
+	            <button id="delBtn5" onclick="deleteReview(this, 5);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td colspan="4">
+	            <textarea cols="30" rows="5" style="resize: none;" id="content5"></textarea>
+	          </td>
+	        </tr>
+	        <tr style="width: 600px;">
+	          <td style="width: 150px;" id="rno6"></td>
+	          <td style="width: 150px;" id="userNo6"></td>
+	          <td style="width: 150px;" id="reviewDate6"></td>
+	          <td style="width: 150px;">
+	            <button id="delBtn6" onclick="deleteReview(this, 6);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td colspan="4">
+	            <textarea cols="30" rows="5" style="resize: none;" id="content6"></textarea>
+	          </td>
+	        </tr>
+	        <tr style="width: 600px;">
+	          <td style="width: 150px;" id="rno7"></td>
+	          <td style="width: 150px;" id="userNo7"></td>
+	          <td style="width: 150px;" id="reviewDate7"></td>
+	          <td style="width: 150px;">
+	            <button id="delBtn7" onclick="deleteReview(this, 7);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td colspan="4">
+	            <textarea cols="30" rows="5" style="resize: none;" id="content7"></textarea>
+	          </td>
+	        </tr>
+	        <tr style="width: 600px;">
+	          <td style="width: 150px;" id="rno8"></td>
+	          <td style="width: 150px;" id="userNo8"></td>
+	          <td style="width: 150px;" id="reviewDate8"></td>
+	          <td style="width: 150px;">
+	            <button id="delBtn8" onclick="deleteReview(this, 8);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td colspan="4">
+	            <textarea cols="30" rows="5" style="resize: none;" id="content8"></textarea>
+	          </td>
+	        </tr>
+	        <tr style="width: 600px;">
+	          <td style="width: 150px;" id="rno9"></td>
+	          <td style="width: 150px;" id="userNo9"></td>
+	          <td style="width: 150px;" id="reviewDate9"></td>
+	          <td style="width: 150px;">
+	            <button id="delBtn9" onclick="deleteReview(this, 9);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td colspan="4">
+	            <textarea cols="30" rows="5" style="resize: none;" id="content9"></textarea>
+	          </td>
+	        </tr>
+	        <tr style="width: 600px;">
+	          <td style="width: 150px;" id="rno10"></td>
+	          <td style="width: 150px;" id="userNo10"></td>
+	          <td style="width: 150px;" id="reviewDate10"></td>
+	          <td style="width: 150px;">
+	            <button id="delBtn10" onclick="deleteReview(this, 10);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td colspan="4">
+	            <textarea cols="30" rows="5" style="resize: none;" id="content10"></textarea>
+	          </td>
+	        </tr>
+	      </table>
+	    </div>
+	  </div>
+	      `;
+	  
+	  $.ajax({
+          type: "GET",
+          url: "manager-search-reviewList.do", // Ïó¨Í∏∞Ïóê ÏÑúÎ∏îÎ¶ø URLÏùÑ ÏûÖÎ†•ÌïòÏÑ∏Ïöî
+          data: { 
+          	pno: productNo,
+          	cpage: nume,
+          	reviewSearchType: reviewSearchType,
+        	reviewSearchContent: reviewSearchContent
+          },
+          success: function (r) {
+        	 if(r.reviews[0]) 	$("#rno1").text(r.reviews[0].rno);	 else  	$("#rno1").text("");
+        	 if(r.reviews[1])   $("#rno2").text(r.reviews[1].rno);	 else  	$("#rno2").text("");
+        	 if(r.reviews[2])   $("#rno3").text(r.reviews[2].rno);	 else  	$("#rno3").text("");
+        	 if(r.reviews[3])   $("#rno4").text(r.reviews[3].rno);	 else  	$("#rno4").text("");
+        	 if(r.reviews[4])   $("#rno5").text(r.reviews[4].rno);	 else  	$("#rno5").text("");
+        	 if(r.reviews[5])   $("#rno6").text(r.reviews[5].rno);	 else  	$("#rno6").text("");
+        	 if(r.reviews[6])   $("#rno7").text(r.reviews[6].rno);	 else  	$("#rno7").text("");
+        	 if(r.reviews[7])   $("#rno8").text(r.reviews[7].rno);	 else  	$("#rno8").text("");
+        	 if(r.reviews[8])   $("#rno9").text(r.reviews[8].rno);	 else  	$("#rno9").text("");
+         	 if(r.reviews[9])   $("#rno10").text(r.reviews[9].rno);	 else  	$("#rno10").text("");
+        	 
+         	 if(r.reviews[0])   $("#userNo1").text(r.reviews[0].userNo);	 else  	$("#userNo1").text("");
+         	 if(r.reviews[1])   $("#userNo2").text(r.reviews[1].userNo);	 else  	$("#userNo2").text("");
+         	 if(r.reviews[2])   $("#userNo3").text(r.reviews[2].userNo);	 else  	$("#userNo3").text("");
+         	 if(r.reviews[3])   $("#userNo4").text(r.reviews[3].userNo);	 else  	$("#userNo4").text("");
+         	 if(r.reviews[4])   $("#userNo5").text(r.reviews[4].userNo);	 else  	$("#userNo5").text("");
+         	 if(r.reviews[5])   $("#userNo6").text(r.reviews[5].userNo);	 else  	$("#userNo6").text("");
+         	 if(r.reviews[6])   $("#userNo7").text(r.reviews[6].userNo);	 else  	$("#userNo7").text("");
+         	 if(r.reviews[7])   $("#userNo8").text(r.reviews[7].userNo);	 else  	$("#userNo8").text("");
+         	 if(r.reviews[8])   $("#userNo9").text(r.reviews[8].userNo);	 else  	$("#userNo9").text("");
+         	 if(r.reviews[9])   $("#userNo10").text(r.reviews[9].userNo);	 else  	$("#userNo10").text("");
+         	 
+         	 if(r.reviews[0])   $("#reviewDate1").text(r.reviews[0].reviewDate);	 else  	$("#reviewDate1").text("");
+         	 if(r.reviews[1])   $("#reviewDate2").text(r.reviews[1].reviewDate);	 else  	$("#reviewDate2").text("");
+         	 if(r.reviews[2])   $("#reviewDate3").text(r.reviews[2].reviewDate);	 else  	$("#reviewDate3").text("");
+         	 if(r.reviews[3])   $("#reviewDate4").text(r.reviews[3].reviewDate);	 else  	$("#reviewDate4").text("");
+         	 if(r.reviews[4])   $("#reviewDate5").text(r.reviews[4].reviewDate);	 else  	$("#reviewDate5").text("");
+         	 if(r.reviews[5])   $("#reviewDate6").text(r.reviews[5].reviewDate);	 else  	$("#reviewDate6").text("");
+         	 if(r.reviews[6])   $("#reviewDate7").text(r.reviews[6].reviewDate);	 else  	$("#reviewDate7").text("");
+         	 if(r.reviews[7])   $("#reviewDate8").text(r.reviews[7].reviewDate);	 else  	$("#reviewDate8").text("");
+         	 if(r.reviews[8])   $("#reviewDate9").text(r.reviews[8].reviewDate);	 else  	$("#reviewDate9").text("");
+         	 if(r.reviews[9])   $("#reviewDate10").text(r.reviews[9].reviewDate);	 else  	$("#reviewDate10").text("");
+         	 
+         	 if(r.reviews[0])   $("#content1").text(r.reviews[0].content);	 else  	$("#content1").text("");
+         	 if(r.reviews[1])   $("#content2").text(r.reviews[1].content);	 else  	$("#content2").text("");
+         	 if(r.reviews[2])   $("#content3").text(r.reviews[2].content);	 else  	$("#content3").text("");
+         	 if(r.reviews[3])   $("#content4").text(r.reviews[3].content);	 else  	$("#content4").text("");
+         	 if(r.reviews[4])   $("#content5").text(r.reviews[4].content);	 else  	$("#content5").text("");
+         	 if(r.reviews[5])   $("#content6").text(r.reviews[5].content);	 else  	$("#content6").text("");
+         	 if(r.reviews[6])   $("#content7").text(r.reviews[6].content);	 else  	$("#content7").text("");
+         	 if(r.reviews[7])   $("#content8").text(r.reviews[7].content);	 else  	$("#content8").text("");
+         	 if(r.reviews[8])   $("#content9").text(r.reviews[8].content);	 else  	$("#content9").text("");
+         	 if(r.reviews[9])   $("#content10").text(r.reviews[9].content);	 else  	$("#content10").text("");
+         	 
+		     for(var i=1; i<=10; i++){
+		    	 $("#content" + i).css("display", "none");
+		    	 $("#delBtn" + i).css("display", "none");
+		     }         	 
+		     var reviewsNum = parseInt(r.pi.listCount);
+		     var currfpage = parseInt(r.pi.currentPage);
+		     var pageNjk = 10 - (currfpage * 10 - reviewsNum);
+		     
+		     for(var i=1; i<=pageNjk; i++){
+		    	 $("#content" + i).css("display", "block");
+		    	 $("#delBtn" + i).css("display", "block");
+		     }
+         	 
+             var count = 1;
+             var nui = parseInt(r.pi.currentPage) % 5;
+             if(nui == 0){
+            	 $("#grand5").prop("disabled", true);
+             }
+             $("#grand" + nui).prop("disabled", true);
+             
+             firstpage = parseInt(r.pi.startPage);
+             
+             for(var i=1; i<=5; i++){
+            	 $("#grand" + i).css("display", "none");
+             } 
+             
+             $("#before").css("display", "none");
+             $("#after").css("display", "none");
+             
+             for(var i=r.pi.startPage; i<=r.pi.endPage; i++){
+               if(i != parseInt(r.pi.currentPage)){
+            	   $("#grand" + count).prop("disabled", false);
+               }
+          	   $("#grand" + count).css("display", "block");
+          	   $("#grand" + count).text(i);
+          	   count++;
+             }
+             
+             if(r.pi.startPage != 1){
+          	   $("#before").css("display", "block");
+             }
+             
+             if(r.pi.endPage < r.pi.maxPage){
+          	   $("#after").css("display", "block");
+             }
+     
+          },
+          error: function () {
+              alert("ÏöîÏ≤≠ Ïã§Ìå®");
+          }
+      });
+  }
+  
+  
+  function cx_prev(productNo){
+	  	firstpage -= 5;
+	    if(firstpage < 1)
+	    	firstpage = 1;
+	    var reviewSearchType = $("#dxdy1").val();
+	    var reviewSearchContent = $("#dsearchArea1").val();
+	    	
+	    cx(productNo, firstpage, reviewSearchType, reviewSearchContent);
+	  }
+	  
+  function cx_next(productNo){
+  	firstpage += 5;
+
+  	var reviewSearchType = $("#dxdy1").val();
+    var reviewSearchContent = $("#dsearchArea1").val();
+    	
+    cx(productNo, firstpage, reviewSearchType, reviewSearchContent);
+  }
+  
+  function cx_call(productNo, btnindex){
+	  var reviewSearchType = $("#dxdy1").val();
+	  var reviewSearchContent = $("#dsearchArea1").val();
+	  
+	   cx(productNo, firstpage + btnindex - 1, reviewSearchType, reviewSearchContent);
+	 }
+  
+  function getCookie(name) {
+	  var nameEQ = name + "=";
+	  var cookies = document.cookie.split(';');
+	  for (var i = 0; i < cookies.length; i++) {
+	    var cookie = cookies[i];
+	    while (cookie.charAt(0) === ' ') {
+	      cookie = cookie.substring(1, cookie.length);
+	    }
+	    if (cookie.indexOf(nameEQ) === 0) {
+	      return cookie.substring(nameEQ.length, cookie.length);
+	    }
+	  }
+	  return null;
+	}    
+    var searchVal = getCookie("searchval");
+    var searchType1 = getCookie("searchtype1");
+    var searchType2 = getCookie("searchtype2");
+      
+	  function funcx41(p){
+			if(searchType2 == null && (searchVal != null && searchType1 != null)){
+				location.href='<%=contextPath %>/manager-search.do?cpage=' + p + '&searchType1=' + searchType1 + '&searchVal=' + searchVal;		
+			}else if(searchType2 != null && (searchVal == null && searchType1 == null)){
+				location.href='<%=contextPath %>/manager-search-bycategory.do?cpage=' + p + '&category=' + searchType2;				
+			}else if(searchType2 == null && searchVal == null && searchType1 == null){
+				location.href='<%=contextPath %>/manager-search.do?cpage=' + p;	
+			}
+		}
+	  function funcx31(p){
+		  if(searchType2 == null && (searchVal != null && searchType1 != null)){
+				location.href='<%=contextPath %>/manager-search.do?cpage=' + p + '&searchType1=' + searchType1 + '&searchVal=' + searchVal;		
+			}else if(searchType2 != null && (searchVal == null && searchType1 == null)){
+				location.href='<%=contextPath %>/manager-search-bycategory.do?cpage=' + p + '&category=' + searchType2;				
+			}else if(searchType2 == null && searchVal == null && searchType1 == null){
+				location.href='<%=contextPath %>/manager-search.do?cpage=' + p;	
+			}
+		}
     $(function(){
       $("#tb1 tr:not(:first-child)").hover(function(){
         $(this).css("background-color", "darkgray");
@@ -723,424 +1032,165 @@
     const modal2 = document.getElementById("modal2");
     const closeButton2 = document.getElementById("closeButton2");
     const modalText2 = document.getElementById("modalText2");
-
-    modalTriggerElements.forEach(function(triggerElement) {
-      triggerElement.addEventListener("click", function() {
-        modal.style.display = "block";
-        modalText.innerHTML = `
-        <div style="display: flex;">
-    <div class="outer" style="margin-left: 115px;">
-      <table id="table2" align="center">
-        <tr>
-          <td>ªÛ«∞π¯»£</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>ƒ´≈◊∞Ì∏Æ</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>ªÛ«∞∏Ì</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>¡ˆø™</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>ªÛºº¿Âº“</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>Ω√¿€≥Ø¬•</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>¡æ∑·≥Ø¬•</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>∞¸∂˜µÓ±ﬁ</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>ªÛøµΩ√∞£</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>∞°∞›</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <hr>
-          </td>
-        </tr>
-        <tr>
-          <td>ø¿¿¸</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>ø¿»ƒ</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <hr>
-          </td>
-        </tr>
-        <tr>
-          <td>ø¿¿¸ ¡¬ºÆºˆ</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>ø¿»ƒ ¡¬ºÆºˆ</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <hr>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4" align="center">
-            <button id="modbtn1" class="tb2-btn" style="margin-left: 75px; font-family: 'Jua', sans-serif;" onclick="funx1();">ºˆ¡§</button>
-            <button class="tb2-btn" onclick="canc();" style="font-family: 'Jua', sans-serif;">√Îº“</button>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div>
-      <table id="table3">
-        <tr>
-          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;">∆˜Ω∫≈Õ</button></td>
-        </tr>
-        <tr>
-          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;">ªÛºº1</button></td>
-        </tr>
-        <tr>
-          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;">ªÛºº2</button></td>
-        </tr>
-        <tr>
-          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;">ªÛºº3</button></td>
-        </tr>
-        <tr>
-          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;">ªÛºº4</button></td>
-        </tr>
-        <tr>
-          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;">ªÛºº5</button></td>
-        </tr>
-      </table>
-    </div>
-  </div>`;
-  funcx3();
-      });
-    });
-
-    closeButton.addEventListener("click", function() {
-      modal.style.display = "none";
-    });
-
-    window.addEventListener("click", function(event) {
-      if (event.target === modal) {
-        modal.style.display = "none";
-      }
-    });
-
-    closeButton1.addEventListener("click", function() {
-      modal1.style.display = "none";
-    });
-
-    window.addEventListener("click", function(event) {
-      if (event.target === modal1) {
-        modal1.style.display = "none";
-      }
-    });
     
-    // ∆‰¿Ã¡ˆ ∑Œµ˘ »ƒ ∏¥ﬁ¿ª º˚±‚¥¬ ∫Œ∫– √ﬂ∞°
-    modal.style.display = "none";
+    var categoryTypo = null;
+    var pno = null;
+    var bigCategory = null;
+    var smallCategory = null;
+    var totalCategory = null;
+    
+    var title = null;
+  	var local = null;
+  	var address = null;
+  	var start = null;
+  	var end = null;
+  	var level = null;
+  	var runtime = null;
+  	var price = null;
+  	var dayTime = null;
+  	var noonTime = null;
+  	var daySeats = null;
+  	var noonSeats = null;
+  	var imagePath = null;
+  	
+  	var olevel = null;
+    
+    var poster = null;
+    var detail1 = null;
+    var detail2 = null;
+    var detail3 = null;
+    var detail4 = null;
+    var detail5 = null;
+    
+	var img1 = null;
+	var img2 = null;
+	var img3 = null;
+	var img4 = null;
+	var img5 = null;
+	var img6 = null;
+	
+	var reviewButtons = document.querySelectorAll(".reviewbtn");
 
-    function funx1(){
-      modal.style.display = "none";
-      modal1.style.display = "block";
-      modalText1.innerHTML = `
-      <div style="display: flex;">
-    <div class="outer" style="margin-left: 44px;">
-      <table id="table2" align="center">
-        <tr>
-          <td>ªÛ«∞π¯»£</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>ƒ´≈◊∞Ì∏Æ</td>
-          <td colspan="3" style="display: flex;">
-            <select class="god1" style="width: 48.5%; height: 26px; margin-right: 5px; margin-top: 2.5px; font-family: 'Jua', sans-serif;">
-              <option>øµ»≠</option>
-              <option>¿¸Ω√</option>
-              <option>∞¯ø¨</option>
-            </select>
-            <select class="god1" style="width: 49%; height: 26px; margin-top: 2.5px; font-family: 'Jua', sans-serif;">
-              <option>∑Œ∏«Ω∫</option>
-              <option>æ◊º«</option>
-              <option>∞¯∆˜</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>ªÛ«∞∏Ì</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>¡ˆø™</td>
-          <td colspan="3">
-            <select class="god1" style="width: 254px; height: 26px; font-family: 'Jua', sans-serif;">
-              <option value="all">º≠øÔ</option>
-              <option value="seven">∞Ê±‚/¿Œ√µ</option>
-              <option value="twelve">√Ê√ª/∞≠ø¯</option>
-              <option value="fifteen">¥Î±∏/∞Ê∫œ</option>
-              <option value="eighteen">∫ŒªÍ/∞Ê≥≤</option>
-              <option value="eighteen">±§¡÷/¿¸∂Û</option>
-              <option value="eighteen">¡¶¡÷</option>
-            </select>
-          </td>
-        </tr>
-        <tr>
-          <td>ªÛºº¿Âº“</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>Ω√¿€≥Ø¬•</td>
-          <td colspan="3"><input type="date" class="god1" style="width: 254px; height: 26px; font-family: 'Jua', sans-serif;"></td>
-        </tr>
-        <tr>
-          <td>¡æ∑·≥Ø¬•</td>
-          <td colspan="3"><input type="date" class="god1" style="width: 254px; height: 26px; font-family: 'Jua', sans-serif;"></td>
-        </tr>
-        <tr>
-          <td>∞¸∂˜µÓ±ﬁ</td>
-          <td colspan="3">
-            <select class="god1" style="width: 254px; height: 26px; font-family: 'Jua', sans-serif;">
-              <option value="all">¿¸√º</option>
-              <option value="seven">7</option>
-              <option value="twelve">12</option>
-              <option value="fifteen">15</option>
-              <option value="eighteen">18</option>
-          </select>
-          </td>
-        </tr>
-        <tr>
-          <td>ªÛøµΩ√∞£(∫–)</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>∞°∞›</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <hr>
-          </td>
-        </tr>
-        <tr>
-          <td>ø¿¿¸</td>
-          <td colspan="3">
-            <label for="before">Y</label>
-            <input type="checkbox" id="before" value="before">
-            <label for="after">N</label>
-            <input type="checkbox" id="after" value="after">
-          </td>
-        </tr>
-        <tr>
-          <td>ø¿»ƒ</td>
-          <td colspan="3">
-            <label for="before">Y</label>
-            <input type="checkbox" id="before" value="before">
-            <label for="after">N</label>
-            <input type="checkbox" id="after" value="after">
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <hr>
-          </td>
-        </tr>
-        <tr>
-          <td>ø¿¿¸ ¡¬ºÆºˆ</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td>ø¿»ƒ ¡¬ºÆºˆ</td>
-          <td colspan="3"><input type="text" class="god1"></td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <hr>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div>
-      <table id="table3">
-        <tr>
-          <td>
-            <div style="display: flex;">
-                <label class="custom-file-label" for="customFile1" style="margin-left: 1px;">
-                    ∆˜Ω∫≈Õ
-                </label>
-                <input type="file" id="customFile1" class="custom-file-input">
-                <input type="text" id="filePath1" placeholder="ªÁ¡¯¿ª º±≈√«œΩ√ø¿" style="width: 200px; font-family: 'Jua', sans-serif;">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div style="display: flex; margin-top: 0px;">
-                <label class="custom-file-label" for="customFile2" style="margin-left: 1px;">
-                    ªÛºº1
-                </label>
-                <input type="file" id="customFile2" class="custom-file-input">
-                <input type="text" id="filePath2" placeholder="ªÁ¡¯¿ª º±≈√«œΩ√ø¿" style="width: 200px; font-family: 'Jua', sans-serif;">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div style="display: flex; margin-top: 0px;">
-                <label class="custom-file-label" for="customFile3" style="margin-left: 1px;">
-                    ªÛºº2
-                </label>
-                <input type="file" id="customFile3" class="custom-file-input">
-                <input type="text" id="filePath3" placeholder="ªÁ¡¯¿ª º±≈√«œΩ√ø¿" style="width: 200px; font-family: 'Jua', sans-serif;">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div style="display: flex; margin-top: 0px;">
-                <label class="custom-file-label" for="customFile4" style="margin-left: 1px;">
-                    ªÛºº3
-                </label>
-                <input type="file" id="customFile4" class="custom-file-input">
-                <input type="text" id="filePath4" placeholder="ªÁ¡¯¿ª º±≈√«œΩ√ø¿" style="width: 200px; font-family: 'Jua', sans-serif;">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div style="display: flex; margin-top: 0px;">
-                <label class="custom-file-label" for="customFile5" style="margin-left: 1px;">
-                    ªÛºº4
-                </label>
-                <input type="file" id="customFile5" class="custom-file-input">
-                <input type="text" id="filePath5" placeholder="ªÁ¡¯¿ª º±≈√«œΩ√ø¿" style="width: 200px; font-family: 'Jua', sans-serif;">
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <div style="display: flex; margin-top: 0px;">
-                <label class="custom-file-label" for="customFile6" style="margin-left: 1px;">
-                    ªÛºº5
-                </label>
-                <input type="file" id="customFile6" class="custom-file-input">
-                <input type="text" id="filePath6" placeholder="ªÁ¡¯¿ª º±≈√«œΩ√ø¿" style="width: 200px; font-family: 'Jua', sans-serif;">
-            </div>
-          </td>
-        </tr>
-      </table>
-    </div>
-</div>
-<div align="center">
-  <button class="tb2-btn" style="font-family: 'Jua', sans-serif; line-height: 2">ºˆ¡§øœ∑·</button>
-  <button class="tb2-btn" style="font-family: 'Jua', sans-serif; line-height: 2">√Îº“</button>
-</div>
-`;
-funcx2();
-}
-function funcx2(){
-  
-  const imageInput1 = document.getElementById('customFile1');
-    const imagePathInput1 = document.getElementById('filePath1');
+	  for (var i = 0; i < reviewButtons.length; i++) {
+	    reviewButtons[i].addEventListener("click", function (event) {
+	      event.stopPropagation();
+	    });
+	  }
+	
+	function canc(){
+	    modal.style.display = "none";
+	  }
+	
+	function canc2(){
+		modal1.style.display = "none";
+	}
+	
+	function funcx2(){
+		  
+		  const imageInput1 = document.getElementById('customFile1');
+		    const imagePathInput1 = document.getElementById('filePath1');
 
-    imageInput1.addEventListener('change', function(event) {
-    const selectedFile = event.target.files[0]; // º±≈√«— ∆ƒ¿œ¿« ¡§∫∏ ∞°¡Æø¿±‚
-        if (selectedFile) {
-            const fileName = selectedFile.name;
-            imagePathInput1.value = fileName; // ¿‘∑¬∂ıø° ∞Ê∑Œ º≥¡§
-        }
-    });
+		    imageInput1.addEventListener('change', function(event) {
+		    const selectedFile = event.target.files[0]; // ÏÑ†ÌÉùÌïú ÌååÏùºÏùò Ï†ïÎ≥¥ Í∞ÄÏ†∏Ïò§Í∏∞
+		        if (selectedFile) {
+		            const fileName = selectedFile.name;
+		            imagePathInput1.value = fileName; // ÏûÖÎ†•ÎûÄÏóê Í≤ΩÎ°ú ÏÑ§Ï†ï
+		        }
+		    });
 
-    const imageInput2 = document.getElementById('customFile2');
-    const imagePathInput2 = document.getElementById('filePath2');
+		    const imageInput2 = document.getElementById('customFile2');
+		    const imagePathInput2 = document.getElementById('filePath2');
 
-    imageInput2.addEventListener('change', function(event) {
-    const selectedFile = event.target.files[0]; // º±≈√«— ∆ƒ¿œ¿« ¡§∫∏ ∞°¡Æø¿±‚
-        if (selectedFile) {
-            const fileName = selectedFile.name;
-            imagePathInput2.value = fileName; // ¿‘∑¬∂ıø° ∞Ê∑Œ º≥¡§
-        }
-    });
+		    imageInput2.addEventListener('change', function(event) {
+		    const selectedFile = event.target.files[0]; // ÏÑ†ÌÉùÌïú ÌååÏùºÏùò Ï†ïÎ≥¥ Í∞ÄÏ†∏Ïò§Í∏∞
+		        if (selectedFile) {
+		            const fileName = selectedFile.name;
+		            imagePathInput2.value = fileName; // ÏûÖÎ†•ÎûÄÏóê Í≤ΩÎ°ú ÏÑ§Ï†ï
+		        }
+		    });
 
-    const imageInput3 = document.getElementById('customFile3');
-    const imagePathInput3 = document.getElementById('filePath3');
+		    const imageInput3 = document.getElementById('customFile3');
+		    const imagePathInput3 = document.getElementById('filePath3');
 
-    imageInput3.addEventListener('change', function(event) {
-    const selectedFile = event.target.files[0]; // º±≈√«— ∆ƒ¿œ¿« ¡§∫∏ ∞°¡Æø¿±‚
-        if (selectedFile) {
-            const fileName = selectedFile.name;
-            imagePathInput3.value = fileName; // ¿‘∑¬∂ıø° ∞Ê∑Œ º≥¡§
-        }
-    });
+		    imageInput3.addEventListener('change', function(event) {
+		    const selectedFile = event.target.files[0]; // ÏÑ†ÌÉùÌïú ÌååÏùºÏùò Ï†ïÎ≥¥ Í∞ÄÏ†∏Ïò§Í∏∞
+		        if (selectedFile) {
+		            const fileName = selectedFile.name;
+		            imagePathInput3.value = fileName; // ÏûÖÎ†•ÎûÄÏóê Í≤ΩÎ°ú ÏÑ§Ï†ï
+		        }
+		    });
 
-    const imageInput4 = document.getElementById('customFile4');
-    const imagePathInput4 = document.getElementById('filePath4');
+		    const imageInput4 = document.getElementById('customFile4');
+		    const imagePathInput4 = document.getElementById('filePath4');
 
-    imageInput4.addEventListener('change', function(event) {
-    const selectedFile = event.target.files[0]; // º±≈√«— ∆ƒ¿œ¿« ¡§∫∏ ∞°¡Æø¿±‚
-        if (selectedFile) {
-            const fileName = selectedFile.name;
-            imagePathInput4.value = fileName; // ¿‘∑¬∂ıø° ∞Ê∑Œ º≥¡§
-        }
-    });
+		    imageInput4.addEventListener('change', function(event) {
+		    const selectedFile = event.target.files[0]; // ÏÑ†ÌÉùÌïú ÌååÏùºÏùò Ï†ïÎ≥¥ Í∞ÄÏ†∏Ïò§Í∏∞
+		        if (selectedFile) {
+		            const fileName = selectedFile.name;
+		            imagePathInput4.value = fileName; // ÏûÖÎ†•ÎûÄÏóê Í≤ΩÎ°ú ÏÑ§Ï†ï
+		        }
+		    });
 
-    const imageInput5 = document.getElementById('customFile5');
-    const imagePathInput5 = document.getElementById('filePath5');
+		    const imageInput5 = document.getElementById('customFile5');
+		    const imagePathInput5 = document.getElementById('filePath5');
 
-    imageInput5.addEventListener('change', function(event) {
-    const selectedFile = event.target.files[0]; // º±≈√«— ∆ƒ¿œ¿« ¡§∫∏ ∞°¡Æø¿±‚
-        if (selectedFile) {
-            const fileName = selectedFile.name;
-            imagePathInput5.value = fileName; // ¿‘∑¬∂ıø° ∞Ê∑Œ º≥¡§
-        }
-    });
+		    imageInput5.addEventListener('change', function(event) {
+		    const selectedFile = event.target.files[0]; // ÏÑ†ÌÉùÌïú ÌååÏùºÏùò Ï†ïÎ≥¥ Í∞ÄÏ†∏Ïò§Í∏∞
+		        if (selectedFile) {
+		            const fileName = selectedFile.name;
+		            imagePathInput5.value = fileName; // ÏûÖÎ†•ÎûÄÏóê Í≤ΩÎ°ú ÏÑ§Ï†ï
+		        }
+		    });
 
-    const imageInput6 = document.getElementById('customFile6');
-    const imagePathInput6 = document.getElementById('filePath6');
+		    const imageInput6 = document.getElementById('customFile6');
+		    const imagePathInput6 = document.getElementById('filePath6');
 
-    imageInput6.addEventListener('change', function(event) {
-    const selectedFile = event.target.files[0]; // º±≈√«— ∆ƒ¿œ¿« ¡§∫∏ ∞°¡Æø¿±‚
-        if (selectedFile) {
-            const fileName = selectedFile.name;
-            imagePathInput6.value = fileName; // ¿‘∑¬∂ıø° ∞Ê∑Œ º≥¡§
-        }
-    });
-  }
-
-  function funcx3(){
-    var openButtons = document.getElementsByClassName("poster");
-
-    for (var i = 0; i < openButtons.length; i++) {
-      openButtons[i].addEventListener("click", function() {
-
-        // ªı √¢¿ª ¿¸√º »≠∏È¿∏∑Œ ø≠±‚ ¿ß«— ø…º« º≥¡§
+		    imageInput6.addEventListener('change', function(event) {
+		    const selectedFile = event.target.files[0]; // ÏÑ†ÌÉùÌïú ÌååÏùºÏùò Ï†ïÎ≥¥ Í∞ÄÏ†∏Ïò§Í∏∞
+		        if (selectedFile) {
+		            const fileName = selectedFile.name;
+		            imagePathInput6.value = fileName; // ÏûÖÎ†•ÎûÄÏóê Í≤ΩÎ°ú ÏÑ§Ï†ï
+		        }
+		    });
+		  }
+	
+	function funcx3(val){
+		// ÏÉà Ï∞ΩÏùÑ Ï†ÑÏ≤¥ ÌôîÎ©¥ÏúºÎ°ú Ïó¥Í∏∞ ÏúÑÌïú ÏòµÏÖò ÏÑ§Ï†ï
         var windowOptions = "fullscreen=yes";
+		
+		if(val == 2 && detail1 == null){
+			return;
+		}else if(val == 3 && detail2 == null){
+			return;
+		}else if(val == 4 && detail3 == null){
+			return;
+		}else if(val == 5 && detail4 == null){
+			return;
+		}else if(val == 6 && detail5 == null){
+			return;
+		}
+		
+        var image = "";
+        if(val == 1){
+        	image = img1;
+        }else if(val == 2){
+        	image = img2;
+        }else if(val == 3){
+        	image = img3;
+        }else if(val == 4){
+        	image = img4;
+        }else if(val == 5){
+        	image = img5;
+        }else if(val == 6){
+        	image = img6;
+        }
 
-        // ªı √¢ ø≠±‚
+        // ÏÉà Ï∞Ω Ïó¥Í∏∞
         var popupWindow = window.open("", "_blank", windowOptions);
 
-        // ªı∑Œ ø≠∏∞ √¢ø° ƒ‹≈Ÿ√˜ √ﬂ∞° (DIVøÕ ¿ÃπÃ¡ˆ)
+        // ÏÉàÎ°ú Ïó¥Î¶∞ Ï∞ΩÏóê ÏΩòÌÖêÏ∏† Ï∂îÍ∞Ä (DIVÏôÄ Ïù¥ÎØ∏ÏßÄ)
         if (popupWindow) {
-          popupWindow.document.title = "ªÛ«∞ªÁ¡¯";
+          popupWindow.document.title = "ÏÉÅÌíàÏÇ¨ÏßÑ";
           var popupContent = document.createElement("div");
           popupContent.className = "popup";
           popupContent.style.display = "flex";
@@ -1152,181 +1202,980 @@ function funcx2(){
           popupContent.style.width = "100%";
           popupContent.style.height = "100%";
 
-          var image = document.createElement("img");
-          image.src = "/resources/±◊∏∞±πæ« ªÛºº¡§∫∏.jpg"; // ¿ÃπÃ¡ˆ ∆ƒ¿œ ∞Ê∑Œ∏¶ ¿˚¿˝»˜ ºˆ¡§«ÿæﬂ «’¥œ¥Ÿ.
-
           popupContent.appendChild(image);
           popupWindow.document.body.appendChild(popupContent);
 
           popupWindow.scrollTo(0, 0);
         } else {
-          alert("∆Àæ˜ √¢¿Ã ¬˜¥‹µ«æ˙∞≈≥™ ø≠ ºˆ æ¯Ω¿¥œ¥Ÿ.");
+          alert("ÌåùÏóÖ Ï∞ΩÏù¥ Ï∞®Îã®ÎêòÏóàÍ±∞ÎÇò Ïó¥ Ïàò ÏóÜÏäµÎãàÎã§.");
         }
-      });
-    }
-  }
+	  }
+	
+	function funx1(){
+	      modal.style.display = "none";
+	      modal1.style.display = "block";
+	      modalText1.innerHTML = `
+	      <form action="<%=contextPath %>/manager-search-update.do" method="post" enctype="multipart/form-data">
+	      <input type="hidden" name="fileName1" id="hiddenInputId1" value="">
+	      <input type="hidden" name="fileName2" id="hiddenInputId2" value="">
+	      <input type="hidden" name="fileName3" id="hiddenInputId3" value="">
+	      <input type="hidden" name="fileName4" id="hiddenInputId4" value="">
+	      <input type="hidden" name="fileName5" id="hiddenInputId5" value="">
+	      <input type="hidden" name="fileName6" id="hiddenInputId6" value="">
+	      <input type="hidden" name="pNo" id="pNo" value="">
+	      <div style="display: flex;">
+	    <div class="outer" style="margin-left: 44px;">
+	      <table id="table2" align="center">
+	        <tr>
+	          <td>ÏÉÅÌíàÎ≤àÌò∏</td>
+	          <td colspan="3"><input type="text" name="apno" id="xpno" class="god1"></td>
+	        </tr>
+	        <tr>
+	          <td>Ïπ¥ÌÖåÍ≥†Î¶¨</td>
+	          <td colspan="3" style="display: flex;">
+	            <select class="god1" id="scx1" style="width: 48.5%; height: 26px; margin-right: 5px; margin-top: 2.5px; font-family: 'Jua', sans-serif;">
+	              <option value="movie">ÏòÅÌôî</option>
+	              <option value="display">Ï†ÑÏãú</option>
+	              <option value="show">Í≥µÏó∞</option>
+	            </select>
+	            <select class="god1" id="scx2" name="acategory" style="width: 49%; height: 26px; margin-top: 2.5px; font-family: 'Jua', sans-serif;">
+		            <option value="1">Î°úÎß®Ïä§</option>
+	                <option value="2">Í≥µÌè¨/Ïä§Î¶¥Îü¨</option>
+	                <option value="3">ÏΩîÎØ∏Îîî</option>
+	                <option value="4">Ïï°ÏÖò</option>
+	            </select>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>ÏÉÅÌíàÎ™Ö</td>
+	          <td colspan="3"><input type="text" name="atitle" id="xtitle" class="god1"></td>
+	        </tr>
+	        <tr>
+	          <td>ÏßÄÏó≠</td>
+	          <td colspan="3">
+	            <select class="god1" id="xlocal" name="alocal" style="width: 254px; height: 26px; font-family: 'Jua', sans-serif;">
+		            <option value="1">ÏÑúÏö∏</option>
+	                <option value="2">Í≤ΩÍ∏∞/Ïù∏Ï≤ú</option>
+	                <option value="3">Ï∂©Ï≤≠/Í∞ïÏõê</option>
+	                <option value="4">ÎåÄÍµ¨/Í≤ΩÎ∂Å</option>
+	                <option value="5">Í¥ëÏ£º/Ï†ÑÎùº</option>
+	                <option value="6">Ï†úÏ£º</option>
+	            </select>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>ÏÉÅÏÑ∏Ïû•ÏÜå</td>
+	          <td colspan="3"><input type="text" name="aaddress" id="xaddress" class="god1"></td>
+	        </tr>
+	        <tr>
+	          <td>Í¥ÄÎûåÎì±Í∏â</td>
+	          <td colspan="3">
+	            <select class="god1" id="xlevel" name="alevel" style="width: 254px; height: 26px; font-family: 'Jua', sans-serif;">
+		            <option value="1">Ï†ÑÏ≤¥</option>
+	                <option value="2">7</option>
+	                <option value="3">12</option>
+	                <option value="4">15</option>
+	                <option value="5">19</option>
+	          </select>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>ÏÉÅÏòÅÏãúÍ∞Ñ(Î∂Ñ)</td>
+	          <td colspan="3"><input type="text" name="aruntime" id="xruntime" class="god1"></td>
+	        </tr>
+	        <tr>
+	          <td>Í∞ÄÍ≤©</td>
+	          <td colspan="3"><input type="text" name="aprice" id="xprice" class="god1"></td>
+	        </tr>
+	      </table>
+	    </div>
+	    <div>
+	      <table id="table3">
+	        <tr>
+	          <td>
+	            <div style="display: flex;">
+	                <label class="custom-file-label" for="customFile1" style="margin-left: 1px;">
+	                    Ìè¨Ïä§ÌÑ∞
+	                </label>
+	                <input type="file" name="customFile1" id="customFile1" class="custom-file-input">
+	                <input type="text" id="filePath1" placeholder="ÏÇ¨ÏßÑÏùÑ ÏÑ†ÌÉùÌïòÏãúÏò§" style="width: 200px; font-family: 'Jua', sans-serif;">
+	            </div>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <div style="display: flex; margin-top: 0px;">
+	                <label class="custom-file-label" for="customFile2" style="margin-left: 1px;">
+	                    ÏÉÅÏÑ∏1
+	                </label>
+	                <input type="file" name="customFile2" id="customFile2" class="custom-file-input">
+	                <input type="text" id="filePath2" placeholder="ÏÇ¨ÏßÑÏùÑ ÏÑ†ÌÉùÌïòÏãúÏò§" style="width: 200px; font-family: 'Jua', sans-serif;">
+	            </div>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <div style="display: flex; margin-top: 0px;">
+	                <label class="custom-file-label" for="customFile3" style="margin-left: 1px;">
+	                    ÏÉÅÏÑ∏2
+	                </label>
+	                <input type="file" name="customFile3" id="customFile3" class="custom-file-input">
+	                <input type="text" id="filePath3" placeholder="ÏÇ¨ÏßÑÏùÑ ÏÑ†ÌÉùÌïòÏãúÏò§" style="width: 200px; font-family: 'Jua', sans-serif;">
+	            </div>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <div style="display: flex; margin-top: 0px;">
+	                <label class="custom-file-label" for="customFile4" style="margin-left: 1px;">
+	                    ÏÉÅÏÑ∏3
+	                </label>
+	                <input type="file" name="customFile4" id="customFile4" class="custom-file-input">
+	                <input type="text" id="filePath4" placeholder="ÏÇ¨ÏßÑÏùÑ ÏÑ†ÌÉùÌïòÏãúÏò§" style="width: 200px; font-family: 'Jua', sans-serif;">
+	            </div>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <div style="display: flex; margin-top: 0px;">
+	                <label class="custom-file-label" for="customFile5" style="margin-left: 1px;">
+	                    ÏÉÅÏÑ∏4
+	                </label>
+	                <input type="file" name="customFile5" id="customFile5" class="custom-file-input">
+	                <input type="text" id="filePath5" placeholder="ÏÇ¨ÏßÑÏùÑ ÏÑ†ÌÉùÌïòÏãúÏò§" style="width: 200px; font-family: 'Jua', sans-serif;">
+	            </div>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+	            <div style="display: flex; margin-top: 0px;">
+	                <label class="custom-file-label" for="customFile6" style="margin-left: 1px;">
+	                    ÏÉÅÏÑ∏5
+	                </label>
+	                <input type="file" name="customFile6" id="customFile6" class="custom-file-input">
+	                <input type="text" id="filePath6" placeholder="ÏÇ¨ÏßÑÏùÑ ÏÑ†ÌÉùÌïòÏãúÏò§" style="width: 200px; font-family: 'Jua', sans-serif;">
+	            </div>
+	          </td>
+	        </tr>
+	      </table>
+	    </div>
+	</div>
+	<div align="center" style="margin-top: 30px;">
+	  <button type="submit" class="tb2-btn" style="font-family: 'Jua', sans-serif; line-height: 2">ÏàòÏ†ïÏôÑÎ£å</button>
+	  <button class="tb2-btn" onclick="canc2();" style="font-family: 'Jua', sans-serif; line-height: 2">Ï∑®ÏÜå</button>
+	</div>
+	</form>
+	`;
+	funcx2();
+	document.getElementById("pNo").value = pno;
+	$("#xpno").val(pno);
+	$("#xtitle").val(title);
+	
+	$("#xlocal option").each(function() {
+	    if ($(this).text() === local) {
+	      // ÏùºÏπòÌïòÎäî optionÏùÑ ÏÑ†ÌÉùÎêú ÏÉÅÌÉúÎ°ú ÏÑ§Ï†ïÌï©ÎãàÎã§.
+	      $(this).prop("selected", true);
+	      return false; // ÏàúÌöå Ï§ëÎã®
+	    }
+	  });
+	
+	$("#xaddress").val(address);
+      
+      if(level === "Ï†ÑÏ≤¥ Í¥ÄÎûåÍ∞Ä"){
+    	  olevel = "Ï†ÑÏ≤¥";
+      }else if(level === "7ÏÑ∏ Í¥ÄÎûåÍ∞Ä"){
+    	  olevel = "7";
+      }else if(level === "12ÏÑ∏ Í¥ÄÎûåÍ∞Ä"){
+    	  olevel = "12";
+      }else if(level === "15ÏÑ∏ Í¥ÄÎûåÍ∞Ä"){
+    	  olevel = "15";
+      }else if(level === "19ÏÑ∏ Í¥ÄÎûåÍ∞Ä"){
+    	  olevel = "19";
+      }
+      
+      $("#xlevel option").each(function() {
+  	    if ($(this).text() === olevel) {
+  	      $(this).prop("selected", true);
+  	      return false;
+  	    }
+  	  });
+      
+      $("#xruntime").val(runtime);
+      $("#xprice").val(price);
+      $("#filePath1").val(poster);
+      $("#filePath2").val(detail1);
+      $("#filePath3").val(detail2);
+      $("#filePath4").val(detail3);
+      $("#filePath5").val(detail4);
+      $("#filePath6").val(detail5);
+      
+      /*
+      document.getElementById("hiddenInputId1").value = poster;
+      document.getElementById("hiddenInputId2").value = detail1;
+      document.getElementById("hiddenInputId3").value = detail2;
+      document.getElementById("hiddenInputId4").value = detail3;
+      document.getElementById("hiddenInputId5").value = detail4;
+      document.getElementById("hiddenInputId6").value = detail5;
+      */
+      
+      /*
+      if (poster != null) {
+    	  var fileInput = document.getElementById('customFile1');
 
-  function canc(){
-    modal.style.display = "none";
-  }
+    	  var onChangeFunction = function(event) {
+    		  document.getElementById("hiddenInputId1").value = poster;
+    	  };
 
-  var reviewbtn = document.querySelectorAll(".reviewbtn");
+    	  fileInput.addEventListener('change', onChangeFunction);
+    	}
+      
+      
+      if (detail1 != null) {
+    	  var fileInput = document.getElementById('customFile2');
 
-  reviewbtn.forEach(function(button) {
-    button.addEventListener("click", function() {
-      modal2.style.display = "block";
-      modalText2.innerHTML = `
-      <div style="display: flex;">
-    <select id="selectbox1" style="margin-left: 309px; font-family: 'Jua', sans-serif;">
-      <option>∏Æ∫‰π¯»£</option>
-      <option>¿€º∫¿⁄</option>
-      <option>∏Æ∫‰¿€º∫≥Ø¬•</option>
-    </select>
-    <input type="text" id="searchArea1">
-    <button id="searchBtn1" style="font-family: 'Jua', sans-serif;">∞Àªˆ</button>
-  </div>
-  <hr>
-  <div>
-    <table id="tables5">
-      <tr style="width: 600px;">
-        <td style="width: 150px;">∏Æ∫‰π¯»£</td>
-        <td style="width: 150px;">»∏ø¯π¯»£</td>
-        <td style="width: 150px;">¿€º∫≥Ø¬•</td>
-        <td></td>
-      </tr>
-    </table>
-    <div id="tables4Div" style="background-color: #EDEDED;">
-      <table id="tables4">
-        <tr style="width: 600px;">
-          <td style="width: 150px;">101</td>
-          <td style="width: 150px;">20213</td>
-          <td style="width: 150px;">2023/01/23</td>
-          <td style="width: 150px;">
-            <button id="delBtn1" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ªË¡¶</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <textarea cols="30" rows="5" style="resize: none;" id="textarea1"></textarea>
-          </td>
-        </tr>
-        <tr style="width: 600px;">
-          <td style="width: 150px;">101</td>
-          <td style="width: 150px;">20213</td>
-          <td style="width: 150px;">2023/01/23</td>
-          <td style="width: 150px;">
-            <button id="delBtn1" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ªË¡¶</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <textarea cols="30" rows="5" style="resize: none;" id="textarea1"></textarea>
-          </td>
-        </tr>
-        <tr style="width: 600px;">
-          <td style="width: 150px;">101</td>
-          <td style="width: 150px;">20213</td>
-          <td style="width: 150px;">2023/01/23</td>
-          <td style="width: 150px;">
-            <button id="delBtn1" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ªË¡¶</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <textarea cols="30" rows="5" style="resize: none;" id="textarea1"></textarea>
-          </td>
-        </tr>
-        <tr style="width: 600px;">
-          <td style="width: 150px;">101</td>
-          <td style="width: 150px;">20213</td>
-          <td style="width: 150px;">2023/01/23</td>
-          <td style="width: 150px;">
-            <button id="delBtn1" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ªË¡¶</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <textarea cols="30" rows="5" style="resize: none;" id="textarea1"></textarea>
-          </td>
-        </tr>
-        <tr style="width: 600px;">
-          <td style="width: 150px;">101</td>
-          <td style="width: 150px;">20213</td>
-          <td style="width: 150px;">2023/01/23</td>
-          <td style="width: 150px;">
-            <button id="delBtn1" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ªË¡¶</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <textarea cols="30" rows="5" style="resize: none;" id="textarea1"></textarea>
-          </td>
-        </tr>
-        <tr style="width: 600px;">
-          <td style="width: 150px;">101</td>
-          <td style="width: 150px;">20213</td>
-          <td style="width: 150px;">2023/01/23</td>
-          <td style="width: 150px;">
-            <button id="delBtn1" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ªË¡¶</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <textarea cols="30" rows="5" style="resize: none;" id="textarea1"></textarea>
-          </td>
-        </tr>
-        <tr style="width: 600px;">
-          <td style="width: 150px;">101</td>
-          <td style="width: 150px;">20213</td>
-          <td style="width: 150px;">2023/01/23</td>
-          <td style="width: 150px;">
-            <button id="delBtn1" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ªË¡¶</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <textarea cols="30" rows="5" style="resize: none;" id="textarea1"></textarea>
-          </td>
-        </tr>
-        <tr style="width: 600px;">
-          <td style="width: 150px;">101</td>
-          <td style="width: 150px;">20213</td>
-          <td style="width: 150px;">2023/01/23</td>
-          <td style="width: 150px;">
-            <button id="delBtn1" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ªË¡¶</button>
-          </td>
-        </tr>
-        <tr>
-          <td colspan="4">
-            <textarea cols="30" rows="5" style="resize: none;" id="textarea1"></textarea>
-          </td>
-        </tr>
-      </table>
-    </div>
-    <div id="buttondiv" style="margin-left: 201px; margin-top: 13px;">
-      <button class="btn2" style="font-family: 'Jua', sans-serif;"><</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">1</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">2</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">3</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">4</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">5</button>
-      <button class="btn2" style="font-family: 'Jua', sans-serif;">></button>
-    </div>
-  </div>
-      `;
-    });
-  });
+    	  var onChangeFunction = function(event) {
+    		  document.getElementById("hiddenInputId2").value = detail1;
+    	  };
 
-  closeButton2.addEventListener("click", function() {
-      modal2.style.display = "none";
-    });
+    	  fileInput.addEventListener('change', onChangeFunction);
+    	}
+      
+      if (detail2 != null) {
+    	  var fileInput = document.getElementById('customFile3');
 
-  window.addEventListener("click", function(event) {
-    if (event.target === modal2) {
-      modal2.style.display = "none";
-    }
-  });
+    	  var onChangeFunction = function(event) {
+    		  document.getElementById("hiddenInputId3").value = detail2;
+    	  };
 
+    	  fileInput.addEventListener('change', onChangeFunction);
+    	}
+      
+      if (detail3 != null) {
+    	  var fileInput = document.getElementById('customFile4');
+
+    	  var onChangeFunction = function(event) {
+    		  document.getElementById("hiddenInputId4").value = detail3;
+    	  };
+
+    	  fileInput.addEventListener('change', onChangeFunction);
+    	}
+      
+      if (detail4 != null) {
+    	  var fileInput = document.getElementById('customFile5');
+
+    	  var onChangeFunction = function(event) {
+    		  document.getElementById("hiddenInputId5").value = detail4;
+    	  };
+
+    	  fileInput.addEventListener('change', onChangeFunction);
+    	}
+      
+      if (detail5 != null) {
+    	  var fileInput = document.getElementById('customFile6');
+
+    	  var onChangeFunction = function(event) {
+    		  document.getElementById("hiddenInputId6").value = detail5;
+    	  };
+
+    	  fileInput.addEventListener('change', onChangeFunction);
+    	}
+      */
+      
+      if (poster != null) {
+    	    var fileInput1 = document.getElementById('customFile1');
+    	    
+    	    var onChangeFunction1 = function(event) {
+    	        var selectedFile = fileInput1.files[0]; // ÏÑ†ÌÉùÎêú ÌååÏùº Í∞ÄÏ†∏Ïò§Í∏∞
+    	        var selectedFileName = selectedFile ? selectedFile.name : "null"; // ÏÑ†ÌÉùÎêú ÌååÏùºÏùò Ïù¥Î¶Ñ
+
+    	        if (selectedFileName && selectedFileName != poster) {
+    	            document.getElementById("hiddenInputId1").value = poster;
+    	        }
+    	    };
+
+    	    fileInput1.addEventListener('change', onChangeFunction1);
+    	}
+      
+      if (detail1 != null) {
+    	    var fileInput2 = document.getElementById('customFile2');
+
+    	    var onChangeFunction2 = function(event) {
+    	        var selectedFile = fileInput2.files[0]; // ÏÑ†ÌÉùÎêú ÌååÏùº Í∞ÄÏ†∏Ïò§Í∏∞
+    	        var selectedFileName = selectedFile ? selectedFile.name : null; // ÏÑ†ÌÉùÎêú ÌååÏùºÏùò Ïù¥Î¶Ñ
+
+    	        if (selectedFileName && selectedFileName != detail1) {
+    	            document.getElementById("hiddenInputId2").value = detail1;
+    	        }
+    	    };
+
+    	    fileInput2.addEventListener('change', onChangeFunction2);
+    	}
+      
+      if (detail2 != null) {
+    	    var fileInput3 = document.getElementById('customFile3');
+
+    	    var onChangeFunction3 = function(event) {
+    	        var selectedFile = fileInput3.files[0]; // ÏÑ†ÌÉùÎêú ÌååÏùº Í∞ÄÏ†∏Ïò§Í∏∞
+    	        var selectedFileName = selectedFile ? selectedFile.name : null; // ÏÑ†ÌÉùÎêú ÌååÏùºÏùò Ïù¥Î¶Ñ
+
+    	        if (selectedFileName && selectedFileName != detail2) {
+    	            document.getElementById("hiddenInputId3").value = detail2;
+    	        }
+    	    };
+
+    	    fileInput3.addEventListener('change', onChangeFunction3);
+    	}
+      
+      if (detail3 != null) {
+    	    var fileInput4 = document.getElementById('customFile4');
+
+    	    var onChangeFunction4 = function(event) {
+    	        var selectedFile = fileInput4.files[0]; // ÏÑ†ÌÉùÎêú ÌååÏùº Í∞ÄÏ†∏Ïò§Í∏∞
+    	        var selectedFileName = selectedFile ? selectedFile.name : null; // ÏÑ†ÌÉùÎêú ÌååÏùºÏùò Ïù¥Î¶Ñ
+
+    	        if (selectedFileName && selectedFileName != detail3) {
+    	            document.getElementById("hiddenInputId4").value = detail3;
+    	        }
+    	    };
+
+    	    fileInput4.addEventListener('change', onChangeFunction4);
+    	}
+      
+      if (detail4 != null) {
+    	    var fileInput5 = document.getElementById('customFile5');
+
+    	    var onChangeFunction5 = function(event) {
+    	        var selectedFile = fileInput5.files[0]; // ÏÑ†ÌÉùÎêú ÌååÏùº Í∞ÄÏ†∏Ïò§Í∏∞
+    	        var selectedFileName = selectedFile ? selectedFile.name : null; // ÏÑ†ÌÉùÎêú ÌååÏùºÏùò Ïù¥Î¶Ñ
+
+    	        if (selectedFileName && selectedFileName != detail4) {
+    	            document.getElementById("hiddenInputId5").value = detail4;
+    	        }
+    	    };
+
+    	    fileInput5.addEventListener('change', onChangeFunction5);
+    	}
+      
+      if (detail5 != null) {
+    	    var fileInput6 = document.getElementById('customFile6');
+
+    	    var onChangeFunction6 = function(event) {
+    	        var selectedFile = fileInput6.files[0]; // ÏÑ†ÌÉùÎêú ÌååÏùº Í∞ÄÏ†∏Ïò§Í∏∞
+    	        var selectedFileName = selectedFile ? selectedFile.name : null; // ÏÑ†ÌÉùÎêú ÌååÏùºÏùò Ïù¥Î¶Ñ
+
+    	        if (selectedFileName && selectedFileName != detail5) {
+    	            document.getElementById("hiddenInputId6").value = detail5;
+    	        }
+    	    };
+
+    	    fileInput6.addEventListener('change', onChangeFunction6);
+    	}
+      
+	if(bigCategory === "ÏòÅÌôî"){
+		categoryTypo = "movie";
+	}else if(bigCategory === "Ï†ÑÏãú"){
+		categoryTypo = "display";
+	}else if(bigCategory === "Í≥µÏó∞"){
+		categoryTypo = "show";
+	}
+	
+	$("#scx1 option").each(function() {
+	    if ($(this).text() === bigCategory) {
+	      $(this).prop("selected", true);
+	      return false;
+	    }
+	  });
+
+	$.ajax({
+           url: "manager-regist-selectbox.do",
+           type: 'GET',
+           data: {selectedValue:categoryTypo},
+           dataType: 'json',
+           success: function(response) 
+           {
+              $("#scx2").empty();
+	          response.forEach(item => {
+	            	$('#scx2').append($('<option>', {
+	                  value: item.categoryType,
+	                  text: item.categoryName
+	              }));
+	          });
+	          
+	          $("#scx2 option").each(function() {
+	      	    if ($(this).text() === totalCategory) {
+	      	      $(this).prop("selected", true);
+	      	      return false;
+	      	    }
+	      	  });
+           },
+           error: function() {
+               console.log("ÏóêÎü¨");
+           }
+       });
+	
+	$('#scx1').on('change', function() {
+	        var selectedValue = $(this).val();
+	        $.ajax({
+	            url: "manager-regist-selectbox.do",
+	            type: 'GET',
+	            data: {selectedValue:selectedValue},
+	            dataType: 'json',
+	            success: function(response) {
+	            $("#scx2").empty();
+	             response.forEach(item => {
+	            	$('#scx2').append($('<option>', {
+	                  value: item.categoryType,
+	                  text: item.categoryName
+	              }));
+	          });
+	                
+	            },
+	            error: function() {
+	                console.log("ÏóêÎü¨");
+	            }
+	        });
+	    });
+	}
+	
+	$(function(){
+		
+		$(".modal-trigger").click(function(){
+			var productNo = $(this).find("#td1").text();
+			
+	 	      $.ajax({
+				// ÏöîÏ≤≠ Î≥¥ÎÇ¥Í∏∞
+				url:"manager-search-read.do", // Ïñ¥Îäê urlÎ°ú Î≥¥ÎÇºÍ≤ÉÏù∏ÏßÄ
+				data:{productNum:productNo}, // Î≥¥ÎÇº Îç∞Ïù¥ÌÑ∞, ÌÇ§:Î≤®Î•ò ÏÑ∏Ìä∏Î°ú Î≥¥ÎÇ¥ÏïºÌï®
+				type:"get", // ÏöîÏ≤≠ Î∞©Ïãù ÏßÄÏ†ï
+				// ÏùëÎãµÏùÑ Î∞õÏïÑ Ï£ºÍ∏∞
+				success:function(result){ // ÏÑ±Í≥µÏãú ÏùëÎãµ Îç∞Ïù¥ÌÑ∞Í∞Ä ÏûêÎèôÏúºÎ°ú Îß§Í∞úÎ≥ÄÏàòÎ°ú ÎÑòÏñ¥Ïò¥
+				
+					pno = result.productNo;
+					var inputString1 = result.category;
+					var regex = /(.*?)\((.*?)\)/; // (Í∑∏Î¶º)Í≥º (Ï†ÑÏãú) ÏÇ¨Ïù¥Ïùò Î¨∏ÏûêÏó¥ÏùÑ Ï∂îÏ∂úÌïòÎäî Ï†ïÍ∑úÏãù
+					var match = inputString1.match(regex);
+
+				    bigCategory = match[2];
+				    smallCategory = match[1];
+				    totalCategory = match[1] + "(" + match[2] + ")";
+				    
+				  	title = result.title;
+				  	local = result.local;
+				  	address = result.address;
+				  	start = result.start;
+				  	end = result.end;
+				  	level = result.level;
+				  	runtime = result.runtime;
+				  	price = result.price;
+				  	dayTime = result.dayTime;
+				  	noonTime = result.noonTime;
+				  	daySeats = result.daySeats;
+				  	noonSeats = result.noonSeats;
+				  	imagePath = result.imagePath;
+				  	
+					poster = result.posterName;
+					detail1 = result.detail1Name;
+					detail2 = result.detail2Name;
+					detail3 = result.detail3Name;
+					detail4 = result.detail4Name;
+					detail5 = result.detail5Name;
+										
+					var image1 = document.createElement("img");
+		            image1.src = "data:image/jpeg;base64," + result.posterImage; 
+		            image1.alt = "Poster Image";
+		            img1 = image1;
+		            
+		            if(detail1 != null){
+		            	var image2 = document.createElement("img");
+			            image2.src = "data:image/jpeg;base64," + result.detail1Image; 
+			            image2.alt = "Detail1 Image";
+						img2 = image2;
+		            }
+		            
+		            if(detail2 != null){
+		            	var image3 = document.createElement("img");
+			            image3.src = "data:image/jpeg;base64," + result.detail2Image; 
+			            image3.alt = "Detail2 Image";
+						img3 = image3;
+		            }
+		            
+					if(detail3 != null){
+						var image4 = document.createElement("img");
+			            image4.src = "data:image/jpeg;base64," + result.detail3Image; 
+			            image4.alt = "Detail3 Image";
+						img4 = image4;
+					}
+					
+					if(detail4 != null){
+						var image5 = document.createElement("img");
+			            image5.src = "data:image/jpeg;base64," + result.detail4Image; 
+			            image5.alt = "Detail4 Image";
+						img5 = image5;
+					}
+					
+					if(detail5 != null){
+						var image6 = document.createElement("img");
+			            image6.src = "data:image/jpeg;base64," + result.detail5Image; 
+			            image6.alt = "Detail5 Image";
+						img6 = image6;
+					}
+					
+					/*
+					var image1 = document.createElement("img");
+		            image1.src = "data:image/jpeg;base64," + result.posterImage; 
+		            image1.alt = "Poster Image";
+		            img1 = image1;
+		            
+		            var image2 = document.createElement("img");
+		            image2.src = "data:image/jpeg;base64," + result.detail1Image; 
+		            image2.alt = "Detail1 Image";
+					img2 = image2;
+					
+					var image3 = document.createElement("img");
+		            image3.src = "data:image/jpeg;base64," + result.detail2Image; 
+		            image3.alt = "Detail2 Image";
+					img3 = image3;
+					
+					var image4 = document.createElement("img");
+		            image4.src = "data:image/jpeg;base64," + result.detail3Image; 
+		            image4.alt = "Detail3 Image";
+					img4 = image4;
+					
+					var image5 = document.createElement("img");
+		            image5.src = "data:image/jpeg;base64," + result.detail4Image; 
+		            image5.alt = "Detail4 Image";
+					img5 = image5;
+					
+					var image6 = document.createElement("img");
+		            image6.src = "data:image/jpeg;base64," + result.detail5Image; 
+		            image6.alt = "Detail5 Image";
+					img6 = image6;
+					*/
+										
+					var inputString2 = result.category;
+					var extractedPart = inputString2.match(/\((.*?)\)/)[1];
+					modal.style.display = "block";
+			        modalText.innerHTML = `
+			        <div style="display: flex;">
+			    <div class="outer" style="margin-left: 31px;">
+			      <table id="table2" align="center">
+			        <tr>
+			          <td>ÏÉÅÌíàÎ≤àÌò∏</td>
+			          <td colspan="3"><input type="text" id="pno" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>Ïπ¥ÌÖåÍ≥†Î¶¨</td>
+			          <td colspan="3"><input type="text" id="bigCategory" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>ÏÉÅÌíàÎ™Ö</td>
+			          <td colspan="3"><input type="text" id="ptitle" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>ÏßÄÏó≠</td>
+			          <td colspan="3"><input type="text" id="plocal" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>ÏÉÅÏÑ∏Ïû•ÏÜå</td>
+			          <td colspan="3"><input type="text" id="paddress" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>ÏãúÏûëÎÇ†Ïßú</td>
+			          <td colspan="3"><input type="text" id="startdate" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>Ï¢ÖÎ£åÎÇ†Ïßú</td>
+			          <td colspan="3"><input type="text" id="enddate" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>Í¥ÄÎûåÎì±Í∏â</td>
+			          <td colspan="3"><input type="text" id="level" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>ÏÉÅÏòÅÏãúÍ∞Ñ</td>
+			          <td colspan="3"><input type="text" id="runtime" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>Í∞ÄÍ≤©</td>
+			          <td colspan="3"><input type="text" id="pprice" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td colspan="4">
+			            <hr>
+			          </td>
+			        </tr>
+			        <tr>
+			          <td>Ïò§Ï†Ñ</td>
+			          <td colspan="3"><input type="text" id="day" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>Ïò§ÌõÑ</td>
+			          <td colspan="3"><input type="text" id="noon" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td colspan="4">
+			            <hr>
+			          </td>
+			        </tr>
+			        <tr>
+			          <td>Ïò§Ï†Ñ Ï¢åÏÑùÏàò</td>
+			          <td colspan="3"><input type="text" id="dayseat" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td>Ïò§ÌõÑ Ï¢åÏÑùÏàò</td>
+			          <td colspan="3"><input type="text" id="noonseat" class="god1"></td>
+			        </tr>
+			        <tr>
+			          <td colspan="4">
+			            <hr>
+			          </td>
+			        </tr>
+			        <tr>
+			          <td colspan="4" align="center">
+			            <button id="modbtn1" class="tb2-btn" style="margin-left: 75px; font-family: 'Jua', sans-serif;" onclick="funx1();">ÏàòÏ†ï</button>
+			            <button class="tb2-btn" onclick="canc();" style="font-family: 'Jua', sans-serif;">Ï∑®ÏÜå</button>
+			          </td>
+			        </tr>
+			      </table>
+			    </div>
+			    <div>
+			      <table id="table3">
+			        <tr>
+			          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;" onclick="funcx3(1);">Ìè¨Ïä§ÌÑ∞</button></td>
+			        </tr>
+			        <tr>
+			          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;" onclick="funcx3(2);">ÏÉÅÏÑ∏1</button></td>
+			        </tr>
+			        <tr>
+			          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;" onclick="funcx3(3);">ÏÉÅÏÑ∏2</button></td>
+			        </tr>
+			        <tr>
+			          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;" onclick="funcx3(4);">ÏÉÅÏÑ∏3</button></td>
+			        </tr>
+			        <tr>
+			          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;" onclick="funcx3(5);">ÏÉÅÏÑ∏4</button></td>
+			        </tr>
+			        <tr>
+			          <td><button class="gta1 poster" style="font-family: 'Jua', sans-serif;" onclick="funcx3(6);">ÏÉÅÏÑ∏5</button></td>
+			        </tr>
+			      </table>
+			    </div>
+			  </div>`;
+			  $("#pno").val(result.productNo);
+			  $("#bigCategory").val(extractedPart);
+			  $("#ptitle").val(result.title);
+			  $("#plocal").val(result.local);
+			  $("#paddress").val(result.address);
+			  $("#startdate").val(result.start);
+			  $("#enddate").val(result.end);
+			  $("#level").val(result.level);
+			  $("#runtime").val(result.runtime);
+			  $("#pprice").val(result.price);
+			  $("#day").val(result.dayTime);
+			  $("#noon").val(result.noonTime);
+			  $("#dayseat").val(result.daySeats);
+			  $("#noonseat").val(result.noonSeats);
+				},
+				error:function(){
+					console.log("ÌÜµÏã†Ïã§Ìå®");
+				}
+			});
+		}); 
+
+		    closeButton.addEventListener("click", function() {
+		      modal.style.display = "none";
+		    });
+
+		    window.addEventListener("click", function(event) {
+		      if (event.target === modal) {
+		        modal.style.display = "none";
+		      }
+		    });
+
+		    closeButton1.addEventListener("click", function() {
+		      modal1.style.display = "none";
+		    });
+
+		    window.addEventListener("click", function(event) {
+		      if (event.target === modal1) {
+		        modal1.style.display = "none";
+		      }
+		    });
+		    
+		    // ÌéòÏù¥ÏßÄ Î°úÎî© ÌõÑ Î™®Îã¨ÏùÑ Ïà®Í∏∞Îäî Î∂ÄÎ∂Ñ Ï∂îÍ∞Ä
+		    modal.style.display = "none";
+		    
+		    var reviewbtn = document.querySelectorAll(".reviewbtn");
+
+		  reviewbtn.forEach(function(button) {
+		    button.addEventListener("click", function() {
+		    	var $row = $(this).closest("tr");
+
+		        // ÏÑ†ÌÉùÎêú ÌñâÏóêÏÑú Í∞ÅÍ∞ÅÏùò td ÏöîÏÜåÏùò ÎÇ¥Ïö©ÏùÑ Í∞ÄÏ†∏ÏòµÎãàÎã§.
+		        var no = $row.find("#td1").text();
+		        upno = no;
+		        productNo = no;
+		        $("#dsearchArea1").val("");
+		        $("#dxdy1").val("Î¶¨Î∑∞Î≤àÌò∏");
+
+		        $.ajax({
+                    type: "GET",
+                    url: "manager-search-reviewList.do", // Ïó¨Í∏∞Ïóê ÏÑúÎ∏îÎ¶ø URLÏùÑ ÏûÖÎ†•ÌïòÏÑ∏Ïöî
+                    data: { 
+                    	pno: no,
+                    	cpage: 1,
+                    	reviewSearchType: null,
+                    	reviewSearchContent: null
+                    },
+                    success: function (r) {
+                     if(r.reviews[0]) 	$("#rno1").text(r.reviews[0].rno);	 else  	$("#rno1").text("");
+                   	 if(r.reviews[1])   $("#rno2").text(r.reviews[1].rno);	 else  	$("#rno2").text("");
+                   	 if(r.reviews[2])   $("#rno3").text(r.reviews[2].rno);	 else  	$("#rno3").text("");
+                   	 if(r.reviews[3])   $("#rno4").text(r.reviews[3].rno);	 else  	$("#rno4").text("");
+                   	 if(r.reviews[4])   $("#rno5").text(r.reviews[4].rno);	 else  	$("#rno5").text("");
+                   	 if(r.reviews[5])   $("#rno6").text(r.reviews[5].rno);	 else  	$("#rno6").text("");
+                   	 if(r.reviews[6])   $("#rno7").text(r.reviews[6].rno);	 else  	$("#rno7").text("");
+                   	 if(r.reviews[7])   $("#rno8").text(r.reviews[7].rno);	 else  	$("#rno8").text("");
+                   	 if(r.reviews[8])   $("#rno9").text(r.reviews[8].rno);	 else  	$("#rno9").text("");
+                   	 if(r.reviews[9])   $("#rno10").text(r.reviews[9].rno);	 else  	$("#rno10").text("");
+                  	 
+                   	 if(r.reviews[0])   $("#userNo1").text(r.reviews[0].userNo);	 else  	$("#userNo1").text("");
+                   	 if(r.reviews[1])   $("#userNo2").text(r.reviews[1].userNo);	 else  	$("#userNo2").text("");
+                   	 if(r.reviews[2])   $("#userNo3").text(r.reviews[2].userNo);	 else  	$("#userNo3").text("");
+                   	 if(r.reviews[3])   $("#userNo4").text(r.reviews[3].userNo);	 else  	$("#userNo4").text("");
+                   	 if(r.reviews[4])   $("#userNo5").text(r.reviews[4].userNo);	 else  	$("#userNo5").text("");
+                   	 if(r.reviews[5])   $("#userNo6").text(r.reviews[5].userNo);	 else  	$("#userNo6").text("");
+                   	 if(r.reviews[6])   $("#userNo7").text(r.reviews[6].userNo);	 else  	$("#userNo7").text("");
+                   	 if(r.reviews[7])   $("#userNo8").text(r.reviews[7].userNo);	 else  	$("#userNo8").text("");
+                   	 if(r.reviews[8])   $("#userNo9").text(r.reviews[8].userNo);	 else  	$("#userNo9").text("");
+                   	 if(r.reviews[9])   $("#userNo10").text(r.reviews[9].userNo);	 else  	$("#userNo10").text("");
+                   	 
+                   	 if(r.reviews[0])   $("#reviewDate1").text(r.reviews[0].reviewDate);	 else  	$("#reviewDate1").text("");
+                   	 if(r.reviews[1])   $("#reviewDate2").text(r.reviews[1].reviewDate);	 else  	$("#reviewDate2").text("");
+                   	 if(r.reviews[2])   $("#reviewDate3").text(r.reviews[2].reviewDate);	 else  	$("#reviewDate3").text("");
+                   	 if(r.reviews[3])   $("#reviewDate4").text(r.reviews[3].reviewDate);	 else  	$("#reviewDate4").text("");
+                   	 if(r.reviews[4])   $("#reviewDate5").text(r.reviews[4].reviewDate);	 else  	$("#reviewDate5").text("");
+                   	 if(r.reviews[5])   $("#reviewDate6").text(r.reviews[5].reviewDate);	 else  	$("#reviewDate6").text("");
+                   	 if(r.reviews[6])   $("#reviewDate7").text(r.reviews[6].reviewDate);	 else  	$("#reviewDate7").text("");
+                   	 if(r.reviews[7])   $("#reviewDate8").text(r.reviews[7].reviewDate);	 else  	$("#reviewDate8").text("");
+                   	 if(r.reviews[8])   $("#reviewDate9").text(r.reviews[8].reviewDate);	 else  	$("#reviewDate9").text("");
+                   	 if(r.reviews[9])   $("#reviewDate10").text(r.reviews[9].reviewDate);	 else  	$("#reviewDate10").text("");
+                   	 
+                   	 if(r.reviews[0])   $("#content1").text(r.reviews[0].content);	 else  	$("#content1").text("");
+                   	 if(r.reviews[1])   $("#content2").text(r.reviews[1].content);	 else  	$("#content2").text("");
+                   	 if(r.reviews[2])   $("#content3").text(r.reviews[2].content);	 else  	$("#content3").text("");
+                   	 if(r.reviews[3])   $("#content4").text(r.reviews[3].content);	 else  	$("#content4").text("");
+                   	 if(r.reviews[4])   $("#content5").text(r.reviews[4].content);	 else  	$("#content5").text("");
+                   	 if(r.reviews[5])   $("#content6").text(r.reviews[5].content);	 else  	$("#content6").text("");
+                   	 if(r.reviews[6])   $("#content7").text(r.reviews[6].content);	 else  	$("#content7").text("");
+                   	 if(r.reviews[7])   $("#content8").text(r.reviews[7].content);	 else  	$("#content8").text("");
+                   	 if(r.reviews[8])   $("#content9").text(r.reviews[8].content);	 else  	$("#content9").text("");
+                   	 if(r.reviews[9])   $("#content10").text(r.reviews[9].content);	 else  	$("#content10").text("");
+                       
+                   	for(var i=1; i<=10; i++){
+	       		    	 $("#content" + i).css("display", "none");
+	       		    	 $("#delBtn" + i).css("display", "none");
+	       		     }         	 
+	       		     var reviewsNum = parseInt(r.pi.listCount);
+	       		     var currfpage = parseInt(r.pi.currentPage);
+	       		     
+	       		     var pageNjk = 10 - (currfpage * 10 - reviewsNum);
+	       		     
+	       		     for(var i=1; i<=pageNjk; i++){
+	       		    	 $("#content" + i).css("display", "block");
+	       		    	 $("#delBtn" + i).css("display", "block");
+	       		     }
+                   	 
+                       var count = 1;
+                       
+                       for(var i=1; i<=5; i++){
+                    	   $("#grand" + i).prop("disabled", false);
+                       }
+                     
+                       $("#grand" + r.pi.currentPage).prop("disabled", true);
+                       curpagee = r.pi.currentPage;
+                       firstpage = parseInt(r.pi.startPage);
+                       for(var i=r.pi.startPage; i<=r.pi.endPage; i++){
+                    	   $("#grand" + count).css("display", "block");
+                    	   $("#grand" + count).text(i);
+                    	   count++;
+                       }
+                       
+                       if(r.pi.startPage != 1){
+                    	   $("#before").css("display", "block");
+                       }
+                       
+                       if(r.pi.endPage < r.pi.maxPage){
+                    	   $("#after").css("display", "block");
+                       } 
+                    },
+                    error: function () {
+                        alert("ÏöîÏ≤≠ Ïã§Ìå®");
+                    }
+                });
+		        
+		      modal2.style.display = "block";
+		      modalText2.innerHTML = `
+		  <hr>
+		  <div>
+		    <table id="tables5">
+		      <tr style="width: 600px;">
+		        <td style="width: 150px;">Î¶¨Î∑∞Î≤àÌò∏</td>
+		        <td style="width: 150px;">ÌöåÏõêÎ≤àÌò∏</td>
+		        <td style="width: 150px;">ÏûëÏÑ±ÎÇ†Ïßú</td>
+		        <td></td>
+		      </tr>
+		    </table>
+		    <div id="tables4Div" style="background-color: #EDEDED;">
+		      <table id="tables4">
+		        <tr style="width: 600px;">
+		          <td style="width: 150px;" id="rno1"></td>
+		          <td style="width: 150px;" id="userNo1"></td>
+		          <td style="width: 150px;" id="reviewDate1"></td>
+		          <td style="width: 150px;">
+		            <button id="delBtn1" onclick="deleteReview(this, 1);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td colspan="4">
+		            <textarea cols="30" rows="5" style="resize: none;" id="content1"></textarea>
+		          </td>
+		        </tr>
+		        <tr style="width: 600px;">
+		          <td style="width: 150px;" id="rno2"></td>
+		          <td style="width: 150px;" id="userNo2"></td>
+		          <td style="width: 150px;" id="reviewDate2"></td>
+		          <td style="width: 150px;">
+		            <button id="delBtn2" onclick="deleteReview(this, 2);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td colspan="4">
+		            <textarea cols="30" rows="5" style="resize: none;" id="content2"></textarea>
+		          </td>
+		        </tr>
+		        <tr style="width: 600px;">
+		          <td style="width: 150px;" id="rno3"></td>
+		          <td style="width: 150px;" id="userNo3"></td>
+		          <td style="width: 150px;" id="reviewDate3"></td>
+		          <td style="width: 150px;">
+		            <button id="delBtn3" onclick="deleteReview(this, 3);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td colspan="4">
+		            <textarea cols="30" rows="5" style="resize: none;" id="content3"></textarea>
+		          </td>
+		        </tr>
+		        <tr style="width: 600px;">
+		          <td style="width: 150px;" id="rno4"></td>
+		          <td style="width: 150px;" id="userNo4"></td>
+		          <td style="width: 150px;" id="reviewDate4"></td>
+		          <td style="width: 150px;">
+		            <button id="delBtn4" onclick="deleteReview(this, 4);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td colspan="4">
+		            <textarea cols="30" rows="5" style="resize: none;" id="content4"></textarea>
+		          </td>
+		        </tr>
+		        <tr style="width: 600px;">
+		          <td style="width: 150px;" id="rno5"></td>
+		          <td style="width: 150px;" id="userNo5"></td>
+		          <td style="width: 150px;" id="reviewDate5"></td>
+		          <td style="width: 150px;">
+		            <button id="delBtn5" onclick="deleteReview(this, 5);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td colspan="4">
+		            <textarea cols="30" rows="5" style="resize: none;" id="content5"></textarea>
+		          </td>
+		        </tr>
+		        <tr style="width: 600px;">
+		          <td style="width: 150px;" id="rno6"></td>
+		          <td style="width: 150px;" id="userNo6"></td>
+		          <td style="width: 150px;" id="reviewDate6"></td>
+		          <td style="width: 150px;">
+		            <button id="delBtn6" onclick="deleteReview(this, 6);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td colspan="4">
+		            <textarea cols="30" rows="5" style="resize: none;" id="content6"></textarea>
+		          </td>
+		        </tr>
+		        <tr style="width: 600px;">
+		          <td style="width: 150px;" id="rno7"></td>
+		          <td style="width: 150px;" id="userNo7"></td>
+		          <td style="width: 150px;" id="reviewDate7"></td>
+		          <td style="width: 150px;">
+		            <button id="delBtn7" onclick="deleteReview(this, 7);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td colspan="4">
+		            <textarea cols="30" rows="5" style="resize: none;" id="content7"></textarea>
+		          </td>
+		        </tr>
+		        <tr style="width: 600px;">
+		          <td style="width: 150px;" id="rno8"></td>
+		          <td style="width: 150px;" id="userNo8"></td>
+		          <td style="width: 150px;" id="reviewDate8"></td>
+		          <td style="width: 150px;">
+		            <button id="delBtn8" onclick="deleteReview(this, 8);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td colspan="4">
+		            <textarea cols="30" rows="5" style="resize: none;" id="content8"></textarea>
+		          </td>
+		        </tr>
+		        <tr style="width: 600px;">
+		          <td style="width: 150px;" id="rno9"></td>
+		          <td style="width: 150px;" id="userNo9"></td>
+		          <td style="width: 150px;" id="reviewDate9"></td>
+		          <td style="width: 150px;">
+		            <button id="delBtn9" onclick="deleteReview(this, 9);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td colspan="4">
+		            <textarea cols="30" rows="5" style="resize: none;" id="content9"></textarea>
+		          </td>
+		        </tr>
+		        <tr style="width: 600px;">
+		          <td style="width: 150px;" id="rno10"></td>
+		          <td style="width: 150px;" id="userNo10"></td>
+		          <td style="width: 150px;" id="reviewDate10"></td>
+		          <td style="width: 150px;">
+		            <button id="delBtn10" onclick="deleteReview(this, 10);" style="margin-left: 103px; font-family: 'Jua', sans-serif;">ÏÇ≠Ï†ú</button>
+		          </td>
+		        </tr>
+		        <tr>
+		          <td colspan="4">
+		            <textarea cols="30" rows="5" style="resize: none;" id="content10"></textarea>
+		          </td>
+		        </tr>
+		      </table>
+		    </div>
+		  </div>
+		      `;
+		    });
+		  });
+
+		  closeButton2.addEventListener("click", function() {
+		      modal2.style.display = "none";
+		    });
+
+		  window.addEventListener("click", function(event) {
+		    if (event.target === modal2) {
+		      modal2.style.display = "none";
+		    }
+		  });
+
+	});
   </script>
 </body>
 </html>

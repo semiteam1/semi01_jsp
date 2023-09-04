@@ -206,6 +206,13 @@
                   method: "get",
                   style: "display: none;" // 폼을 안보이도록 스타일링
               });
+        	  
+        	  form.append($("<input>", {
+      		    type: "hidden",
+      		    name: "cpage",
+      		    value: "1"
+            }));
+        	  
               form.appendTo("body").submit();
           }else if(p1content == "판매통계"){
         	  var form = $("<form>", {
