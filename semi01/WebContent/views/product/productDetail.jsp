@@ -540,161 +540,23 @@
 						
 					</script>
 			
-			<form action="<%= contextPath %>/book.bo?pno=<%= p.getProductNo() %>" method="post">
-			
-				<div id="product_info">
-					<div><h1><%= p.getProductTitle() %></h1></div>
-					<br>
-					<hr style="border: 1px solid black;">
-					<ul id="product_info_ul">
-						<li id="product_info_li">
-							<span id="product_info_li_span1">장소</span>
-							<div><%= p.getAddress() %></div>
-						</li>
-						<li id="product_info_li">
-							<span id="product_info_li_span1">관람시간</span>
-							<div><%= p.getRunTime() %>분</div>
-						</li>
-						<li id="product_info_li">
-							<span id="product_info_li_span1">기간</span>
-							<div><%= p.getStartPeriod() %> ~ <%= p.getEndPeriod() %></div>
-						</li>
-						<li id="product_info_li">
-							<span id="product_info_li_span1">관람등급</span>
-							<div><%= p.getLevelName() %></div>
-						</li>
-					<br>
-					</ul>
-	
-					<br><br>
-					<hr>
-					<br>
-					<ul id="product_info_2">
-						<li>
-							<span id="product_info_2_span">가격</span>
-							<div>
-								<ul id="product_info_2_1" >
-									<li><em><%= p.getPrice() %></em>원</li>
-								</ul>
-							</div>
-						</li>
-						<li>
-							<span id="product_info_2_span">&nbsp;할인</span>
-							<div>
-								<ul id="product_info_2_1">
-									<li>[회원할인] 브론즈 1% 할인</li>
-									<li>[회원할인] 실버 5% 할인</li>
-									<li>[회원할인] 골드 10% 할인</li>
-									<li>[회원할인] 마스터 15% 할인</li>
-									<!-- <li>[카드할인] 현대카드 10% 할인</li>
-									<li>[카드할인] 롯데카드 5% 할인</li> -->
-								</ul>
-							</div>
-						</li>
-					</ul>
-				</div>
+			<div class="booked_btn_form">
+				<button type="submit" class="booked_btn" onclick="book();">예매하기</button>
 			</div>
-	
-			<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
-			<!-- 예매 파트 -->
-			
-				<div class="booked">
-					<div class="booked_part1">
-						<div class="booked_part1_calender1">
-							<br><br>
-							<p id="step">step 1</p><br>
-							날짜 선택
-	
-						</div>
-	
-						<div class="booked_part1_calender2">
-							<input type="date" id="dateInput" name="bookedDate">
-								<script>
-								const startPeriodString = "<%= p.getStartPeriod() %>";
-								const endPeriodString = "<%= p.getEndPeriod() %>";
-	
-								const startPeriodDate = new Date(startPeriodString);
-								const endPeriodDate = new Date(endPeriodString);
-	
-								const minDate = new Date(startPeriodDate);
-								minDate.setDate(minDate.getDate() + 1);
-	
-								const maxDate = new Date(endPeriodDate);
-								maxDate.setDate(maxDate.getDate() + 1);
-	
-								const dateInput = document.getElementById("dateInput");
-								dateInput.min = minDate.toISOString().split('T')[0];
-								dateInput.max = maxDate.toISOString().split('T')[0];
-								</script>
-						</div>
-					</div>
-					<div class="booked_part2">
-						<div class="booked_part2_ampm1">
-							<br><br>
-							<p id="step">step 2</p><br>
-							회차 선택
-						</div>
-						<div class="booked_part2_ampm2" align="center">
-							<input type="button" class="booked_part2_ampm non_click" id="dayTime" name="dayTime" value="11:00">
-							<input type="button" class="booked_part2_ampm non_click" id="nightTime" name="nightTime" value="18:00" onclick="time();">
-							<input type="hidden" id="screenTime" name="screenTime">
-							<input type="hidden" id="spareSeat" name="spareSeat">
-						</div>
-						
-					</div>
-					<div class="booked_part3">
-						<br><br>
-						<b>예매 가능 좌석</b>
-						<br><br><br><br>
-						<b class="booked_part3_b" id="seatCount"></b>
-						
-					</div>
-				</div>
-						<script type="text/javascript">
-							const dayTime = document.getElementById("dayTime");
-							const nightTime = document.getElementById("nightTime");
-							const seatCount = document.getElementById("seatCount");
-							
-	
-							dayTime.addEventListener("click", function() {
-					            seatCount.textContent = "<%= si.getScreeningDaySeat() %>매";
-					            $("#screenTime").val("11:00");
-					            $("#spareSeat").val("<%= si.getScreeningDaySeat() %>");
-					        });
-	
-							nightTime.addEventListener("click", function() {
-					            seatCount.textContent = "<%= si.getScreeningNightSeat() %>매";
-								$("#screenTime").val("18:00");
-								$("#spareSeat").val(<%= si.getScreeningNightSeat() %>);
-					        });
-							
-							
-							const nonClick = document.querySelectorAll(".non_click");
-	
-							function handleClick(event) {
-							// div에서 모든 "click" 클래스 제거
-							nonClick.forEach((e) => {
-								e.classList.remove("click");
-							});
-							// 클릭한 div만 "click"클래스 추가
-							event.target.classList.add("click");
-							}
-	
-							nonClick.forEach((e) => {
-							e.addEventListener("click", handleClick);
-							});
-							
-						</script>
-				
-				<div class="booked_btn_form">
-					<button type="submit" class="booked_btn">예매하기</button>
-				</div>
-				
-		</form>
+		<!-- </form> -->
 
 		<script>
 
-			
+			function book() {
+				if(<%= loginMember %> == null){
+					alert("로그인 후 이용해주세요");
+					location.href="<%= contextPath %>/login.ur";
+				}else{
+					
+					
+				window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");					
+				}
+			}
 
 		</script>
 		
