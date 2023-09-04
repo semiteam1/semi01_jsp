@@ -391,6 +391,9 @@
 		<div class="product_img_info">
 			<div id="product_img"><img src="<%= p.getImagePath() %>/<%= p.getPosterName() %>" ></div>
 			<% System.out.println("p : " + p); %>
+			
+			<form action="<%= contextPath %>/book.bo?pno=<%= p.getProductNo() %>" method="post">
+			
 			<div id="product_info">
 				<div>
 					<h1 style="width: 600px; float: left"><%= p.getProductTitle() %></h1>
@@ -457,7 +460,6 @@
 
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 		<!-- 예매 파트 -->
-		<!-- <form action="<%= contextPath %>/payment.pa" method="post"> -->
 			<div class="booked">
 				<div class="booked_part1">
 					<div class="booked_part1_calender1">
@@ -468,97 +470,89 @@
 					</div>
 
 					<div class="booked_part1_calender2">
-						<input type="date" id="dateInput" value="xxx" name="dd">
-							<script>
-							const startPeriodString = "<%= p.getStartPeriod() %>";
-							const endPeriodString = "<%= p.getEndPeriod() %>";
-
-							const startPeriodDate = new Date(startPeriodString);
-							const endPeriodDate = new Date(endPeriodString);
-
-							const minDate = new Date(startPeriodDate);
-							minDate.setDate(minDate.getDate() + 1);
-
-							const maxDate = new Date(endPeriodDate);
-							maxDate.setDate(maxDate.getDate() + 1);
-
-							const dateInput = document.getElementById("dateInput");
-							dateInput.min = minDate.toISOString().split('T')[0];
-							dateInput.max = maxDate.toISOString().split('T')[0];
-							</script>
+						<input type="date" id="dateInput" name="bookedDate">
+								<script>
+								const startPeriodString = "<%= p.getStartPeriod() %>";
+								const endPeriodString = "<%= p.getEndPeriod() %>";
+	
+								const startPeriodDate = new Date(startPeriodString);
+								const endPeriodDate = new Date(endPeriodString);
+	
+								const minDate = new Date(startPeriodDate);
+								minDate.setDate(minDate.getDate() + 1);
+	
+								const maxDate = new Date(endPeriodDate);
+								maxDate.setDate(maxDate.getDate() + 1);
+	
+								const dateInput = document.getElementById("dateInput");
+								dateInput.min = minDate.toISOString().split('T')[0];
+								dateInput.max = maxDate.toISOString().split('T')[0];
+								</script>
 					</div>
 				</div>
 				<div class="booked_part2">
-					<div class="booked_part2_ampm1">
+						<div class="booked_part2_ampm1">
+							<br><br>
+							<p id="step">step 2</p><br>
+							회차 선택
+						</div>
+						<div class="booked_part2_ampm2" align="center">
+							<input type="button" class="booked_part2_ampm non_click" id="dayTime" name="dayTime" value="11:00">
+							<input type="button" class="booked_part2_ampm non_click" id="nightTime" name="nightTime" value="18:00" onclick="time();">
+							<input type="hidden" id="screenTime" name="screenTime">
+							<input type="hidden" id="spareSeat" name="spareSeat">
+						</div>
+
+					</div>
+					<div class="booked_part3">
 						<br><br>
-						<p id="step">step 2</p><br>
-						회차 선택
+						<b>예매 가능 좌석</b>
+						<br><br><br><br>
+						<b class="booked_part3_b" id="seatCount"></b>
+
 					</div>
-					<div class="booked_part2_ampm2" align="center">
-						<button class="booked_part2_ampm non_click" id="dayTime">11 : 00</button>
-						<button class="booked_part2_ampm non_click" id="nightTime">18 : 00</button>
-					</div>
-					
 				</div>
-				<div class="booked_part3">
-					<br><br>
-					<b>예매 가능 좌석</b>
-					<br><br><br><br>
-					<b class="booked_part3_b" id="seatCount"></b>
-					
-				</div>
-			</div>
-					<script type="text/javascript">
-						const dayTime = document.getElementById("dayTime");
-						const nightTime = document.getElementById("nightTime");
-						const seatCount = document.getElementById("seatCount");
-						
-
-						dayTime.addEventListener("click", function() {
-				            seatCount.textContent = "<%= si.getScreeningDaySeat() %>매";
-				        });
-
-						nightTime.addEventListener("click", function() {
-				            seatCount.textContent = "<%= si.getScreeningNightSeat() %>매";
-				        });
-						
-						
-						const nonClick = document.querySelectorAll(".non_click");
-
-						function handleClick(event) {
-						// div에서 모든 "click" 클래스 제거
-						nonClick.forEach((e) => {
-							e.classList.remove("click");
-						});
-						// 클릭한 div만 "click"클래스 추가
-						event.target.classList.add("click");
-						}
-
-						nonClick.forEach((e) => {
-						e.addEventListener("click", handleClick);
-						});
-						
-					</script>
+						<script type="text/javascript">
+							const dayTime = document.getElementById("dayTime");
+							const nightTime = document.getElementById("nightTime");
+							const seatCount = document.getElementById("seatCount");
+							
+	
+							dayTime.addEventListener("click", function() {
+					            seatCount.textContent = "<%= si.getScreeningDaySeat() %>매";
+					            $("#screenTime").val("11:00");
+					            $("#spareSeat").val("<%= si.getScreeningDaySeat() %>");
+					        });
+	
+							nightTime.addEventListener("click", function() {
+					            seatCount.textContent = "<%= si.getScreeningNightSeat() %>매";
+								$("#screenTime").val("18:00");
+								$("#spareSeat").val(<%= si.getScreeningNightSeat() %>);
+					        });
+							
+							
+							const nonClick = document.querySelectorAll(".non_click");
+	
+							function handleClick(event) {
+							// div에서 모든 "click" 클래스 제거
+							nonClick.forEach((e) => {
+								e.classList.remove("click");
+							});
+							// 클릭한 div만 "click"클래스 추가
+							event.target.classList.add("click");
+							}
+	
+							nonClick.forEach((e) => {
+							e.addEventListener("click", handleClick);
+							});
+							
+						</script>
 			
 			<div class="booked_btn_form">
-				<button type="submit" class="booked_btn" onclick="book();">예매하기</button>
+				<button type="submit" class="booked_btn">예매하기</button>
 			</div>
-		<!-- </form> -->
+		</form>
 
-		<script>
-
-			function book() {
-				if(<%= loginMember %> == null){
-					alert("로그인 후 이용해주세요");
-					location.href="<%= contextPath %>/login.ur";
-				}else{
-					
-					
-				window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");					
-				}
-			}
-
-		</script>
 		
 		<br><br><br><br>
 		

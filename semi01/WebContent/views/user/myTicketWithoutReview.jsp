@@ -245,19 +245,19 @@
                        <div class="paging-area" align="center">
                        <% if(!list.isEmpty()) { %>
                            <% if(pi.getCurrentPage() != 1) { %>
-			            		<button onclick="location.href='<%= contextPath %>/myTicket.us?cpage=<%= pi.getCurrentPage() - 1 %>'">&lt;</button>
+			            		<button onclick="location.href='<%= contextPath %>/myTicketWithoutReview.us?cpage=<%= pi.getCurrentPage() - 1 %>'">&lt;</button>
 			            	<% } %>
 			            
 			            	<% for(int p = pi.getStartPage(); p <= pi.getEndPage(); p++) { %>
 				            	<% if(p == pi.getCurrentPage()) { %>
 				            		<button disabled style="background-color: #cecece; color: #707070"><%= p %></button>
 				            	<% } else { %>
-				            		<button onclick="location.href='<%= contextPath %>/myTicket.us?cpage=<%= p %>'"><%= p %></button>
+				            		<button onclick="location.href='<%= contextPath %>/myTicketWithoutReview.us?cpage=<%= p %>'"><%= p %></button>
 				            	<% } %>
 				            <% } %>
 				            
 				            <% if(pi.getCurrentPage() != pi.getMaxPage()) { %>
-				            	<button onclick="location.href='<%= contextPath %>/myTicket.us?cpage=<%= pi.getCurrentPage() + 1 %>'">&gt;</button>
+				            	<button onclick="location.href='<%= contextPath %>/myTicketWithoutReview.us?cpage=<%= pi.getCurrentPage() + 1 %>'">&gt;</button>
 				            <% } %>
 			        	<% } %>    
                        </div>
