@@ -84,6 +84,11 @@
             cursor: pointer;
             /* border-radius: 10px; */
         }
+        
+        .button-image img{
+        	width: 60px;
+        	height: 75px;
+        }
 
         .button-image>img:hover{
             border: 1px solid black;
@@ -100,6 +105,12 @@
             overflow: hidden;
         }
         
+        .carousel-inner img{
+            width: 100%;
+            width: 100%;
+        }
+
+
         /* 잘보여라@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
         /* 추천상품 */
 
@@ -193,38 +204,38 @@
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 1" class="carousel-img">
+                      <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_범죄도시.png" alt="Slide 1" class="carousel-img">
                     </div>
                     <div class="carousel-item">
-                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 2" class="carousel-img">
+                        <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_뮤직컬_후크.jpg" alt="Slide 2" class="carousel-img">
                     </div>
                     <div class="carousel-item">
-                      <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 3" class="carousel-img">
+                      <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_알라딩2.png" alt="Slide 3" class="carousel-img">
                     </div>
                     <div class="carousel-item">
-                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 4" class="carousel-img">
+                        <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_전율.png" alt="Slide 4" class="carousel-img">
                     </div>
                     <div class="carousel-item">
-                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플.jpg" alt="Slide 5" class="carousel-img">
+                        <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_콘크리트.png" alt="Slide 5" class="carousel-img">
                     </div>
                   </div>
                   
                   <!-- Custom Carousel Buttons -->
                   <div class="custom-carousel-buttons">
                     <div class="button-image" onclick="moveToSlide(0)">
-                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 1" style="border-radius: 10px;">
+                        <img src="resource/product_upfiles/공포,스릴러영화_포스터_범죄도시2.jpg" alt="Button Image 1" style="border-radius: 10px;">
                     </div>
                     <div class="button-image" onclick="moveToSlide(1)">
-                      <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 2" style="border-radius: 10px;">
+                      <img src="resource/product_upfiles/뮤지컬공연_포스터_후크.jpg" alt="Button Image 2" style="border-radius: 10px;">
                     </div>
                     <div class="button-image" onclick="moveToSlide(2)">
-                      <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 3" style="border-radius: 10px;">
+                      <img src="resource/product_upfiles/로맨스영화_포스터_알라딘.jpg" alt="Button Image 3" style="border-radius: 10px;">
                     </div>
                     <div class="button-image" onclick="moveToSlide(3)">
-                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 4" style="border-radius: 10px;">
+                        <img src="resource/product_upfiles/콘서트공연_포스터_전율 정동하X소향.jpg" alt="Button Image 4" style="border-radius: 10px;">
                     </div>
                     <div class="button-image" onclick="moveToSlide(4)">
-                        <img src="resource/이미지자료/류지완 샘플이미지/홈화면 메인배너 이미지 샘플 2.jpg" alt="Button Image 5" style="border-radius: 10px;">
+                        <img src="resource/product_upfiles/공포,스릴러영화_포스터_콘크리트유토피아.jpg" alt="Button Image 5" style="border-radius: 10px;">
                     </div>
                   </div>
                   <br>
