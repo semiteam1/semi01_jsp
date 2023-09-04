@@ -59,7 +59,6 @@ public class ProductDao {
 								   ));
 			}
 			}
-			System.out.println(list);
 			
 			
 		} catch (SQLException e) {
@@ -364,7 +363,6 @@ public class ProductDao {
 								   ));
 			}
 			
-			System.out.println(plist1);
 		
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -760,7 +758,7 @@ public class ProductDao {
 	
 	}
 	
-	public ArrayList<Product> selectExpectedMovieList(Connection conn){
+	public ArrayList<Product> selectExpectedMovieList(Connection conn, String ctype){
 		ArrayList<Product> mlist = new ArrayList<Product>();
 		
 		PreparedStatement pstmt = null;
@@ -770,6 +768,23 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			if(ctype.equals("영화")) {
+				pstmt.setInt(1, 1);
+				pstmt.setInt(2, 2);
+				pstmt.setInt(3, 3);
+				pstmt.setInt(4, 4);
+			}else if(ctype.equals("전시")){
+				pstmt.setInt(1, 5);
+				pstmt.setInt(2, 6);
+				pstmt.setInt(3, 7);
+				pstmt.setInt(4, 8);
+			}else if(ctype.equals("공연")) {
+				pstmt.setInt(1, 9);
+				pstmt.setInt(2, 10);
+				pstmt.setInt(3, 11);
+				pstmt.setInt(4, 12);
+			}
 			
 			rset = pstmt.executeQuery();
 			
@@ -783,7 +798,6 @@ public class ProductDao {
 								   ));
 			}
 			
-		System.out.println(mlist);
 		}catch (SQLException e) {
 			e.printStackTrace();
 		}finally {
@@ -793,7 +807,7 @@ public class ProductDao {
 			return mlist;
 	}
 	
-	public ArrayList<Product> selectTotalMovieList(Connection conn){
+	public ArrayList<Product> selectTotalMovieList(Connection conn, String ctype){
 		ArrayList<Product> mtlist = new ArrayList<Product>();
 		
 		PreparedStatement pstmt = null;
@@ -803,6 +817,23 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			if(ctype.equals("영화")) {
+				pstmt.setInt(1, 1);
+				pstmt.setInt(2, 2);
+				pstmt.setInt(3, 3);
+				pstmt.setInt(4, 4);
+			}else if(ctype.equals("전시")){
+				pstmt.setInt(1, 5);
+				pstmt.setInt(2, 6);
+				pstmt.setInt(3, 7);
+				pstmt.setInt(4, 8);
+			}else if(ctype.equals("공연")) {
+				pstmt.setInt(1, 9);
+				pstmt.setInt(2, 10);
+				pstmt.setInt(3, 11);
+				pstmt.setInt(4, 12);
+			}
 			
 			rset = pstmt.executeQuery();
 			
@@ -824,7 +855,7 @@ public class ProductDao {
 		}
 			return mtlist;
 	}
-	public ArrayList<Product> selectExpectedMovieRomanceList(Connection conn){
+	public ArrayList<Product> selectExpectedMovieRomanceList(Connection conn, String ctype){
 		ArrayList<Product> rlist = new ArrayList<Product>();
 		
 		PreparedStatement pstmt = null;
@@ -834,6 +865,32 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			if(ctype.equals("로맨스")) {
+				pstmt.setInt(1, 1);
+			}else if(ctype.equals("공포스릴러")){
+				pstmt.setInt(1, 2);
+			}else if(ctype.equals("코미디")) {
+				pstmt.setInt(1, 3);
+			}else if(ctype.equals("액션")){
+				pstmt.setInt(1, 4);
+			}else if(ctype.equals("그림전시")) {
+				pstmt.setInt(1, 5);
+			}else if(ctype.equals("작품전시")){
+				pstmt.setInt(1, 6);
+			}else if(ctype.equals("사진전시")) {
+				pstmt.setInt(1, 7);
+			}else if(ctype.equals("체험전시")){
+				pstmt.setInt(1, 8);
+			}else if(ctype.equals("뮤지컬")) {
+				pstmt.setInt(1, 9);
+			}else if(ctype.equals("연극")){
+				pstmt.setInt(1, 10);
+			}else if(ctype.equals("클래식")) {
+				pstmt.setInt(1, 11);
+			}else if(ctype.equals("콘서트")){
+				pstmt.setInt(1, 12);
+			}
 			
 			rset = pstmt.executeQuery();
 			
@@ -855,7 +912,7 @@ public class ProductDao {
 		}
 		return rlist;
 	}
-	public ArrayList<Product> selectTotalMovieRomanceList(Connection conn){
+	public ArrayList<Product> selectTotalMovieRomanceList(Connection conn, String ctype){
 		ArrayList<Product> rtlist = new ArrayList<Product>();
 		
 		PreparedStatement pstmt = null;
@@ -865,6 +922,32 @@ public class ProductDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			
+			if(ctype.equals("로맨스")) {
+				pstmt.setInt(1, 1);
+			}else if(ctype.equals("공포스릴러")){
+				pstmt.setInt(1, 2);
+			}else if(ctype.equals("코미디")) {
+				pstmt.setInt(1, 3);
+			}else if(ctype.equals("액션")){
+				pstmt.setInt(1, 4);
+			}else if(ctype.equals("그림전시")) {
+				pstmt.setInt(1, 5);
+			}else if(ctype.equals("작품전시")){
+				pstmt.setInt(1, 6);
+			}else if(ctype.equals("사진전시")) {
+				pstmt.setInt(1, 7);
+			}else if(ctype.equals("체험전시")){
+				pstmt.setInt(1, 8);
+			}else if(ctype.equals("뮤지컬")) {
+				pstmt.setInt(1, 9);
+			}else if(ctype.equals("연극")){
+				pstmt.setInt(1, 10);
+			}else if(ctype.equals("클래식")) {
+				pstmt.setInt(1, 11);
+			}else if(ctype.equals("콘서트")){
+				pstmt.setInt(1, 12);
+			}
 			
 			rset = pstmt.executeQuery();
 			

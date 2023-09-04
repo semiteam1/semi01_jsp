@@ -15,7 +15,7 @@ import com.kh.semi01.product.model.vo.Product;
 /**
  * Servlet implementation class MovieListController
  */
-@WebServlet("/movie.pr")
+@WebServlet("/cmain.pr")
 public class MovieListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,13 +31,19 @@ public class MovieListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String ctype = request.getParameter("ctype");
 		
-		ArrayList<Product> mlist = new ProductService().selectExpectedMovieList(); // 영화 상영예정작
-		ArrayList<Product> mtlist = new ProductService().selectTotalMovieList(); // 영화 전체 리스트
+		ArrayList<Product> mlist = new ProductService().selectExpectedMovieList(ctype); // 영화 상영예정작
+		ArrayList<Product> mtlist = new ProductService().selectTotalMovieList(ctype); // 영화 전체 리스트
 		
+		
+		request.setAttribute("ctype", ctype);
 		request.setAttribute("mlist", mlist); // 영화 상영예정작
 		request.setAttribute("mtlist", mtlist); // 영화 전체 리스트
+		System.out.println("대카테고리 서블릿 m" + mlist);
+		System.out.println("대카테고리 서블릿 mt" + mtlist);
 		
+		System.out.println("ctype" + ctype);
 		request.getRequestDispatcher("views/product/movieMain.jsp").forward(request, response);
 		
 	}

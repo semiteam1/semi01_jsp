@@ -622,7 +622,7 @@ SELECT
 	           ORDER BY
 	                 좋아요_수 DESC)))
 	 JOIN PRODUCT_IMG USING(PRODUCT_NO)
-	 WHERE CATEGORY_TYPE in(1,2,3,4)
+	 WHERE CATEGORY_TYPE in(?,?,?,?)
        AND START_PERIOD > SYSDATE
     <![CDATA[AND ROWNUM <= 5]]>
 </entry>
@@ -636,7 +636,7 @@ SELECT
 	     , IMAGE_PATH
 	 FROM PRODUCT
      JOIN PRODUCT_IMG USING(PRODUCT_NO)
-    WHERE CATEGORY_TYPE IN (1,2,3,4)
+    WHERE CATEGORY_TYPE IN (?,?,?,?)
 </entry>
 
 <entry key="selectExpectedMovieRomanceList">
@@ -665,7 +665,7 @@ SELECT
            ORDER BY
                  좋아요_수 DESC)))
  JOIN PRODUCT_IMG USING(PRODUCT_NO)
- WHERE CATEGORY_TYPE in(1)
+ WHERE CATEGORY_TYPE = ?
       AND START_PERIOD > SYSDATE
    <![CDATA[AND ROWNUM <= 5]]>
 </entry>
@@ -679,6 +679,6 @@ SELECT
 	     , IMAGE_PATH
 	 FROM PRODUCT
      JOIN PRODUCT_IMG USING(PRODUCT_NO)
-    WHERE CATEGORY_TYPE = 1
+    WHERE CATEGORY_TYPE = ?
 </entry>
 </properties>

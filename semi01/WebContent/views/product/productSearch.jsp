@@ -165,7 +165,7 @@
                             </dl>
                         </a>
 
-                    <button type="button" class="btn btn-danger" onclick="book();">예매하기</button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="book();">예매하기</button>
                 </div>
                 <hr>
                 
@@ -176,7 +176,8 @@
 					alert("로그인 후 이용해주세요");
 					location.href="<%= contextPath %>/login.ur";
 				}else{
-				window.open("<%= contextPath %>/paymentPopUp.pa", "payment", "width = 500, height = 600");					
+				
+				 location.href("<%= contextPath %>/detail.pr?pno=<%= p.getProductNo() %>");
 				}
 			}
 

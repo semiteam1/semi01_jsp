@@ -12,7 +12,7 @@
 	User loginMember = (User)session.getAttribute("loginMember");
 	
 	String alertMsg = (String)session.getAttribute("alertMsg");
-	
+
 %>
 <!DOCTYPE html>
 <html>
@@ -221,6 +221,7 @@
         display: none;
         border: 1px solid;
         width: 150%;
+        margin-left: -16px;
     }
     #navi>li>ul a{font-size: 18px;}
     #navi>li>a:hover+ul{display: block;}
@@ -389,29 +390,29 @@
                     <ul id="navi" > <!-- 카테고리-->
                         <li><a href="<%= contextPath %>" >홈</a>
                         </li>
-                        <li><a href="<%= contextPath %>/movie.pr" style="color: red;">영화</a>
+                        <li><a href="<%= contextPath %>/cmain.pr?ctype=영화" style="color: red;">영화</a>
                             <ul>
-                                <li><a href="<%= contextPath %>/rmovie.pr" " class="minCategory">로맨스</a></li>
-                                <li><a href="#" class="minCategory">공포/스릴러</a></li>
-                                <li><a href="#" class="minCategory">코미디</a></li>
-                                <li><a href="#" class="minCategory">액션</a></li>
+                                <li aligh="center"><a href="<%= contextPath %>/rmovie.pr?ctype=로맨스" class="minCategory">로맨스</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=공포스릴러" class="minCategory">공포/스릴러</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=코미디" class="minCategory">코미디</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=액션" class="minCategory">액션</a></li>
                             </ul>
                         
                         </li>
-                        <li><a href="#">전시</a>
+                        <li><a href="<%= contextPath %>/cmain.pr?ctype=전시">전시</a>
                             <ul>
-                                <li><a href="#" class="minCategory">그림전시</a></li>
-                                <li><a href="#" class="minCategory">작품전시</a></li>
-                                <li><a href="#" class="minCategory">사진전시</a></li>
-                                <li><a href="#" class="minCategory">체험전시</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=그림전시" class="minCategory">그림전시</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=작품전시" class="minCategory">작품전시</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=사진전시" class="minCategory">사진전시</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=체험전시" class="minCategory">체험전시</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">공연</a>
+                        <li><a href="<%= contextPath %>/cmain.pr?ctype=공연">공연</a>
                             <ul>
-                                <li><a href="#" class="minCategory">뮤지컬</a></li>
-                                <li><a href="#" class="minCategory">연극</a></li>
-                                <li><a href="#" class="minCategory">클래식</a></li>
-                                <li><a href="#" class="minCategory">콘서트</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=뮤지컬" class="minCategory">뮤지컬</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=연극" class="minCategory">연극</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=클래식" class="minCategory">클래식</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr?ctype=콘서트" class="minCategory">콘서트</a></li>
                             </ul>
                             <li  style="width: 2px; height: 20px; margin-top: 8px; background-color: #515155;"></li>
                         <li><a href="#">랭킹</a></li>

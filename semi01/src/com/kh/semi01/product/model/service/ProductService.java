@@ -183,32 +183,32 @@ public class ProductService {
 		return plist12;
 	}
 	
-	public ArrayList<Product> selectExpectedMovieList(){
+	public ArrayList<Product> selectExpectedMovieList(String ctype){
 		Connection conn = getConnection();
-		ArrayList<Product> mlist = new ProductDao().selectExpectedMovieList(conn);
+		ArrayList<Product> mlist = new ProductDao().selectExpectedMovieList(conn, ctype);
 		
 		close(conn);
 		return mlist;
 	}
 	
-	public ArrayList<Product> selectTotalMovieList(){
+	public ArrayList<Product> selectTotalMovieList(String ctype){
 		Connection conn = getConnection();
-		ArrayList<Product> mtlist = new ProductDao().selectTotalMovieList(conn);
+		ArrayList<Product> mtlist = new ProductDao().selectTotalMovieList(conn, ctype);
 		
 		close(conn);
 		return mtlist;
 	}
-	public ArrayList<Product> selectExpectedMovieRomanceList(){
+	public ArrayList<Product> selectExpectedMovieRomanceList(String ctype){
 		Connection conn = getConnection();
-		ArrayList<Product> rlist = new ProductDao().selectExpectedMovieRomanceList(conn);
+		ArrayList<Product> rlist = new ProductDao().selectExpectedMovieRomanceList(conn, ctype);
 		
 		close(conn);
 		return rlist;
 	}
 	
-	public ArrayList<Product> selectTotalMovieRomanceList(){
+	public ArrayList<Product> selectTotalMovieRomanceList(String ctype){
 		Connection conn = getConnection();
-		ArrayList<Product> rtlist = new ProductDao().selectTotalMovieRomanceList(conn);
+		ArrayList<Product> rtlist = new ProductDao().selectTotalMovieRomanceList(conn, ctype);
 		
 		close(conn);
 		return rtlist;

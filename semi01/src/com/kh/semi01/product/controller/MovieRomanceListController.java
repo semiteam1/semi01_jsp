@@ -31,11 +31,19 @@ public class MovieRomanceListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Product> rlist = new ProductService().selectExpectedMovieRomanceList(); // 영화 상영예정작
-		ArrayList<Product> rtlist = new ProductService().selectTotalMovieRomanceList(); // 영화 전체 리스트
+		String ctype = request.getParameter("ctype");
 		
+		ArrayList<Product> rlist = new ProductService().selectExpectedMovieRomanceList(ctype); // 영화 상영예정작
+		ArrayList<Product> rtlist = new ProductService().selectTotalMovieRomanceList(ctype); // 영화 전체 리스트
+		
+		request.setAttribute("ctype", ctype);
 		request.setAttribute("rlist", rlist); // 영화 상영예정작
 		request.setAttribute("rtlist", rtlist); // 영화 전체 리스트
+		
+		System.out.println("소카테고리 서블릿 r" + rlist);
+		System.out.println("소카테고리 서블릿 rt" + rtlist);
+		
+		System.out.println("ctype" + ctype);
 		
 		request.getRequestDispatcher("views/product/movieRomance.jsp").forward(request, response);
 	}
