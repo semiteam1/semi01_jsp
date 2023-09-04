@@ -55,7 +55,7 @@ public class Product {
 	
 
 	public Product(int productNo, String productTitle, String address, String startPeriod, String endPeriod,
-			String levelName, int runTime, int price, String imagePath, String posterName) {
+			String levelName, int runTime, int price, String posterName, String imagePath) {
 		super();
 		this.productNo = productNo;
 		this.productTitle = productTitle;
@@ -65,8 +65,8 @@ public class Product {
 		this.levelName = levelName;
 		this.runTime = runTime;
 		this.price = price;
-		this.imagePath = imagePath;
 		this.posterName = posterName;
+		this.imagePath = imagePath;
 	}
 	
 	
@@ -79,14 +79,14 @@ public class Product {
 		this.endPeriod = endPeriod;
 	}
 	
-	public Product(int productNo, String productTitle, String startPeriod, String endPeriod, String imagePath, String posterName) {
+	public Product(int productNo, String productTitle, String startPeriod, String endPeriod, String posterName, String imagePath) {
 		super();
 		this.productNo = productNo;
 		this.productTitle = productTitle;
 		this.startPeriod = startPeriod;
 		this.endPeriod = endPeriod;
-		this.imagePath = imagePath;
 		this.posterName = posterName;
+		this.imagePath = imagePath;
 	}
 
 	// getter-setter 메소드

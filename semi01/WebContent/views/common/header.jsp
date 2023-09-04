@@ -207,7 +207,7 @@
         font-size: 18px;
         font-weight: 900;
         width: 100%;
-        height: 100%;
+        height: 50px;
         display: block;
         line-height: 35px;
         transform: scale(1);
@@ -391,7 +391,7 @@
                         </li>
                         <li><a href="<%= contextPath %>/movie.pr" style="color: red;">영화</a>
                             <ul>
-                                <li><a href="#" class="minCategory">로맨스</a></li>
+                                <li><a href="<%= contextPath %>/rmovie.pr" " class="minCategory">로맨스</a></li>
                                 <li><a href="#" class="minCategory">공포/스릴러</a></li>
                                 <li><a href="#" class="minCategory">코미디</a></li>
                                 <li><a href="#" class="minCategory">액션</a></li>

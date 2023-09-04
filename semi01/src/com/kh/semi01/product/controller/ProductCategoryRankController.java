@@ -42,10 +42,6 @@ public class ProductCategoryRankController extends HttpServlet {
 			request.setAttribute("mlist", mlist);
 			request.setAttribute("slist", slist);
 			
-			System.out.println("컨트롤러 dlist" + dlist);
-			System.out.println("컨트롤러 mlist" + mlist);
-			System.out.println("컨트롤러 slist" + slist);
-			
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 

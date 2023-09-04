@@ -10,6 +10,9 @@
 	Product p = (Product)request.getAttribute("p");
 	ProductIMG pi = (ProductIMG)request.getAttribute("pi");
 	ScreeningInfo si = (ScreeningInfo)request.getAttribute("si");
+	
+	ArrayList<ProductIMG> ilist = (ArrayList<ProductIMG>)request.getAttribute("ilist");
+	ArrayList<Product> plist = (ArrayList<Product>)request.getAttribute("plist");
 
 %>
 <!DOCTYPE html>
@@ -28,20 +31,40 @@
 <style>
 
 
-	.outer{
-		width: 1180px;
-        margin: auto;
-        /* background-color: skyblue; */
-        padding-bottom: 10px;
-		margin-top: 20px;
-	}
-
-	.product_img_info{
-            /* border: 2px solid blue; */
-            width: 100%;
-            height: 600px;
-            padding: 40px 30px;
+		.outer{
+			width: 1180px;
+	        margin: auto;
+	        /* background-color: skyblue; */
+	        padding-bottom: 10px;
+			margin-top: 20px;
+		}
+		
+		.recommend_img{
+			height: 
+		}
+	
+		.div_img{
+	            width: 20%;
+	            height: 390px;
+	            float: left;
+	            padding-left: 10px;
+	            padding-right: 10px;
+	            padding-bottom: 30px;
+	        }
+	        
+        .div_img img {
+            border-radius: 10px;
+            height: 307px;
         }
+	
+	
+
+		.product_img_info{
+	            /* border: 2px solid blue; */
+	            width: 100%;
+	            height: 600px;
+	            padding: 40px 30px;
+	        }
 
         #product_img{
             /* border: 2px solid red; */
@@ -350,16 +373,172 @@
             display: block;
             margin: auto;
         }
+
+        /* 잘보여라@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@*/
+        /* 좋아요 */
+        .like_btn{
+            border: 0;
+            background-color: white;
+			cursor: pointer;
+        }
+
 </style>
 </head>
 <body>
 	<%@ include file = "/views/common/header.jsp" %>
-	<% System.out.println("asd" + pi); %>
 	<div class="outer">
 
 		<div class="product_img_info">
 			<div id="product_img"><img src="<%= p.getImagePath() %>/<%= p.getPosterName() %>" ></div>
 			<% System.out.println("p : " + p); %>
+			<div id="product_info">
+				<div>
+					<h1 style="width: 600px; float: left"><%= p.getProductTitle() %></h1>
+					
+					<button class="like_btn" id="Like" onclick="like();"><img style="width: 40px; height: 40px;" src="resource/이미지자료/류지완 샘플이미지/빈하트.png"></button>
+					<button class="like_btn" id="Like" onclick="Like();" style="display: none;"><img style="width: 40px; height: 40px;" src="resource/이미지자료/류지완 샘플이미지/풀하트.png"></button>
+				</div>
+
+				<script>
+
+
+				</script>
+
+				<br><br>
+				<hr style="border: 1px solid black;">
+				<ul id="product_info_ul">
+					<li id="product_info_li">
+						<span id="product_info_li_span1">장소</span>
+						<div><%= p.getAddress() %></div>
+					</li>
+					<li id="product_info_li">
+						<span id="product_info_li_span1">관람시간</span>
+						<div><%= p.getRunTime() %>분</div>
+					</li>
+					<li id="product_info_li">
+						<span id="product_info_li_span1">기간</span>
+						<div><%= p.getStartPeriod() %> ~ <%= p.getEndPeriod() %></div>
+					</li>
+					<li id="product_info_li">
+						<span id="product_info_li_span1">관람등급</span>
+						<div><%= p.getLevelName() %></div>
+					</li>
+				<br>
+				</ul>
+
+				<br><br>
+				<hr>
+				<br>
+				<ul id="product_info_2">
+					<li>
+						<span id="product_info_2_span">가격</span>
+						<div>
+							<ul id="product_info_2_1" >
+								<li><em><%= p.getPrice() %></em>원</li>
+							</ul>
+						</div>
+					</li>
+					<li>
+						<span id="product_info_2_span">&nbsp;할인</span>
+						<div>
+							<ul id="product_info_2_1">
+								<li>[회원할인] 브론즈 1% 할인</li>
+								<li>[회원할인] 실버 5% 할인</li>
+								<li>[회원할인] 골드 10% 할인</li>
+								<li>[회원할인] 마스터 15% 할인</li>
+								<!-- <li>[카드할인] 현대카드 10% 할인</li>
+								<li>[카드할인] 롯데카드 5% 할인</li> -->
+							</ul>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
+		<!-- 예매 파트 -->
+		<!-- <form action="<%= contextPath %>/payment.pa" method="post"> -->
+			<div class="booked">
+				<div class="booked_part1">
+					<div class="booked_part1_calender1">
+						<br><br>
+						<p id="step">step 1</p><br>
+						날짜 선택
+
+					</div>
+
+					<div class="booked_part1_calender2">
+						<input type="date" id="dateInput" value="xxx" name="dd">
+							<script>
+							const startPeriodString = "<%= p.getStartPeriod() %>";
+							const endPeriodString = "<%= p.getEndPeriod() %>";
+
+							const startPeriodDate = new Date(startPeriodString);
+							const endPeriodDate = new Date(endPeriodString);
+
+							const minDate = new Date(startPeriodDate);
+							minDate.setDate(minDate.getDate() + 1);
+
+							const maxDate = new Date(endPeriodDate);
+							maxDate.setDate(maxDate.getDate() + 1);
+
+							const dateInput = document.getElementById("dateInput");
+							dateInput.min = minDate.toISOString().split('T')[0];
+							dateInput.max = maxDate.toISOString().split('T')[0];
+							</script>
+					</div>
+				</div>
+				<div class="booked_part2">
+					<div class="booked_part2_ampm1">
+						<br><br>
+						<p id="step">step 2</p><br>
+						회차 선택
+					</div>
+					<div class="booked_part2_ampm2" align="center">
+						<button class="booked_part2_ampm non_click" id="dayTime">11 : 00</button>
+						<button class="booked_part2_ampm non_click" id="nightTime">18 : 00</button>
+					</div>
+					
+				</div>
+				<div class="booked_part3">
+					<br><br>
+					<b>예매 가능 좌석</b>
+					<br><br><br><br>
+					<b class="booked_part3_b" id="seatCount"></b>
+					
+				</div>
+			</div>
+					<script type="text/javascript">
+						const dayTime = document.getElementById("dayTime");
+						const nightTime = document.getElementById("nightTime");
+						const seatCount = document.getElementById("seatCount");
+						
+
+						dayTime.addEventListener("click", function() {
+				            seatCount.textContent = "<%= si.getScreeningDaySeat() %>매";
+				        });
+
+						nightTime.addEventListener("click", function() {
+				            seatCount.textContent = "<%= si.getScreeningNightSeat() %>매";
+				        });
+						
+						
+						const nonClick = document.querySelectorAll(".non_click");
+
+						function handleClick(event) {
+						// div에서 모든 "click" 클래스 제거
+						nonClick.forEach((e) => {
+							e.classList.remove("click");
+						});
+						// 클릭한 div만 "click"클래스 추가
+						event.target.classList.add("click");
+						}
+
+						nonClick.forEach((e) => {
+						e.addEventListener("click", handleClick);
+						});
+						
+					</script>
 			
 			<form action="<%= contextPath %>/book.bo?pno=<%= p.getProductNo() %>" method="post">
 			
@@ -560,7 +739,7 @@
 				</div>
 				<br>
 				<div class="review_content">
-					<button type="submit" class="review_btn" style="background-color: black; color: white;">등록</button>
+					<button type="button" class="review_btn" style="background-color: black; color: white; margin-right: 40px;">등록</button>
 				</div>
 				<br>
 			</form>
@@ -581,7 +760,7 @@
 				</div>
 				<br>
 				<div class="review_content">
-					<button type="submit" class="review_btn" style="background-color: black; color: white;">등록</button>
+					<button type="button" class="review_btn" style="background-color: black; color: white; margin-right: 40px;">등록</button>
 				</div>
 				<br>
 			</form>
@@ -672,58 +851,27 @@
 
 		<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 		<!-- 제일 하단 추천상품 -->
-		<span style="font-weight: bold; font-size: 25px;">랭킹 딱대</span>
-				  <br><hr><br>
 
-				  <div class="recommend_img">
-					
-						<div class="div_img">
-						  <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-							<img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-							<div class="caption">
-							  <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-							</div>
-						  </a>
-						</div>
-					
-					
-						<div class="div_img">
-						  <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-							<img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-							<div class="caption">
-							  <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-							</div>
-						  </a>
-						</div>
-					
-					
-						<div class="div_img">
-						  <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-							<img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-							<div class="caption">
-							  <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-							</div>
-						  </a>
-						</div>
-					
-						<div class="div_img">
-						  <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-							<img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-							<div class="caption">
-							  <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-							</div>
-						  </a>
-						</div>
-					
-						<div class="div_img">
-						  <a href="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" target="_blank">
-							<img src="https://img.cgv.co.kr/Movie/Thumbnail/StillCut/000087/87034/87034214832_727.jpg" alt="Fjords" style="width:100%">
-							<div class="caption">
-							  <p>Lorem ipsum donec id elit non mi porta gravida at eget metus.</p>
-							</div>
-						  </a>
-						</div>
-					</div>
+		<div class="recommend_img">
+
+	        <span style="font-weight: bold; font-size: 25px;">랭킹 딱대</span>
+	        <br>
+	        <hr>
+	        <br>
+			<% for(int i=0; i<plist.size(); i++) {%>
+		        <div class="div_img">
+		            <a href="<%= contextPath %>/detail.pr?pno=<%= plist.get(i).getProductNo() %>">
+		                <img src="<%= ilist.get(i).getImagePath() %>/<%= ilist.get(i).getPosterName() %>" alt="Fjords" style="width:100%">
+		                <div class="caption">
+		                    <p class="caption1"><%= plist.get(i).getProductTitle() %></p>
+		                    <p class="caption2"><%= plist.get(i).getStartPeriod() %> ~ <%= plist.get(i).getEndPeriod() %></p>
+		                </div>
+		            </a>
+		        </div>
+	        
+			<% } %>
+
+        </div>
 					<hr>
 					<br><br>
 					

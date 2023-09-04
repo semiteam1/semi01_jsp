@@ -13,16 +13,16 @@ import com.kh.semi01.product.model.service.ProductService;
 import com.kh.semi01.product.model.vo.Product;
 
 /**
- * Servlet implementation class MovieListController
+ * Servlet implementation class MovieRomanceListController
  */
-@WebServlet("/movie.pr")
-public class MovieListController extends HttpServlet {
+@WebServlet("/rmovie.pr")
+public class MovieRomanceListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MovieListController() {
+    public MovieRomanceListController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,15 +31,13 @@ public class MovieListController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ArrayList<Product> rlist = new ProductService().selectExpectedMovieRomanceList(); // 영화 상영예정작
+		ArrayList<Product> rtlist = new ProductService().selectTotalMovieRomanceList(); // 영화 전체 리스트
 		
-		ArrayList<Product> mlist = new ProductService().selectExpectedMovieList(); // 영화 상영예정작
-		ArrayList<Product> mtlist = new ProductService().selectTotalMovieList(); // 영화 전체 리스트
+		request.setAttribute("rlist", rlist); // 영화 상영예정작
+		request.setAttribute("rtlist", rtlist); // 영화 전체 리스트
 		
-		request.setAttribute("mlist", mlist); // 영화 상영예정작
-		request.setAttribute("mtlist", mtlist); // 영화 전체 리스트
-		
-		request.getRequestDispatcher("views/product/movieMain.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("views/product/movieRomance.jsp").forward(request, response);
 	}
 
 	/**
