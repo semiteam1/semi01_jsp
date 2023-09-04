@@ -768,11 +768,6 @@
 
             <% } %>
             
-            <% if(plist1 == null){ %>
-        	window.location.href = '<%= request.getContextPath() %>/trank.pr';
-    	<% } else{ %>
-    	<% } %>
-           
          });
          
 

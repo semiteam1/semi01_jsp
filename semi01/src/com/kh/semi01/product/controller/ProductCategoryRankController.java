@@ -42,6 +42,34 @@ public class ProductCategoryRankController extends HttpServlet {
 			request.setAttribute("mlist", mlist);
 			request.setAttribute("slist", slist);
 			
+			ArrayList<Product> plist1 = new ProductService().selectProductCategoryTotalRank1();
+			ArrayList<Product> plist2 = new ProductService().selectProductCategoryTotalRank2();
+			ArrayList<Product> plist3 = new ProductService().selectProductCategoryTotalRank3();
+			ArrayList<Product> plist4 = new ProductService().selectProductCategoryTotalRank4();
+			ArrayList<Product> plist5 = new ProductService().selectProductCategoryTotalRank5();
+			ArrayList<Product> plist6 = new ProductService().selectProductCategoryTotalRank6();
+			ArrayList<Product> plist7 = new ProductService().selectProductCategoryTotalRank7();
+			ArrayList<Product> plist8 = new ProductService().selectProductCategoryTotalRank8();
+			ArrayList<Product> plist9 = new ProductService().selectProductCategoryTotalRank9();
+			ArrayList<Product> plist10 = new ProductService().selectProductCategoryTotalRank10();
+			ArrayList<Product> plist11 = new ProductService().selectProductCategoryTotalRank11();
+			ArrayList<Product> plist12 = new ProductService().selectProductCategoryTotalRank12();
+			
+			
+			request.setAttribute("plist1", plist1);
+			request.setAttribute("plist2", plist2);
+			request.setAttribute("plist3", plist3);
+			request.setAttribute("plist4", plist4);
+			request.setAttribute("plist5", plist5);
+			request.setAttribute("plist6", plist6);
+			request.setAttribute("plist7", plist7);
+			request.setAttribute("plist8", plist8);
+			request.setAttribute("plist9", plist9);
+			request.setAttribute("plist10", plist10);
+			request.setAttribute("plist11", plist11);
+			request.setAttribute("plist12", plist12);
+			
+			
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
