@@ -1,3 +1,9 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.time.format.TextStyle"%>
+<%@page import="java.time.DayOfWeek"%>
+<%@page import="java.time.LocalDate"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.StringTokenizer"%>
 <%@page import="com.kh.semi01.user.model.vo.Grade"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -36,6 +42,17 @@
 	
 	BookNPayment bp = (BookNPayment)request.getAttribute("bp");
 	
+	StringTokenizer st = new StringTokenizer(bp.getBookedDate(), "-");
+	
+	ArrayList<String> list = new ArrayList<>();
+	
+	while(st.hasMoreTokens()) {
+		list.add(st.nextToken());
+	}
+	
+	LocalDate date = LocalDate.of(Integer.parseInt(list.get(0)), Integer.parseInt(list.get(1)), Integer.parseInt(list.get(2)));
+	
+	String day = date.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
 
 %>
 <!DOCTYPE html>
@@ -195,7 +212,7 @@
 					</tr>
 					<tr>
 						<th>공연 일시</th>
-						<td><%= bp.getBookedDate() %> <%= bp.getScreenTime() %></td>
+						<td><%= bp.getBookedDate() %>(<%= day %>) <%= bp.getScreenTime() %></td>
 					</tr>
 					<tr>
 						<th>가격</th>
@@ -250,11 +267,11 @@
 				const price = <%= p.getPrice() %>;
 				const discount = <%= grade_discount %>;
 				
-				$("#originPrice").text(price * audience);
+				$("#originPrice").text((price * audience).toLocaleString());
 				
-				$("#bookPrice").text((price * audience) * (1 - discount));
+				$("#bookPrice").text(((price * audience) * (1 - discount)).toLocaleString());
 				
-				$("input[name=price]").val((price * audience) * (1 - discount));
+				$("input[name=price]").val(((price * audience) * (1 - discount)).toLocaleString());
 				
 			}
 
