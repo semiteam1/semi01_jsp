@@ -10,16 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 import com.kh.semi01.product.model.service.ProductService;
 
 /**
- * Servlet implementation class LikeDeleteController
+ * Servlet implementation class DaySeatSelectController
  */
-@WebServlet("/deleteLike.pr")
-public class LikeDeleteController extends HttpServlet {
+@WebServlet("/selectSeat.pr")
+public class SeatSelectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LikeDeleteController() {
+    public SeatSelectController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,14 +28,21 @@ public class LikeDeleteController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		int userNo = Integer.parseInt(request.getParameter("userNo"));
+
 		int productNo = Integer.parseInt(request.getParameter("productNo"));
+		String screeningDate = request.getParameter("screeningDate");
+		String time = request.getParameter("time");
 		
-		int result = new ProductService().deleteLike(userNo, productNo);
+		System.out.println("좌석 조회용");
 		
-		response.getWriter().print(result);
+		System.out.println(productNo);
+		System.out.println(screeningDate);
+		System.out.println(time);
 		
+		int seatCount = new ProductService().selectSeat(productNo, screeningDate, time);
+		
+		response.getWriter().print(seatCount);
+	
 	}
 
 	/**

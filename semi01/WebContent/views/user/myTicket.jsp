@@ -110,6 +110,9 @@
     .content-text>table {
     	line-height: 3;
     }
+    .content-text a {
+    	font-size:13px;
+    }
     .content-text a:hover {
     	opacity: 0.5;
     }

@@ -712,4 +712,20 @@ SELECT
 	   AND USER_NO = ?
 </entry>
 
+<entry key="selectDaySeat">
+	SELECT 
+	       SCREENING_DAY_SEAT "seat"
+	  FROM SCREENING_INFO
+	 WHERE PRODUCT_NO = ?
+	   AND TO_CHAR(SCREENING_DATE, 'RRRR-MM-DD') = ?
+</entry>
+
+<entry key="selectNightSeat">
+	SELECT 
+	       SCREENING_NIGHT_SEAT "seat"
+	  FROM SCREENING_INFO
+	 WHERE PRODUCT_NO = ?
+	   AND TO_CHAR(SCREENING_DATE, 'RRRR-MM-DD') = ?
+</entry>
+
 </properties>

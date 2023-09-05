@@ -422,12 +422,53 @@
 							
 								if($(this).children("img").attr("src") == "resource/이미지자료/류지완 샘플이미지/빈하트.png" ) {
 									
-									$(this).children("img").attr("src", "resource/이미지자료/류지완 샘플이미지/풀하트.png");
+									$.ajax({
+										
+										url:"insertLike.pr",
+										data:{
+											userNo:"<%= loginMember.getUserNo() %>",
+											productNo:"<%= p.getProductNo() %>"
+										},
+										type:"post",
+										success:function(result) {
+											
+											if(result > 0) {
+												
+												$(".like_btn").children("img").attr("src", "resource/이미지자료/류지완 샘플이미지/풀하트.png");
+											
+											}
+										},
+										error:function() {
+											console.log("좋아요 등록용 ajax 통신 실패");
+										}
+										
+									});
 								
 								}
 								else {
 									
-									$(this).children("img").attr("src", "resource/이미지자료/류지완 샘플이미지/빈하트.png");
+										$.ajax({
+										
+										url:"deleteLike.pr",
+										data:{
+											userNo:"<%= loginMember.getUserNo() %>",
+											productNo:"<%= p.getProductNo() %>"
+										},
+										type:"post",
+										success:function(result) {
+											
+											if(result > 0) {
+												
+												$(".like_btn").children("img").attr("src", "resource/이미지자료/류지완 샘플이미지/빈하트.png");
+											
+											}
+										},
+										error:function() {
+											console.log("좋아요 삭제용 ajax 통신 실패");
+										}
+										
+									});
+									
 								
 								}
 						
@@ -530,7 +571,7 @@
 						</div>
 						<div class="booked_part2_ampm2" align="center">
 							<input type="button" class="booked_part2_ampm non_click" id="dayTime" name="dayTime" value="11:00">
-							<input type="button" class="booked_part2_ampm non_click" id="nightTime" name="nightTime" value="18:00" onclick="time();">
+							<input type="button" class="booked_part2_ampm non_click" id="nightTime" name="nightTime" value="18:00">
 							<input type="hidden" id="screenTime" name="screenTime">
 							<input type="hidden" id="spareSeat" name="spareSeat">
 						</div>
@@ -544,25 +585,40 @@
 
 					</div>
 				</div>
-						<script type="text/javascript">
-							const dayTime = document.getElementById("dayTime");
-							const nightTime = document.getElementById("nightTime");
-							const seatCount = document.getElementById("seatCount");
+						<script>
+						
+							$(function() {
+								
+								$(".non_click").click(function() {
+									
+									$("#screenTime").val($(this).val());
+									
+									$.ajax({
+						            	
+						            	url:"selectSeat.pr",
+						            	data:{
+						            		productNo:"<%= p.getProductNo() %>",
+						            		screeningDate:$("#dateInput").val(),
+						            		time:$(this).val()
+						            	},
+						            	success:function(seatCount) {
+						            		
+						            		$("#seatCount").text(seatCount + "매");
+						            		
+						            		$("#spareSeat").val(seatCount);
+						            		
+						            	},
+						            	error:function() {
+						            		console.log("좌석 조회용 ajax 통신 실패");
+						            	}
+						            	
+						            });
+						            
+								});
+								
+							});
 							
 	
-							dayTime.addEventListener("click", function() {
-					            seatCount.textContent = "<%= si.getScreeningDaySeat() %>매";
-					            $("#screenTime").val("11:00");
-					            $("#spareSeat").val(<%= si.getScreeningDaySeat() %>);
-					        });
-	
-							nightTime.addEventListener("click", function() {
-					            seatCount.textContent = "<%= si.getScreeningNightSeat() %>매";
-								$("#screenTime").val("18:00");
-								$("#spareSeat").val(<%= si.getScreeningNightSeat() %>);
-					        });
-							
-							
 							const nonClick = document.querySelectorAll(".non_click");
 	
 							function handleClick(event) {

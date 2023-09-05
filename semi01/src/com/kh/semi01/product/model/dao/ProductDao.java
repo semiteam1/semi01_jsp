@@ -888,33 +888,6 @@ public class ProductDao {
 		return rtlist;
 	}
 	
-	public int insertLike(Connection conn, int userNo, int productNo) {
-		
-		int result = 0;
-		
-		PreparedStatement pstmt = null;
-		
-		String sql = prop.getProperty("insertLike");
-		
-		try {
-			
-			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, productNo);
-			pstmt.setInt(2, userNo);
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-		
-	}
-	
 	public ProductLike selectLike(Connection conn, int userNo, int productNo) {
 		
 		ProductLike pl = null;
@@ -946,6 +919,104 @@ public class ProductDao {
 		}
 		
 		return pl;
+		
+	}
+	
+	public int insertLike(Connection conn, int userNo, int productNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertLike");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, productNo);
+			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int deleteLike(Connection conn, int userNo, int productNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteLike");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, productNo);
+			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int selectSeat(Connection conn, int productNo, String screeningDate, String time) {
+		
+		int seatCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "";
+		
+		if(time.equals("11:00")) {
+			query = "selectDaySeat";
+		}
+		else {
+			query = "selectNightSeat";
+		}
+		
+		String sql = prop.getProperty(query);
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, productNo);
+			pstmt.setString(2, screeningDate);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+			
+				seatCount = rset.getInt("seat");
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return seatCount;
 		
 	}
 

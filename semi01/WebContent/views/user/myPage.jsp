@@ -102,6 +102,9 @@
         font-size: 14px;
         /* border-style: none; */
     }
+    .form-content>a {
+    	font-size:15px;
+    }
     button {
         background-color: #f8f8f8;
         color: #8c8c8c;
