@@ -563,7 +563,7 @@
 		<div class="tab-container">
 			<button class="tab-button" onclick="openTab(event, 'tab1')">상세정보</button>
 			<button class="tab-button" onclick="openTab(event, 'tab2')">관람후기</button>
-			<button class="tab-button" onclick="openTab(event, 'tab3')">에디터 한줄평</button>
+			<button class="tab-button" onclick="openTab(event, 'tab3')">기대평</button>
 			<button class="tab-button" onclick="openTab(event, 'tab4')">장소정보</button>
 			<button class="tab-button" onclick="openTab(event, 'tab5')">예매/취소안내</button>
 		</div>
@@ -591,26 +591,38 @@
 			<div class="review" align="left">
 				<h4>게시판 운영규정에 맞지 않는 글은 사전 통보없이 삭제될 수 있습니다.</h4>
 			</div>
-
+			<form action="" class="review_form">
 				<div class="review_content">
-					<div style="width: 100%; height: 60px; border-radius: 10px; padding: 15px; font-weight: bold; font-size: 15px;  border: 1px solid black;" ></div>
-					<div style="width: 100%; height: 30px; border: 1px solid black;"></div>
+					<textarea name="" cols="160" rows="10" style="resize: none;"></textarea>
 				</div>
-				<br><br>
+				<br>
+				<div class="review_content">
+					<button type="button" class="review_btn"
+						style="background-color: black; color: white; margin-right: 40px;">등록</button>
+				</div>
+				<br>
+			</form>
 		</div>
 
 		<div id="tab3" class="tab-content">
 			<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 			<!-- 기대평 파트 -->
-			<h1 style="padding-top: 20px;" align="left">에디터 한줄평</h1>
+			<h1 style="padding-top: 20px;" align="left">기대평</h1>
 			<br>
 			<hr style="border: 1px solid black;">
-			<br>
+			<div class="review" align="left">
+				<h4>게시판 운영규정에 맞지 않는 글은 사전 통보없이 삭제될 수 있습니다.</h4>
+			</div>
 			<form action="" class="review_form">
 				<div class="review_content">
-					<div></div>
-					<textarea cols="160" rows="5" style="resize: none; font-size: 15px; padding: 10px; border-radius: 10px;">이거 재밌다 꼭봐라 이거 야무지다</textarea>
+					<textarea name="" cols="160" rows="10" style="resize: none;"></textarea>
 				</div>
+				<br>
+				<div class="review_content">
+					<button type="button" class="review_btn"
+						style="background-color: black; color: white; margin-right: 40px;">등록</button>
+				</div>
+				<br>
 			</form>
 		</div>
 

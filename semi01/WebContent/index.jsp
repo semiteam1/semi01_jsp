@@ -750,6 +750,12 @@ ArrayList<Product> slist = null;
 
 
 <br><br>
+	<script>
+
+         
+
+	</script>
+	
 	
 	<%@ include file = "/views/common/footer.jsp" %>
 </body>
