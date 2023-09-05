@@ -155,7 +155,7 @@
 }
 
 .yoontarget img {
-	border-radius: 20px;
+	border-radius: 10px;
 	border: 1px solid rgb(156, 152, 152);
 }
 
@@ -232,7 +232,7 @@
 #ad {
 	border: 1px solid rgb(156, 152, 152);
 	height: 330px;
-	border-radius: 20px;
+	border-radius: 10px;
 }
 
 #ad img {
@@ -444,7 +444,7 @@ img {
 							src="<%=mlist.get(i).getImagePath() %>/<%= mlist.get(i).getPosterName() %>"
 							alt="Lights" style="width: 100%">
 							<div class="caption">
-								<p><%=mlist.get(i).getProductTitle() %></p>
+								<p><%=mlist.get(i).getProductTitle() %></p><br>
 								<pre><%= mlist.get(i).getStartPeriod() %>~<%= mlist.get(i).getEndPeriod() %></pre>
 							</div>
 						</a>
@@ -482,7 +482,7 @@ img {
 							src="<%= mtlist.get(i).getImagePath() %>/<%= mtlist.get(i).getPosterName() %>"
 							alt="Lights" style="width: 100%">
 							<div class="caption">
-								<p><%= mtlist.get(i).getProductTitle() %></p>
+								<p><%= mtlist.get(i).getProductTitle() %></p><br>
 								<pre><%= mtlist.get(i).getStartPeriod() %>~<%= mtlist.get(i).getEndPeriod() %></pre>
 							</div>
 						</a>
