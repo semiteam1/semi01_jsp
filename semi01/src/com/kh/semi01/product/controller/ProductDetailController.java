@@ -15,6 +15,7 @@ import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
 import com.kh.semi01.product.model.vo.ProductLike;
 import com.kh.semi01.product.model.vo.ScreeningInfo;
+import com.kh.semi01.user.model.vo.User;
 
 /**
  * Servlet implementation class ProductDetailView
@@ -57,9 +58,15 @@ public class ProductDetailController extends HttpServlet {
 			ProductIMG pi = new ProductService().selectProductIMG(productNo);
 			ScreeningInfo si = new ProductService().selectScreeningInfo(productNo);
 			
+			int userNo = ((User)(request.getSession().getAttribute("loginMember"))).getUserNo();
+			
+			ProductLike pl = new ProductService().selectLike(userNo, productNo);
+			
 			request.setAttribute("p", p);
 			request.setAttribute("pi", pi);
 			request.setAttribute("si", si);
+			request.setAttribute("pl", pl);
+			
 			request.getRequestDispatcher("views/product/productDetail.jsp").forward(request, response);
 			
 		}

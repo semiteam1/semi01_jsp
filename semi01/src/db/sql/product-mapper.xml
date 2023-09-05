@@ -681,4 +681,51 @@ SELECT
      JOIN PRODUCT_IMG USING(PRODUCT_NO)
     WHERE CATEGORY_TYPE = ?
 </entry>
+
+<entry key="insertLike">
+	INSERT
+	  INTO PRODUCT_LIKE
+	     (
+	       PRODUCT_NO
+	     , USER_NO  
+	     )
+	VALUES
+	     (
+	       ?
+	     , ?  
+	     )
+</entry>
+
+<entry key="deleteLike">
+	DELETE
+	  FROM PRODUCT_LIKE
+	 WHERE PRODUCT_NO = ?
+	   AND USER_NO = ?
+</entry>
+
+<entry key="selectLike">
+	SELECT 
+		   PRODUCT_NO
+		 , USER_NO  
+	  FROM PRODUCT_LIKE
+	 WHERE PRODUCT_NO = ?
+	   AND USER_NO = ?
+</entry>
+
+<entry key="selectDaySeat">
+	SELECT 
+	       SCREENING_DAY_SEAT "seat"
+	  FROM SCREENING_INFO
+	 WHERE PRODUCT_NO = ?
+	   AND TO_CHAR(SCREENING_DATE, 'RRRR-MM-DD') = ?
+</entry>
+
+<entry key="selectNightSeat">
+	SELECT 
+	       SCREENING_NIGHT_SEAT "seat"
+	  FROM SCREENING_INFO
+	 WHERE PRODUCT_NO = ?
+	   AND TO_CHAR(SCREENING_DATE, 'RRRR-MM-DD') = ?
+</entry>
+
 </properties>

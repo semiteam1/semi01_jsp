@@ -122,7 +122,7 @@
         text-align: center;
     }
     .content-table b {
-    	color: blue;
+    	color: #007bff;
     }
     #account>td {
     	text-decoration: underline;
@@ -154,65 +154,67 @@
                     </div>
                     
                     <div id="right-bottom">
-                        <div class="myTicket-content">
-                            
-                            <table class="content-table">
-                                <tr>
-                                    <td class="form-title" width="100">공연 제목</td>
-                                    <td class="form-content"><%= b.getProduct() %></td>
-                                </tr>
-                                <tr>
-                                    <td class="form-title">공연 장소</td>
-                                    <td class="form-content"><%= b.getAddress() %></td>
-                                </tr>
-                                <tr>
-                                    <td class="form-title">공연 일시</td>
-                                    <td class="form-content"><%= b.getScreenDate() %></td>
-                                </tr>
-                                <tr>
-                                    <td class="form-title">관람 인원</td>
-                                    <td class="form-content">성인 <%= b.getAudience() %>명</td>
-                                </tr>
-                                <tr>
-                                    <td class="form-title">예매 금액</td>
-                                    <td class="form-content"><%= bookPrice %>원</td>
-                                </tr>
-                                <tr>
-                                    <td class="form-title">할인 금액</td>
-                                    <td class="form-content">-<%= discountPrice %>원 (<b><%= g.getGradeName() %></b> 등급할인 <b><%= (int)(g.getGradeDiscount()*100) %>%</b>)</td>
-                                </tr>
-                                <tr>
-                                    <td class="form-title">결제 수단</td>
-                                    <td class="form-content"><%= b.getPayment() %></td>
-                                </tr>
-                                <tr>
-                                    <td class="form-title">결제 금액</td>
-                                    <td class="form-content"><%= payPrice %>원</td>
-                                </tr>
-                                <tr id="account">
-                                    <td class="form-title">입금 계좌</td>
-                                    <td class="form-content">신한, 110-456-789043 / (주)티켓딱대</td>
-                                </tr>
-                            </table>
-
-                            <div class="btns">
-                                <button onclick="history.back();">돌아가기</button>
-                                <button onclick="ticketDelete();">예매취소</button>
-                            </div>
-                            
-                        </div>
+                    
+                    	<form action="<%= contextPath %>/deleteTicket.us" method="post">
+                    	
+                    		<input type="hidden" name="bno" value="<%= b.getBookedNo() %>">
+                    
+	                        <div class="myTicket-content">
+	                            
+	                            <table class="content-table">
+	                                <tr>
+	                                    <td class="form-title" width="100">공연 제목</td>
+	                                    <td class="form-content"><%= b.getProduct() %></td>
+	                                </tr>
+	                                <tr>
+	                                    <td class="form-title">공연 장소</td>
+	                                    <td class="form-content"><%= b.getAddress() %></td>
+	                                </tr>
+	                                <tr>
+	                                    <td class="form-title">공연 일시</td>
+	                                    <td class="form-content"><%= b.getScreenDate() %></td>
+	                                </tr>
+	                                <tr>
+	                                    <td class="form-title">관람 인원</td>
+	                                    <td class="form-content">성인 <%= b.getAudience() %>명</td>
+	                                </tr>
+	                                <tr>
+	                                    <td class="form-title">예매 금액</td>
+	                                    <td class="form-content"><%= bookPrice %>원</td>
+	                                </tr>
+	                                <tr>
+	                                    <td class="form-title">할인 금액</td>
+	                                    <td class="form-content">-<%= discountPrice %>원 (<b><%= g.getGradeName() %></b> 등급할인 <b><%= (int)(g.getGradeDiscount()*100) %>%</b>)</td>
+	                                </tr>
+	                                <tr>
+	                                    <td class="form-title">결제 수단</td>
+	                                    <td class="form-content"><%= b.getPayment() %></td>
+	                                </tr>
+	                                <tr>
+	                                    <td class="form-title">결제 금액</td>
+	                                    <td class="form-content"><%= payPrice %>원</td>
+	                                </tr>
+	                                <tr id="account">
+	                                    <td class="form-title">입금 계좌</td>
+	                                    <td class="form-content">신한, 110-456-789043 / (주)티켓딱대</td>
+	                                </tr>
+	                            </table>
+	
+	                            <div class="btns">
+	                                <button onclick="history.back();">돌아가기</button>
+	                                <button type="submit" onclick="return ticketDelete();">예매취소</button>
+	                            </div>
+	                            
+	                        </div>
+                        
+                        </form>
                         
                         <script>
 
                             function ticketDelete() {
     
-                                if(confirm("해당 예매내역을 삭제하시겠습니까?")) {
-                                    location.href = "<%= contextPath %>/deleteTicket.us?bno=<%= bookedNo %>";
-                                }
-                                else {
-                                    return false;
-                                }
-    
+                            	return confirm("해당 예매내역을 삭제하시겠습니까?");
+                            	
                             }
     
                         </script>

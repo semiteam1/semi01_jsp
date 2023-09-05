@@ -1,3 +1,4 @@
+<%@page import="com.kh.semi01.product.model.vo.ProductLike"%>
 <%@page import="com.kh.semi01.product.model.vo.ScreeningInfo"%>
 <%@page import="java.sql.Date"%>
 <%@page import="com.kh.semi01.product.model.vo.ProductIMG"%>
@@ -10,6 +11,7 @@
 	Product p = (Product)request.getAttribute("p");
 	ProductIMG pi = (ProductIMG)request.getAttribute("pi");
 	ScreeningInfo si = (ScreeningInfo)request.getAttribute("si");
+	ProductLike pl = (ProductLike)request.getAttribute("pl");
 	
 	ArrayList<ProductIMG> ilist = (ArrayList<ProductIMG>)request.getAttribute("ilist");
 	ArrayList<Product> plist = (ArrayList<Product>)request.getAttribute("plist");
@@ -385,28 +387,91 @@
 				<img src="<%= p.getImagePath() %>/<%= p.getPosterName() %>">
 			</div>
 			<% System.out.println("p : " + p); %>
+			
+			<form action="<%= contextPath %>/book.bo?pno=<%= p.getProductNo() %>" method="post">
+			
+			<div id="product_info">
+				<div>
+					<h1 style="width: 600px; float: left"><%= p.getProductTitle() %></h1>
+					
+					<% if(pl != null) { %>
+						<button type="button" class="like_btn"><img style="width: 40px; height: 40px;" src="resource/이미지자료/류지완 샘플이미지/풀하트.png"></button>
+					<% } else { %>
+						<button type="button" class="like_btn"><img style="width: 40px; height: 40px;" src="resource/이미지자료/류지완 샘플이미지/빈하트.png"></button>
+					<% } %>
+					
+				</div>
 
-			<form action="<%= contextPath %>/book.bo?pno=<%= p.getProductNo() %>"
-				method="post">
-
-				<div id="product_info">
-					<div>
-						<h1 style="width: 600px; float: left"><%= p.getProductTitle() %></h1>
-
-						<button class="like_btn" id="Like" onclick="like();">
-							<img style="width: 40px; height: 40px;"
-								src="resource/이미지자료/류지완 샘플이미지/빈하트.png">
-						</button>
-						<button class="like_btn" id="Like" onclick="Like();"
-							style="display: none;">
-							<img style="width: 40px; height: 40px;"
-								src="resource/이미지자료/류지완 샘플이미지/풀하트.png">
-						</button>
-					</div>
-
-					<script>
-
-
+				<script>
+				
+					$(function() {
+						
+						$(".like_btn").click(function() {
+							
+							<% if(loginMember == null) { %>
+							
+								alert("로그인 후에 이용 가능합니다.");
+							
+							<% } else {%>
+							
+								if($(this).children("img").attr("src") == "resource/이미지자료/류지완 샘플이미지/빈하트.png" ) {
+									
+									$.ajax({
+										
+										url:"insertLike.pr",
+										data:{
+											userNo:"<%= loginMember.getUserNo() %>",
+											productNo:"<%= p.getProductNo() %>"
+										},
+										type:"post",
+										success:function(result) {
+											
+											if(result > 0) {
+												
+												$(".like_btn").children("img").attr("src", "resource/이미지자료/류지완 샘플이미지/풀하트.png");
+											
+											}
+										},
+										error:function() {
+											console.log("좋아요 등록용 ajax 통신 실패");
+										}
+										
+									});
+								
+								}
+								else {
+									
+										$.ajax({
+										
+										url:"deleteLike.pr",
+										data:{
+											userNo:"<%= loginMember.getUserNo() %>",
+											productNo:"<%= p.getProductNo() %>"
+										},
+										type:"post",
+										success:function(result) {
+											
+											if(result > 0) {
+												
+												$(".like_btn").children("img").attr("src", "resource/이미지자료/류지완 샘플이미지/빈하트.png");
+											
+											}
+										},
+										error:function() {
+											console.log("좋아요 삭제용 ajax 통신 실패");
+										}
+										
+									});
+									
+								
+								}
+						
+							<% } %>
+							
+						});
+						
+					})
+					
 				</script>
 
 					<br>
@@ -484,23 +549,20 @@
 								dateInput.min = minDate.toISOString().split('T')[0];
 								dateInput.max = maxDate.toISOString().split('T')[0];
 								</script>
+					</div>
 				</div>
-			</div>
-			<div class="booked_part2">
-				<div class="booked_part2_ampm1">
-					<br>
-					<br>
-					<p id="step">step 2</p>
-					<br> 회차 선택
-				</div>
-				<div class="booked_part2_ampm2" align="center">
-					<input type="button" class="booked_part2_ampm non_click"
-						id="dayTime" name="dayTime" value="11:00"> <input
-						type="button" class="booked_part2_ampm non_click" id="nightTime"
-						name="nightTime" value="18:00" onclick="time();"> <input
-						type="hidden" id="screenTime" name="screenTime"> <input
-						type="hidden" id="spareSeat" name="spareSeat">
-				</div>
+				<div class="booked_part2">
+						<div class="booked_part2_ampm1">
+							<br><br>
+							<p id="step">step 2</p><br>
+							회차 선택
+						</div>
+						<div class="booked_part2_ampm2" align="center">
+							<input type="button" class="booked_part2_ampm non_click" id="dayTime" name="dayTime" value="11:00">
+							<input type="button" class="booked_part2_ampm non_click" id="nightTime" name="nightTime" value="18:00" onclick="time();">
+							<input type="hidden" id="screenTime" name="screenTime">
+							<input type="hidden" id="spareSeat" name="spareSeat">
+						</div>
 
 			</div>
 			<div class="booked_part3">
@@ -510,9 +572,9 @@
 				<br>
 				<br> <b class="booked_part3_b" id="seatCount"></b>
 
-			</div>
-		</div>
-		<script type="text/javascript">
+					</div>
+				</div>
+						<script type="text/javascript">
 							const dayTime = document.getElementById("dayTime");
 							const nightTime = document.getElementById("nightTime");
 							const seatCount = document.getElementById("seatCount");

@@ -7,6 +7,7 @@ import static com.kh.semi01.common.JDBCTemplate.*;
 import com.kh.semi01.product.model.dao.ProductDao;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
+import com.kh.semi01.product.model.vo.ProductLike;
 import com.kh.semi01.product.model.vo.ScreeningInfo;
 
 public class ProductService {
@@ -212,6 +213,68 @@ public class ProductService {
 		
 		close(conn);
 		return rtlist;
+	}
+	
+	public ProductLike selectLike(int userNo, int productNo) {
+		
+		Connection conn = getConnection();
+		
+		ProductLike pl = new ProductDao().selectLike(conn, userNo, productNo);
+		
+		close(conn);
+		
+		return pl;
+		
+	}
+	
+	public int insertLike(int userNo, int productNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ProductDao().insertLike(conn, userNo, productNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int deleteLike(int userNo, int productNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new ProductDao().deleteLike(conn, userNo, productNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
+	public int selectSeat(int productNo, String screeningDate, String time) {
+		
+		Connection conn = getConnection();
+		
+		int seatCount = new ProductDao().selectSeat(conn, productNo, screeningDate, time);
+		
+		close(conn);
+		
+		return seatCount;
+		
 	}
 
 }
