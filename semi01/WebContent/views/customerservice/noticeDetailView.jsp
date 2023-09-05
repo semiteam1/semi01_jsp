@@ -13,13 +13,16 @@
 <title>Insert title here</title>
 <style>
     .outer{
-        background-color: black;
-        color: white;
+        background-color: #f8f9fa;
+        border-radius: 30px;
+        color: black;
         width:1000px;
         height: 500px;
         margin: auto;
         margin-top : 50px;
     }
+    
+   
 </style>
 
 </head>
@@ -30,7 +33,7 @@
         <h2 align="center">공지사항 상세보기</h2>
         <br>
 
-        <table id="detail-area" border="1">
+        <table class="detail-area" border="1px">
             <tr>
                 <th width="70">제목</th>
                 <td colspan="3" width="430"><%= n.getNoticeTitle() %></td>
