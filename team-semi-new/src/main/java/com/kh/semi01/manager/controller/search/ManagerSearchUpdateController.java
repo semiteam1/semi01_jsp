@@ -38,7 +38,7 @@ public class ManagerSearchUpdateController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 
         //String savePath = request.getSession().getServletContext().getContext("/resources").getRealPath("");
-        String savePath = "C:\\team-semi-new\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
+        String savePath = "C:\\semi01_jsp\\semi01\\WebContent\\resource\\product_upfiles";
         int maxSize = 10 * 1024 * 1024; 
                 
         MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8");
@@ -164,7 +164,7 @@ public class ManagerSearchUpdateController extends HttpServlet {
 	}
 	
 	private void deleteUploadedFile(String fileName) {
-        String savePath = "C:\\team-semi-new\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
+        String savePath = "C:\\semi01_jsp\\semi01\\WebContent\\resource\\product_upfiles";
         String filePath = savePath + File.separator + fileName;
         File file = new File(filePath);
 

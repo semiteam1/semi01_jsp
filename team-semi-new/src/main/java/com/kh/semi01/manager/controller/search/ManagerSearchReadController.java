@@ -42,7 +42,7 @@ public class ManagerSearchReadController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 		
-		String path = "C:\\team-semi-new\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
+		String path = "C:\\semi01_jsp\\semi01\\WebContent\\resource\\product_upfiles";
 		int productNo = Integer.parseInt(request.getParameter("productNum"));
 		Product p = new SearchService().selectManagerProduct(productNo);
 		ProductIMG img = new SearchService().selectManagerProductImg(productNo);

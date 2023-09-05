@@ -43,7 +43,7 @@ public class ManagerSearchDeleteProductController extends HttpServlet {
 		
 		for(int i=0; i<arr.length; i++) {
 			if(arr[i] != null && count[i] < 2) {
-				String savePath = "C:\\team-semi-new\\team-semi-new\\src\\main\\webapp\\resources\\product_upfiles";
+				String savePath = "C:\\semi01_jsp\\semi01\\WebContent\\resource\\product_upfiles";
 		        String filePath = savePath + File.separator + arr[i];
 		        File file = new File(filePath);
 
