@@ -41,10 +41,9 @@ public class User {
 	
 	
 
-	public User(int userNo, String userId, String userPwd, String userName, String userBirth, String interestMovie,
-			String interestDisplay, String interestShow, String email, String phone, String grade, String status) {
+	public User(String userId, String userPwd, String userName, String userBirth, String interestMovie,
+			String interestDisplay, String interestShow, String email, String phone) {
 		super();
-		this.userNo = userNo;
 		this.userId = userId;
 		this.userPwd = userPwd;
 		this.userName = userName;
@@ -54,8 +53,6 @@ public class User {
 		this.interestShow = interestShow;
 		this.email = email;
 		this.phone = phone;
-		this.grade = grade;
-		this.status = status;
 	}
 
 	// getter-setter 메소드
