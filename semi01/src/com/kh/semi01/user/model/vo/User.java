@@ -38,6 +38,25 @@ public class User {
 		this.enrollDate = enrollDate;
 		this.status = status;
 	}
+	
+	
+
+	public User(int userNo, String userId, String userPwd, String userName, String userBirth, String interestMovie,
+			String interestDisplay, String interestShow, String email, String phone, String grade, String status) {
+		super();
+		this.userNo = userNo;
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.userBirth = userBirth;
+		this.interestMovie = interestMovie;
+		this.interestDisplay = interestDisplay;
+		this.interestShow = interestShow;
+		this.email = email;
+		this.phone = phone;
+		this.grade = grade;
+		this.status = status;
+	}
 
 	// getter-setter 메소드
 	public int getUserNo() {
