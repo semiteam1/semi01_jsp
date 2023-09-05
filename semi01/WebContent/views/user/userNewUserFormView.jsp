@@ -285,7 +285,52 @@
         });
         
     </script>
-
+    <script>
+        var idReg = /^[a-z]+[a-z0-9]{5,19}$/;
+    
+        var $newUserId = $(".new_userId");
+        var $idInput = $(".id_input");
+        var $messageOutput = $(".message_output");
+        var $submitBtn = $(".submit_btn");
+    
+        $newUserId.keyup(function() {
+            var userId = $newUserId.val();
+            
+            if (!idReg.test(userId)) { // 아이디 체크 불합격
+                $idInput.css("border", "2px solid red");
+                $messageOutput.text("* 아이디는 소영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+                $submitBtn.attr("type", "button");
+            } else { // 합격
+                $idInput.css("border", "none");
+                $messageOutput.text("");
+    
+                $.ajax({
+                    url: "idCheck.ur",
+                    data: { checkId: userId },
+                    success: function(result) {
+                        console.log(result);
+                        if (result === "NNNNY") { // 사용가능
+                            $idInput.css("border", "none");
+                            $messageOutput.text("* 사용 가능한 아이디 입니다.");
+                            $submitBtn.attr("type", "submit");
+                        } else if (result === "NNNNN") { // 사용불가능
+                            $idInput.css("border", "2px solid red");
+                            console.log($submitBtn.attr("type"));
+                            $submitBtn.attr("type", "button");
+                            $messageOutput.text("* 이미 존재하거나 탈퇴한 회원의 아이디입니다.");
+                        } else {
+                            console.log(result);
+                            alert("오류발생");
+                        }
+                    },
+                    error: function() {
+                        console.log("아이디 중복체크 통신 실패!");
+                        alert("아이디 중복체크 통신 실패!");
+                    }
+                });
+            }
+        });
+    </script>
      <script>
         function test4() {
             // 사용자가 입력한 생년월일 값
@@ -298,19 +343,23 @@
             
             let regExp = /^\d{2}(0[1-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
 
-            var idReg = /^[a-z]+[a-z0-9]{5,19}$/g;
+            var idReg = /^[a-z][a-zA-Z0-9]{5,19}$/;
 
             let PwdReg = /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,15}$/
             
             var nameReg = /^[a-zA-Z가-힣]{2,15}$/
 
             if($(".submit_btn").attr("type") == "button" ){
-                alert("아이디를 확인해주세요.");
+                if( !idReg.test( $(".new_userId").val() ) ) {
+                    alert("아이디를 확인해주세요.");
+                }else if(!PwdReg.test( $(".new_userPwd").val() )){
+                    alert("비밀번호를 확인해주세요.");
+                }
             }else{
 
                 if( !idReg.test( $(".new_userId").val() ) ) { // 아이디 안맞다
                     $(".submit_btn").attr("type","button"); 
-                    alert("아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
+                    alert("아이디는 소영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
                     $(".message_output").text("* 입력하신 아이디가 잘못되었습니다.");
                     
                 }else{ // 아이디 맞다 
@@ -379,52 +428,6 @@
             }   
         }
     </script>
-    <script>
-    var idReg = /^[a-z]+[a-z0-9]{5,19}$/;
-
-    var $newUserId = $(".new_userId");
-    var $idInput = $(".id_input");
-    var $messageOutput = $(".message_output");
-    var $submitBtn = $(".submit_btn");
-
-    $newUserId.keyup(function() {
-        var userId = $newUserId.val();
-        
-        if (!idReg.test(userId)) { // 아이디 체크 불합격
-            $idInput.css("border", "2px solid red");
-            $messageOutput.text("* 아이디는 영문자로 시작하는 6~20자 영문자 또는 숫자이어야 합니다.");
-            $submitBtn.attr("type", "button");
-        } else { // 합격
-            $idInput.css("border", "none");
-            $messageOutput.text("");
-
-            $.ajax({
-                url: "idCheck.ur",
-                data: { checkId: userId },
-                success: function(result) {
-                    console.log(result);
-                    if (result === "NNNNY") { // 사용가능
-                        $idInput.css("border", "none");
-                        $messageOutput.text("* 사용 가능한 아이디 입니다.");
-                        $submitBtn.attr("type", "submit");
-                    } else if (result === "NNNNN") { // 사용불가능
-                        $idInput.css("border", "2px solid red");
-                        console.log($submitBtn.attr("type"));
-                        $submitBtn.attr("type", "button");
-                        $messageOutput.text("* 이미 존재하거나 탈퇴한 회원의 아이디입니다.");
-                    } else {
-                        console.log(result);
-                        alert("오류발생");
-                    }
-                },
-                error: function() {
-                    console.log("아이디 중복체크 통신 실패!");
-                    alert("아이디 중복체크 통신 실패!");
-                }
-            });
-        }
-    });
-</script>
 
 </body>
 </html>
