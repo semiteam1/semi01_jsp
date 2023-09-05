@@ -8,6 +8,7 @@ import com.kh.semi01.product.model.dao.ProductDao;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
 import com.kh.semi01.product.model.vo.ScreeningInfo;
+import com.kh.semi01.user.model.vo.Review;
 
 public class ProductService {
 	
@@ -213,5 +214,7 @@ public class ProductService {
 		close(conn);
 		return rtlist;
 	}
+	
+
 
 }

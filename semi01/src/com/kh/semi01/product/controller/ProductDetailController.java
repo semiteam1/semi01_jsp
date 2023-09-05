@@ -15,6 +15,8 @@ import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
 import com.kh.semi01.product.model.vo.ProductLike;
 import com.kh.semi01.product.model.vo.ScreeningInfo;
+import com.kh.semi01.user.model.service.UserService;
+import com.kh.semi01.user.model.vo.Review;
 
 /**
  * Servlet implementation class ProductDetailView
@@ -56,10 +58,13 @@ public class ProductDetailController extends HttpServlet {
 			
 			ProductIMG pi = new ProductService().selectProductIMG(productNo);
 			ScreeningInfo si = new ProductService().selectScreeningInfo(productNo);
+			ArrayList<Review> relist = new UserService().selectProductReview(productNo);
 			
 			request.setAttribute("p", p);
 			request.setAttribute("pi", pi);
 			request.setAttribute("si", si);
+			request.setAttribute("relist", relist);
+			System.out.println("컨트롤러" + relist);
 			request.getRequestDispatcher("views/product/productDetail.jsp").forward(request, response);
 			
 		}

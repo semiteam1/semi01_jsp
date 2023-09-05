@@ -681,4 +681,6 @@ SELECT
      JOIN PRODUCT_IMG USING(PRODUCT_NO)
     WHERE CATEGORY_TYPE = ?
 </entry>
+
+
 </properties>

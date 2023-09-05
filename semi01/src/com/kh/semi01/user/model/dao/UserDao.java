@@ -976,5 +976,40 @@ private Properties prop = new Properties();
 		return list;
 		
 	}
+	
+	public ArrayList<Review> selectProductReview(Connection conn, int productNo){
+		ArrayList<Review> relist = new ArrayList<Review>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectProductReview");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, productNo);
+			
+			rset = pstmt.executeQuery();
+			
+			
+			while(rset.next()) {
+				relist.add(new Review(rset.getInt("review_no"),
+									  rset.getInt("product_no"),
+									  rset.getString("user_id"),
+									  rset.getString("review_date"),
+									  rset.getString("review_content")
+									  ));
+			}
+			
+			System.out.println("dao" + relist);
+			
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return relist;
+	}
 
 }

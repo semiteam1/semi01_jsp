@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.sql.Connection;
 
 import com.kh.semi01.common.model.vo.PageInfo;
+import com.kh.semi01.product.model.dao.ProductDao;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.user.model.dao.UserDao;
 import com.kh.semi01.user.model.vo.Book;
@@ -384,6 +385,15 @@ public class UserService {
 		close(conn);
 		
 		return list;
+		
+	}
+	
+	public ArrayList<Review> selectProductReview(int productNo){
+		Connection conn = getConnection();
+		ArrayList<Review> relist = new UserDao().selectProductReview(conn, productNo);
+		
+		close(conn);
+		return relist;
 		
 	}
 	

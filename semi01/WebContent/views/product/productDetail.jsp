@@ -13,6 +13,7 @@
 	
 	ArrayList<ProductIMG> ilist = (ArrayList<ProductIMG>)request.getAttribute("ilist");
 	ArrayList<Product> plist = (ArrayList<Product>)request.getAttribute("plist");
+	ArrayList<Review> relist = (ArrayList<Review>)request.getAttribute("relist");
 
 %>
 <!DOCTYPE html>
@@ -591,12 +592,16 @@
 			<div class="review" align="left">
 				<h4>게시판 운영규정에 맞지 않는 글은 사전 통보없이 삭제될 수 있습니다.</h4>
 			</div>
-
+			<hr>
+				<% for(int i=0; i<relist.size(); i++) { %>
 				<div class="review_content">
-					<div style="width: 100%; height: 60px; border-radius: 10px; padding: 15px; font-weight: bold; font-size: 15px;  border: 1px solid black;" ></div>
-					<div style="width: 100%; height: 30px; border: 1px solid black;"></div>
+					<div style="width: 100%; height: 60px; border-radius: 10px; padding: 15px; font-weight: bold; font-size: 15px;" >
+						<%=relist.get(i).getReviewContent() %>
+					</div>
+					<div style="width: 100%; height: 30px; padding-left: 15px;"><em>익명이 <%= i + 1 %></em> <%=relist.get(i).getReviewDate() %></div>
 				</div>
-				<br><br>
+				<hr><br><br>
+				<% } %>
 		</div>
 
 		<div id="tab3" class="tab-content">
@@ -606,12 +611,13 @@
 			<br>
 			<hr style="border: 1px solid black;">
 			<br>
-			<form action="" class="review_form">
-				<div class="review_content">
-					<div></div>
-					<textarea cols="160" rows="5" style="resize: none; font-size: 15px; padding: 10px; border-radius: 10px;">이거 재밌다 꼭봐라 이거 야무지다</textarea>
+			<div class="review_content">
+				<div style="width: 100%; height: 60px; border-radius: 10px; padding: 15px; font-weight: bold; font-size: 15px;" >
+					야무지다 이거
 				</div>
-			</form>
+				<div style="width: 100%; height: 30px; padding-left: 15px;"><em>앙앙</em> 2023-09-05 12:10</div>
+			</div>
+			<hr><br><br>
 		</div>
 
 		<div id="tab4" class="tab-content">
