@@ -15,7 +15,7 @@
                /* 바디 메인 */
                .원하는데로_바꾸세요{
                 border: 1px solid lightgray;
-           background-color: #f8f9fa;
+            background-color: lightgray;
             height: 900px;
             width: 100%;
         }
@@ -37,7 +37,7 @@
 
         /*body leftmenu*/
         .원하는데로_바꾸세요 .leftmenu{
-                 background-color: white;
+            background-color: white;
             font-size: 19px;
             text-align:center;
             line-height: 100px;
@@ -47,12 +47,8 @@
             margin-top: 5px;
             float:left;
         }
-        
-        
 
-        
-        
-        .원하는데로_바꾸세요 .lm{
+        .원하는데로_바꾸세요 .leftmenu div{
             width:100%;
             height: 99.3px;
             border: 0.3px solid gray;
@@ -60,7 +56,7 @@
         
         .원하는데로_바꾸세요>.white{
         width:100%;
-        height:0px;
+        height:300px;
         border: 1px solid gray;
         }
         #announce>p{
@@ -72,19 +68,13 @@
         .원하는데로_바꾸세요 .rightmenu{
             background-color: white;
             width: 880px;
-            height: 600px;
+            height:600px;
             margin-right: 23.8%;
             margin-top: 5px;
             float:right;
-            
         }
         .rightmain{
-            width:100%;
-            border-top: 1px solid black;
-    		border-collapse: collapse;
-        }
-        .rightmain th,td{
-            border-bottom: 1px solid black;
+            width:100%
         }
         #event{
             width: 100%;
@@ -94,14 +84,12 @@
             border: 0;
             background-color: white;
         }
-        .rightmain tbody>tr:hover{
-        background:gray;
-        }
         .rightmain th{
-            height:30px;
+            height:40px;
         }
         /*테이블 첫 번째 줄*/
         #tr1{
+            background-color: lightblue;
             font-size: 20px;
             text-align: center;
             color:gray
@@ -124,10 +112,9 @@
     <div class="servicefunction">
         <!-- 바디의 왼쪽메뉴-->
         <div class="leftmenu">
-            <div onclick="location.href='<%=contextPath %>/customer.cu'" class="lm">고객센터 홈</div>
-            <div id="announce" style="color:red" onclick="location.href='<%=contextPath %>/list.no';" class="lm">공지사항 </div>
-            <div onclick="location.href='<%=contextPath %>/list.qo'" class="lm">Q&A</div>
-            <div class="white"></div>
+            <div onclick="location.href='<%=contextPath %>/customer.cu'">고객센터 홈</div>
+            <div id="announce" style="color:red" onclick="location.href='<%=contextPath %>/list.no';">공지사항 </div>
+            <div onclick="location.href='<%=contextPath %>/list.qo'">Q&A</div>
         </div>
 
 

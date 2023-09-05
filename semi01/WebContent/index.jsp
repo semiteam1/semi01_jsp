@@ -761,7 +761,7 @@ ArrayList<Product> slist = null;
                      window.location.href = '<%= request.getContextPath() %>/trank.pr';
                  }
             	 
-           	
+           
          });
 	</script>
 	

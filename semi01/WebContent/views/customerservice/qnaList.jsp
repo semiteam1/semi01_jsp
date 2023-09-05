@@ -15,7 +15,7 @@
                /* 바디 메인 */
                .원하는데로_바꾸세요{
             border: 1px solid lightgray;
-            background-color: #f8f9fa;
+            background-color: lightgray;
             height: 900px;
             width: 100%;
         }
@@ -33,7 +33,7 @@
             color:white;
             line-height:100px;
         } 
-		
+
         /*body leftmenu*/
         .원하는데로_바꾸세요 .leftmenu{
             background-color: white;
@@ -46,7 +46,7 @@
             margin-top: 5px;
             float:left;
         }
-        .원하는데로_바꾸세요 .lm{
+        .원하는데로_바꾸세요 .leftmenu div{
             width:100%;
             height: 99.3px;
             border: 0.3px solid gray;
@@ -65,7 +65,7 @@
         .원하는데로_바꾸세요 .rightmenu{
             background-color: white;
             width: 880px;
-            height:580px;
+            height:600px;
             margin-right: 23.8%;
             margin-top: 5px;
             float:right;
@@ -90,12 +90,9 @@
         text-align: center;
         }
 
-        .Qna:hover{
+        .list-area>tbody>tr:hover{
     	background: gray;
     	cursor:pointer;
-        }
-        .reply{
-        display:none;
         }
 
 
@@ -121,9 +118,8 @@
         
 	        <div class="leftmenu">
 	            <div onclick="location.href='<%=contextPath %>/customer.cu'" class="lm">고객센터 홈</div>
-	            <div onclick="location.href='<%=contextPath %>/list.no'" class="lm">공지사항</div>
+	            <div onclick="location.href='<%=contextPath %>/list.no';" class="lm">공지사항</div>
 	            <div id="qnamenu" style="color:red" class="lm">Q&A </div>
-
 	            <div class="white"></div>
 	        
 	    </div>        
@@ -145,7 +141,7 @@
             <table align="center" class="list-area">
                 <thead>
                     <tr>
-                        <th width="400">질문</th>
+                        <th width="400">질문제목</th>
                         <th width="100">작성자</th>
                         <th width="100">등록일자</th>
                     </tr>
@@ -154,23 +150,23 @@
                     <!-- case1. 게시글이 없을 경우-->
                     <%if(list.isEmpty()){ %>
                     <tr>
-                        <th colspan="3">조회된 게시글이 없습니다.</th>
+                        <th colspan="4">조회된 게시글이 없습니다.</th>
                     </tr>
                     <%}else { %>
                     <!-- case2. 게시글이 있을 경우-->
                     <%for(Qna q:list){ %>
-                    <tr class="Qna">                   
-                        <td><%=q.getQnaTitle() %> <button onclick="location.href='<%=contextPath %>/detail.qo?num=<%=q.getQnaNo() %>'">상세정보</button></td>
+                    <tr>
+                        <td><%=q.getQnaNo() %></td>
+                        <td><%=q.getQnaTitle() %> <button onclick="location.href='<%=contextPath %>/detail.qo.no?num='+num">detail</button></td>
                         <td><%=q.getUser() %></td>
                         <td><%=q.getQnaDate() %></td>
                     </tr>
                     <tr class="reply">
-                    	<th colspan="2" style="text-align:left"><%=q.getQnaReply() %><th>
+                    	<th colspan="2"><%=q.getQnaReply() %><th>
                     </tr>
-                    	
+                    	<%} %>
                     <%} %>
                     
-                 <%} %>
                     
                 </tbody>
             </table>
@@ -182,14 +178,14 @@
 
  <script>
         $(function(){
-            $(".leftmenu>.lm").hover().css("cursor","pointer");
+            $(".leftmenu").hover().css("cursor","pointer");
             $(".Qna").click(function(){
             	const $r = $(this).next();
             	
             	if($r.css("display")=="none"){
             		 $(this).siblings("r").slideUp();
                      //보여지게끔
-                     //$r.css("display","block");
+                     // $p.css("display","block");
                      $r.slideDown();
             		
             	}else {

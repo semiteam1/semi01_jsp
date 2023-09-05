@@ -12,6 +12,7 @@ import java.util.Properties;
 import static com.kh.semi01.common.JDBCTemplate.*;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
+import com.kh.semi01.product.model.vo.ProductLike;
 import com.kh.semi01.product.model.vo.ScreeningInfo;
 
 public class ProductDao {
@@ -968,6 +969,138 @@ public class ProductDao {
 			close(pstmt);
 		}
 		return rtlist;
+	}
+	
+	public ProductLike selectLike(Connection conn, int userNo, int productNo) {
+		
+		ProductLike pl = null;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectLike");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, productNo);
+			pstmt.setInt(2, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				pl = new ProductLike(rset.getInt("product_no"), 
+									 rset.getInt("user_no"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return pl;
+		
+	}
+	
+	public int insertLike(Connection conn, int userNo, int productNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertLike");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, productNo);
+			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int deleteLike(Connection conn, int userNo, int productNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteLike");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, productNo);
+			pstmt.setInt(2, userNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+	}
+	
+	public int selectSeat(Connection conn, int productNo, String screeningDate, String time) {
+		
+		int seatCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "";
+		
+		if(time.equals("11:00")) {
+			query = "selectDaySeat";
+		}
+		else {
+			query = "selectNightSeat";
+		}
+		
+		String sql = prop.getProperty(query);
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, productNo);
+			pstmt.setString(2, screeningDate);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+			
+				seatCount = rset.getInt("seat");
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return seatCount;
+		
 	}
 
 }
