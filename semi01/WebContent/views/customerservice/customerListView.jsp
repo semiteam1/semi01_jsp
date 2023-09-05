@@ -115,9 +115,11 @@
             width: 98%;
             height:90%;
             float:left;
-            margin:1%;
-            cursor:pointer;
+            margin:1%;          
             font-size: 16px;
+        }
+        #bson>div{
+        cursor:pointer;
         }
         #bson>p{
             box-sizing: border-box;

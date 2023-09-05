@@ -42,7 +42,7 @@
             text-align:center;
             line-height: 100px;
             width: 160px;
-            height: 600px;
+            height: 300px;
             margin-left: 21%;
             margin-top: 5px;
             float:left;
@@ -60,7 +60,7 @@
         
         .원하는데로_바꾸세요>.white{
         width:100%;
-        height:300px;
+        height:0px;
         border: 1px solid gray;
         }
         #announce>p{
@@ -185,7 +185,7 @@
     <!-- 바디 끝 -->
     <script>
         $(function(){
-            $(".leftmenu").hover().css("cursor","pointer");
+            $(".leftmenu>.lm").hover().css("cursor","pointer");
             $(".rightmain>tbody>tr").hover().css("cursor","pointer");
             $(".rightmain>tbody>tr").click(function(){
             	const num = $(this).children().eq(0).text()

@@ -12,7 +12,7 @@
 <style>
     .outer{
         background-color: #f8f9fa;
-        color: white;
+        color: black;
         width:1000px;
         height: 500px;
         margin: auto;

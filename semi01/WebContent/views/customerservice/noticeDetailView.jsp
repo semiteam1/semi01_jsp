@@ -48,7 +48,7 @@
             <tr>
                 <th>내용</th>
                 <td colspan="3">
-                    <p style="height: 150px;"><%=n.getNoticeContent() %></p>
+                    <pre style="height: 150px;"><%=n.getNoticeContent() %></pre>
                 </td>
             </tr>
         </table>

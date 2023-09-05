@@ -9,7 +9,7 @@
     .outer{
         background-color: #f8f9fa;
         border-radius: 30px;
-        color: white;
+        color: black;
         width:1000px;
         height: 500px;
         margin: auto;

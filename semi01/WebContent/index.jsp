@@ -761,11 +761,7 @@ ArrayList<Product> slist = null;
                      window.location.href = '<%= request.getContextPath() %>/trank.pr';
                  }
             	 
-           	// }else if(<%= loginMember %> != null){
-	        //      if(<%=slist%> == null){
-	        //          window.location.href = '<%= request.getContextPath() %>/crank.pr?uno=<%= loginMember.getUserNo() %>';
-	        //      }
-            //  }
+           	
          });
 	</script>
 	
