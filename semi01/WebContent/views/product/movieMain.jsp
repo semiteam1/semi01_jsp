@@ -245,6 +245,11 @@ img {
 	cursor: pointer;
 }
 
+.d-block{
+	width: 100%;
+	height: 100%;
+}
+
 /* 윤관현_끝 */
 
 /* 바디 메인 */
@@ -343,16 +348,24 @@ img {
 			<% if(ctype.equals("영화")){ %>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="resource/배너/배너_공포스릴러영화_콘크리트유토피아.png" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(32).getProductNo() %>">
+						<img src="resource/배너/배너_공포스릴러영화_콘크리트유토피아.png" class="d-block">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="resource/배너/배너_로멘스영화_알라딘.png" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(17).getProductNo() %>">
+						<img src="resource/배너/배너_로멘스영화_알라딘.png" class="d-block">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="resource/배너/배너_액션영화_슬램덩크.png" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(14).getProductNo() %>">
+						<img src="resource/배너/배너_액션영화_슬램덩크.png" class="d-block">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="resource/배너/배너_코미디영화_극한직업.png" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(49).getProductNo() %>">
+						<img src="resource/배너/배너_코미디영화_극한직업.png" class="d-block">
+					</a>
 				</div>
 			</div>
 			<% }else if(ctype.equals("전시")){ %>

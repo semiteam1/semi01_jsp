@@ -40,11 +40,6 @@ public class MovieRomanceListController extends HttpServlet {
 		request.setAttribute("rlist", rlist); // 영화 상영예정작
 		request.setAttribute("rtlist", rtlist); // 영화 전체 리스트
 		
-		System.out.println("소카테고리 서블릿 r" + rlist);
-		System.out.println("소카테고리 서블릿 rt" + rtlist);
-		
-		System.out.println("ctype" + ctype);
-		
 		request.getRequestDispatcher("views/product/movieRomance.jsp").forward(request, response);
 	}
 

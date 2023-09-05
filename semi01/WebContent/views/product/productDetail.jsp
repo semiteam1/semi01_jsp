@@ -77,7 +77,7 @@
 }
 
 #product_img>img {
-	width: 405px;
+	width: 380px;
 	height: 500px;
 	border-radius: 10px;
 }
@@ -387,20 +387,24 @@
 				<img src="<%= p.getImagePath() %>/<%= p.getPosterName() %>">
 			</div>
 			<% System.out.println("p : " + p); %>
-			
-			<form action="<%= contextPath %>/book.bo?pno=<%= p.getProductNo() %>" method="post">
-			
-			<div id="product_info">
-				<div>
-					<h1 style="width: 600px; float: left"><%= p.getProductTitle() %></h1>
-					
-					<% if(pl != null) { %>
-						<button type="button" class="like_btn"><img style="width: 40px; height: 40px;" src="resource/이미지자료/류지완 샘플이미지/풀하트.png"></button>
-					<% } else { %>
-						<button type="button" class="like_btn"><img style="width: 40px; height: 40px;" src="resource/이미지자료/류지완 샘플이미지/빈하트.png"></button>
-					<% } %>
-					
-				</div>
+
+			<form action="<%= contextPath %>/book.bo?pno=<%= p.getProductNo() %>"
+				method="post">
+
+				<div id="product_info">
+					<div>
+						<h1 style="width: 600px; float: left"><%= p.getProductTitle() %></h1>
+
+						<button class="like_btn" id="Like" onclick="like();">
+							<img style="width: 40px; height: 40px;"
+								src="resource/이미지자료/류지완 샘플이미지/빈하트.png">
+						</button>
+						<button class="like_btn" id="Like" onclick="Like();"
+							style="display: none;">
+							<img style="width: 40px; height: 40px;"
+								src="resource/이미지자료/류지완 샘플이미지/풀하트.png">
+						</button>
+					</div>
 
 				<script>
 				
