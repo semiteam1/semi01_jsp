@@ -283,15 +283,6 @@
 </head>
 <body>
 	
-	<% if(alertMsg != null) { %>
-	
-		<script>
-			alert("<%= alertMsg %>");
-		</script>
-		
-		<% session.removeAttribute("alertMsg"); %>
-		
-	<% } %>
 
 	<div class="warp"> <!-- 기본 배경-->
 
