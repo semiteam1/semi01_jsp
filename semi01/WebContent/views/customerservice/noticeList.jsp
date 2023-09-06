@@ -84,6 +84,11 @@
             border: 0;
             background-color: white;
         }
+        .rightmain tbody>tr:hover{
+        background:gray;
+        cursor:pointer;
+    	opacity:0.5;
+        }
         .rightmain th{
             height:40px;
         }
