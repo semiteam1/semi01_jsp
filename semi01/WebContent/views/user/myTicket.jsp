@@ -201,7 +201,7 @@
 									<input type="hidden" name="bno" value="<%= b.getBookedNo() %>">
 		
 		                            <div class="content-img">
-		                                <a href="#"><img src="<%= b.getTitleImg() %>"></a>
+		                                <a href="<%= contextPath %>/detail.pr?pno=<%= b.getProductNo() %>"><img src="<%= b.getTitleImg() %>"></a>
 		                            </div>
 		
 		                            <div class="content-text">
@@ -225,7 +225,7 @@
 		                            </div>
 		
 		                            <div class="content-delete">
-		                                <button class="close" type="submit" onclick="return ticketDelete();">X</button>
+		                                <button class="close" type="submit" onclick="return ticketDelete();"><img style="width: 40px; height: 40px;" src="resource/이미지자료/close.png"></button>
 		                            </div>
 	                            
 	                            </form>

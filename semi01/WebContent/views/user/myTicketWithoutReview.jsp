@@ -188,7 +188,7 @@
                     <% if(list.isEmpty()) { %>
                     	
                     	<br><br>
-						<div align="center">예매내역이 없습니다.</div>
+						<div align="center">한줄평을 작성할 예매내역이 없습니다.</div>
 						
 					<% } else { %>	
 					
@@ -200,7 +200,7 @@
 								<input type="hidden" name="bno" value="<%= b.getBookedNo() %>">
 	
 	                            <div class="content-img">
-	                                <a href="#"><img src="<%= b.getTitleImg() %>"></a>
+	                                <a href="<%= contextPath %>/detail.pr?pno=<%= b.getProductNo() %>"><img src="<%= b.getTitleImg() %>"></a>
 	                            </div>
 	
 	                            <div class="content-text">
@@ -224,7 +224,7 @@
 	                            </div>
 	
 	                            <div class="content-delete">
-	                                <button class="close" type="submit" onclick="return ticketDelete();">X</button>
+	                                <button class="close" type="submit" onclick="return ticketDelete();"><img style="width: 40px; height: 40px;" src="resource/이미지자료/close.png"></button>
 	                            </div>
 	                            
 	                            </form>

@@ -28,14 +28,14 @@
 	     )
 </entry>
 
-<entry key="decreaseDayTimeCount">
+<entry key="decreaseDaySeatCount">
 	UPDATE SCREENING_INFO
 	   SET SCREENING_DAY_SEAT = SCREENING_DAY_SEAT - ?
 	 WHERE PRODUCT_NO = ?
 	   AND SCREENING_DATE = ?
 </entry>
 
-<entry key="decreaseNightTimeCount">
+<entry key="decreaseNightSeatCount">
 	UPDATE SCREENING_INFO
 	   SET SCREENING_NIGHT_SEAT = SCREENING_NIGHT_SEAT - ?
 	 WHERE PRODUCT_NO = ?

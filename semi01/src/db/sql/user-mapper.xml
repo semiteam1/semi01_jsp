@@ -43,7 +43,6 @@ SELECT
 	     , EMAIL
 	     , PHONE
 	     , GRADE_NO
-	     , TO_CHAR(ENROLL_DATE, 'RRRR-MM-DD') "ENROLL_DATE"
 	     , STATUS
 	     )
 	VALUES 
@@ -75,7 +74,6 @@ SELECT
      , EMAIL
      , PHONE
      , GRADE_NAME
-     , TO_CHAR(ENROLL_DATE, 'RRRR-MM-DD') "ENROLL_DATE"
      , STATUS
   FROM USER_INFO
   JOIN CATEGORY_INFO C ON (INTEREST_MOVIE = C.CATEGORY_TYPE)
@@ -100,7 +98,6 @@ SELECT
      , EMAIL
      , PHONE
      , GRADE_NAME
-     , TO_CHAR(ENROLL_DATE, 'RRRR-MM-DD') "ENROLL_DATE"
      , STATUS
   FROM USER_INFO
   JOIN CATEGORY_INFO C ON (INTEREST_MOVIE = C.CATEGORY_TYPE)
@@ -125,7 +122,6 @@ SELECT
      , EMAIL
      , PHONE
      , GRADE_NAME
-     , TO_CHAR(ENROLL_DATE, 'RRRR-MM-DD') "ENROLL_DATE"
      , STATUS
   FROM USER_INFO
   JOIN CATEGORY_INFO C ON (INTEREST_MOVIE = C.CATEGORY_TYPE)
@@ -150,7 +146,6 @@ SELECT
      , EMAIL
      , PHONE
      , GRADE_NAME
-     , TO_CHAR(ENROLL_DATE, 'RRRR-MM-DD') "ENROLL_DATE"
      , STATUS
   FROM USER_INFO
   JOIN CATEGORY_INFO C ON (INTEREST_MOVIE = C.CATEGORY_TYPE)
@@ -194,7 +189,8 @@ UPDATE USER_INFO
 	     , EMAIL
 	     , PHONE
 	     , GRADE_NAME
-	     ,STATUS
+	     , TO_CHAR(ENROLL_DATE, 'RRRR-MM-DD') "ENROLL_DATE"
+	     , STATUS
 	  FROM USER_INFO
 	  JOIN CATEGORY_INFO M ON (INTEREST_MOVIE = M.CATEGORY_TYPE)
 	  JOIN CATEGORY_INFO D ON (INTEREST_DISPLAY = D.CATEGORY_TYPE)
@@ -265,6 +261,7 @@ UPDATE USER_INFO
 	          FROM (
 	                SELECT
 	                	   DISTINCT REVIEW_NO
+                         , B.PRODUCT_NO
                          , IMAGE_PATH || '/' || POSTER_NAME "TITLE_IMG"
 	                     , PRODUCT_TITLE
 	                     , SUBSTR(USER_ID, 1, 1) || '**' || SUBSTR(USER_ID, 4) "USER_ID"
@@ -333,13 +330,14 @@ UPDATE USER_INFO
 	          FROM (
 	                SELECT 
 	                       DISTINCT BOOKED_NO
+                         , B.PRODUCT_NO  
 	                     , IMAGE_PATH || '/' || POSTER_NAME "TITLE_IMG"
 	                     , PRODUCT_TITLE
 	                     , SUBSTR(ADDRESS, 1, (INSTR(ADDRESS, '_') - 1)) "ADDRESS"
 	                     , SCREEN_DATE || '(' || TO_CHAR(TO_DATE(SCREEN_DATE), 'DY') || ')' || ' ' || SCREEN_TIME "SCREEN_DATE"
-	                  FROM PRODUCT_IMG
-	                  JOIN PRODUCT USING (PRODUCT_NO)
-	                  JOIN BOOKED_INFO USING (PRODUCT_NO)
+	                  FROM PRODUCT_IMG I
+	                  JOIN PRODUCT P ON (I.PRODUCT_NO = P.PRODUCT_NO)
+	                  JOIN BOOKED_INFO B ON (P.PRODUCT_NO = B.PRODUCT_NO)
 	                  JOIN SCREENING_INFO ON (SCREEN_DATE = SCREENING_DATE)
 	                 WHERE USER_NO = ?
 	                   AND STATUS = 'Y'
@@ -369,6 +367,35 @@ UPDATE USER_INFO
 	  JOIN USER_INFO USING (USER_NO)
 	  JOIN GRADE USING (GRADE_NO)
 	 WHERE BOOKED_NO = ?
+</entry>
+
+<!-- 예매내역 취소 전으로 좌석 수를 돌려주는 SQL -->
+<entry key="increaseDaySeatCount">
+	UPDATE SCREENING_INFO
+	   SET SCREENING_DAY_SEAT = SCREENING_DAY_SEAT + (
+                                                   	 SELECT AUDIENCE
+                                                       FROM BOOKED_INFO
+                                                      WHERE BOOKED_NO = ?
+	                                                 )
+	 WHERE (PRODUCT_NO, SCREENING_DATE) = (
+                                          SELECT PRODUCT_NO, SCREEN_DATE
+                                            FROM BOOKED_INFO
+                                           WHERE BOOKED_NO = ?
+	                                      ) 
+</entry>
+
+<entry key="increaseNightSeatCount">
+	UPDATE SCREENING_INFO
+	   SET SCREENING_NIGHT_SEAT = SCREENING_NIGHT_SEAT + (
+                                                   	 SELECT AUDIENCE
+                                                       FROM BOOKED_INFO
+                                                      WHERE BOOKED_NO = ?
+	                                                 )
+	 WHERE (PRODUCT_NO, SCREENING_DATE) = (
+                                          SELECT PRODUCT_NO, SCREEN_DATE
+                                            FROM BOOKED_INFO
+                                           WHERE BOOKED_NO = ?
+	                                      ) 
 </entry>
 
 <!-- 예매내역 삭제용 SQL -->
@@ -428,6 +455,7 @@ UPDATE USER_INFO
 	          FROM (
 	                SELECT 
 	                       DISTINCT BOOKED_NO
+                         , PRODUCT_NO  
 	                     , IMAGE_PATH || '/' || POSTER_NAME "TITLE_IMG"
 	                     , PRODUCT_TITLE
 	                     , SUBSTR(ADDRESS, 1, (INSTR(ADDRESS, '_') - 1)) "ADDRESS"
@@ -445,6 +473,31 @@ UPDATE USER_INFO
 	                    BY 5 DESC
 	                ) A
 	        )
+	  WHERE RNUM BETWEEN ? AND ?
+</entry>
+
+<entry key="selectLikeCount">
+	SELECT 
+	       COUNT(*) "count"
+	  FROM PRODUCT_LIKE
+	 WHERE USER_NO = ?
+</entry>
+
+<entry key="selectAllLike">
+	SELECT *
+	  FROM (
+	        SELECT ROWNUM RNUM, A.*
+	          FROM (
+	                SELECT 
+	                       PRODUCT_NO
+	                     , PRODUCT_TITLE  
+	                     , IMAGE_PATH || '/' || POSTER_NAME "TITLE_IMG"
+	                FROM PRODUCT_LIKE
+	                JOIN PRODUCT USING (PRODUCT_NO)
+	                JOIN PRODUCT_IMG USING (PRODUCT_NO)
+	                WHERE USER_NO = ?
+	               ) A
+	       )
 	  WHERE RNUM BETWEEN ? AND ?
 </entry>
 

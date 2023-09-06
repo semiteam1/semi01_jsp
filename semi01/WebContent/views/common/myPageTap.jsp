@@ -74,6 +74,8 @@
         <div class="tab-inner" onclick="myMenu(4);">한줄평작성</div>
         <div class="tab">마이등급</div>
         <div class="tab-inner" onclick="myMenu(5);">등급조회</div>
+        <div class="tab">마이라이크</div>
+        <div class="tab-inner" onclick="myMenu(6);">좋아요조회</div>
 
     </div>
 
@@ -102,7 +104,9 @@
         		break;
         	case 5 :
         		location.href = "/semi01/myLevel.us";
-        		
+        		break;
+        	case 6 :
+        		location.href = "/semi01/myLike.us?cpage=1";	
         	}
 
         }
