@@ -11,9 +11,12 @@ import java.util.ArrayList;
 
 import java.sql.Connection;
 
+import com.kh.semi01.book.model.dao.BookNPaymentDao;
 import com.kh.semi01.common.model.vo.PageInfo;
 import com.kh.semi01.product.model.dao.ProductDao;
+import com.kh.semi01.product.model.dao.ProductDao;
 import com.kh.semi01.product.model.vo.Product;
+import com.kh.semi01.product.model.vo.ProductLike;
 import com.kh.semi01.user.model.dao.UserDao;
 import com.kh.semi01.user.model.vo.Book;
 import com.kh.semi01.user.model.vo.Grade;
@@ -314,6 +317,25 @@ public class UserService {
 		
 	}
 	
+	public int increaseCount(int bookedNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new UserDao().increaseCount(conn, bookedNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}
+		else {
+			rollback(conn); 
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
+	
 	public int deleteTicket(int bookedNo) {
 		
 		Connection conn = getConnection();
@@ -388,6 +410,30 @@ public class UserService {
 		
 	}
 	
+	public int selectLikeCount(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		int likeCount = new UserDao().selectLikeCount(conn, userNo);
+		
+		close(conn);
+		
+		return likeCount;
+		
+	}
+	
+	public ArrayList<ProductLike> selectAllLike(int userNo, PageInfo pi) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<ProductLike> list = new UserDao().selectAllLike(conn, userNo, pi);
+		
+		close(conn);
+		
+		return list;
+		
+	}
+
 	public ArrayList<Review> selectProductReview(int productNo){
 		Connection conn = getConnection();
 		ArrayList<Review> relist = new UserDao().selectProductReview(conn, productNo);

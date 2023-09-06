@@ -69,10 +69,10 @@ public class BookNPaymentDao {
 		String query = "";
 		
 		if(b.getScreenTime().equals("11:00")) {
-			query = "decreaseDayTimeCount";
+			query = "decreaseDaySeatCount";
 		}
 		else {
-			query = "decreaseNightTimeCount";
+			query = "decreaseNightSeatCount";
 		}
 		
 		String sql = prop.getProperty(query);

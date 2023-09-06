@@ -3,6 +3,7 @@ package com.kh.semi01.user.model.vo;
 public class Review {
 	
 	private int reviewNo; 			// 리뷰번호
+	private int productNo;			// 상품번호 (긴급추가 => 포스터 눌렀을 때 상세페이지로 넘어가게 하기 위해서)
 	private String titleImg;		// 포스터 이미지 조회용
 	private String bookedProduct; 	// 관람한 상품 => 조회시 상품명 | 입력시 예매번호
 	private String reviewContent; 	// 리뷰내용
@@ -14,10 +15,24 @@ public class Review {
 	
 	// 기본 생성자
 	public Review() {}
-
+	
 	// 전체 매개변수 생성자
-	public Review(int reviewNo, String titleImg, String bookedProduct, String reviewContent, String user,
-			String reviewDate, String status, int productNo, String userId) {
+	public Review(int reviewNo, int productNo, String titleImg, String bookedProduct, String reviewContent, String user,
+			String reviewDate, String status) {
+		super();
+		this.reviewNo = reviewNo;
+		this.productNo = productNo;
+		this.titleImg = titleImg;
+		this.bookedProduct = bookedProduct;
+		this.reviewContent = reviewContent;
+		this.user = user;
+		this.reviewDate = reviewDate;
+		this.status = status;
+	}
+
+	// 상품번호를 제외한 매개변수 생성자
+	public Review(int reviewNo, String titleImg, String bookedProduct, String reviewContent, String user, String reviewDate,
+			String status) {
 		super();
 		this.reviewNo = reviewNo;
 		this.titleImg = titleImg;
@@ -85,6 +100,14 @@ public class Review {
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
 	}
+	
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
+	}
 
 	public String getTitleImg() {
 		return titleImg;
@@ -136,9 +159,9 @@ public class Review {
 
 	@Override
 	public String toString() {
-		return "Review [reviewNo=" + reviewNo + ", titleImg=" + titleImg + ", bookedProduct=" + bookedProduct
-				+ ", reviewContent=" + reviewContent + ", user=" + user + ", reviewDate=" + reviewDate + ", status="
-				+ status + ", productNo=" + productNo + ", userId=" + userId + "]";
+		return "Review [reviewNo=" + reviewNo + ", productNo=" + productNo + ", titleImg=" + titleImg
+				+ ", bookedProduct=" + bookedProduct + ", reviewContent=" + reviewContent + ", user=" + user
+				+ ", reviewDate=" + reviewDate + ", status=" + status + "]";
 	}
 
 

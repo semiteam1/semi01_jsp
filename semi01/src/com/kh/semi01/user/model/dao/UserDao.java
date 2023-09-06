@@ -17,6 +17,7 @@ import static com.kh.semi01.common.JDBCTemplate.*;
 
 import com.kh.semi01.common.model.vo.PageInfo;
 import com.kh.semi01.product.model.vo.Product;
+import com.kh.semi01.product.model.vo.ProductLike;
 import com.kh.semi01.user.model.vo.Book;
 import com.kh.semi01.user.model.vo.Grade;
 import com.kh.semi01.user.model.vo.Review;
@@ -24,8 +25,7 @@ import com.kh.semi01.user.model.vo.User;
 
 public class UserDao {
 	
-//<<<<<<< Updated upstream
-private Properties prop = new Properties();
+	private Properties prop = new Properties();
 	
 	public UserDao() { // 메소드 아니라 memberdao의 기본 생성자 생성자는 반환형 x 괄호안에 변수 없으니까 기본 생성자다 ~ 실행할 내용이 있어서 쓴거임
 		// 언제 실행됨? service.java 가보면 dao호출할 때마다 읽을 거 서버 구동없이 쿼리를 읽을 수가 있음
@@ -141,7 +141,6 @@ private Properties prop = new Properties();
 							 rset.getString("EMAIL"),
 							 rset.getString("PHONE"),
 							 rset.getString("GRADE_NAME"),
-							 rset.getString("ENROLL_DATE"),
 							 rset.getString("STATUS")
 							);
 			}
@@ -184,7 +183,6 @@ private Properties prop = new Properties();
 							 rset.getString("EMAIL"),
 							 rset.getString("PHONE"),
 							 rset.getString("GRADE_NAME"),
-							 rset.getString("ENROLL_DATE"),
 							 rset.getString("STATUS")
 							);
 			}
@@ -227,7 +225,6 @@ private Properties prop = new Properties();
 							 rset.getString("EMAIL"),
 							 rset.getString("PHONE"),
 							 rset.getString("GRADE_NAME"),
-							 rset.getString("ENROLL_DATE"),
 							 rset.getString("STATUS")
 							);
 			}
@@ -270,7 +267,6 @@ private Properties prop = new Properties();
 							 rset.getString("EMAIL"),
 							 rset.getString("PHONE"),
 							 rset.getString("GRADE_NAME"),
-							 rset.getString("ENROLL_DATE"),
 							 rset.getString("STATUS")
 							);
 			}
@@ -400,7 +396,7 @@ private Properties prop = new Properties();
 							 rset.getString("email"), 
 							 rset.getString("phone"), 
 							 rset.getString("grade_name"), 
-							 rset.getString("ENROLL_DATE"),
+							 rset.getString("enroll_date"),
 							 rset.getString("status"));
 			}
 			
@@ -588,6 +584,7 @@ private Properties prop = new Properties();
 			
 			while(rset.next()) {
 				list.add(new Review(rset.getInt("review_no"),
+									rset.getInt("product_no"),
 									rset.getString("title_img"),
 									rset.getString("product_title"),
 									rset.getString("review_content"),
@@ -755,6 +752,7 @@ private Properties prop = new Properties();
 			while(rset.next()) {
 				
 				list.add(new Book(rset.getInt("booked_no"), 
+								  rset.getInt("product_no"),
 								  rset.getString("product_title"), 
 								  rset.getString("screen_date"),
 								  rset.getString("title_img"), 
@@ -811,6 +809,48 @@ private Properties prop = new Properties();
 		}
 		
 		return b;
+		
+	}
+	
+	public int increaseCount(Connection conn, int bookedNo) {
+		
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		
+		Book b = selectTicketDetail(conn, bookedNo);
+		
+		String query = "";
+		
+		if(b.getScreenDate().substring((b.getScreenDate().indexOf(")")) + 1).equals(" 11:00")) {
+			
+			query = "increaseDaySeatCount";
+			
+		}
+		else {
+			
+			query = "increaseNightSeatCount";
+			
+		}
+		
+		String sql = prop.getProperty(query);
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, bookedNo);
+			pstmt.setInt(2, bookedNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 		
 	}
 	
@@ -959,6 +999,7 @@ private Properties prop = new Properties();
 			while(rset.next()) {
 				
 				list.add(new Book(rset.getInt("booked_no"), 
+								  rset.getInt("product_no"),
 								  rset.getString("product_title"), 
 								  rset.getString("screen_date"),
 								  rset.getString("title_img"), 
@@ -977,6 +1018,79 @@ private Properties prop = new Properties();
 		
 	}
 	
+	public int selectLikeCount(Connection conn, int userNo) {
+		
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectLikeCount");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+		
+	}
+	
+	public ArrayList<ProductLike> selectAllLike(Connection conn, int userNo, PageInfo pi) {
+		
+		ArrayList<ProductLike> list = new ArrayList<ProductLike>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectAllLike");
+		
+		int startRow = (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1;
+		int endRow = startRow + pi.getBoardLimit() - 1;
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				list.add(new ProductLike(rset.getInt("product_no"), 
+								  rset.getString("product_title"), 
+								  rset.getString("title_img")));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+
 	public ArrayList<Review> selectProductReview(Connection conn, int productNo){
 		ArrayList<Review> relist = new ArrayList<Review>();
 		
@@ -1011,5 +1125,5 @@ private Properties prop = new Properties();
 		}
 		return relist;
 	}
-
+	
 }

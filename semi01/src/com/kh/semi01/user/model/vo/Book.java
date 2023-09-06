@@ -3,6 +3,7 @@ package com.kh.semi01.user.model.vo;
 public class Book {
 	
 	private int bookedNo;		// 예매번호
+	private int productNo;		// 상품번호 (긴급추가 => 포스터 눌렀을 때 상세페이지로 넘어가게 하기 위해서)
 	private String user;		// 회원 => 조회 시 회원명 | 입력 시 회원번호
 	private String product;		// 상품 => 조회 시 상품명 | 입력 시 상품번호
 	private int audience;		// 관람인원수
@@ -18,8 +19,29 @@ public class Book {
 	
 	// 기본 생성자
 	public Book() {}
-
+	
 	// 전체 매개변수 생성자
+	public Book(int bookedNo, int productNo, String user, String product, int audience, String payment, String card,
+			int price, String bookedDate, String screenDate, String screenTime, String titleImg, String address,
+			String status) {
+		super();
+		this.bookedNo = bookedNo;
+		this.productNo = productNo;
+		this.user = user;
+		this.product = product;
+		this.audience = audience;
+		this.payment = payment;
+		this.card = card;
+		this.price = price;
+		this.bookedDate = bookedDate;
+		this.screenDate = screenDate;
+		this.screenTime = screenTime;
+		this.titleImg = titleImg;
+		this.address = address;
+		this.status = status;
+	}
+
+	// 상품번호를 제외한 매개변수 생성자
 	public Book(int bookedNo, String user, String product, int audience, String payment, String card, int price,
 			String bookedDate, String screenDate, String screenTime, String titleImg, String address, String status) {
 		super();
@@ -39,9 +61,10 @@ public class Book {
 	}
 
 	// 예매내역 조회용 생성자
-	public Book(int bookedNo, String product, String screenDate, String titleImg, String address) {
+	public Book(int bookedNo, int productNo, String product, String screenDate, String titleImg, String address) {
 		super();
 		this.bookedNo = bookedNo;
+		this.productNo = productNo;
 		this.product = product;
 		this.screenDate = screenDate;
 		this.titleImg = titleImg;
@@ -80,6 +103,14 @@ public class Book {
 
 	public void setBookedNo(int bookedNo) {
 		this.bookedNo = bookedNo;
+	}
+	
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
 	}
 
 	public String getUser() {
@@ -181,10 +212,10 @@ public class Book {
 	// toString() 메소드
 	@Override
 	public String toString() {
-		return "Book [bookedNo=" + bookedNo + ", user=" + user + ", product=" + product + ", audience=" + audience
-				+ ", payment=" + payment + ", card=" + card + ", price=" + price + ", bookedDate=" + bookedDate
-				+ ", screenDate=" + screenDate + ", screenTime=" + screenTime + ", titleImg=" + titleImg + ", address=" + address + ", status="
-				+ status + "]";
-	}	
-	
+		return "Book [bookedNo=" + bookedNo + ", productNo=" + productNo + ", user=" + user + ", product=" + product
+				+ ", audience=" + audience + ", payment=" + payment + ", card=" + card + ", price=" + price
+				+ ", bookedDate=" + bookedDate + ", screenDate=" + screenDate + ", screenTime=" + screenTime
+				+ ", titleImg=" + titleImg + ", address=" + address + ", status=" + status + "]";
+	}
+
 }
