@@ -42,7 +42,7 @@
             text-align:center;
             line-height: 100px;
             width: 160px;
-            height: 600px;
+            height: 300px;
             margin-left: 21%;
             margin-top: 5px;
             float:left;
@@ -60,7 +60,7 @@
         
         .원하는데로_바꾸세요>.white{
         width:100%;
-        height:300px;
+        height:0px;
         border: 1px solid gray;
         }
         #announce>p{

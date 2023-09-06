@@ -41,7 +41,7 @@
             text-align:center;
             line-height: 100px;
             width: 160px;
-            height: 600px;
+            height: 300px;
             margin-left: 21%;
             margin-top: 5px;
             float:left;
@@ -53,7 +53,7 @@
         }
         .원하는데로_바꾸세요>.white{
         width:100%;
-        height:300px;
+        height:0px;
         border: 1px solid gray;
         }
         /*qna 메뉴창 클릭시 css값*/
@@ -65,19 +65,33 @@
         .원하는데로_바꾸세요 .rightmenu{
             background-color: white;
             width: 880px;
-            height:600px;
+            height:590px;
             margin-right: 23.8%;
             margin-top: 5px;
             float:right;
         }
        
-        /*테이블영역*/
+       /*테이블영역*/
         .list-area{
         border: 1px solid black;
         width: 100%;
         text-align: center;
         }
-
+        
+        .Qna{
+        font-size:17px;
+        }
+        .banner{
+        position: absolute;
+		
+		bottom: 0px;
+        }
+        #advertise{
+        width:880px;
+        height:130px;
+        }
+       
+        
         .Qna:hover{
     	background: gray;
     	cursor:pointer;
@@ -85,6 +99,7 @@
         .reply{
         display:none;
         }
+        
 
 
 
@@ -146,11 +161,11 @@
                     <%}else { %>
                     <!-- case2. 게시글이 있을 경우-->
                     <%for(Qna q:list){ %>
-                    <tr class="Qna">                   
-                        <td><%=q.getQnaTitle() %> <button onclick="location.href='<%=contextPath %>/detail.qo?num=<%=q.getQnaNo() %>'">상세정보</button></td>
-                        <td><%=q.getUser() %></td>
-                        <td><%=q.getQnaDate() %></td>
-                    </tr>
+						<tr class="Qna">                   
+	                        <td><%=q.getQnaTitle() %> <button onclick="location.href='<%=contextPath %>/detail.qo?num=<%=q.getQnaNo() %>'">상세정보</button></td>
+							<td><%=q.getUser() %></td>
+	                        <td><%=q.getQnaDate() %></td>
+                    	</tr>
                     <tr class="reply">
                     	<th colspan="2"><%=q.getQnaReply() %><th>
                     </tr>
@@ -161,6 +176,7 @@
                     
                 </tbody>
             </table>
+            <div class="banner"><img src="resource/이미지자료/광고배너.jpg" id="advertise" alt=""></div>
         </div>
     </div>
 </div>
