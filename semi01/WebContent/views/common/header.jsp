@@ -283,15 +283,6 @@
 </head>
 <body>
 	
-	<% if(alertMsg != null) { %>
-	
-		<script>
-			alert("<%= alertMsg %>");
-		</script>
-		
-		<% session.removeAttribute("alertMsg"); %>
-		
-	<% } %>
 
 	<div class="warp"> <!-- 기본 배경-->
 
@@ -388,11 +379,11 @@
             <div class="header_gnb">  <!-- 해더 네비게이터 -->
                 <div id="navigator"> <!-- 네비게이터 기본 틀-->
                     <ul id="navi" > <!-- 카테고리-->
-                        <li><a href="<%= contextPath %>" >홈</a>
+                        <li><a href="<%= contextPath %>">홈</a>
                         </li>
-                        <li><a href="<%= contextPath %>/cmain.pr?ctype=영화" style="color: red;">영화</a>
+                        <li><a href="<%= contextPath %>/cmain.pr?ctype=영화">영화</a>
                             <ul>
-                                <li aligh="center"><a href="<%= contextPath %>/rmovie.pr?ctype=로맨스" class="minCategory">로맨스</a></li>
+                                <li align="center"><a href="<%= contextPath %>/rmovie.pr?ctype=로맨스" class="minCategory">로맨스</a></li>
                                 <li><a href="<%= contextPath %>/rmovie.pr?ctype=공포스릴러" class="minCategory">공포/스릴러</a></li>
                                 <li><a href="<%= contextPath %>/rmovie.pr?ctype=코미디" class="minCategory">코미디</a></li>
                                 <li><a href="<%= contextPath %>/rmovie.pr?ctype=액션" class="minCategory">액션</a></li>
@@ -415,19 +406,18 @@
                                 <li><a href="<%= contextPath %>/rmovie.pr?ctype=콘서트" class="minCategory">콘서트</a></li>
                             </ul>
                             <li  style="width: 2px; height: 20px; margin-top: 8px; background-color: #515155;"></li>
-                        <li><a href="#">랭킹</a></li>
+                        <li><a href="<%= contextPath %>/rank.pr?ctype=랭킹">랭킹</a></li>
                         <li><a href="#">지역</a>
                             <ul class="local">
-                                <li><a href="#" class="minCategory">서울</a></li>
-                                <li><a href="#" class="minCategory">경기/이천</a></li>
-                                <li><a href="#" class="minCategory">충청/강원</a></li>
-                                <li><a href="#" class="minCategory">경상</a></li>
-                                <li><a href="#" class="minCategory">전라</a></li>
-                                <li><a href="#" class="minCategory">제주</a></li>
+                                <li><a href="<%= contextPath %>/llist.pr?ctype=서울" class="minCategory">서울</a></li>
+                                <li><a href="<%= contextPath %>/llist.pr?ctype=경기이천" class="minCategory">경기/이천</a></li>
+                                <li><a href="<%= contextPath %>/llist.pr?ctype=충청강원" class="minCategory">충청/강원</a></li>
+                                <li><a href="<%= contextPath %>/llist.pr?ctype=경상" class="minCategory">경상</a></li>
+                                <li><a href="<%= contextPath %>/llist.pr?ctype=전라" class="minCategory">전라</a></li>
+                                <li><a href="<%= contextPath %>/llist.pr?ctype=제주" class="minCategory">제주</a></li>
                             </ul>
                         </li>
                         
-                        </li>
 
                     </ul>
                     <div class="header_search_box" > <!-- 검색 -->
@@ -441,7 +431,6 @@
             </div>
         </div>    
     </div>
-            
             
             
 </body>

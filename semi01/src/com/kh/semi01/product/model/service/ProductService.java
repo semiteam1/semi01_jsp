@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import static com.kh.semi01.common.JDBCTemplate.*;
 import com.kh.semi01.product.model.dao.ProductDao;
+import com.kh.semi01.product.model.vo.Editor;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
 import com.kh.semi01.product.model.vo.ProductLike;
@@ -276,5 +277,21 @@ public class ProductService {
 		return seatCount;
 		
 	}
+	public ArrayList<Editor> selectProductEditor(int productNo){
+		Connection conn = getConnection();
+		ArrayList<Editor> llist = new ProductDao().selectProductEditor(conn, productNo);
+		
+		close(conn);
+		return llist;
+	}
+	
+	public ArrayList<Product> selectProductRank(){
+		Connection conn = getConnection();
+		ArrayList<Product> rlist = new ProductDao().selectProductRank(conn);
+		
+		close(conn);
+		return rlist;
+	}
+
 
 }

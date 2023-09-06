@@ -743,11 +743,10 @@ ArrayList<Product> slist = null;
 
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 <!-- 사이드바 -->
-<div class="sticky_outer">
+<!-- <div class="sticky_outer">
     <img src="resource/이미지자료/류지완 샘플이미지/새로배너.PNG" class="sidebar">
-</div>
-<br><br> 
-
+</div> 
+<br><br>--> 
 
 <br><br>
 	<script>

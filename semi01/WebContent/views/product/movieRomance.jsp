@@ -523,7 +523,7 @@
 							src="<%=rlist.get(i).getImagePath() %>/<%= rlist.get(i).getPosterName() %>"
 							alt="Lights" style="width: 100%">
 							<div class="caption">
-								<p><%=rlist.get(i).getProductTitle() %></p>
+								<p><%=rlist.get(i).getProductTitle() %></p><br>
 								<pre><%= rlist.get(i).getStartPeriod() %>~<%= rlist.get(i).getEndPeriod() %></pre>
 							</div>
 						</a>
@@ -560,7 +560,7 @@
 							src="<%= rtlist.get(i).getImagePath() %>/<%= rtlist.get(i).getPosterName() %>"
 							alt="Lights" style="width: 100%">
 							<div class="caption">
-								<p><%= rtlist.get(i).getProductTitle() %></p>
+								<p><%= rtlist.get(i).getProductTitle() %></p><br>
 								<pre><%= rtlist.get(i).getStartPeriod() %>~<%= rtlist.get(i).getEndPeriod() %></pre>
 							</div>
 						</a>

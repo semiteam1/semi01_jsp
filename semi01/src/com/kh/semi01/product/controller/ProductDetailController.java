@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.semi01.product.model.service.ProductService;
+import com.kh.semi01.product.model.vo.Editor;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
 import com.kh.semi01.product.model.vo.ProductLike;
 import com.kh.semi01.product.model.vo.ScreeningInfo;
 import com.kh.semi01.user.model.vo.User;
+import com.kh.semi01.user.model.service.UserService;
+import com.kh.semi01.user.model.vo.Review;
 
 /**
  * Servlet implementation class ProductDetailView
@@ -36,6 +39,7 @@ public class ProductDetailController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+		int productNo = Integer.parseInt(request.getParameter("pno"));
 		
 		ArrayList<Product> plist = new ProductService().selectProductTotalRank();
 		ArrayList<ProductIMG> ilist = new ProductService().selectProductTotalRankIMG();
@@ -43,7 +47,6 @@ public class ProductDetailController extends HttpServlet {
 		request.setAttribute("plist", plist); // 전체 상품 중 좋아요 상위 5개
 		request.setAttribute("ilist", ilist); // 전체 상품 중 좋아요 상위 5개 (이미지 경로)
 		
-		int productNo = Integer.parseInt(request.getParameter("pno"));
 		
 		Product p = new ProductService().selectProductDetail(productNo);
 		
@@ -57,18 +60,15 @@ public class ProductDetailController extends HttpServlet {
 			
 			ProductIMG pi = new ProductService().selectProductIMG(productNo);
 			ScreeningInfo si = new ProductService().selectScreeningInfo(productNo);
-			
-			int userNo = ((User)(request.getSession().getAttribute("loginMember"))).getUserNo();
-			
-			ProductLike pl = new ProductService().selectLike(userNo, productNo);
-			
+			ArrayList<Review> relist = new UserService().selectProductReview(productNo);
+			ArrayList<Editor> llist = new ProductService().selectProductEditor(productNo);
 			request.setAttribute("p", p);
 			request.setAttribute("pi", pi);
 			request.setAttribute("si", si);
-			request.setAttribute("pl", pl);
-			
+			request.setAttribute("relist", relist);
+			request.setAttribute("llist", llist); // 상품의 에디터 코멘트 
 			request.getRequestDispatcher("views/product/productDetail.jsp").forward(request, response);
-			
+			System.out.println(productNo);
 		}
 		
 	}

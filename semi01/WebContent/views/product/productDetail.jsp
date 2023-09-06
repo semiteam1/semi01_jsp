@@ -1,3 +1,4 @@
+<%@page import="com.kh.semi01.product.model.vo.Editor"%>
 <%@page import="com.kh.semi01.product.model.vo.ProductLike"%>
 <%@page import="com.kh.semi01.product.model.vo.ScreeningInfo"%>
 <%@page import="java.sql.Date"%>
@@ -15,6 +16,8 @@
 	
 	ArrayList<ProductIMG> ilist = (ArrayList<ProductIMG>)request.getAttribute("ilist");
 	ArrayList<Product> plist = (ArrayList<Product>)request.getAttribute("plist");
+	ArrayList<Review> relist = (ArrayList<Review>)request.getAttribute("relist");
+	ArrayList<Editor> llist = (ArrayList<Editor>)request.getAttribute("llist");
 
 %>
 <!DOCTYPE html>
@@ -658,17 +661,17 @@
 			<div class="review" align="left">
 				<h4>게시판 운영규정에 맞지 않는 글은 사전 통보없이 삭제될 수 있습니다.</h4>
 			</div>
-			<form action="" class="review_form">
+			<hr>
+				<% for(int i=0; i<relist.size(); i++) { %>
 				<div class="review_content">
-					<textarea name="" cols="160" rows="10" style="resize: none;"></textarea>
+					<div style="width: 100%; height: 60px; border-radius: 10px; padding: 15px; font-weight: bold; font-size: 15px;" >
+						<%=relist.get(i).getReviewContent() %>
+					</div>
+					<div style="width: 100%; height: 30px; padding-left: 15px;"><em>익명이 <%= i + 1 %></em> <%=relist.get(i).getReviewDate() %></div>
 				</div>
-				<br>
-				<div class="review_content">
-					<button type="button" class="review_btn"
-						style="background-color: black; color: white; margin-right: 40px;">등록</button>
-				</div>
-				<br>
-			</form>
+				<hr><br><br>
+				<% } %>
+				<br><br>
 		</div>
 
 		<div id="tab3" class="tab-content">
@@ -677,20 +680,16 @@
 			<h1 style="padding-top: 20px;" align="left">기대평</h1>
 			<br>
 			<hr style="border: 1px solid black;">
-			<div class="review" align="left">
-				<h4>게시판 운영규정에 맞지 않는 글은 사전 통보없이 삭제될 수 있습니다.</h4>
+			<br>
+			<% for(int i=0; i<llist.size(); i++) {%>
+			<div class="review_content">
+				<div style="width: 100%; height: 60px; border-radius: 10px; padding: 15px; font-weight: bold; font-size: 15px;" >
+					<%= llist.get(i).getDeitComment() %>
+				</div>
+				<div style="width: 100%; height: 30px; padding-left: 15px;"><em><%= llist.get(i).getEditor() %></em></div>
 			</div>
-			<form action="" class="review_form">
-				<div class="review_content">
-					<textarea name="" cols="160" rows="10" style="resize: none;"></textarea>
-				</div>
-				<br>
-				<div class="review_content">
-					<button type="button" class="review_btn"
-						style="background-color: black; color: white; margin-right: 40px;">등록</button>
-				</div>
-				<br>
-			</form>
+			<hr><br><br>
+			<% } %>
 		</div>
 
 		<div id="tab4" class="tab-content">
@@ -700,48 +699,8 @@
 			<br>
 			<hr style="border: 1px solid black;">
 			<br> <img src="resource/이미지자료/류지완 샘플이미지/공연장정보 샘플.PNG">
-			<div id="map" style="width: 1180px; height: 700px;"></div>
 		</div>
-
-		<script>
-			  var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-				    mapOption = {
-				        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-				        level: 3 // 지도의 확대 레벨
-				    };  
-
-				// 지도를 생성합니다    
-				var map = new kakao.maps.Map(mapContainer, mapOption); 
 		
-				// 주소-좌표 변환 객체를 생성합니다
-				var geocoder = new kakao.maps.services.Geocoder();
-		
-				// 주소로 좌표를 검색합니다
-				geocoder.addressSearch('경기도 구리시 수택동 684-6', function(result, status) {
-		
-				    // 정상적으로 검색이 완료됐으면 
-				     if (status === kakao.maps.services.Status.OK) {
-		
-				        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-		
-				        // 결과값으로 받은 위치를 마커로 표시합니다
-				        var marker = new kakao.maps.Marker({
-				            map: map,
-				            position: coords
-				        });
-		
-				        // 인포윈도우로 장소에 대한 설명을 표시합니다
-				        var infowindow = new kakao.maps.InfoWindow({
-				            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-				        });
-				        infowindow.open(map, marker);
-		
-				        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-				        map.setCenter(coords);
-				    } 
-				});    
-		  </script>
-
 		<div id="tab5" class="tab-content">
 			<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@-->
 			<!-- 예매/취소안내 파트 -->
@@ -790,8 +749,8 @@
 					src="<%= ilist.get(i).getImagePath() %>/<%= ilist.get(i).getPosterName() %>"
 					alt="Fjords" style="width: 100%">
 					<div class="caption">
-						<p class="caption1"><%= plist.get(i).getProductTitle() %></p>
-						<p class="caption2"><%= plist.get(i).getStartPeriod() %>
+						<p class="caption1" style="color: black; font-weight: bold;"><%= plist.get(i).getProductTitle() %></p><br>
+						<p class="caption2" style="color: gray; font-size: 12px;"><%= plist.get(i).getStartPeriod() %>
 							~
 							<%= plist.get(i).getEndPeriod() %></p>
 					</div>

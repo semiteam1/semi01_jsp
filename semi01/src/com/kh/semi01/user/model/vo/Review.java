@@ -9,13 +9,15 @@ public class Review {
 	private String user; 			// 작성자 => 조회시 회원명 | 입력시 회원번호
 	private String reviewDate; 		// 리뷰작성날짜 => 입출력을 자유롭게 하기 위해서 String으로
 	private String status; 			// 삭제 여부
+	private int productNo;
+	private String userId;
 	
 	// 기본 생성자
 	public Review() {}
 
 	// 전체 매개변수 생성자
-	public Review(int reviewNo, String titleImg, String bookedProduct, String reviewContent, String user, String reviewDate,
-			String status) {
+	public Review(int reviewNo, String titleImg, String bookedProduct, String reviewContent, String user,
+			String reviewDate, String status, int productNo, String userId) {
 		super();
 		this.reviewNo = reviewNo;
 		this.titleImg = titleImg;
@@ -24,6 +26,8 @@ public class Review {
 		this.user = user;
 		this.reviewDate = reviewDate;
 		this.status = status;
+		this.productNo = productNo;
+		this.userId = userId;
 	}
 	
 	// 리뷰 등록용 생성자
@@ -33,10 +37,49 @@ public class Review {
 		this.reviewContent = reviewContent;
 		this.user = user;
 	}
+	
+	public Review(int reviewNo, String titleImg, String bookedProduct, String reviewContent, String reviewDate, String status,
+			String userId) {
+		super();
+		this.reviewNo = reviewNo;
+		this.titleImg = titleImg;
+		this.bookedProduct = bookedProduct;
+		this.reviewContent = reviewContent;
+		this.reviewDate = reviewDate;
+		this.status = status;
+		this.userId = userId;
+	}
+	
+	
+
+	public Review(int reviewNo, int productNo, String userId, String reviewDate, String reviewContent) {
+		super();
+		this.reviewNo = reviewNo;
+		this.productNo = productNo;
+		this.userId = userId;
+		this.reviewDate = reviewDate;
+		this.reviewContent = reviewContent;
+	}
 
 	// getter-setter 메소드
 	public int getReviewNo() {
 		return reviewNo;
+	}
+
+	public int getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(int productNo) {
+		this.productNo = productNo;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 	public void setReviewNo(int reviewNo) {
@@ -91,11 +134,14 @@ public class Review {
 		this.status = status;
 	}
 
-	// toString() 메소드
 	@Override
 	public String toString() {
-		return "Review [reviewNo=" + reviewNo + ", titleImg=" + titleImg + ", bookedProduct=" + bookedProduct + ", reviewContent="
-				+ reviewContent + ", user=" + user + ", reviewDate=" + reviewDate + ", status=" + status + "]";
+		return "Review [reviewNo=" + reviewNo + ", titleImg=" + titleImg + ", bookedProduct=" + bookedProduct
+				+ ", reviewContent=" + reviewContent + ", user=" + user + ", reviewDate=" + reviewDate + ", status="
+				+ status + ", productNo=" + productNo + ", userId=" + userId + "]";
 	}
+
+
+	
 
 }
