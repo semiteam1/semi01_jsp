@@ -14,7 +14,7 @@
 <style>
     .outer{
         background-color: #f8f9fa;
-        border-radius: 30px;
+        border-radius: 30px; 
         color: black;
         width:1000px;
         height: 500px;
