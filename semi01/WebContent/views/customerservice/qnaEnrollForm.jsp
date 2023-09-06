@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
     .outer{
-        background-color: lightgray;
+        background-color: #f8f9fa; 
         border-radius: 30px;
         color: black;
         width:1000px;

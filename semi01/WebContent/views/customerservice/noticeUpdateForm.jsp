@@ -11,8 +11,8 @@
 <title>Insert title here</title>
 <style>
     .outer{
-        background-color: #f8f9fa;
-        color: black;
+        background-color: #f8f9fa; 
+        color: white;
         width:1000px;
         height: 500px;
         margin: auto;

@@ -12,7 +12,7 @@
                /* 바디 메인 */
                .원하는데로_바꾸세요{
             border: 1px solid lightgray;
-            background-color: lightgray;
+            background-color: #f8f9fa; 
             height: 900px;
             width: 100%;
         }
