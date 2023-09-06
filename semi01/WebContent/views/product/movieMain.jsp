@@ -506,17 +506,31 @@ img {
 
 	<script>
                 
-   	$(function(){
-                 	
-	   	let ctype = "<%=ctype%>"
+	    $(function(){
+	    	
+	    	let ctype = "<%= ctype %>"
+	    	
+	    	console.log(ctype)
+	    	$(".common_tab_btn").attr("aria-selected","false");
+	    	$("#" + ctype).attr("aria-selected","true");
 	
-		$(".common_tab_btn").attr("aria-selected", "false");
-		$("#" + ctype).attr("aria-selected", "true");
+	        $("#홈").attr("main-selected","false");
 	
-		$(".minCategory").css("color", "black");
-		$("#" + ctype).css("color", "red");
-
-	})
+	
+			if(ctype == '영화' || ctype == '로맨스' || ctype == '공포스릴러' || ctype == '코미디' || ctype == '액션' ){
+				$("#영화").attr("main-selected","true");
+			}else if(ctype == '전시' || ctype == '그림전시' || ctype == '사진전시' || ctype == '작품전시' || ctype == '체험전시' ){
+				$("#전시").attr("main-selected","true");
+			}else if(ctype == '공연' || ctype == '콘서트' || ctype == '연극' || ctype == '클래식' || ctype == '뮤직컬' ){
+				$("#공연").attr("main-selected","true");
+			}else if(ctype == '랭킹' ){
+				$("#랭킹").attr("main-selected","true");
+			}else if(ctype == '지역' || ctype == '서울' || ctype == '경기' || ctype == '충청' || ctype == '전라' || ctype == '경상'  || ctype == '제주'){
+				$("#지역").attr("main-selected","true");
+			}
+		
+	    })
+	    
 	</script>
 
 	<%@ include file="../common/footer.jsp"%>

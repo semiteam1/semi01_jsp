@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.semi01.product.model.service.ProductService;
 import com.kh.semi01.product.model.vo.Editor;
@@ -40,12 +41,21 @@ public class ProductDetailController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		int productNo = Integer.parseInt(request.getParameter("pno"));
+		HttpSession session = request.getSession();
 		
 		ArrayList<Product> plist = new ProductService().selectProductTotalRank();
 		ArrayList<ProductIMG> ilist = new ProductService().selectProductTotalRankIMG();
 		
+		int userNo = 0;
+		if(session.getAttribute("loginMember") != null) {
+			userNo = ((User)(session.getAttribute("loginMember"))).getUserNo();
+		}
+		
+		ProductLike pl = new ProductService().selectLike(userNo, productNo);
+		
 		request.setAttribute("plist", plist); // 전체 상품 중 좋아요 상위 5개
 		request.setAttribute("ilist", ilist); // 전체 상품 중 좋아요 상위 5개 (이미지 경로)
+		request.setAttribute("pl", pl);
 		
 		
 		Product p = new ProductService().selectProductDetail(productNo);

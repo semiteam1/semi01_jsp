@@ -119,6 +119,7 @@
         #bson>p{
             box-sizing: border-box;
             display:none;
+            color:red;
         }
         #bson>#topqna{
             border-bottom-style: solid;

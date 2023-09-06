@@ -10,13 +10,27 @@ public class Review {
 	private String user; 			// 작성자 => 조회시 회원명 | 입력시 회원번호
 	private String reviewDate; 		// 리뷰작성날짜 => 입출력을 자유롭게 하기 위해서 String으로
 	private String status; 			// 삭제 여부
-	private int productNo;
 	private String userId;
 	
 	// 기본 생성자
 	public Review() {}
 	
 	// 전체 매개변수 생성자
+	public Review(int reviewNo, int productNo, String titleImg, String bookedProduct, String reviewContent, String user,
+			String reviewDate, String status, String userId) {
+		super();
+		this.reviewNo = reviewNo;
+		this.productNo = productNo;
+		this.titleImg = titleImg;
+		this.bookedProduct = bookedProduct;
+		this.reviewContent = reviewContent;
+		this.user = user;
+		this.reviewDate = reviewDate;
+		this.status = status;
+		this.userId = userId;
+	}
+	
+	// 리뷰 전체 조회용 매개변수 생성자
 	public Review(int reviewNo, int productNo, String titleImg, String bookedProduct, String reviewContent, String user,
 			String reviewDate, String status) {
 		super();
@@ -30,9 +44,11 @@ public class Review {
 		this.status = status;
 	}
 
-	// 상품번호를 제외한 매개변수 생성자
-	public Review(int reviewNo, String titleImg, String bookedProduct, String reviewContent, String user, String reviewDate,
-			String status) {
+	
+
+	// 상품번호와 유저 아이디를 제외한 매개변수 생성자
+	public Review(int reviewNo, String titleImg, String bookedProduct, String reviewContent, String user,
+			String reviewDate, String status) {
 		super();
 		this.reviewNo = reviewNo;
 		this.titleImg = titleImg;
@@ -41,8 +57,6 @@ public class Review {
 		this.user = user;
 		this.reviewDate = reviewDate;
 		this.status = status;
-		this.productNo = productNo;
-		this.userId = userId;
 	}
 	
 	// 리뷰 등록용 생성자
@@ -52,21 +66,8 @@ public class Review {
 		this.reviewContent = reviewContent;
 		this.user = user;
 	}
-	
-	public Review(int reviewNo, String titleImg, String bookedProduct, String reviewContent, String reviewDate, String status,
-			String userId) {
-		super();
-		this.reviewNo = reviewNo;
-		this.titleImg = titleImg;
-		this.bookedProduct = bookedProduct;
-		this.reviewContent = reviewContent;
-		this.reviewDate = reviewDate;
-		this.status = status;
-		this.userId = userId;
-	}
-	
-	
 
+	// 상세페이지 리뷰, 회원이 작성한 리뷰 상세 조회용 생성자
 	public Review(int reviewNo, int productNo, String userId, String reviewDate, String reviewContent) {
 		super();
 		this.reviewNo = reviewNo;
@@ -99,14 +100,6 @@ public class Review {
 
 	public void setReviewNo(int reviewNo) {
 		this.reviewNo = reviewNo;
-	}
-	
-	public int getProductNo() {
-		return productNo;
-	}
-
-	public void setProductNo(int productNo) {
-		this.productNo = productNo;
 	}
 
 	public String getTitleImg() {
@@ -157,14 +150,12 @@ public class Review {
 		this.status = status;
 	}
 
+	// toString() 메소드
 	@Override
 	public String toString() {
 		return "Review [reviewNo=" + reviewNo + ", productNo=" + productNo + ", titleImg=" + titleImg
 				+ ", bookedProduct=" + bookedProduct + ", reviewContent=" + reviewContent + ", user=" + user
-				+ ", reviewDate=" + reviewDate + ", status=" + status + "]";
+				+ ", reviewDate=" + reviewDate + ", status=" + status + ", userId=" + userId + "]";
 	}
-
-
-	
 
 }

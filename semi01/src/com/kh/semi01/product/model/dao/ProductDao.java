@@ -976,8 +976,6 @@ public class ProductDao {
 	public ProductLike selectLike(Connection conn, int userNo, int productNo) {
 		
 		ProductLike pl = null;
-	public ArrayList<Editor> selectProductEditor(Connection conn, int productNo){
-		ArrayList<Editor> llist = new ArrayList<Editor>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -1105,40 +1103,49 @@ public class ProductDao {
 		
 		return seatCount;
 		
-		String sql = prop.getProperty("selectProductEditor");
-		System.out.println("dao no" + productNo);
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, productNo);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) {
-				llist.add(new Editor(rset.getInt("product_no"),
-									 rset.getString("editor"),
-									 rset.getString("deit_comment")
-						));
-				
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			close(rset);
-			close(pstmt);
-		}
-		return llist;
 	}
 	
-	public ArrayList<Product> selectProductRank(Connection conn){
-		ArrayList<Product> rlist = new ArrayList<Product>();
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		
-//		String sql = prop.getProperty("selectProductRank");
-//		
-//		
-		return rlist;
-	}
+	public ArrayList<Editor> selectProductEditor(Connection conn, int productNo){
+	      ArrayList<Editor> llist = new ArrayList<Editor>();
+	      
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      
+	      String sql = prop.getProperty("selectProductEditor");
+	      System.out.println("dao no" + productNo);
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         pstmt.setInt(1, productNo);
+	         
+	         rset = pstmt.executeQuery();
+	         
+	         while(rset.next()) {
+	            llist.add(new Editor(rset.getInt("product_no"),
+	                            rset.getString("editor"),
+	                            rset.getString("deit_comment")
+	                  ));
+	            
+	         }
+	      } catch (SQLException e) {
+	         // TODO Auto-generated catch block
+	         e.printStackTrace();
+	      }finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      return llist;
+	   }
+	   
+	   public ArrayList<Product> selectProductRank(Connection conn){
+	      ArrayList<Product> rlist = new ArrayList<Product>();
+//	      PreparedStatement pstmt = null;
+//	      ResultSet rset = null;
+//	      
+//	      String sql = prop.getProperty("selectProductRank");
+//	      
+//	      
+	      return rlist;
+	      
+	   }
 
 }

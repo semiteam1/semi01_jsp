@@ -116,7 +116,7 @@
 <body>
   <div class="wrapper box-with-shadow divd" style="margin-top: 64px;">
     <div class="container1 divd">
-      <h3 style="font-size: 30px; margin-top: 42px; margin-bottom: 37px;">관리자</h3>
+      <h3 style="font-size: 30px; margin-top: 42px; margin-bottom: 37px;"><a href="/semi01">관리자</a></h3>
     
       <!-- 회원관심태그 조회, 회원삭제, 회원 등급조정, 신고내역확인 -->
       <div class="box style1 divd" style="line-height: 3;">회원관리</div>
