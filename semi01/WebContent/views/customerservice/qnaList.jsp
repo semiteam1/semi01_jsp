@@ -95,6 +95,7 @@
         .Qna:hover{
     	background: gray;
     	cursor:pointer;
+    	opacity:0.5;
         }
         .reply{
         display:none;
