@@ -1,3 +1,4 @@
+<%@page import="com.kh.semi01.product.model.vo.Editor"%>
 <%@page import="com.kh.semi01.product.model.vo.ScreeningInfo"%>
 <%@page import="java.sql.Date"%>
 <%@page import="com.kh.semi01.product.model.vo.ProductIMG"%>
@@ -14,6 +15,7 @@
 	ArrayList<ProductIMG> ilist = (ArrayList<ProductIMG>)request.getAttribute("ilist");
 	ArrayList<Product> plist = (ArrayList<Product>)request.getAttribute("plist");
 	ArrayList<Review> relist = (ArrayList<Review>)request.getAttribute("relist");
+	ArrayList<Editor> llist = (ArrayList<Editor>)request.getAttribute("llist");
 
 %>
 <!DOCTYPE html>
@@ -612,13 +614,15 @@
 			<br>
 			<hr style="border: 1px solid black;">
 			<br>
+			<% for(int i=0; i<llist.size(); i++) {%>
 			<div class="review_content">
 				<div style="width: 100%; height: 60px; border-radius: 10px; padding: 15px; font-weight: bold; font-size: 15px;" >
-					야무지다 이거
+					<%= llist.get(i).getDeitComment() %>
 				</div>
-				<div style="width: 100%; height: 30px; padding-left: 15px;"><em>에디터_앙앙</em> 2023-09-05 12:10</div>
+				<div style="width: 100%; height: 30px; padding-left: 15px;"><em><%= llist.get(i).getEditor() %></em></div>
 			</div>
 			<hr><br><br>
+			<% } %>
 		</div>
 
 		<div id="tab4" class="tab-content">

@@ -5,10 +5,10 @@ import java.util.ArrayList;
 
 import static com.kh.semi01.common.JDBCTemplate.*;
 import com.kh.semi01.product.model.dao.ProductDao;
+import com.kh.semi01.product.model.vo.Editor;
 import com.kh.semi01.product.model.vo.Product;
 import com.kh.semi01.product.model.vo.ProductIMG;
 import com.kh.semi01.product.model.vo.ScreeningInfo;
-import com.kh.semi01.user.model.vo.Review;
 
 public class ProductService {
 	
@@ -215,6 +215,21 @@ public class ProductService {
 		return rtlist;
 	}
 	
+	public ArrayList<Editor> selectProductEditor(int productNo){
+		Connection conn = getConnection();
+		ArrayList<Editor> llist = new ProductDao().selectProductEditor(conn, productNo);
+		
+		close(conn);
+		return llist;
+	}
+	
+	public ArrayList<Product> selectProductRank(){
+		Connection conn = getConnection();
+		ArrayList<Product> rlist = new ProductDao().selectProductRank(conn);
+		
+		close(conn);
+		return rlist;
+	}
 
 
 }
