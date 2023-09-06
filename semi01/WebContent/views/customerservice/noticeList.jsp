@@ -56,7 +56,7 @@
         
         .원하는데로_바꾸세요>.white{
         width:100%;
-        height:300px;
+        height:0px;
         border: 1px solid gray;
         }
         #announce>p{

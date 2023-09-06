@@ -65,7 +65,7 @@
         .원하는데로_바꾸세요 .rightmenu{
             background-color: white;
             width: 880px;
-            height:600px;
+            height:590px;
             margin-right: 23.8%;
             margin-top: 5px;
             float:right;
@@ -83,17 +83,35 @@
         height:130px;
         }
        
-        /*테이블영역*/
+       /*테이블영역*/
         .list-area{
         border: 1px solid black;
         width: 100%;
         text-align: center;
         }
-
-        .list-area>tbody>tr:hover{
+        
+        .Qna{
+        font-size:17px;
+        }
+        .banner{
+        position: absolute;
+		
+		bottom: 0px;
+        }
+        #advertise{
+        width:880px;
+        height:130px;
+        }
+       
+        
+        .Qna:hover{
     	background: gray;
     	cursor:pointer;
         }
+        .reply{
+        display:none;
+        }
+        
 
 
 
@@ -155,12 +173,11 @@
                     <%}else { %>
                     <!-- case2. 게시글이 있을 경우-->
                     <%for(Qna q:list){ %>
-                    <tr>
-                        <td><%=q.getQnaNo() %></td>
-                        <td><%=q.getQnaTitle() %> <button onclick="location.href='<%=contextPath %>/detail.qo.no?num='+num">detail</button></td>
-                        <td><%=q.getUser() %></td>
-                        <td><%=q.getQnaDate() %></td>
-                    </tr>
+						<tr class="Qna">                   
+	                        <td><%=q.getQnaTitle() %> <button onclick="location.href='<%=contextPath %>/detail.qo?num=<%=q.getQnaNo() %>'">상세정보</button></td>
+							<td><%=q.getUser() %></td>
+	                        <td><%=q.getQnaDate() %></td>
+                    	</tr>
                     <tr class="reply">
                     	<th colspan="2"><%=q.getQnaReply() %><th>
                     </tr>
