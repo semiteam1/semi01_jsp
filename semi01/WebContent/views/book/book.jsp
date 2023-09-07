@@ -26,7 +26,7 @@
 	
 	//Grade g = (Grade)request.getAttribute("g");
 	
-	double grade_discount = (grade_name == "아이언")? 0 : (grade_name == "브론즈")? 0.01 : (grade_name == "실버")? 0.05 : (grade_name == "골드")? 0.1 : 0.15; 
+	double grade_discount = (grade_name.equals("아이언"))? 0 : (grade_name.equals("브론즈"))? 0.01 : (grade_name.equals("실버"))? 0.05 : (grade_name.equals("골드"))? 0.1 : 0.15; 
 	
 	//double grade_discount = g.getGradeDiscount();
 	
@@ -96,11 +96,13 @@
 		border-bottom: 1px solid #cecece;
 		padding-bottom: 20px;
 	} 
-	h3 {
-		margin-left: 15px;
+	h6 {
+		margin: 20px;
+		font-weight: bold;
 	}
 	th {
 		width: 150px;
+		text-align: center;
 	}
 	#user-info {
 		height: 50%;

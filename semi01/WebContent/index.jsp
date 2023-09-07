@@ -207,24 +207,34 @@ ArrayList<Product> slist = null;
 	
 	<div class="outer">
 
-        <div class="container">
+         <div class="container">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Slides -->
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                      <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_범죄도시.png" alt="Slide 1" class="carousel-img">
+                        <a href="<%= contextPath %>/detail.pr?pno=58">
+                            <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_범죄도시.png" alt="Slide 1" class="carousel-img">
+                        </a>
                     </div>
                     <div class="carousel-item">
-                        <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_뮤직컬_후크.jpg" alt="Slide 2" class="carousel-img">
+                    	<a href="<%= contextPath %>/detail.pr?pno=45">
+                        	<img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_뮤직컬_후크.jpg" alt="Slide 2" class="carousel-img">	
+                        </a>
                     </div>
                     <div class="carousel-item">
-                      <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_알라딩2.png" alt="Slide 3" class="carousel-img">
+                   		<a href="<%= contextPath %>/detail.pr?pno=30">
+	                    	<img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_알라딩2.png" alt="Slide 3" class="carousel-img">
+                        </a>
                     </div>
                     <div class="carousel-item">
-                        <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_전율.png" alt="Slide 4" class="carousel-img">
+                        <a href="<%= contextPath %>/detail.pr?pno=132">
+                            <img src="resource/배너/배너_체험전시_이세계.jpg" alt="Slide 4" class="carousel-img">
+                        </a>
                     </div>
                     <div class="carousel-item">
-                        <img src="resource/이미지자료/류지완 샘플이미지/메인홈_배너_콘크리트.png" alt="Slide 5" class="carousel-img">
+                        <a href="<%= contextPath %>/detail.pr?pno=109">
+                            <img src="resource/배너/배너_액션영화_밀수.png" alt="Slide 5" class="carousel-img">
+                        </a>
                     </div>
                   </div>
                   
@@ -240,10 +250,10 @@ ArrayList<Product> slist = null;
                       <img src="resource/product_upfiles/로맨스영화_포스터_알라딘.jpg" alt="Button Image 3" style="border-radius: 10px;">
                     </div>
                     <div class="button-image" onclick="moveToSlide(3)">
-                        <img src="resource/product_upfiles/콘서트공연_포스터_전율 정동하X소향.jpg" alt="Button Image 4" style="border-radius: 10px;">
+                        <img src="resource/product_upfiles/그림전시_포스터_2023 이세계 페스티벌.jpg" alt="Button Image 4" style="border-radius: 10px;">
                     </div>
                     <div class="button-image" onclick="moveToSlide(4)">
-                        <img src="resource/product_upfiles/공포,스릴러영화_포스터_콘크리트유토피아.jpg" alt="Button Image 5" style="border-radius: 10px;">
+                        <img src="resource/product_upfiles/액션영화_포스터_밀수.jpg" alt="Button Image 5" style="border-radius: 10px;">
                     </div>
                   </div>
                   <br>

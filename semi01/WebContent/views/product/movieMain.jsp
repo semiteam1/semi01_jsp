@@ -346,22 +346,22 @@ img {
 			<% if(ctype.equals("영화")){ %>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(32).getProductNo() %>">
+					<a href="<%= contextPath %>/detail.pr?pno=74">
 						<img src="resource/배너/배너_공포스릴러영화_콘크리트유토피아.png" class="d-block">
 					</a>
 				</div>
 				<div class="carousel-item">
-					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(17).getProductNo() %>">
+					<a href="<%= contextPath %>/detail.pr?pno=30">
 						<img src="resource/배너/배너_로멘스영화_알라딘.png" class="d-block">
 					</a>
 				</div>
 				<div class="carousel-item">
-					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(14).getProductNo() %>">
+					<a href="<%= contextPath %>/detail.pr?pno=100">
 						<img src="resource/배너/배너_액션영화_슬램덩크.png" class="d-block">
 					</a>
 				</div>
 				<div class="carousel-item">
-					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(49).getProductNo() %>">
+					<a href="<%= contextPath %>/detail.pr?pno=98">
 						<img src="resource/배너/배너_코미디영화_극한직업.png" class="d-block">
 					</a>
 				</div>

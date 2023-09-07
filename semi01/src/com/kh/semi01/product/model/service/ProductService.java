@@ -287,10 +287,18 @@ public class ProductService {
 	
 	public ArrayList<Product> selectProductRank(){
 		Connection conn = getConnection();
-		ArrayList<Product> rlist = new ProductDao().selectProductRank(conn);
+		ArrayList<Product> prclist = new ProductDao().selectProductRank(conn);
 		
 		close(conn);
-		return rlist;
+		return prclist;
+	}
+	
+	public ArrayList<Product> selectLocationProduct(String ctype){
+		Connection conn = getConnection();
+		ArrayList<Product> lolist = new ProductDao().selectLocationProduct(conn, ctype);
+		
+		close(conn);
+		return lolist;
 	}
 
 

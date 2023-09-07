@@ -1136,16 +1136,133 @@ public class ProductDao {
 	      return llist;
 	   }
 	   
-	   public ArrayList<Product> selectProductRank(Connection conn){
-	      ArrayList<Product> rlist = new ArrayList<Product>();
-//	      PreparedStatement pstmt = null;
-//	      ResultSet rset = null;
-//	      
-//	      String sql = prop.getProperty("selectProductRank");
-//	      
-//	      
-	      return rlist;
+	// 랭킹 카테고리 10개 상품 조회
+	public ArrayList<Product> selectProductRank(Connection conn){
+	      ArrayList<Product> prclist = new ArrayList<Product>();
+	      PreparedStatement pstmt = null;
+	      ResultSet rset = null;
+	      
+	      String sql = prop.getProperty("selectProductRank");
+	      
+	      try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			 while(rset.next()) {
+		            prclist.add(new Product(rset.getInt("product_no"),
+		                            		rset.getString("product_title"),
+		                            		rset.getString("address"),
+		                            		rset.getString("start_period"),
+		                            		rset.getString("end_period"),
+		                            		rset.getInt("price"),
+		                            		rset.getString("image_path"),
+		                            		rset.getString("poster_name")
+		                  ));
+			 }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+	      return prclist;
 	      
 	   }
+	
+	public ArrayList<Product> selectLocationProduct(Connection conn, String ctype){
+		ArrayList<Product> lolist = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("selectLocationProduct");
+
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			if(ctype.equals("서울")) {
+				pstmt.setInt(1, 1);
+			}else if(ctype.equals("경기")) {
+				pstmt.setInt(1, 2);
+			}else if(ctype.equals("충청")) {
+				pstmt.setInt(1, 3);
+			}else if(ctype.equals("전라")) {
+				pstmt.setInt(1, 4);
+			}else if(ctype.equals("경상")) {
+				pstmt.setInt(1, 5);
+			}else if(ctype.equals("제주")) {
+				pstmt.setInt(1, 6);
+			}
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				lolist.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return lolist;
+	
+	}
+	
+	public ArrayList<Product> selectLocationTotalProduct(Connection conn, String ctype){
+		ArrayList<Product> lolist = new ArrayList<Product>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+
+		String sql = prop.getProperty("selectLocationTotalProduct");
+
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			if(ctype.equals("서울")) {
+				pstmt.setInt(1, 1);
+			}else if(ctype.equals("경기")) {
+				pstmt.setInt(1, 2);
+			}else if(ctype.equals("충청")) {
+				pstmt.setInt(1, 3);
+			}else if(ctype.equals("전라")) {
+				pstmt.setInt(1, 4);
+			}else if(ctype.equals("경상")) {
+				pstmt.setInt(1, 5);
+			}else if(ctype.equals("제주")) {
+				pstmt.setInt(1, 6);
+			}
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				lolist.add(new Product(rset.getInt("product_no"),
+				 					  rset.getString("product_title"),
+				 					  rset.getString("start_period"),
+				 					  rset.getString("end_period"),
+				 					  rset.getString("poster_name"),
+				 					  rset.getString("image_path")
+								   ));
+			}
+		
+		}catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+			return lolist;
+	}
 
 }

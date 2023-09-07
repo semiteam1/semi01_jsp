@@ -4,9 +4,7 @@
 <%
 	String ctype = (String)request.getAttribute("ctype");
 
-	ArrayList<Product> mlist = (ArrayList<Product>)request.getAttribute("mlist");
-	ArrayList<Product> mtlist = (ArrayList<Product>)request.getAttribute("mtlist");
-	
+	ArrayList<Product> lolist = (ArrayList<Product>)request.getAttribute("lolist");
 %>
 
 <!DOCTYPE html>
@@ -55,7 +53,7 @@
 /* 바디 기본 */
 /* 버튼 */
 .common_tab_list {
-	width: 500px;
+	width: 700px;
 	/* border: 1px solid red; */
 }
 
@@ -268,60 +266,26 @@ img {
 				<%= ctype %>
 			</h1>
 			<div class="common_tab_area">
-				<% if(ctype.equals("영화") || ctype.equals("로맨스") || ctype.equals("공포스릴러") || ctype.equals("코미디") || ctype.equals("액션")){  %>
+				<% if(ctype.equals("지역") || ctype.equals("서울") || ctype.equals("경기") || ctype.equals("충청") || ctype.equals("전라") || ctype.equals("경상") || ctype.equals("제주")){  %>
 				<ul class="common_tab_list" role="tablist">
 					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=액션" id="액션"
-						class="common_tab_btn" role="tab" aria-selected="false">액션</a></li>
+						href="<%= contextPath %>/lolist.pr?ctype=제주" id="제주"
+						class="common_tab_btn" role="tab" aria-selected="false">제주</a></li>
 					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=코미디" id="코미디"
-						class="common_tab_btn" role="tab" aria-selected="false">코미디</a></li>
+						href="<%= contextPath %>/lolist.pr?ctype=경상" id="경상"
+						class="common_tab_btn" role="tab" aria-selected="false">경상</a></li>
 					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=공포스릴러" id="공포스릴러"
-						class="common_tab_btn" role="tab" aria-selected="false">공포/스릴러</a>
-					</li>
+						href="<%= contextPath %>/lolist.pr?ctype=전라" id="전라"
+						class="common_tab_btn" role="tab" aria-selected="false">전라</a></li>
 					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=로맨스" id="로맨스"
-						class="common_tab_btn" role="tab" aria-selected="false">로맨스</a></li>
+						href="<%= contextPath %>/lolist.pr?ctype=충청" id="충청"
+						class="common_tab_btn" role="tab" aria-selected="false">충청/강원</a></li>
 					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/cmain.pr?ctype=영화" id="영화"
-						class="common_tab_btn" role="tab" aria-selected="true">전체</a></li>
-				</ul>
-				<% }else if(ctype.equals("전시") || ctype.equals("그림전시") || ctype.equals("사진전시") || ctype.equals("작품전시") || ctype.equals("체험전시")){ %>
-				<ul class="common_tab_list" role="tablist">
+						href="<%= contextPath %>/lolist.pr?ctype=경기" id="경기"
+						class="common_tab_btn" role="tab" aria-selected="true">경기/이천</a></li>
 					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=체험전시" id="체험전시"
-						class="common_tab_btn" role="tab" aria-selected="false">체험전시</a></li>
-					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=작품전시" id="작품전시"
-						class="common_tab_btn" role="tab" aria-selected="false">작품전시</a></li>
-					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=사진전시" id="사진전시"
-						class="common_tab_btn" role="tab" aria-selected="false">사진전시</a></li>
-					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=그림전시" id="그림전시"
-						class="common_tab_btn" role="tab" aria-selected="false">그림전시</a></li>
-					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/cmain.pr?ctype=전시" id="전시"
-						class="common_tab_btn" role="tab" aria-selected="false">전체</a></li>
-				</ul>
-				<% }else if(ctype.equals("공연")|| ctype.equals("뮤지컬") || ctype.equals("연극") || ctype.equals("클래식") || ctype.equals("콘서트") ){ %>
-				<ul class="common_tab_list" role="tablist">
-					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=콘서트" id="콘서트"
-						class="common_tab_btn" role="tab" aria-selected="false">콘서트</a></li>
-					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=클래식" id="클래식"
-						class="common_tab_btn" role="tab" aria-selected="false">클래식</a></li>
-					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=연극" id="연극"
-						class="common_tab_btn" role="tab" aria-selected="false">연극</a></li>
-					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/rmovie.pr?ctype=뮤지컬" id="뮤지컬"
-						class="common_tab_btn" role="tab" aria-selected="false">뮤지컬</a></li>
-					<li class="common_tab_item" role="none"><a
-						href="<%= contextPath %>/cmain.pr?ctype=공연" id="공연"
-						class="common_tab_btn" role="tab" aria-selected="false">전체</a></li>
+						href="<%= contextPath %>/lolist.pr?ctype=서울" id="서울"
+						class="common_tab_btn" role="tab" aria-selected="true">서울</a></li>
 				</ul>
 
 				<% } %>
@@ -343,57 +307,142 @@ img {
 			<!-- //하단 버튼 끝 -->
 
 			<!-- 이미지 시작 -->
-			<% if(ctype.equals("영화")){ %>
+			<% if(ctype.equals("서울")){ %>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(32).getProductNo() %>">
-						<img src="resource/배너/배너_공포스릴러영화_콘크리트유토피아.png" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=20">
+						<img src="resource/배너/배너_그림전시_라울뒤피.jpg" class="d-block">
 					</a>
 				</div>
 				<div class="carousel-item">
-					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(17).getProductNo() %>">
-						<img src="resource/배너/배너_로멘스영화_알라딘.png" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=99">
+						<img src="resource/배너/배너_클래식공연_디즈니.jpg" class="d-block">
 					</a>
 				</div>
 				<div class="carousel-item">
-					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(14).getProductNo() %>">
+					<a href="<%= contextPath %>/detail.pr?pno=100">
 						<img src="resource/배너/배너_액션영화_슬램덩크.png" class="d-block">
 					</a>
 				</div>
 				<div class="carousel-item">
-					<a href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(49).getProductNo() %>">
+					<a href="<%= contextPath %>/detail.pr?pno=97">
+						<img src="resource/배너/배너_클래식공연_지브리.jpg" class="d-block">
+					</a>
+				</div>
+			</div>
+			<% }else if(ctype.equals("경기")){ %>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<a href="<%= contextPath %>/detail.pr?pno=132">
+						<img src="resource/배너/배너_체험전시_이세계.jpg" class="d-block">
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="<%= contextPath %>/detail.pr?pno=30">
+						<img src="resource/배너/배너_로멘스영화_알라딘.png" class="d-block">
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="<%= contextPath %>/detail.pr?pno=81">
+						<img src="resource/배너/배너_코디디영화_엑시트.png" class="d-block">
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="<%= contextPath %>/detail.pr?pno=98">
 						<img src="resource/배너/배너_코미디영화_극한직업.png" class="d-block">
 					</a>
 				</div>
 			</div>
-			<% }else if(ctype.equals("전시")){ %>
+			<% }else if(ctype.equals("충청")){ %>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="resource/배너/배너_그림전시_라울뒤피.jpg" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=102">
+						<img src="resource/배너/배너_클래식공연_폴포츠.jpg" class="d-block">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="resource/배너/배너_사진전시_대화의 방식.png" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=36">
+						<img src="resource/배너/배너_로멘스영화_아바타.png" class="d-block">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="resource/배너/배너_사진전시_에릭요한슨.png" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=101">
+						<img src="resource/배너/배너_액션영화_비공식작전.png" class="d-block">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="resource/배너/배너_체험전시_이세계.jpg" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=83">
+						<img src="resource/배너/배너_콘서트공연_전율.png" class="d-block">
+					</a>
 				</div>
 			</div>
-			<% }else if(ctype.equals("공연")){ %>
+			<% }else if(ctype.equals("전라")){ %>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="resource/배너/배너_연극공연_괴담.jpg" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=27">
+						<img src="resource/배너/배너_그림전시_브리티쉬.jpg" class="d-block">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="resource/배너/배너_뮤직컬공연_사칠.jpg" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=97">
+						<img src="resource/배너/배너_클래식공연_지브리.jpg" class="d-block">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="resource/배너/배너_콘서트공연_미모리스즈코.png" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=87">
+						<img src="resource/배너/배너_콘서트공연_어스어스패스티발.png" class="d-block">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="resource/배너/배너_클래식공연_디즈니.jpg" class="d-block">
+					<a href="<%= contextPath %>/detail.pr?pno=132">
+						<img src="resource/배너/배너_체험전시_이세계.jpg" class="d-block">
+					</a>
+				</div>
+			</div>
+			<% }else if(ctype.equals("경상")){ %>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<a href="<%= contextPath %>/detail.pr?pno=58">
+						<img src="resource/배너/배너_액션스릴러영화_범죄도시2.png" class="d-block">
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="<%= contextPath %>/detail.pr?pno=92">
+						<img src="resource/배너/배너_코미디영화_조이라이드.png" class="d-block">
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="<%= contextPath %>/detail.pr?pno=99">
+						<img src="resource/배너/배너_클래식공연_디즈니.jpg" class="d-block">
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="<%= contextPath %>/detail.pr?pno=69">
+						<img src="resource/배너/배너_콘서트공연_미모리스즈코.png" class="d-block">
+					</a>
+				</div>
+			</div>
+			<% }else if(ctype.equals("제주")){ %>
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+					<a href="<%= contextPath %>/detail.pr?pno=57">
+						<img src="resource/배너/배너_뮤직컬공연_사칠.jpg" class="d-block">
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="<%= contextPath %>/detail.pr?pno=18">
+						<img src="resource/배너/배너_그림전시_영국내셔널갤러리.jpg" class="d-block">
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="<%= contextPath %>/detail.pr?pno=92">
+						<img src="resource/배너/배너_코미디영화_조이라이드.png" class="d-block">
+					</a>
+				</div>
+				<div class="carousel-item">
+					<a href="<%= contextPath %>/detail.pr?pno=28">
+						<img src="resource/배너/배너_로멘스영화_왕의남자.png" class="d-block">
+					</a>
 				</div>
 			</div>
 			<% }%>
@@ -418,45 +467,6 @@ img {
 		<!-- //메인배너 끝 -->
 		<!-- //랭킹 끝 -->
 
-		<!-- 상영 예정작 시작 -->
-		<div class="container">
-
-			<!-- 전체 영화 헤드 태그 시작 -->
-			<h1 class="movieHead">
-				<a href="">상영 예정작</a>
-			</h1>
-			<hr>
-			<!-- //전체 영화 헤드 태그 끝 -->
-
-			<!-- 전체 포스터 시작 -->
-
-			<div class="row">
-				<% if(ctype.equals("영화") || ctype.equals("공연") || ctype.equals("전시")){ %>
-				<% for(int i=0; i<mlist.size(); i++){ %>
-				<!-- 포스터, 설명글 시작 -->
-				<div class="col-md-5">
-					<div class="thumbnail">
-						<a
-							href="<%= contextPath %>/detail.pr?pno=<%= mlist.get(i).getProductNo() %>">
-							<img
-							src="<%=mlist.get(i).getImagePath() %>/<%= mlist.get(i).getPosterName() %>"
-							alt="Lights" style="width: 100%">
-							<div class="caption">
-								<p><%=mlist.get(i).getProductTitle() %></p><br>
-								<pre><%= mlist.get(i).getStartPeriod() %>~<%= mlist.get(i).getEndPeriod() %></pre>
-							</div>
-						</a>
-					</div>
-				</div>
-				<!-- //포스터, 설명글 끝 -->
-				<% } %>
-				<% } %>
-
-			</div>
-			<!-- //전체 포스터 끝 -->
-		</div>
-		<!-- //상영 예정작 끝 -->
-
 		<!-- 현재 상영작 시작 -->
 		<div class="container">
 
@@ -469,19 +479,19 @@ img {
 
 			<!-- 전체 포스터 시작 -->
 			<div class="row">
-				<% if(ctype.equals("영화") || ctype.equals("공연") || ctype.equals("전시")){ %>
-				<% for(int i=0; i<mtlist.size(); i++){ %>
+				<% if(ctype.equals("서울") || ctype.equals("경기") || ctype.equals("충청") || ctype.equals("전라") || ctype.equals("경상") || ctype.equals("제주")){ %>
+				<% for(int i=0; i<lolist.size(); i++){ %>
 				<!-- 포스터, 설명글  시작 -->
 				<div class="col-md-4">
 					<div class="thumbnail">
 						<a
-							href="<%= contextPath %>/detail.pr?pno=<%= mtlist.get(i).getProductNo() %>">
+							href="<%= contextPath %>/detail.pr?pno=<%= lolist.get(i).getProductNo() %>">
 							<img
-							src="<%= mtlist.get(i).getImagePath() %>/<%= mtlist.get(i).getPosterName() %>"
+							src="<%= lolist.get(i).getImagePath() %>/<%= lolist.get(i).getPosterName() %>"
 							alt="Lights" style="width: 100%">
 							<div class="caption">
-								<p><%= mtlist.get(i).getProductTitle() %></p><br>
-								<pre><%= mtlist.get(i).getStartPeriod() %>~<%= mtlist.get(i).getEndPeriod() %></pre>
+								<p><%= lolist.get(i).getProductTitle() %></p><br>
+								<pre><%= lolist.get(i).getStartPeriod() %>~<%= lolist.get(i).getEndPeriod() %></pre>
 							</div>
 						</a>
 					</div>
@@ -514,7 +524,6 @@ img {
 		$("#" + ctype).attr("aria-selected", "true");
 	
 		$(".minCategory").css("color", "black");
-		$("#" + ctype).css("color", "red");
 
 	})
 	</script>

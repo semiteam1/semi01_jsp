@@ -165,25 +165,40 @@
                             </dl>
                         </a>
 
-                    <button type="button" class="btn btn-sm btn-danger" onclick="book();">예매하기</button>
+                    <button type="button" class="btn btn-sm btn-danger" onclick="booking();">예매하기</button>
+                
                 </div>
                 <hr>
                 
-		<script>
-
-			function book() {
-				if(<%= loginMember %> == null){
-					alert("로그인 후 이용해주세요");
-					location.href="<%= contextPath %>/login.ur";
-				}else{
-				
-				 location.href("<%= contextPath %>/detail.pr?pno=<%= p.getProductNo() %>");
-				}
-			}
-
-		</script>
-                
             <% } %>
+            
+            <script>
+
+				function booking() {
+					
+					<% if(loginMember == null) { %>
+						
+						if(confirm("로그인 후에 이용 가능한 서비스입니다. 로그인 하시겠습니까?")) {
+							
+							location.href = "<%= contextPath %>/login.ur";
+							
+						}	
+						
+						
+						
+					<% } else { %>
+						
+						console.log("dd");
+						
+						alert("관람하실 날짜와 시간을 선택하기 위해 상세 페이지로 이동합니다.");
+					
+						location.href = $(".search_product_box>a").attr("href");
+					
+				    <% } %>
+				    
+				}    
+
+			</script>
 
             </div>
 

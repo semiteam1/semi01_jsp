@@ -325,7 +325,13 @@
 
                             function book() {
                                 
-                                alert("로그인 후에 이용 가능합니다.");
+                                if(confirm("로그인 후에 이용 가능한 서비스입니다. 로그인 하시겠습니까?")) {
+                                	
+                                	location.href = "/semi01/login.ur"
+                                	
+                                }
+                                
+                                return false;
 
                             }
 
@@ -422,15 +428,15 @@
                                 <li><a href="<%= contextPath %>/rmovie.pr?ctype=콘서트" class="minCategory">콘서트</a></li>
                             </ul>
                             <li  style="width: 2px; height: 20px; margin-top: 8px; background-color: #515155;"></li>
-                        <li><a href="#" class="main_category" id="랭킹" main-selected="false">랭킹</a></li>
-                        <li><a href="#" class="main_category" id="지역" main-selected="false">지역</a>
+                        <li><a href="<%= contextPath %>/prcrank.pr?ctype=랭킹" class="main_category" id="랭킹" main-selected="false">랭킹</a></li>
+                        <li><a href="<%= contextPath %>/lolist.pr?ctype=서울" class="main_category" id="지역" main-selected="false">지역</a>
                             <ul class="local">
-                                <li><a href="#" class="minCategory">서울</a></li>
-                                <li><a href="#" class="minCategory">경기/이천</a></li>
-                                <li><a href="#" class="minCategory">충청/강원</a></li>
-                                <li><a href="#" class="minCategory">경상</a></li>
-                                <li><a href="#" class="minCategory">전라</a></li>
-                                <li><a href="#" class="minCategory">제주</a></li>
+                                <li><a href="<%= contextPath %>/lolist.pr?ctype=서울" class="minCategory">서울</a></li>
+                                <li><a href="<%= contextPath %>/lolist.pr?ctype=경기" class="minCategory">경기/이천</a></li>
+                                <li><a href="<%= contextPath %>/lolist.pr?ctype=충청" class="minCategory">충청/강원</a></li>
+                                <li><a href="<%= contextPath %>/lolist.pr?ctype=경상" class="minCategory">경상</a></li>
+                                <li><a href="<%= contextPath %>/lolist.pr?ctype=전라" class="minCategory">전라</a></li>
+                                <li><a href="<%= contextPath %>/lolist.pr?ctype=제주" class="minCategory">제주</a></li>
                             </ul>
                         </li>
                         

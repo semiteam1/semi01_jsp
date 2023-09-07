@@ -15,7 +15,7 @@ import com.kh.semi01.product.model.vo.Product;
 /**
  * Servlet implementation class ProductRankCategoryController
  */
-@WebServlet("/rank.pr")
+@WebServlet("/prcrank.pr")
 public class ProductRankCategoryController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -31,10 +31,9 @@ public class ProductRankCategoryController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		ArrayList<Product> rlist = new ProductService().selectProductRank();
+		ArrayList<Product> prclist = new ProductService().selectProductRank();
 		
-		request.setAttribute("rlist", rlist);
+		request.setAttribute("prclist", prclist);
 		
 		request.getRequestDispatcher("views/product/productRankCategory.jsp").forward(request, response);
 	}

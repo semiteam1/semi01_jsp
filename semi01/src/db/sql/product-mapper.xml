@@ -749,8 +749,16 @@ SELECT
 </entry>
 
 <entry key="selectProductRank">
-
-</entry>
+	SELECT
+		   PRODUCT_NO
+	     , PRODUCT_TITLE
+	     , ADDRESS
+	     , TO_CHAR(START_PERIOD, 'YYYY/MM/DD') "START_PERIOD"
+	     , TO_CHAR(END_PERIOD, 'YYYY/MM/DD') "END_PERIOD"
+	     , PRICE
+	     , IMAGE_PATH
+	     , POSTER_NAME
+	 FROM (
 	    SELECT *
 	      FROM PRODUCT P
 	      JOIN CATEGORY_INFO USING(CATEGORY_TYPE)
@@ -769,5 +777,32 @@ SELECT
 	           ORDER BY
 	                 좋아요_수 DESC)))
 	 JOIN PRODUCT_IMG USING(PRODUCT_NO)
-   <![CDATA[AND ROWNUM <= 10]]>
+    <![CDATA[WHERE ROWNUM <= 10]]>
+</entry>
+
+<entry key="selectLocationProduct">
+        SELECT PRODUCT_NO
+	     , PRODUCT_TITLE
+	     , TO_CHAR(START_PERIOD, 'YYYY/MM/DD') "START_PERIOD"
+	     , TO_CHAR(END_PERIOD, 'YYYY/MM/DD') "END_PERIOD"
+	     , POSTER_NAME
+	     , IMAGE_PATH
+	 FROM PRODUCT
+     JOIN PRODUCT_IMG USING(PRODUCT_NO)
+     JOIN LOCAL_INFO USING(LOCAL_NO)
+    WHERE LOCAL_NO = ?
+</entry>
+
+<entry key="selectLocationTotalProduct">
+        SELECT PRODUCT_NO
+	     , PRODUCT_TITLE
+	     , TO_CHAR(START_PERIOD, 'YYYY/MM/DD') "START_PERIOD"
+	     , TO_CHAR(END_PERIOD, 'YYYY/MM/DD') "END_PERIOD"
+	     , POSTER_NAME
+	     , IMAGE_PATH
+	 FROM PRODUCT
+     JOIN PRODUCT_IMG USING(PRODUCT_NO)
+     JOIN LOCAL_INFO USING(LOCAL_NO)
+</entry>
+
 </properties>

@@ -4,19 +4,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	DecimalFormat df = new DecimalFormat("###,###,###");
+
+	int bookedNo = (int)request.getAttribute("bookedNo");
 
 	Grade g = (Grade)request.getAttribute("g");
 
 	Book b = (Book)request.getAttribute("b");
 	
-	int bookedNo = (int)request.getAttribute("bookedNo");
-
-	String bookPrice = df.format(b.getPrice() * b.getAudience());
-			
-	String discountPrice = df.format(b.getPrice() * g.getGradeDiscount());
+	int bookPrice = b.getPrice() * b.getAudience();
 	
-	String payPrice = df.format(b.getPrice() * b.getAudience() - b.getPrice() * g.getGradeDiscount());
+	int discountPrice = (int)(bookPrice * g.getGradeDiscount());
+	
+	int payPrice = bookPrice - discountPrice;
+	
+	DecimalFormat df = new DecimalFormat("###,###,###");
+
+	String finalBookPrice = df.format(bookPrice);
+			
+	String finalDiscountPrice = df.format(discountPrice);
+	
+	String finalPayPrice = df.format(payPrice);
 	
 %>
 <!DOCTYPE html>
@@ -180,11 +187,11 @@
 	                                </tr>
 	                                <tr>
 	                                    <td class="form-title">예매 금액</td>
-	                                    <td class="form-content"><%= bookPrice %>원</td>
+	                                    <td class="form-content"><%= finalBookPrice %>원</td>
 	                                </tr>
 	                                <tr>
 	                                    <td class="form-title">할인 금액</td>
-	                                    <td class="form-content">-<%= discountPrice %>원 (<b><%= g.getGradeName() %></b> 등급할인 <b><%= (int)(g.getGradeDiscount()*100) %>%</b>)</td>
+	                                    <td class="form-content">-<%= finalDiscountPrice %>원 (<b><%= g.getGradeName() %></b> 등급할인 <b><%= (int)(g.getGradeDiscount()*100) %>%</b>)</td>
 	                                </tr>
 	                                <tr>
 	                                    <td class="form-title">결제 수단</td>
@@ -192,7 +199,7 @@
 	                                </tr>
 	                                <tr>
 	                                    <td class="form-title">결제 금액</td>
-	                                    <td class="form-content"><%= payPrice %>원</td>
+	                                    <td class="form-content"><%= finalPayPrice %>원</td>
 	                                </tr>
 	                                <tr id="account">
 	                                    <td class="form-title">입금 계좌</td>
@@ -201,7 +208,7 @@
 	                            </table>
 	
 	                            <div class="btns">
-	                                <button onclick="history.back();">돌아가기</button>
+	                                <button type="button" onclick="history.back();">돌아가기</button>
 	                                <button type="submit" onclick="return ticketDelete();">예매취소</button>
 	                            </div>
 	                            

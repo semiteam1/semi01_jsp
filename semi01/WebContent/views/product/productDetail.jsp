@@ -386,6 +386,7 @@
             background-color: white;
 			cursor: pointer;
         }
+        
 
 </style>
 </head>
@@ -419,7 +420,13 @@
 							
 							<% if(loginMember == null) { %>
 							
-								alert("로그인 후에 이용 가능합니다.");
+								if(confirm("로그인 후에 이용 가능한 서비스입니다. 로그인 하시겠습니까?")) {
+									
+									location.href = "<%= contextPath %>/login.ur";
+									
+								}
+								
+								return false;
 							
 							<% } else {%>
 							
@@ -546,7 +553,7 @@
 					</div>
 
 					<div class="booked_part1_calender2">
-						<input type="date" id="dateInput" name="bookedDate">
+						<input type="date" id="dateInput" name="bookedDate" required>
 								<script>
 								const startPeriodString = "<%= p.getStartPeriod() %>";
 								const endPeriodString = "<%= p.getEndPeriod() %>";
@@ -573,8 +580,8 @@
 							회차 선택
 						</div>
 						<div class="booked_part2_ampm2" align="center">
-							<input type="button" class="booked_part2_ampm non_click" id="dayTime" name="dayTime" value="11:00">
-							<input type="button" class="booked_part2_ampm non_click" id="nightTime" name="nightTime" value="18:00">
+							<input disabled type="button" class="booked_part2_ampm non_click" id="dayTime" name="dayTime" value="11:00">
+							<input disabled type="button" class="booked_part2_ampm non_click" id="nightTime" name="nightTime" value="18:00">
 							<input type="hidden" id="screenTime" name="screenTime">
 							<input type="hidden" id="spareSeat" name="spareSeat">
 						</div>
@@ -592,6 +599,12 @@
 						
 							$(function() {
 								
+								$("#dateInput").change(function() {
+									
+									$(".non_click").attr("disabled", false);
+									
+								});
+								
 								$(".non_click").click(function() {
 									
 									$("#screenTime").val($(this).val());
@@ -606,9 +619,18 @@
 						            	},
 						            	success:function(seatCount) {
 						            		
-						            		$("#seatCount").text(seatCount + "매");
+						            		if(seatCount > 0) {
+						            			
+						            			$("#seatCount").text(seatCount + "석");
+						            			
+						            		}
+						            		else {
+						            			
+						            			$("#seatCount").text("매진");
+
+						            		}
 						            		
-						            		$("#spareSeat").val(seatCount);
+					            			$("#spareSeat").val(seatCount);
 						            		
 						            	},
 						            	error:function() {
@@ -640,9 +662,71 @@
 						</script>
 			
 			<div class="booked_btn_form">
-				<button type="submit" class="booked_btn">예매하기</button>
+				<button type="submit" class="booked_btn" onclick="return checkBook();">예매하기</button>
 			</div>
 		</form>
+		
+		<script>
+		
+			function checkBook() {
+				
+				console.log("날짜 : " + $("#dateInput").val());
+				console.log("관람시간 : " + $("#screenTime").val());
+				console.log("controller로 넘어가는 잔여좌석 : " + $("#spareSeat").val());
+				console.log("ajax로 불러온 잔여좌석 : " + $("#seatCount").val())
+				
+				<% if(loginMember != null) { %>
+					
+					if($("#spareSeat").val() > 0 && ($("#screenTime").val("11:00") || $("#screenTime").val("18:00"))) {
+						
+						return confirm("관람날짜와 시간을 모두 선택하셨습니다. 예매창으로 이동하시겠습니까?");
+						
+					}
+					else if($("#spareSeat").val() == 0) {
+						
+						alert("관람날짜와 시간을 선택해 주세요.");
+					
+						return false;
+						
+					}
+					else if($("#screenTime").val("")) {
+						
+						alert("관람시간을 선택해 주세요.");
+						
+						return false;
+						
+					}
+					else if(($("#screenTime").val("11:00") || $("#screenTime").val("18:00")) && $("#spareSeat").val() <= 0) {
+						
+						alert("해당 좌석은 매진입니다. 다른 좌석을 선택해 주세요.");
+						
+						return false;
+						
+					}
+					else {
+						
+						alert("관람날짜와 관람시간을 선택해 주세요.")
+						
+						return false;
+						
+					}
+					
+				<% } else { %>
+					
+					
+					if(confirm("로그인 후에 이용 가능한 서비스입니다. 로그인 하시겠습니까?")) {
+						
+						location.href = "<%= contextPath %>/login.ur";
+						
+					}
+					
+					return false;
+					
+				<% } %>
+				
+			}
+		
+		</script>
 
 		
 		<br><br><br><br>
@@ -686,7 +770,7 @@
 					<div style="width: 100%; height: 60px; border-radius: 10px; padding: 15px; font-weight: bold; font-size: 15px;" >
 						<%=relist.get(i).getReviewContent() %>
 					</div>
-					<div style="width: 100%; height: 30px; padding-left: 15px;"><em>익명이 <%= i + 1 %></em> <%=relist.get(i).getReviewDate() %></div>
+					<div style="width: 100%; height: 30px; padding-left: 15px;"><em><%= relist.get(i).getUserId() %></em> <%=relist.get(i).getReviewDate() %></div>
 				</div>
 				<hr><br><br>
 				<% } %>

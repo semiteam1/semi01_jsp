@@ -68,6 +68,8 @@ public class UserDao {
 							 rset.getString("ENROLL_DATE"),
 							 rset.getString("STATUS")
 							);
+				
+				System.out.println("loginMember : " + u);
 						
 			}
 		} catch (SQLException e) {
